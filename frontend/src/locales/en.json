@@ -1,0 +1,43 @@
+{
+    "timer": {
+        "title": "Pomodoro Timer",
+        "defaultTime": "00:00",
+        "minutesPlaceholder": "Minutes",
+        "taskPlaceholder": "Task name"
+    },
+    "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "reset": "Reset",
+        "delete": "Delete",
+        "save": "Save",
+        "add": "Add"
+    },
+    "todayPomos": {
+        "title": "Today's Pomodoros",
+        "summary": "Summary of today's sessions:"
+    },
+    "table": {
+        "task": "Task",
+        "duration": "Duration",
+        "category": "Category"
+    },
+    "example": {
+        "task": "Write blog post",
+        "duration": "25 mins",
+        "category": "Writing",
+        "topic": "Research Vue"
+    },
+    "planned": {
+        "title": "Planned Timorias"
+    },
+    "inputs": {
+        "topic": "Topic",
+        "category": "Category",
+        "duration": "Duration (min)"
+    },
+    "suggestions": {
+        "learnVue": "Learn Vue",
+        "fixBugs": "Fix CSS bugs"
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "timer": {
+        "title": "مؤقت بومودورو",
+        "defaultTime": "00:00",
+        "minutesPlaceholder": "الدقائق",
+        "taskPlaceholder": "اسم المهمة"
+    },
+    "buttons": {
+        "start": "ابدأ",
+        "pause": "إيقاف مؤقت",
+        "reset": "إعادة",
+        "delete": "حذف",
+        "save": "حفظ",
+        "add": "أضف"
+    },
+    "todayPomos": {
+        "title": "انجازات اليوم",
+        "summary": "ملخص الجلسات لهذا اليوم:"
+    },
+    "table": {
+        "task": "المهمة",
+        "duration": "المدة",
+        "category": "الفئة"
+    },
+    "example": {
+        "task": "كتابة تدوينة",
+        "duration": "٢٥ دقيقة",
+        "category": "كتابة",
+        "topic": "بحث عن Vue"
+    },
+    "planned": {
+        "title": "التموريات المخططة"
+    },
+    "inputs": {
+        "topic": "الموضوع",
+        "category": "الفئة",
+        "duration": "المدة (دقيقة)"
+    },
+    "suggestions": {
+        "learnVue": "تعلم Vue",
+        "fixBugs": "إصلاح أخطاء CSS"
+    }
+}

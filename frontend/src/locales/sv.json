@@ -1,0 +1,43 @@
+{
+    "timer": {
+        "title": "Pomodoro-timer",
+        "defaultTime": "00:00",
+        "minutesPlaceholder": "Minuter",
+        "taskPlaceholder": "Uppgiftsnamn"
+    },
+    "buttons": {
+        "start": "Starta",
+        "pause": "Paus",
+        "reset": "Återställ",
+        "delete": "Ta bort",
+        "save": "Spara",
+        "add": "Lägg till"
+    },
+    "todayPomos": {
+        "title": "Dagens Pomodoros",
+        "summary": "Sammanfattning av dagens sessioner:"
+    },
+    "table": {
+        "task": "Uppgift",
+        "duration": "Varaktighet",
+        "category": "Kategori"
+    },
+    "example": {
+        "task": "Skriva blogginlägg",
+        "duration": "25 minuter",
+        "category": "Skrivande",
+        "topic": "Undersök Vue"
+    },
+    "planned": {
+        "title": "Planerade Timorias"
+    },
+    "inputs": {
+        "topic": "Ämne",
+        "category": "Kategori",
+        "duration": "Varaktighet (min)"
+    },
+    "suggestions": {
+        "learnVue": "Lär dig Vue",
+        "fixBugs": "Fixa CSS-buggar"
+    }
+}

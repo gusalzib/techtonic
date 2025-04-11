@@ -1,0 +1,596 @@
+/*******************************************************Themes***********************************************************************/
+:root {
+    /* dark theme style */
+    --dt-bg: black;
+    --dt-header: radial-gradient(circle, rgba(252, 101, 0, 0.35898109243697474) 29%, rgba(0, 0, 0, 0.7231267507002801) 76%);
+    --dt-text: white;
+    --dt-navBtn-bg: #2a3a4e;
+    --dt-navBtn-hover: #3b4b61;
+    --dt-transparentBg-black: rgba(0, 0, 0, 0.9);
+    --dt-body-color: radial-gradient(circle, rgba(252, 101, 0, 0.35898109243697474) 29%, rgba(0, 0, 0, 0.7231267507002801) 76%);
+    --standard-btn: #f98881;
+    --standard-btn-hover: #ff7169;
+
+    /* other style */
+    --border: orangered;
+    --white: white;
+    --link: #ba69c9;
+    --accent: #ba69c9;
+    --hashtag: radial-gradient(circle, rgba(0, 0, 0, 0.44021358543417366) 0%, rgba(255, 141, 0, 1) 85%);
+    
+    --profile: linear-gradient(0deg, rgba(0, 0, 0, .9) 17%, rgba(253, 153, 45, 1) 100%);
+    
+    --bar-color: orangered;
+    --bar-border-color: rgba(75, 192, 192, 1);
+}
+
+.dark-theme {
+
+    --dt-navBtn-bg: #2a3a4e;
+    --dt-navBtn-hover: #3b4b61;
+    --dt-header: radial-gradient(circle, rgba(252, 101, 0, 0.35898109243697474) 29%, rgba(0, 0, 0, 0.7231267507002801) 76%);
+    --dt-text: white;
+    --dt-body-color: radial-gradient(circle, rgba(252, 101, 0, 0.35898109243697474) 29%, rgba(0, 0, 0, 0.7231267507002801) 76%);
+    
+    --link: orangered;
+    --border: orangered;
+    --accent: #f98881;
+    
+    --timer-bg: linear-gradient(180deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(102,67,0,1) 85%);
+    
+    --bar-color: linear-gradient(0deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(70,0,102,1) 85%);
+    --bar-border-color: rgba(75, 192, 192, 1);
+
+}
+
+.light-theme {
+    --dt-navBtn-bg: #fab255;
+    --dt-navBtn-hover: #fab255;
+    --dt-header: radial-gradient(circle, rgba(236, 139, 74, 0.35898109243697474) 24%, rgba(116, 54, 0, 0.9220063025210083) 89%);
+    --dt-text: whitesmoke;
+    --dt-body-color: radial-gradient(circle, rgba(236, 139, 74, 0.35898109243697474) 24%, rgba(116, 54, 0, 0.9220063025210083) 89%);
+
+    --link: orangered;
+    --border: orangered;
+    --accent: #f98881;
+
+    --timer-bg: linear-gradient(180deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(102,67,0,1) 85%);
+
+}
+/*white dove icon <a href="https://www.flaticon.com/free-icons/dove" title="dove icons">Dove icons created by max.icons - Flaticon</a>*/
+/*dark dove icon <a href="https://www.flaticon.com/free-icons/dove" title="dove icons">Dove icons created by Nuriyanto51 - Flaticon</a>*/
+/*future helmet icon <a href="https://www.flaticon.com/free-icons/future" title="Future icons">Future icons created by iconsmind - Flaticon</a>*/
+.futuristic-theme{
+    --dt-navBtn-bg: #573280;
+    --dt-navBtn-hover: #ADA8B6;
+    
+    --dt-header: radial-gradient(circle, rgba(0,0,0,0.5298494397759104) 43%, rgba(35,2,46,1) 100%);
+    --dt-text: white;
+    --dt-body-color: radial-gradient(circle, rgba(0,0,0,0.5298494397759104) 43%, rgba(35,2,46,0.711922268907563) 100%);
+    
+    --standard-btn: #ADA8B6;
+    --standard-btn-hover: #CECFC7;
+    
+    --hashtag: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    --border: #573280;
+    
+    --profile: linear-gradient(0deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(188,0,255,1) 85%);
+    
+    --timer-bg: linear-gradient(180deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(53,0,71,1) 85%);
+}
+
+.palaes-theme{
+    --dt-navBtn-bg: #1c7032;
+    --dt-navBtn-hover: #226b35;
+    --dt-header: radial-gradient(circle, rgba(0,0,0,0.5886729691876751) 52%, rgba(253,45,45,0.27494747899159666) 100%);
+    --dt-text: white;
+    --dt-body-color: radial-gradient(circle, rgba(0,0,0,0.6951155462184874) 52%, rgba(253,45,45,0.6306897759103641) 100%);
+    
+    --hashtag: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(252,70,70,1) 100%);
+    
+    --standard-btn: #e3302d;
+    --standard-btn-hover: #931F1D;
+    
+    --link: red;
+    --border: #eb2828;
+    --accent: #e3302d;
+    
+    --profile: linear-gradient(0deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(255,0,0,1) 85%);
+    
+    --timer-bg: linear-gradient(180deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(102,0,0,1) 85%);
+}
+
+
+
+
+
+
+
+
+
+/*############################################### LANGUAGE SWITCING STYLE ############################################*/
+select {
+  margin-left: 20px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------------------------TIMER.PHP------------------------------------------------------------*/
+.timer-container {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 10%;
+    background: var(--timer-bg);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border);
+
+}
+
+        #timerDisplay {
+            font-size: 2rem;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: black;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+.timer-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--standard-btn);
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.timer-btn:hover {
+    background-color: var(--standard-btn-hover);
+}
+
+.timer-input[type="number"] {
+    width: 100px;
+    padding: 5px;
+    font-size: 16px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid var(--accent);
+}
+.timer-input[type="text"] {
+    width: 100px;
+    padding: 5px;
+    font-size: 16px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid var(--accent);
+}
+.chart-input{
+    width: 125px;
+    padding: 5px;
+    font-size: 16px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid var(--accent);
+}
+
+
+/* Style for the section displaying today's pomodoros in dark mode */
+.today-pomos {
+    width: 60%;
+    max-width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 10%;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: #222;
+    color: #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.today-pomos h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #eee;
+}
+
+.today-pomos p {
+    font-size: 1.1em;
+    color: #bbb;
+}
+
+.today-pomos table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.today-pomos table th,
+.today-pomos table td {
+    padding: 10px;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+.today-pomos table th {
+    background-color: #333;
+    color: #eee;
+}
+
+.today-pomos table tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+
+.today-pomos table tr:hover {
+    background-color: #444;
+}
+
+
+/* Style for the autocomplete suggestions */
+.autocomplete-suggestions {
+    max-width: 30%;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background-color: black;
+    z-index: 1000;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+
+
+.pomo-card{
+    display: none;
+}
+
+
+/* Style for the Planned Timorias section */
+.planned-timorias {
+    width: 60%;
+    margin: 3% auto;
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: #222;
+}
+
+.planned-timorias h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.planned-timorias form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+/* .timer-input here may cause conflict of styles. RIGHT NOW it seems to be ok though.*/
+.planned-timorias .timer-input {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    min-width: 150px; /* Ensure the input fields have a minimum width */
+}
+
+.timer-input-category{
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    min-width: 150px; /* Ensure the input fields have a minimum width */
+}
+
+#addPlannedTimoriaBtn {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: var(--standard-btn);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#addPlannedTimoriaBtn:hover {
+    background-color:  var(--standard-btn-hover);
+}
+
+/* Style for the list of planned Timorias */
+#plannedTimoriasList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+#plannedTimoriasList li span {
+    font-size: 14px;
+    flex-grow: 1;
+}
+
+
+#plannedTimoriasList li {
+    color: var(--dt-text);
+    display: flex; /* Use flexbox to arrange items */
+    justify-content: space-between; /* Distribute items evenly */
+    align-items: center; /* Center items vertically */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 3px solid var(--border);
+    border-radius: 4px;
+    background-color: #222;
+    box-sizing: border-box; /* Ensure padding and border are included in width/height */
+}
+
+.timoria-info {
+    display: flex; /* Use flexbox to align items within this container */
+    flex: 1; /* Allow the container to take up available space */
+    justify-content: space-between; /* Distribute items evenly */
+}
+
+.timoria-category,
+.timoria-topic,
+.timoria-duration {
+    background-color: rgba(82, 145, 39, 0.3);
+    padding: 5px;
+    border-radius: 5px;
+    flex: 1; /* Allow these elements to grow and take up available space */
+    text-align: center; /* Center text inside each element */
+}
+
+/* Add a separator between fields */
+.timoria-info span:not(:last-child) {
+    margin-right: 20px; /* Space between items */
+}
+
+
+.start-btn, .delete-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.start-btn {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.start-btn:hover {
+    background-color: #0069d9;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .planned-timorias {
+        width: 85%;
+    }
+
+    .planned-timorias form {
+        display: flex; /* Ensure the form fields stack vertically */
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .planned-timorias .timer-input {
+        width: 92%; /* Ensure inputs take full width */
+    }
+    
+    #plannedTimoriasList li {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .timoria-info {
+        flex-direction: column; /* Stack items vertically */
+        width: 100%; /* Ensure full width */
+    }
+
+    .timoria-info span {
+        margin-bottom: 8px; /* Space between stacked items */
+    }
+
+    #plannedTimoriasList li span {
+        margin-bottom: 8px; /* Space between each item */
+        display: block; /* Ensure each span takes a full line */
+        width: 100%; /* Full width for each span */
+        text-align: left; /* Align text to the left */
+    }
+
+    .timoria-actions {
+        margin-top: 10px; /* Space above action buttons */
+        display: flex;
+        flex-direction: row; /* Ensure buttons are in a row */
+        gap: 5px; /* Space between buttons */
+    }
+
+    .timoria-actions button {
+        width: 100%; /* Ensure buttons take full width */
+        padding: 8px;
+    }
+    
+    
+    
+    
+    /* Additional styling for select elements to match inputs */
+    select.timer-input-category {
+        -webkit-appearance: none; /* Remove default styling in WebKit browsers */
+        -moz-appearance: none; /* Remove default styling in Mozilla browsers */
+        appearance: none; /* Remove default styling in other browsers */
+        padding-right: 30px; /* Space for dropdown indicator */
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 5"><path d="M0 0l5 5 5-5z" fill="%23222"/></svg>') no-repeat right center; /* Custom dropdown arrow */
+        background-size: 12px 8px; /* Size of the custom arrow */
+        background-color: #fff; /* Background color to match inputs */
+        width: 100%;
+        border-radius: 5px;
+    }
+    
+    /* Remove default dropdown arrow styling in WebKit browsers */
+    select.timer-input-category::-ms-expand {
+        display: none;
+    }
+    
+    /* Ensuring consistent height for select elements */
+    select.timer-input-category {
+        height: 44px; /* Set height to match input fields, adjust as needed */
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+
+/* Card Layout for Mobile */
+@media (max-width: 1200px) {
+    .today-pomos{
+        width: 85%;
+        margin-bottom: 15%;
+    }
+    .today-pomos table {
+        display: none;
+    }
+
+    .pomo-card {
+        display: block;
+        background-color: #2a2a2a;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+        border: 1px solid var(--border);
+    }
+
+    .pomo-card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .pomo-card-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .pomo-card-item strong {
+        color: #fff;
+    }
+
+    .pomo-card-item input {
+        width: calc(100% - 100px); /* Adjust this to fit your layout */
+        background-color: #444;
+        color: #fff;
+        padding: 5px;
+        border: none;
+        border-radius: 4px;
+    }
+
+    .card-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .card-actions button {
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .delete-btn, .save-btn {
+        background-color: var(--standard-btn);
+        color: var(--dt-text);
+        border: 1px var(--border) solid;
+
+    }
+}
+
+@media (max-width: 800px){
+    /*.today-pomos{*/
+    /*    width: 85%;*/
+    /*}*/
+    .timer-container{
+        width: 85%;
+        margin: 0 auto;
+        margin-top: 15%;
+    }
+    .autocomplete-suggestions{
+        min-width: 100%;
+    }
+    
+
+}

@@ -1,10 +1,26 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> | 
+    <router-link to="/timoria">Timoria</router-link>
+
+    <!-- Add language switcher here -->
+    <LanguageSwitcher />
   </nav>
-  <router-view/>
+
+  <router-view />
 </template>
+
+<script>
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue' // adjust if it's somewhere else
+
+export default {
+  name: 'App',
+  components: {
+    LanguageSwitcher
+  }
+}
+</script>
 
 <style>
 #app {
