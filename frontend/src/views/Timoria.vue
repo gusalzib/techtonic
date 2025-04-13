@@ -3,7 +3,7 @@
  <!-- <p>Active language: {{ $i18n.locale }}</p>
 <p style="color: red">Lang Check: {{ $i18n.locale }} / {{ $t('example.task') }}</p> -->
 
-<div class="timer-container">
+<!-- <div class="timer-container">
   <h1>{{ $t('timer.title') }}</h1>
 
   <div id="timerDisplay">{{ $t('timer.defaultTime') }}</div>
@@ -22,7 +22,8 @@
     <button class="timer-btn">{{ $t('buttons.reset') }}</button>
     <button type="submit" id="" class="timer-btn">{{ $t('buttons.finish') }}</button>
   </div>
-</div>
+</div> -->
+  <Timer />
 
 <!-- Today’s Pomodoros Section -->
 <section class="today-pomos">
@@ -121,6 +122,7 @@
 <script>
 // @ is an alias to /src
 import axios from 'axios'
+import Timer from '../components/Timer'
 
 export default {
     name: 'Timoria',
@@ -137,7 +139,7 @@ export default {
         }
   },
   components: {
-    
+    Timer
     },
   mounted() {
     console.log('Locale:', this.$i18n.locale)
