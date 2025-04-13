@@ -3,7 +3,10 @@
         "title": "Pomodoro Timer",
         "defaultTime": "00:00",
         "minutesPlaceholder": "Minutes",
-        "taskPlaceholder": "Task name"
+        "subjectPlaceholder": "Subject name",
+        "topicPlaceholder": "Topic name",
+        "tagPlaceholder": "Tag",
+        "taskPlaceholder": "Task description"
     },
     "buttons": {
         "start": "Start",
@@ -11,7 +14,8 @@
         "reset": "Reset",
         "delete": "Delete",
         "save": "Save",
-        "add": "Add"
+        "add": "Add",
+        "finish": "Finish"
     },
     "todayPomos": {
         "title": "Today's Pomodoros",
@@ -20,24 +24,33 @@
     "table": {
         "task": "Task",
         "duration": "Duration",
-        "category": "Category"
+        "subject": "Subject",
+        "topic": "Topic",
+        "tag": "Tag"
     },
     "example": {
         "task": "Write blog post",
         "duration": "25 mins",
-        "category": "Writing",
-        "topic": "Research Vue"
+        "subject": "Writing",
+        "topic": "Research Vue",
+        "tag": "#vue links"
     },
     "planned": {
         "title": "Planned Timorias"
     },
     "inputs": {
         "topic": "Topic",
-        "category": "Category",
+        "subject": "Subject",
+        "tag": "Tag",
+        "task": "Task",
         "duration": "Duration (min)"
     },
     "suggestions": {
         "learnVue": "Learn Vue",
         "fixBugs": "Fix CSS bugs"
+    },
+    "nav": {
+        "about": "About",
+        "timoria": "Timoria"
     }
 }

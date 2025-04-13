@@ -1,43 +1,55 @@
 {
     "timer": {
         "title": "مؤقت بومودورو",
-        "defaultTime": "00:00",
+        "defaultTime": "٠٠:٠٠",
         "minutesPlaceholder": "الدقائق",
-        "taskPlaceholder": "اسم المهمة"
+        "subjectPlaceholder": "اسم المادة",
+        "topicPlaceholder": "الموضوع",
+        "tagPlaceholder": "وسم",
+        "taskPlaceholder": "وصف المهمة"
     },
     "buttons": {
         "start": "ابدأ",
         "pause": "إيقاف مؤقت",
-        "reset": "إعادة",
+        "reset": "إعادة ضبط",
         "delete": "حذف",
         "save": "حفظ",
-        "add": "أضف"
+        "add": "إضافة"
     },
     "todayPomos": {
         "title": "انجازات اليوم",
-        "summary": "ملخص الجلسات لهذا اليوم:"
+        "summary": "ملخص جلسات اليوم:"
     },
     "table": {
         "task": "المهمة",
         "duration": "المدة",
-        "category": "الفئة"
+        "subject": "المادة",
+        "topic": "الموضوع",
+        "tag": "الوسم"
     },
     "example": {
         "task": "كتابة تدوينة",
         "duration": "٢٥ دقيقة",
-        "category": "كتابة",
-        "topic": "بحث عن Vue"
+        "subject": "الكتابة",
+        "topic": "بحث عن Vue",
+        "tag": "#روابط_vue"
     },
     "planned": {
-        "title": "التموريات المخططة"
+        "title": "الأنشطة المخطط لها"
     },
     "inputs": {
         "topic": "الموضوع",
-        "category": "الفئة",
-        "duration": "المدة (دقيقة)"
+        "subject": "المادة",
+        "tag": "الوسم",
+        "task": "المهمة",
+        "duration": "المدة (دقائق)"
     },
     "suggestions": {
         "learnVue": "تعلم Vue",
         "fixBugs": "إصلاح أخطاء CSS"
+    },
+    "nav": {
+        "about": "حول",
+        "timoria": "تيموريا"
     }
 }

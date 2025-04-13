@@ -1,13 +1,16 @@
 {
     "timer": {
-        "title": "Pomodoro-timer",
+        "title": "Pomodoro Timer",
         "defaultTime": "00:00",
         "minutesPlaceholder": "Minuter",
-        "taskPlaceholder": "Uppgiftsnamn"
+        "subjectPlaceholder": "Ämne",
+        "topicPlaceholder": "Ämnesområde",
+        "tagPlaceholder": "Etikett",
+        "taskPlaceholder": "Uppgiftsbeskrivning"
     },
     "buttons": {
         "start": "Starta",
-        "pause": "Paus",
+        "pause": "Pausa",
         "reset": "Återställ",
         "delete": "Ta bort",
         "save": "Spara",
@@ -20,24 +23,33 @@
     "table": {
         "task": "Uppgift",
         "duration": "Varaktighet",
-        "category": "Kategori"
+        "subject": "Ämne",
+        "topic": "Ämnesområde",
+        "tag": "Etikett"
     },
     "example": {
-        "task": "Skriva blogginlägg",
+        "task": "Skriv blogginlägg",
         "duration": "25 minuter",
-        "category": "Skrivande",
-        "topic": "Undersök Vue"
+        "subject": "Skrivande",
+        "topic": "Forskning om Vue",
+        "tag": "#vue länkar"
     },
     "planned": {
         "title": "Planerade Timorias"
     },
     "inputs": {
-        "topic": "Ämne",
-        "category": "Kategori",
+        "topic": "Ämnesområde",
+        "subject": "Ämne",
+        "tag": "Etikett",
+        "task": "Uppgift",
         "duration": "Varaktighet (min)"
     },
     "suggestions": {
         "learnVue": "Lär dig Vue",
         "fixBugs": "Fixa CSS-buggar"
+    },
+    "nav": {
+        "about": "Om",
+        "timoria": "Timoria"
     }
 }
