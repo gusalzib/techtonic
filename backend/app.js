@@ -24,6 +24,12 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
+
+// Routes
+const timoriaRoutes = require('./routes/timoriaRoutes') // update the path if needed
+
+app.use('/api/timoria', timoriaRoutes)
+
 // Connect to MongoDB using the URI stored in the .env file
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,         // Use the new URL parser instead of the deprecated one
