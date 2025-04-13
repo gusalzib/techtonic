@@ -1,7 +1,7 @@
 /*******************************************************Themes***********************************************************************/
 :root {
     /* dark theme style */
-    --dt-bg: black;
+    /* --dt-bg: black;
     --dt-header: radial-gradient(circle, rgba(252, 101, 0, 0.35898109243697474) 29%, rgba(0, 0, 0, 0.7231267507002801) 76%);
     --dt-text: white;
     --dt-navBtn-bg: #2a3a4e;
@@ -9,10 +9,10 @@
     --dt-transparentBg-black: rgba(0, 0, 0, 0.9);
     --dt-body-color: radial-gradient(circle, rgba(252, 101, 0, 0.35898109243697474) 29%, rgba(0, 0, 0, 0.7231267507002801) 76%);
     --standard-btn: #f98881;
-    --standard-btn-hover: #ff7169;
+    --standard-btn-hover: #ff7169; */
 
     /* other style */
-    --border: orangered;
+    /* --border: orangered;
     --white: white;
     --link: #ba69c9;
     --accent: #ba69c9;
@@ -21,28 +21,63 @@
     --profile: linear-gradient(0deg, rgba(0, 0, 0, .9) 17%, rgba(253, 153, 45, 1) 100%);
     
     --bar-color: orangered;
-    --bar-border-color: rgba(75, 192, 192, 1);
-}
+    --bar-border-color: rgba(75, 192, 192, 1); */
 
+    /* TECHTONIC COLOR SCHEME */
+
+    --white: white;
+    --link: #ba69c9;
+    --hashtag: radial-gradient(circle, rgba(0, 0, 0, 0.44021358543417366) 0%, rgba(255, 141, 0, 1) 85%);
+    --accent: #ba69c9;
+    --standard-btn: #2E8C6E; /*viridian*/
+    --dark-btn: #0000005d;
+    --standard-btn-hover: #4D48D4;
+    --border: #000000;
+
+    --viridian: #2E8C6E;
+    --tiffany-blue: #9BCABD;
+    --iris: #4D48D4;
+    --ultramarine: #1A1195;
+    --persian-indigo: #2A0C64;
+
+
+    --timer-bg: #f7f9fa; /* soft very light blue/gray */
+    --timer-text: var(--ultramarine); /* clean contrast */
+    --input-bg: #ffffff;
+    --input-text: var(--ultramarine);
+    --input-border: var(--tiffany-blue);
+
+
+
+    --section-bg: #ffffff;
+    --section-text: var(--ultramarine);
+    --section-border: var(--tiffany-blue);
+    --section-header: var(--iris);
+    --section-subtext: #4c4c4c;
+    --alt-row-bg: #f0f4f6;
+    --hover-row-bg: #e5f2f0;
+    --autocomplete-bg: #ffffff;
+    --autocomplete-hover: #f2f2f2;
+
+}
 .dark-theme {
-
-    --dt-navBtn-bg: #2a3a4e;
-    --dt-navBtn-hover: #3b4b61;
-    --dt-header: radial-gradient(circle, rgba(252, 101, 0, 0.35898109243697474) 29%, rgba(0, 0, 0, 0.7231267507002801) 76%);
-    --dt-text: white;
-    --dt-body-color: radial-gradient(circle, rgba(252, 101, 0, 0.35898109243697474) 29%, rgba(0, 0, 0, 0.7231267507002801) 76%);
-    
-    --link: orangered;
-    --border: orangered;
-    --accent: #f98881;
-    
-    --timer-bg: linear-gradient(180deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(102,67,0,1) 85%);
-    
-    --bar-color: linear-gradient(0deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(70,0,102,1) 85%);
-    --bar-border-color: rgba(75, 192, 192, 1);
-
+  --section-bg: #1c1c1c;
+  --section-text: #ffffff;
+  --section-border: #444;
+  --section-header: var(--tiffany-blue);
+  --section-subtext: #aaaaaa;
+  --alt-row-bg: #2a2a2a;
+  --hover-row-bg: #3a3a3a;
+  --autocomplete-bg: #000;
+  --autocomplete-hover: #111;
+  --timer-bg: #121212;
+  --timer-text: #ffffff;
+  --input-bg: #1a1a1a;
+  --input-text: #eeeeee;
+  --input-border: var(--accent);
+  --border: #ffffff;
 }
-
+/* 
 .light-theme {
     --dt-navBtn-bg: #fab255;
     --dt-navBtn-hover: #fab255;
@@ -56,11 +91,11 @@
 
     --timer-bg: linear-gradient(180deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(102,67,0,1) 85%);
 
-}
+} */
 /*white dove icon <a href="https://www.flaticon.com/free-icons/dove" title="dove icons">Dove icons created by max.icons - Flaticon</a>*/
 /*dark dove icon <a href="https://www.flaticon.com/free-icons/dove" title="dove icons">Dove icons created by Nuriyanto51 - Flaticon</a>*/
 /*future helmet icon <a href="https://www.flaticon.com/free-icons/future" title="Future icons">Future icons created by iconsmind - Flaticon</a>*/
-.futuristic-theme{
+/* .futuristic-theme{
     --dt-navBtn-bg: #573280;
     --dt-navBtn-hover: #ADA8B6;
     
@@ -77,8 +112,8 @@
     --profile: linear-gradient(0deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(188,0,255,1) 85%);
     
     --timer-bg: linear-gradient(180deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(53,0,71,1) 85%);
-}
-
+} */
+/* 
 .palaes-theme{
     --dt-navBtn-bg: #1c7032;
     --dt-navBtn-hover: #226b35;
@@ -98,21 +133,126 @@
     --profile: linear-gradient(0deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(255,0,0,1) 85%);
     
     --timer-bg: linear-gradient(180deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(102,0,0,1) 85%);
+} */
+
+
+
+body{
+    margin: 0;
+    background-color: rgb(209, 227, 233);
 }
 
 
+/*############################################### HEADER STYLE #######################################################*/
+/* Layout */
+.nav-header {
+  background-color: var(--iris);
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
+}
 
+.nav-container {
+  /* width: 100%; */
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+/* Logo */
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+}
 
+/* Nav Links */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
 
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
 
+.nav-links a.router-link-exact-active {
+  color: #9BCABD;
+}
+
+.lang-switch select {
+  background-color: #ffffff;
+  color: #2A0C64;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 5px 10px;
+  
+}
+
+/* Burger */
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.burger span {
+  width: 25px;
+  height: 3px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.burger span.open:nth-child(1) {
+  transform: rotate(45deg) translateY(7px);
+}
+
+.burger span.open:nth-child(2) {
+  opacity: 0;
+}
+
+.burger span.open:nth-child(3) {
+  transform: rotate(-45deg) translateY(-7px);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    flex-direction: column;
+    background-color: #2E8C6E;
+    width: 100%;
+    padding: 1rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+  }
+
+  .burger {
+    display: flex;
+  }
+}
 
 /*############################################### LANGUAGE SWITCING STYLE ############################################*/
 select {
   margin-left: 20px;
   padding: 5px;
   font-size: 14px;
+  border-radius: 50px;
+  background-color: var(--tiffany-blue);
 }
 
 
@@ -137,65 +277,65 @@ select {
 
 
 
-/*-------------------------------------------TIMER.PHP------------------------------------------------------------*/
+/*-------------------------------------------TIMER syle------------------------------------------------------------*/
 .timer-container {
-    width: 60%;
-    margin: 0 auto;
-    margin-top: 10%;
-    background: var(--timer-bg);
-    color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--border);
-
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 10%;
+  background: var(--timer-bg);
+  color: var(--timer-text);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--input-border);
 }
 
-        #timerDisplay {
-            font-size: 2rem;
-            margin: 20px auto;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: black;
-            width: 100%;
-            max-width: 300px;
-            text-align: center;
-        }
+#timerDisplay {
+  font-size: 2rem;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  background-color: var(--input-bg);
+  color: var(--timer-text);
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+.timer-input[type="number"],
+.timer-input[type="text"] {
+  width: 100px;
+  padding: 5px;
+  font-size: 16px;
+  margin: 5px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.timer-input{
+    border: 1px solid white;
+}
+
 .timer-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: var(--standard-btn);
-    color: #fff;
-    transition: background-color 0.3s;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--standard-btn);
+  color: white;
+  transition: background-color 0.3s;
+  margin: 10px 10px;
 }
 
 .timer-btn:hover {
-    background-color: var(--standard-btn-hover);
+  background-color: var(--standard-btn-hover);
 }
 
-.timer-input[type="number"] {
-    width: 100px;
-    padding: 5px;
-    font-size: 16px;
-    margin: 5px;
-    text-align: center;
-    border-radius: 5px;
-    border: 1px solid var(--accent);
-}
-.timer-input[type="text"] {
-    width: 100px;
-    padding: 5px;
-    font-size: 16px;
-    margin: 5px;
-    text-align: center;
-    border-radius: 5px;
-    border: 1px solid var(--accent);
-}
 .chart-input{
     width: 125px;
     padding: 5px;
@@ -209,79 +349,78 @@ select {
 
 /* Style for the section displaying today's pomodoros in dark mode */
 .today-pomos {
-    width: 60%;
-    max-width: 90%;
-    margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 10%;
-    padding: 20px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background-color: #222;
-    color: #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
+  width: 60%;
+  max-width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 10%;
+  padding: 20px;
+  border: 1px solid var(--section-border);
+  border-radius: 8px;
+  background-color: var(--section-bg);
+  color: var(--section-text);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .today-pomos h2 {
-    margin-top: 0;
-    font-size: 1.5em;
-    color: #eee;
+  margin-top: 0;
+  font-size: 1.5em;
+  color: var(--section-header);
 }
 
 .today-pomos p {
-    font-size: 1.1em;
-    color: #bbb;
+  font-size: 1.1em;
+  color: var(--section-subtext);
 }
 
 .today-pomos table {
     width: 100%;
-    border-collapse: collapse;
+    margin: auto;
 }
-
 .today-pomos table th,
 .today-pomos table td {
-    padding: 10px;
-    border: 1px solid var(--border);
-    text-align: left;
+  padding: 10px;
+  border: 1px solid var(--section-border);
+  text-align: left;
 }
 
 .today-pomos table th {
-    background-color: #333;
-    color: #eee;
+  background-color: var(--tiffany-blue);
+  color: var(--ultramarine);
 }
 
 .today-pomos table tr:nth-child(even) {
-    background-color: #2a2a2a;
+  background-color: var(--alt-row-bg);
 }
 
 .today-pomos table tr:hover {
-    background-color: #444;
+  background-color: var(--hover-row-bg);
 }
+
 
 
 /* Style for the autocomplete suggestions */
 .autocomplete-suggestions {
-    max-width: 30%;
-    margin: 0 auto;
-    position: relative;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background-color: black;
-    z-index: 1000;
-    max-height: 150px;
-    overflow-y: auto;
+  max-width: 30%;
+  margin: 0 auto;
+  position: relative;
+  border: 1px solid var(--section-border);
+  border-radius: 4px;
+  background-color: var(--autocomplete-bg);
+  z-index: 1000;
+  max-height: 150px;
+  overflow-y: auto;
 }
 
 .suggestion-item {
-    padding: 8px;
-    cursor: pointer;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--section-text);
 }
 
 .suggestion-item:hover {
-    background-color: #f0f0f0;
+  background-color: var(--autocomplete-hover);
 }
-
 
 
 
@@ -293,18 +432,20 @@ select {
 
 /* Style for the Planned Timorias section */
 .planned-timorias {
-    width: 60%;
-    margin: 3% auto;
-    padding: 15px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background-color: #222;
+  width: 60%;
+  margin: 3% auto;
+  padding: 15px;
+  border: 1px solid var(--section-border);
+  border-radius: 8px;
+  background-color: var(--section-bg);
+  color: var(--section-text);
 }
 
 .planned-timorias h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    text-align: center;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+  color: var(--section-header);
 }
 
 .planned-timorias form {
@@ -365,18 +506,16 @@ select {
 
 
 #plannedTimoriasList li {
-    color: var(--dt-text);
-    display: flex; /* Use flexbox to arrange items */
-    justify-content: space-between; /* Distribute items evenly */
-    align-items: center; /* Center items vertically */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 3px solid var(--border);
-    border-radius: 4px;
-    background-color: #222;
-    box-sizing: border-box; /* Ensure padding and border are included in width/height */
+  color: var(--section-text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid var(--section-border);
+  border-radius: 4px;
+  background-color: var(--alt-row-bg);
 }
-
 .timoria-info {
     display: flex; /* Use flexbox to align items within this container */
     flex: 1; /* Allow the container to take up available space */
@@ -410,22 +549,23 @@ select {
 }
 
 .start-btn {
-    background-color: #007bff;
-    color: #fff;
+  background-color: var(--standard-btn);
+  color: #fff;
 }
 
 .start-btn:hover {
-    background-color: #0069d9;
+  background-color: var(--standard-btn-hover);
 }
 
 .delete-btn {
-    background-color: #dc3545;
-    color: #fff;
+  background-color: #e44;
+  color: #fff;
 }
 
 .delete-btn:hover {
-    background-color: #c82333;
+  background-color: #c33;
 }
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -511,73 +651,78 @@ select {
     
 }
 
-
-
 /* Card Layout for Mobile */
 @media (max-width: 1200px) {
-    .today-pomos{
-        width: 85%;
-        margin-bottom: 15%;
-    }
-    .today-pomos table {
-        display: none;
-    }
+  .today-pomos {
+    width: 85%;
+    margin-bottom: 15%;
+  }
 
-    .pomo-card {
-        display: block;
-        background-color: #2a2a2a;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-bottom: 15px;
-        border: 1px solid var(--border);
-    }
+  .today-pomos table {
+    display: none;
+  }
 
-    .pomo-card-content {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+  .pomo-card {
+    display: block;
+    background-color: var(--section-bg);
+    color: var(--section-text);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+    border: 1px solid var(--section-border);
+  }
 
-    .pomo-card-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  .pomo-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .pomo-card-item strong {
-        color: #fff;
-    }
+  .pomo-card-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .pomo-card-item input {
-        width: calc(100% - 100px); /* Adjust this to fit your layout */
-        background-color: #444;
-        color: #fff;
-        padding: 5px;
-        border: none;
-        border-radius: 4px;
-    }
+  .pomo-card-item strong {
+    color: var(--section-header);
+  }
 
-    .card-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-    }
+  .pomo-card-item span {
+    color: var(--section-text);
+  }
 
-    .card-actions button {
-        padding: 5px 10px;
-        border-radius: 4px;
-        border: none;
-        cursor: pointer;
-    }
+  .pomo-card-item input {
+    width: calc(100% - 100px);
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    padding: 5px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+  }
 
-    .delete-btn, .save-btn {
-        background-color: var(--standard-btn);
-        color: var(--dt-text);
-        border: 1px var(--border) solid;
+  .card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
 
-    }
+  .card-actions button {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .delete-btn,
+  .save-btn {
+    background-color: var(--standard-btn);
+    color: var(--section-bg);
+    border: 1px solid var(--section-border);
+  }
 }
+
 
 @media (max-width: 800px){
     /*.today-pomos{*/
@@ -593,4 +738,10 @@ select {
     }
     
 
+}
+
+/*################################### TIMER STYLE ANIMATIONS ##################################################*/
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }

@@ -1,46 +1,51 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> | 
-    <router-link to="/timoria">Timoria</router-link>
+  <header class="nav-header">
+    <div class="nav-container">
+      <div class="logo">
+        <router-link to="/">Timoria</router-link>
+      </div>
 
-    <!-- Add language switcher here -->
-    <LanguageSwitcher />
-  </nav>
+      <!-- Burger icon -->
+      <div class="burger" @click="toggleMenu">
+        <span :class="{ open: menuOpen }"></span>
+        <span :class="{ open: menuOpen }"></span>
+        <span :class="{ open: menuOpen }"></span>
+      </div>
 
+      <!-- Navigation links -->
+      <nav :class="['nav-links', { open: menuOpen }]">
+        <router-link to="/about">{{ $t('nav.about') }}</router-link>
+        <router-link to="/timoria">{{ $t('nav.timoria') }}</router-link>
+        <LanguageSwitcher />
+        <ThemeToggle />
+      </nav>
+    </div>
+  </header>
   <router-view />
 </template>
-
 <script>
-import LanguageSwitcher from '@/components/LanguageSwitcher.vue' // adjust if it's somewhere else
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
+import ThemeToggle from '@/components/ThemeToggle.vue'
+
 
 export default {
   name: 'App',
   components: {
-    LanguageSwitcher
+    LanguageSwitcher,
+    ThemeToggle
+    
+   },
+  data() {
+    return {
+      menuOpen: false
+    }
+  },
+  methods: {
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style src="./assets/styles/main.css"></style>
