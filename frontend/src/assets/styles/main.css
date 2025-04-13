@@ -383,6 +383,13 @@ select {
   border: 1px solid var(--section-border);
   text-align: left;
 }
+.today-pomos table td input {
+  max-width: 150px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  font-size: 14px;
+}
 
 .today-pomos table th {
   background-color: var(--tiffany-blue);
@@ -558,14 +565,60 @@ select {
 }
 
 .delete-btn {
-  background-color: #e44;
+  background-color: rgb(207, 0, 0);
   color: #fff;
 }
 
 .delete-btn:hover {
-  background-color: #c33;
+  background-color: rgb(108, 35, 35);
 }
 
+.save-btn {
+    background-color: var(--standard-btn);
+    color: var(--section-bg);
+    border: 1px solid var(--section-border);
+}
+
+.undo-btn-container{
+    width: 100%;
+    border: 1px red solid;
+    padding: 25px;
+}
+.undo-btn {
+  display: block; /* Add this to make margin:auto work */
+  width: 50%;
+  margin: 20px auto; /* Add vertical margin for spacing */
+  background-color: var(--standard-btn);
+  color: var(--section-bg);
+  border: 1px solid var(--section-border);
+  padding: 5px 10px; /* Increased padding for size */
+  font-size: 1.1rem; /* Slightly bigger text */
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.undo-btn:hover {
+  background-color: var(--standard-btn-hover); /* Add a hover state if you want */
+}
+/* Slide-Fade Transition */
+.slide-fade-enter-active {
+  transition: all 0.4s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.slide-fade-enter-to,
+.slide-fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

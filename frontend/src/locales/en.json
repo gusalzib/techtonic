@@ -15,7 +15,9 @@
         "delete": "Delete",
         "save": "Save",
         "add": "Add",
-        "finish": "Finish"
+        "finish": "Finish",
+        "edit": "Edit",
+        "undo": "Undo"
     },
     "todayPomos": {
         "title": "Today's Pomodoros",
@@ -26,7 +28,8 @@
         "duration": "Duration",
         "subject": "Subject",
         "topic": "Topic",
-        "tag": "Tag"
+        "tag": "Tag",
+        "actions": "Actions"
     },
     "example": {
         "task": "Write blog post",

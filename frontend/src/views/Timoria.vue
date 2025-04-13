@@ -3,26 +3,6 @@
  <!-- <p>Active language: {{ $i18n.locale }}</p>
 <p style="color: red">Lang Check: {{ $i18n.locale }} / {{ $t('example.task') }}</p> -->
 
-<!-- <div class="timer-container">
-  <h1>{{ $t('timer.title') }}</h1>
-
-  <div id="timerDisplay">{{ $t('timer.defaultTime') }}</div>
-
-  <div>
-    <input v-model.number="duration" type="number" class="timer-input" :placeholder="$t('timer.minutesPlaceholder')" required/>
-    <input v-model="subject" type="text" class="timer-input" :placeholder="$t('timer.subjectPlaceholder')" required/>
-    <input v-model="topic" type="text" class="timer-input" :placeholder="$t('timer.topicPlaceholder')" required/>
-    <input v-model="tag" type="text" class="timer-input" :placeholder="$t('timer.tagPlaceholder')" />
-    <input v-model="task" type="text" class="timer-input" :placeholder="$t('timer.taskPlaceholder')" />
-  </div>
-
-  <div>
-    <button class="timer-btn">{{ $t('buttons.start') }}</button>
-    <button class="timer-btn">{{ $t('buttons.pause') }}</button>
-    <button class="timer-btn">{{ $t('buttons.reset') }}</button>
-    <button type="submit" id="" class="timer-btn">{{ $t('buttons.finish') }}</button>
-  </div>
-</div> -->
   <Timer />
 
 <!-- Today’s Pomodoros Section -->
@@ -38,43 +18,105 @@
         <th>{{ $t('table.subject') }}</th>
         <th>{{ $t('table.topic') }}</th>
         <th>{{ $t('table.tag') }}</th>
+        <th>{{ $t('table.actions') }}</th>
       </tr>
     </thead>
+
     <tbody>
-    <tr v-for="timoria in todayTimorias" :key="timoria._id">
-        <td>{{ timoria.task || '—' }}</td>
-        <td>{{ timoria.duration }} min</td>
-        <td>{{ timoria.subject }}</td>
-        <td>{{ timoria.topic }}</td>
-        <td>{{ timoria.tag || '—' }}</td>
+    <tr v-for="(timoria, index) in todayTimorias" :key="timoria._id">
+        <td v-if="editIndex !== index">{{ timoria.task || '—' }}</td>
+        <td v-else><input v-model="editForm.task" /></td>
+
+        <td v-if="editIndex !== index">{{ timoria.duration }} min</td>
+        <td v-else><input v-model="editForm.duration" type="number" /></td>
+
+        <td v-if="editIndex !== index">{{ timoria.subject }}</td>
+        <td v-else><input v-model="editForm.subject" /></td>
+
+        <td v-if="editIndex !== index">{{ timoria.topic }}</td>
+        <td v-else><input v-model="editForm.topic" /></td>
+
+        <td v-if="editIndex !== index">{{ timoria.tag || '—' }}</td>
+        <td v-else><input v-model="editForm.tag" /></td>
+
+        <td>
+        <button v-if="editIndex !== index" @click="enableEdit(index, timoria)">
+            ✏️ {{ $t('buttons.edit') || 'Edit' }}
+        </button>
+        <button v-else @click="saveEdit(timoria._id)">💾 {{ $t('buttons.save') || 'Save' }}</button>
+        <button class="delete-btn" @click="deleteTimoria(timoria._id)">{{ $t('buttons.delete') }}</button>
+        </td>
     </tr>
+    
     </tbody>
+
+
   </table>
 
-  <!-- Mobile card layout -->
-  <div class="pomo-card">
-    <div class="pomo-card-content">
-      <div class="pomo-card-item">
-        <strong>{{ $t('table.task') }}:</strong> <span>{{ $t('example.task') }}</span>
-      </div>
-      <div class="pomo-card-item">
-        <strong>{{ $t('table.duration') }}:</strong> <span>{{ $t('example.duration') }}</span>
-      </div>
-      <div class="pomo-card-item">
-        <strong>{{ $t('table.subject') }}:</strong> <span>{{ $t('example.subject') }}</span>
-      </div>
-      <div class="pomo-card-item">
-        <strong>{{ $t('table.topic') }}:</strong> <span>{{ $t('example.topic') }}</span>
-      </div>
-      <div class="pomo-card-item">
-        <strong>{{ $t('table.tag') }}:</strong> <span>{{ $t('example.tag') }}</span>
-      </div>
+<!-- Mobile card layout -->
+<div class="pomo-card" v-for="(timoria, index) in todayTimorias" :key="'card-' + timoria._id">
+  <div class="pomo-card-content">
+    <div class="pomo-card-item">
+      <strong>{{ $t('table.task') }}:</strong>
+      <span v-if="editIndex !== index">{{ timoria.task || '—' }}</span>
+      <input v-else v-model="editForm.task" />
     </div>
-    <div class="card-actions">
-      <button class="delete-btn">{{ $t('buttons.delete') }}</button>
-      <button class="save-btn">{{ $t('buttons.save') }}</button>
+
+    <div class="pomo-card-item">
+      <strong>{{ $t('table.duration') }}:</strong>
+      <span v-if="editIndex !== index">{{ timoria.duration }} min</span>
+      <input v-else v-model="editForm.duration" type="number" />
+    </div>
+
+    <div class="pomo-card-item">
+      <strong>{{ $t('table.subject') }}:</strong>
+      <span v-if="editIndex !== index">{{ timoria.subject }}</span>
+      <input v-else v-model="editForm.subject" />
+    </div>
+
+    <div class="pomo-card-item">
+      <strong>{{ $t('table.topic') }}:</strong>
+      <span v-if="editIndex !== index">{{ timoria.topic }}</span>
+      <input v-else v-model="editForm.topic" />
+    </div>
+
+    <div class="pomo-card-item">
+      <strong>{{ $t('table.tag') }}:</strong>
+      <span v-if="editIndex !== index">{{ timoria.tag || '—' }}</span>
+      <input v-else v-model="editForm.tag" />
     </div>
   </div>
+
+  <div class="card-actions">
+    <button class="delete-btn" @click="deleteTimoria(timoria._id)">
+      {{ $t('buttons.delete') }}
+    </button>
+
+    <button v-if="editIndex !== index" class="save-btn" @click="enableEdit(index, timoria)">
+      {{ $t('buttons.edit') }}
+    </button>
+    <button v-else class="save-btn" @click="saveEdit(timoria._id)">
+      {{ $t('buttons.save') }}
+    </button>
+  </div>
+
+
+</div>
+
+<!-- UNDO BUTTON BLOCK -->
+ <!-- When deleting a timoria, we add it to the undoStack. 
+  Then if the stack length is bigger than 0, the undo button become visible -->
+<transition name="slide-fade">
+  <button
+    v-if="undoStack.length"
+    class="undo-btn"
+    @click="undoDelete"
+  >
+    {{ $t('buttons.undo') || 'Undo Delete' }}
+  </button>
+</transition>
+
+    
 </section>
 
 <!-- Planned Timorias Section -->
@@ -105,7 +147,17 @@
         </div>
     </li>
     </ul>
-<button v-if="undoStack.length"  class="save-btn"  @click="undoDelete"  style="margin-top: 10px;">Undo Delete</button>
+    <!-- UNDO BUTTON BLOCK -->
+    <transition name="slide-fade">
+    <button
+        v-if="undoStack.length"
+        class="undo-btn"
+        @click="undoDelete"
+    >
+        {{ $t('buttons.undo') || 'Undo Delete' }}
+    </button>
+    </transition>
+
 </section>
 
 <!-- Autocomplete Suggestions -->
@@ -135,19 +187,27 @@ export default {
             url: 'http://localhost:5000/api/timoria',
             plannedTimorias: [],
             todayTimorias: [],
-            undoStack: []
+            undoStack: [],
+            editIndex: null,
+            editForm: {
+                subject: '',
+                topic: '',
+                tag: '',
+                task: '',
+                duration: '',
+            }
         }
-  },
-  components: {
-    Timer
     },
-  mounted() {
-    console.log('Locale:', this.$i18n.locale)
-    console.log('t(timer.title):', this.$t('timer.title'))
-    console.log('Available messages:', this.$i18n.messages)
-      this.getTimorias()
-    this.getTodaysTimorias()
-    }, 
+    components: {
+        Timer
+    },
+    mounted() {
+        console.log('Locale:', this.$i18n.locale)
+        console.log('t(timer.title):', this.$t('timer.title'))
+        console.log('Available messages:', this.$i18n.messages)
+        this.getTimorias()
+        this.getTodaysTimorias()
+    },
     methods: {
         async createTimoria() {
             try {
@@ -174,7 +234,7 @@ export default {
             } catch (error) {
                 console.log('Error: ', error.message);
                 alert('Failed to save Timoria.');
-                
+
             }
         },
         async getTimorias() {
@@ -194,11 +254,11 @@ export default {
             if (!confirmed) return
 
             // Find the timoria you're about to delete. this is useful for the undo feature. we need to get the element before deleting it
-            const toDelete = this.plannedTimorias.find(t => t._id === id) 
+            const toDelete = this.plannedTimorias.find(t => t._id === id)
 
             try {
                 await fetch(`${this.url}/${id}`, {
-                method: 'DELETE'
+                    method: 'DELETE'
                 })
                 this.plannedTimorias = this.plannedTimorias.filter(t => t._id !== id)
 
@@ -206,11 +266,12 @@ export default {
                 this.undoStack.push(toDelete)
 
                 this.getTimorias() // update the list right after deleting the Timoria
+                this.getTodaysTimorias() // update the list or today's timorias right after deleting a  Timoria
             } catch (err) {
                 console.error('Error deleting timoria:', err)
             }
-            
-            
+
+
         },
 
         async undoDelete() {
@@ -220,6 +281,7 @@ export default {
                     const res = await axios.post(`${this.url}`, lastDeleted)
                     this.plannedTimorias.unshift(res.data)
                     this.getTimorias() // update the list right after undoing the Timoria
+                    this.getTodaysTimorias() // update the list or today's timorias right after undoing a  Timoria
                 } catch (err) {
                     console.error('Error restoring timoria:', err)
                 }
@@ -233,11 +295,31 @@ export default {
             } catch (err) {
                 console.error('Failed to fetch today\'s timorias:', err)
             }
-        }
+        },
 
-    },
+        enableEdit(index, timoria) {
+            this.editIndex = index
+            this.editForm = { ...timoria }
 
+        },
 
+        async saveEdit(id) {
+            try {
+                const res = await fetch(`${this.url}/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(this.editForm)
+                })
+
+                const updated = await res.json()
+                this.todayTimorias.splice(this.editIndex, 1, updated)
+                this.editIndex = null
+            } catch (err) {
+                console.error('Update failed:', err)
+            }
+        },
+
+    }
 }
 </script>
 <style src="../assets/styles/main.css"></style>
