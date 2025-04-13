@@ -41,14 +41,13 @@
       </tr>
     </thead>
     <tbody>
-      <!-- Example row -->
-      <tr>
-        <td>{{ $t('example.task') }}</td>
-        <td>{{ $t('example.duration') }}</td>
-        <td>{{ $t('example.subject') }}</td>
-        <td>{{ $t('example.topic') }}</td>
-        <td>{{ $t('example.tag') }}</td>
-      </tr>
+    <tr v-for="timoria in todayTimorias" :key="timoria._id">
+        <td>{{ timoria.task || '—' }}</td>
+        <td>{{ timoria.duration }} min</td>
+        <td>{{ timoria.subject }}</td>
+        <td>{{ timoria.topic }}</td>
+        <td>{{ timoria.tag || '—' }}</td>
+    </tr>
     </tbody>
   </table>
 
@@ -135,6 +134,7 @@ export default {
             duration: null,
             url: 'http://localhost:5000/api/timoria',
             plannedTimorias: [],
+            todayTimorias: [],
             undoStack: []
         }
   },
@@ -145,7 +145,8 @@ export default {
     console.log('Locale:', this.$i18n.locale)
     console.log('t(timer.title):', this.$t('timer.title'))
     console.log('Available messages:', this.$i18n.messages)
-    this.getTimorias()
+      this.getTimorias()
+    this.getTodaysTimorias()
     }, 
     methods: {
         async createTimoria() {
@@ -222,6 +223,15 @@ export default {
                 } catch (err) {
                     console.error('Error restoring timoria:', err)
                 }
+            }
+        },
+        async getTodaysTimorias() {
+            try {
+                const res = await fetch(`${this.url}`)
+                const data = await res.json()
+                this.todayTimorias = data
+            } catch (err) {
+                console.error('Failed to fetch today\'s timorias:', err)
             }
         }
 

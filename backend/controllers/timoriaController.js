@@ -36,3 +36,23 @@ exports.deleteTimoria = async (req, res) => {
   }
 }
 
+// get today's timorias to display in the table 
+exports.getTodayTimorias = async (req, res) => {
+  const startOfDay = new Date()
+  startOfDay.setHours(0, 0, 0, 0)
+
+  const endOfDay = new Date()
+  endOfDay.setHours(23, 59, 59, 999)
+
+  try {
+    const todayTimorias = await Timoria.find({
+      createdAt: { $gte: startOfDay, $lte: endOfDay }
+    }).sort({ createdAt: -1 })
+
+    res.status(200).json(todayTimorias)
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+}
+
+
