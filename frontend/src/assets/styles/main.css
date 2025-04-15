@@ -278,6 +278,13 @@ select {
 
 
 /*-------------------------------------------TIMER syle------------------------------------------------------------*/
+
+.total-time {
+  font-weight: bold;
+  margin-bottom: 1em;
+  color: #444;
+}
+
 .timer-container {
   width: 60%;
   margin: 0 auto;
@@ -503,7 +510,6 @@ select {
     padding: 0;
     margin: 0;
 }
-
 
 
 #plannedTimoriasList li span {

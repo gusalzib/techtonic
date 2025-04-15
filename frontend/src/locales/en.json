@@ -21,7 +21,8 @@
     },
     "todayPomos": {
         "title": "Today's Pomodoros",
-        "summary": "Summary of today's sessions:"
+        "summary": "Summary of today's sessions:",
+        "total": "Total Time"
     },
     "table": {
         "task": "Task",
@@ -55,5 +56,9 @@
     "nav": {
         "about": "About",
         "timoria": "Timoria"
+    },
+    "time": {
+        "hours": "hours",
+        "minutes": "minutes"
     }
 }

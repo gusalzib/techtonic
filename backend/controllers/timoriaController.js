@@ -1,26 +1,30 @@
 const Timoria = require('../models/timoria')
 
-// Get all
+// Get all (optionally filter by status)
 exports.getAllTimorias = async (req, res) => {
   try {
-    const timorias = await Timoria.find().sort({ createdAt: -1 })
+    const { status } = req.query
+    const filter = status ? { status } : {}
+    const timorias = await Timoria.find(filter).sort({ createdAt: -1 })
     res.json(timorias)
   } catch (err) {
     res.status(500).json({ error: err.message })
   }
 }
 
+
 // Create new
 exports.createTimoria = async (req, res) => {
-  const { subject, topic, tag, task, duration } = req.body
+  const { subject, topic, tag, task, duration, status } = req.body
   try {
-    const newTimoria = new Timoria({ subject, topic, tag, task, duration })
+    const newTimoria = new Timoria({ subject, topic, tag, task, duration, status })
     await newTimoria.save()
     res.status(201).json(newTimoria)
   } catch (err) {
     res.status(400).json({ error: err.message })
   }
 }
+
 
 // Delete
 exports.deleteTimoria = async (req, res) => {
@@ -36,7 +40,7 @@ exports.deleteTimoria = async (req, res) => {
   }
 }
 
-// get today's timorias to display in the table 
+// Get today's completed Timorias
 exports.getTodayTimorias = async (req, res) => {
   const startOfDay = new Date()
   startOfDay.setHours(0, 0, 0, 0)
@@ -46,7 +50,8 @@ exports.getTodayTimorias = async (req, res) => {
 
   try {
     const todayTimorias = await Timoria.find({
-      createdAt: { $gte: startOfDay, $lte: endOfDay }
+      createdAt: { $gte: startOfDay, $lte: endOfDay },
+      status: 'done'
     }).sort({ createdAt: -1 })
 
     res.status(200).json(todayTimorias)
@@ -60,12 +65,12 @@ exports.getTodayTimorias = async (req, res) => {
 // Update a timoria
 exports.updateTimoria = async (req, res) => {
   const { id } = req.params
-  const { subject, topic, tag, task, duration } = req.body
+  const { subject, topic, tag, task, duration, status } = req.body
 
   try {
     const updated = await Timoria.findByIdAndUpdate(
       id,
-      { subject, topic, tag, task, duration },
+      { subject, topic, tag, task, duration, status },
       { new: true, runValidators: true }
     )
 

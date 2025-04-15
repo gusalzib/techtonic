@@ -6,8 +6,14 @@ const timoriaSchema = new mongoose.Schema({
   tag: { type: String },
   task: { type: String },
   duration: { type: Number, required: true },
+  status: {
+    type: String,
+    enum: ['planned', 'ongoing', 'done'],
+    default: 'planned'
+  },
   createdAt: { type: Date, default: Date.now }
 })
+
 
 timoriaSchema.index({ subject: 1, topic: 1 });// Filter/Search by Subject and Topic
 timoriaSchema.index({ createdAt: -1 }); //Enables fast .sort({ createdAt: -1 }) and time-range queries.

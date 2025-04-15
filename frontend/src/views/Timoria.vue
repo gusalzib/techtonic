@@ -1,9 +1,14 @@
 <template>
 <!-- Timer Section -->
- <!-- <p>Active language: {{ $i18n.locale }}</p>
-<p style="color: red">Lang Check: {{ $i18n.locale }} / {{ $t('example.task') }}</p> -->
+<Timer :timoria="activeTimoria" :key="activeTimoria?._id" 
+    @completed="handleCompletedTimoria" 
+    @cancelTimer="handleCancelTimer"
+    @update:timoria="updateTimoria"
+    @updatePlannedTimorias="handleUpdatePlannedTimorias"
+    @finishTimer="handleFinishTimer"
+    @updateTodaysTimorias="handleUpdateTodaysTimorias"
+    />
 
-  <Timer />
 
 <!-- Today’s Pomodoros Section -->
 <section class="today-pomos">
@@ -15,10 +20,10 @@
       <tr>
         <th>{{ $t('table.task') }}</th>
         <th>{{ $t('table.duration') }}</th>
-        <th>{{ $t('table.subject') }}</th>
+        <th>{{ $t('table.subject') }}</th> 
         <th>{{ $t('table.topic') }}</th>
-        <th>{{ $t('table.tag') }}</th>
-        <th>{{ $t('table.actions') }}</th>
+        <th>{{ $t('table.tag') }}</th>    
+        <th>{{ $t('table.actions') }}</th> 
       </tr>
     </thead>
 
@@ -101,8 +106,11 @@
   </div>
 
 
-</div>
 
+</div>
+<p class="total-time">
+  🧮 {{ $t('todayPomos.total') }}: {{ totalTodayDuration }}
+</p>
 <!-- UNDO BUTTON BLOCK -->
  <!-- When deleting a timoria, we add it to the undoStack. 
   Then if the stack length is bigger than 0, the undo button become visible -->
@@ -142,7 +150,10 @@
         <span class="timoria-duration">{{ timoria.duration }} min</span>
         </div>
         <div class="timoria-actions">
-        <button class="start-btn">{{ $t('buttons.start') }}</button>
+        <button class="start-btn" @click="startTimoria(timoria)">
+        {{ $t('buttons.start') }}
+        </button>
+
         <button class="delete-btn" @click="deleteTimoria(timoria._id)">{{ $t('buttons.delete') }}</button>
         </div>
     </li>
@@ -195,17 +206,34 @@ export default {
                 tag: '',
                 task: '',
                 duration: '',
+            },
+            activeTimoria: null,
+            timoria: {
+                subject: '',
+                topic: '',
+                tag: '',
+                task: '',
+                duration: '',
             }
         }
     },
     components: {
         Timer
     },
+    computed: {
+        totalTodayDuration() {
+            const totalMinutes = this.todayTimorias.reduce((sum, t) => sum + Number(t.duration || 0), 0)
+            const hours = Math.floor(totalMinutes / 60)
+            const minutes = totalMinutes % 60
+            return `${hours} ${this.$t('time.hours')} ${minutes} ${this.$t('time.minutes')}`
+        }
+    },
+
     mounted() {
         console.log('Locale:', this.$i18n.locale)
         console.log('t(timer.title):', this.$t('timer.title'))
         console.log('Available messages:', this.$i18n.messages)
-        this.getTimorias()
+        this.getPlannedTimorias()
         this.getTodaysTimorias()
     },
     methods: {
@@ -217,6 +245,7 @@ export default {
                     tag: this.tag,
                     task: this.task,
                     duration: this.duration,
+                    status: 'planned' 
                 }
 
                 const response = await axios.post(`${this.url}`, payload);
@@ -230,16 +259,17 @@ export default {
                 this.task = '';
                 this.duration = '';
 
-                this.getTimorias() // update the list right after adding the Timoria
+                this.getPlannedTimorias() // update the list right after adding the Timoria
             } catch (error) {
                 console.log('Error: ', error.message);
                 alert('Failed to save Timoria.');
 
             }
         },
-        async getTimorias() {
+        async getPlannedTimorias() {
             try {
-                const response = await fetch(`${this.url}`);
+                const response = await fetch(`${this.url}?status=planned`)
+
                 const data = await response.json()
 
                 this.plannedTimorias = data;
@@ -254,7 +284,7 @@ export default {
             if (!confirmed) return
 
             // Find the timoria you're about to delete. this is useful for the undo feature. we need to get the element before deleting it
-            const toDelete = this.plannedTimorias.find(t => t._id === id)
+            const toDelete = this.plannedTimorias.find(t => t._id === id) || this.todayTimorias.find(t => t._id === id)
 
             try {
                 await fetch(`${this.url}/${id}`, {
@@ -265,7 +295,7 @@ export default {
                 // Push the deleted timoria to undoStack. this where we are going to get it from in case we need ti undo
                 this.undoStack.push(toDelete)
 
-                this.getTimorias() // update the list right after deleting the Timoria
+                this.getPlannedTimorias() // update the list right after deleting the Timoria
                 this.getTodaysTimorias() // update the list or today's timorias right after deleting a  Timoria
             } catch (err) {
                 console.error('Error deleting timoria:', err)
@@ -280,7 +310,7 @@ export default {
                 try {
                     const res = await axios.post(`${this.url}`, lastDeleted)
                     this.plannedTimorias.unshift(res.data)
-                    this.getTimorias() // update the list right after undoing the Timoria
+                    this.getPlannedTimorias() // update the list right after undoing the Timoria
                     this.getTodaysTimorias() // update the list or today's timorias right after undoing a  Timoria
                 } catch (err) {
                     console.error('Error restoring timoria:', err)
@@ -289,7 +319,7 @@ export default {
         },
         async getTodaysTimorias() {
             try {
-                const res = await fetch(`${this.url}`)
+                const res = await fetch(`${this.url}/today`)
                 const data = await res.json()
                 this.todayTimorias = data
             } catch (err) {
@@ -318,6 +348,60 @@ export default {
                 console.error('Update failed:', err)
             }
         },
+        startTimoria(timoria) {
+            console.log('Starting timoria:', timoria)
+            this.activeTimoria = { ...timoria }
+
+
+            //  mark it as 'ongoing' in the DB
+            fetch(`${this.url}/${timoria._id}`, {
+                method: 'PUT',
+                headers: { 
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status: 'ongoing' })
+            }).catch(err => console.error('Failed to mark timoria as ongoing:', err));
+
+            this.getPlannedTimorias()
+        },
+        handleCompletedTimoria(id) {
+            this.activeTimoria = null
+            this.getTimorias()
+            this.getTodaysTimorias()
+        },
+        handleCancelTimer() {
+            // Reset the active Timoria or update UI as necessary
+            this.activeTimoria = null;
+
+            // Wait for Vue to update the DOM
+            this.$nextTick(() => {
+                // Now, fetch the latest planned timorias from the server
+                this.getPlannedTimorias();
+            });
+        },
+        handleFinishTimer() {
+            // Reset the active Timoria or update UI as necessary
+            this.activeTimoria = null;
+
+            // Wait for Vue to update the DOM
+            this.$nextTick(() => {
+                // Now, fetch the latest planned timorias from the server
+                this.getPlannedTimorias();
+            });
+        },
+        updateTimoria(updatedTimoria) {
+            console.log('Updated Timoria received in parent:', updatedTimoria);
+
+            this.timoria = updatedTimoria;
+
+        },
+        handleUpdatePlannedTimorias() {
+            this.getPlannedTimorias();
+        },
+        handleUpdateTodaysTimorias() {
+            this.getTodaysTimorias();
+        },
+
 
     }
 }
