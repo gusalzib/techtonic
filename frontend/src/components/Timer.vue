@@ -25,6 +25,7 @@
       <button class="timer-btn" @click="resetTimer">{{ $t('buttons.reset') }}</button>
       <button class="timer-btn" @click="cancelTimer">{{ $t('buttons.cancel') }}</button>
       <button class="timer-btn" @click="finishTimer">{{ $t('buttons.finish') }}</button>
+      <button class="timer-btn" @click="pushNotification">{{ $t('buttons.notify') }}</button>
     </div>
   </div>
 </template>
@@ -246,6 +247,7 @@ export default {
 
         // Notify parent
         this.$emit('completed', this.localTimoria._id);
+        this.pushNotification() // create a push notification when timoria ends
 
       } catch (err) {
         console.error('Failed to save Timoria:', err)
@@ -295,7 +297,27 @@ export default {
         }
     },
 
+  requestNotificationPermission() {
+      if ('Notification' in window && Notification.permission !== 'granted') {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            console.log('🔔 Notification permission granted.')
+          } else {
+            console.log('❌ Notification permission denied.')
+          }
+        })
+      }
+    },
 
+    pushNotification() {
+      if (Notification.permission === 'granted') {
+        new Notification('✅ Timoria Complete!', {
+          body: 'Take a short break or start a new one!',
+          icon: '/favicon.ico' // optional: app icon
+        })
+      }
+
+    },
 
     playSound() {
       const audio = new Audio(dingSound)

@@ -33,6 +33,7 @@
     --dark-btn: #0000005d;
     --standard-btn-hover: #4D48D4;
     --border: #000000;
+    --dark-header: #16091f;
 
     --viridian: #2E8C6E;
     --tiffany-blue: #9BCABD;
@@ -146,7 +147,7 @@ body{
 /*############################################### HEADER STYLE #######################################################*/
 /* Layout */
 .nav-header {
-  background-color: var(--iris);
+  background-color: var(--dark-header);
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
@@ -162,7 +163,13 @@ body{
 }
 
 /* Logo */
+.logo{
+  display: flex;
+  flex-direction: row;
+}
 .logo a {
+  margin: auto;
+  margin-left: 15px;
   font-size: 1.5rem;
   font-weight: bold;
   color: #ffffff;
