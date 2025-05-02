@@ -13,6 +13,10 @@ require('dotenv').config();
 // Create an Express application instance
 const app = express();
 
+const authMiddleware = require('./authenticationMiddleware');
+
+
+
 // Enable CORS to allow the frontend (possibly on a different port) to access the backend
 app.use(cors());
 
@@ -26,9 +30,12 @@ app.get('/', (req, res) => {
 
 
 // Routes
-const timoriaRoutes = require('./routes/timoriaRoutes') // update the path if needed
+const timoriaRoutes = require('./routes/timoriaRoutes') 
+const authRoutes = require('./routes/userRoutes');
 
-app.use('/api/timoria', timoriaRoutes)
+
+app.use('/api/timoria', timoriaRoutes);
+app.use('/api/auth', authRoutes);
 
 // Connect to MongoDB using the URI stored in the .env file
 mongoose.connect(process.env.MONGO_URI, {

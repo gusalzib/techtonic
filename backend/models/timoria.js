@@ -11,6 +11,7 @@ const timoriaSchema = new mongoose.Schema({
     enum: ['planned', 'ongoing', 'done'],
     default: 'planned'
   },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   createdAt: { type: Date, default: Date.now },
   finishedAt: { type: Date, default: Date.now },
 })
