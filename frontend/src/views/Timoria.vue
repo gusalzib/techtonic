@@ -7,6 +7,7 @@
     @updatePlannedTimorias="handleUpdatePlannedTimorias"
     @finishTimer="handleFinishTimer"
     @updateTodaysTimorias="handleUpdateTodaysTimorias"
+    @break-finished="handleBreakFinished"
     />
 
 
@@ -185,6 +186,7 @@
 // @ is an alias to /src
 import axios from 'axios'
 import Timer from '../components/Timer'
+import dingSound from '@/assets/audio/ding.mp3'
 
 export default {
     name: 'Timoria',
@@ -208,6 +210,7 @@ export default {
                 duration: '',
             },
             activeTimoria: null,
+            activeBreak: false,
             timoria: {
                 subject: '',
                 topic: '',
@@ -366,13 +369,15 @@ export default {
         },
         handleCompletedTimoria(id) {
             this.activeTimoria = null
-            this.getTimorias()
+            // start a break right after the timer finishes
+            this.startBreak()
+            this.getPlannedTimorias()
             this.getTodaysTimorias()
         },
         handleCancelTimer() {
             // Reset the active Timoria or update UI as necessary
             this.activeTimoria = null;
-
+            this.activeBreak = false;
             // Wait for Vue to update the DOM
             this.$nextTick(() => {
                 // Now, fetch the latest planned timorias from the server
@@ -383,6 +388,9 @@ export default {
             // Reset the active Timoria or update UI as necessary
             this.activeTimoria = null;
 
+            this.activeBreak = false;
+            // start a break right after the timer finishes
+            this.startBreak();
             // Wait for Vue to update the DOM
             this.$nextTick(() => {
                 // Now, fetch the latest planned timorias from the server
@@ -401,8 +409,55 @@ export default {
         handleUpdateTodaysTimorias() {
             this.getTodaysTimorias();
         },
+        startBreak() {
+            const breakDuration = 1; 
+            if (!this.activeBreak) {
+                this.activeBreak = true;
+                this.activeTimoria = {
+                    subject: 'Break',
+                    topic: 'Break',
+                    tag: 'Break',
+                    task: 'Take a short break',
+                    duration: breakDuration
+                }
+            }
 
 
+            
+            console.log('Break started:', this.activeTimoria);
+        },
+        handleBreakFinished() {
+            this.activeBreak = false;
+            // Push browser notification
+            if ("Notification" in window) {
+                if (Notification.permission === "granted") {
+                    new Notification("⏰ Break's over!", {
+                        body: "Time to get back to your Timoria!",
+                        icon: "/favicon.png" // Optional icon path
+                    });
+                } else if (Notification.permission !== "denied") {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === "granted") {
+                            new Notification("⏰ Break's over!", {
+                                body: "Time to get back to your Timoria!",
+                                icon: "/favicon.png"
+                            });
+                        }
+                    });
+                }
+            }
+
+            // Play notification sound
+            // this.playTimoriaSound();
+
+
+            // Optionally, update state or reset break status here
+            // this.isOnBreak = false;
+        },
+        playTimoriaSound() {
+            const audio = new Audio(dingSound)
+            audio.play()
+        }
     }
 }
 </script>

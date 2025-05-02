@@ -50,9 +50,9 @@ exports.getTodayTimorias = async (req, res) => {
 
   try {
     const todayTimorias = await Timoria.find({
-      createdAt: { $gte: startOfDay, $lte: endOfDay },
+      finishedAt: { $gte: startOfDay, $lte: endOfDay },
       status: 'done'
-    }).sort({ createdAt: -1 })
+    }).sort({ finishedAt: -1 })
 
     res.status(200).json(todayTimorias)
   } catch (err) {
@@ -65,12 +65,12 @@ exports.getTodayTimorias = async (req, res) => {
 // Update a timoria
 exports.updateTimoria = async (req, res) => {
   const { id } = req.params
-  const { subject, topic, tag, task, duration, status } = req.body
+  const { subject, topic, tag, task, duration, status, finishedAt } = req.body
 
   try {
     const updated = await Timoria.findByIdAndUpdate(
       id,
-      { subject, topic, tag, task, duration, status },
+      { subject, topic, tag, task, duration, status, finishedAt },
       { new: true, runValidators: true }
     )
 

@@ -32,6 +32,7 @@
 
 <script>
 import dingSound from '@/assets/audio/ding.mp3'
+import breakOver from '@/assets/audio/break_over.mp3'
 
 export default {
   props: {
@@ -50,6 +51,9 @@ export default {
       url: 'http://localhost:5000/api/timoria',
       localTimoria: null, // timoria in props is readonly and cannot be assigned and re-assigned so we use a local copy of it
       hasCompleted: false, // Prevent duplicate complete calls
+      hasBreakFinished: false,
+      timerType: 'timoria', // or 'break'
+
     } 
   },
   computed: {
@@ -62,18 +66,27 @@ export default {
   watch: {
     timoria: {
       handler(newVal) {
-        // console.log('[WATCH] Timoria changed:', newVal)
+        
         if (newVal && newVal.duration) {
           this.localTimoria = newVal
           this.startTime = null
           this.remaining = newVal.duration * 60
-          this.startTimer()
+
+          // we need to check if the parent (Timoria.vue) is sending a timoria or a break because the timer behaviour would change based on that
+          const isBreak = newVal.subject === 'Break' && newVal.topic === 'Break';
+          this.startTimer(isBreak ? 'break' : 'timoria');
         }
       },
       immediate: true
     }  
   },
-    mounted() {
+  mounted() {
+      /*
+      The mounted() block:
+      1. Requests notification permission.
+
+      2. Tries to recover the timer state from localStorage if there's an active timer.
+      */
     // Request permission for notifications
     if (Notification.permission !== 'granted') {
         Notification.requestPermission();
@@ -85,7 +98,8 @@ export default {
     
     if (saved) {
         try {
-        const { timoria, startTime, endTime } = JSON.parse(saved);
+          const { timoria, startTime, endTime, timerType } = JSON.parse(saved);
+          this.timerType = timerType || 'timoria'; // fallback just in case
         // console.log('Parsed activeTimoria data:', timoria, startTime, endTime); // Log the parsed data
 
         const now = Date.now();
@@ -110,21 +124,42 @@ export default {
         } else {
             // If the timer has finished, remove it from localStorage
             localStorage.removeItem('activeTimoria');
+            const finishedTimoria = timoria;
+            this.localTimoria = timoria;
+
+            if (timerType === 'timoria') {
+              this.completeTimoria();
+            } else if (timerType === 'break') {
+              this.pushBreakNotification();
+              this.$emit('break-finished', finishedTimoria);
+              this.resetTimer();
+            }
         }
         } catch (error) {
-        console.error('Error parsing activeTimoria from localStorage:', error);
+          console.error('Error parsing activeTimoria from localStorage:', error);
         }
-    } else {
-        console.log('No activeTimoria found in localStorage');
-    }
+      } else {
+          console.log('No activeTimoria found in localStorage');
+      }
     },
 
   methods: {
-    startTimer() {
-      if (!this.localTimoria || !this.localTimoria.subject || !this.localTimoria.topic || !this.localTimoria.duration) {
-          alert('A valid Timoria is required to start the timer.')
-          return
+    startTimer(type = 'timoria') {
+      this.timerType = type; // avoiding mixing the timoria and break logic
+      
+      if (type === 'break') {
+        this.hasBreakFinished = false;
+        this.localTimoria = this.localTimoria || {}; // in case it is null
+      } else {
+        if (!this.localTimoria || !this.localTimoria.subject || !this.localTimoria.topic || !this.localTimoria.duration) {
+            alert('A valid Timoria is required to start the timer.')
+            return
         }
+      }
+
+      
+      this.hasCompleted = false; // ✅ reset before starting again
+      
       //Kill old intervals on startTimer() just in case
       if (this.interval) {
         clearInterval(this.interval);
@@ -139,7 +174,8 @@ export default {
           localStorage.setItem('activeTimoria', JSON.stringify({
               timoria: this.localTimoria,
               startTime: this.startTime,
-              endTime: this.endTime
+              endTime: this.endTime,
+              timerType: this.timerType,   /* storing the timer type in the localstorage to identify what timer was running after a potential //page reload */
           }))
 
           this.tick()
@@ -156,13 +192,12 @@ export default {
     },
 
     resetTimer() {
-    clearInterval(this.interval);
-    this.remaining = 0;
-    this.startTime = null;
-    this.isRunning = false;
-    this.interval = null;
-    this.hasCompleted = false;
-    localStorage.removeItem('activeTimoria');
+      clearInterval(this.interval);
+      this.remaining = 0;
+      this.startTime = null;
+      this.isRunning = false;
+      this.interval = null;
+      localStorage.removeItem('activeTimoria');
     },
 
   cancelTimer() {
@@ -213,41 +248,65 @@ export default {
       this.remaining = diff > 0 ? diff : 0;
 
       if (this.remaining <= 0 && !this.hasCompleted) {
-          clearInterval(this.interval);
-          this.interval = null;
-          this.completeTimoria();
-          this.resetTimer();
+        clearInterval(this.interval);
+        this.interval = null;
+
+
+        const finishedTimoria = this.localTimoria; // <--- capture the task info before it's cleared
+
+
+        if (this.timerType === 'timoria') {
+          if (!this.hasCompleted) {
+            this.completeTimoria();
+          }
+        }
+        if (this.timerType === 'break') {
+          setTimeout(() => {
+            if (!this.hasBreakFinished) {
+              this.hasBreakFinished = true;
+              this.pushBreakNotification();  // Notify the user break is over
+              this.$emit('break-finished', finishedTimoria);
+              this.resetTimer();
+              
+            }
+          }, 100);
+        }
       }
+
     },
+
+
 
     async completeTimoria() {
       // we only want to allow completeTimoria to run once 
-        if (this.hasCompleted == true) return;
+      if (this.hasCompleted == true) return;
 
-        this.hasCompleted = true;
+      this.hasCompleted = true;
+      
       try {
         await fetch(`${this.url}/${this.localTimoria._id}`, {
           method: 'PUT', //this hits /api/timoria/:id
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             ...this.localTimoria,
-            status: 'done'
+            status: 'done',
+            finishedAt: new Date().toISOString(), //override the date field to reflect the actual completion time
           })
         })
 
-        this.playSound()
-        if (Notification.permission === 'granted') {
-          new Notification('Timoria Complete!')
-        }
+        this.playTimoriaSound()
 
         // notify parent that timoria is done 
         this.$emit('updateTodaysTimorias');
         // Clean up saved timer
         localStorage.removeItem('activeTimoria');
 
+        this.startTimer('break');
+
         // Notify parent
         this.$emit('completed', this.localTimoria._id);
         this.pushNotification() // create a push notification when timoria ends
+        
 
       } catch (err) {
         console.error('Failed to save Timoria:', err)
@@ -318,11 +377,26 @@ export default {
       }
 
     },
+    pushBreakNotification() {
+      this.playBreakSound();
+      if (Notification.permission === 'granted') {
+        new Notification('⏰ Break is over!', {
+          body: 'Time to get back to your Timoria!',
+          icon: '/favicon.ico' // Optional icon
+        });
+      }
+    },
 
-    playSound() {
+    playTimoriaSound() {
+      // the ding sound is played when the timoria is finished. This sound is different from when a break is finished
       const audio = new Audio(dingSound)
       audio.play()
-    }
+    },
+    playBreakSound() {
+      // the ding sound is played when the timoria is finished. This sound is different from when a break is finished
+      const audio = new Audio(breakOver)
+      audio.play()
+    },
   },
 
 

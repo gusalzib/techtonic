@@ -11,7 +11,8 @@ const timoriaSchema = new mongoose.Schema({
     enum: ['planned', 'ongoing', 'done'],
     default: 'planned'
   },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  finishedAt: { type: Date, default: Date.now },
 })
 
 
