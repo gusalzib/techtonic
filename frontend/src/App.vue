@@ -19,6 +19,8 @@
         <router-link to="/about">{{ $t('nav.about') }}</router-link>
         <router-link to="/timoria">{{ $t('nav.blog') }}</router-link>
         <router-link to="/timoria">{{ $t('nav.timoria') }}</router-link>
+        <router-link to="/signup">{{ $t('nav.signup') }}</router-link>
+        <router-link to="/login">{{ $t('nav.login') }}</router-link>
         <LanguageSwitcher />
         <ThemeToggle />
       </nav>

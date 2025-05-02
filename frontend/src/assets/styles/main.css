@@ -884,6 +884,73 @@ select {
 
 }
 
+/*################################### LOGIN STYLE ##################################################*/
+
+.auth-form {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 2rem;
+  background-color: var(--section-bg);
+  border: 1px solid var(--section-border);
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  color: var(--section-text);
+  font-family: 'Inter', sans-serif;
+}
+
+.auth-form h2 {
+  font-size: 1.8rem;
+  color: var(--section-header);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.auth-form input {
+  width: 90%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+
+.auth-form input:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--standard-btn);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+  background-color: var(--standard-btn-hover);
+}
+
+.auth-form p {
+  margin-top: 1rem;
+  color: red;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+
+
+
 /*################################### TIMER STYLE ANIMATIONS ##################################################*/
 .fade-out {
   opacity: 0;
