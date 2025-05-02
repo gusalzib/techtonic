@@ -55,10 +55,17 @@
     },
     "nav": {
         "about": "About",
-        "timoria": "Timoria"
+        "timoria": "Timoria",
+        "home": "Home",
+        "blog": "Blog"
     },
     "time": {
         "hours": "hours",
         "minutes": "minutes"
+    },
+    "home": {
+        "title": "Welcome to Tectonic",
+        "subtitle": "Plan your focus sessions. Stay in control.",
+        "button": "Get Started"
     }
 }

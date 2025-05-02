@@ -144,6 +144,84 @@ body{
 }
 
 
+/*############################################### HOME PAGE STYLE #######################################################*/
+.home-container {
+  min-height: 100vh;
+  background-color: var(--dark-header);
+  color: var(--section-text);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  animation: fadeInDown 0.7s ease-out;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--section-subtext);
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.7s ease-out;
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--standard-btn);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.btn:hover {
+  background-color: var(--standard-btn-hover);
+}
+
+.IN-PAGE-logo img {
+  margin-top: 3rem;
+  width: 120px;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.IN-PAGE-logo img:hover {
+  opacity: 1;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /*############################################### HEADER STYLE #######################################################*/
 /* Layout */
 .nav-header {

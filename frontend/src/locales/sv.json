@@ -53,6 +53,13 @@
     },
     "nav": {
         "about": "Om",
-        "timoria": "Timoria"
+        "timoria": "Timoria",
+        "home": "Hem",
+        "blog": "Blog"
+    },
+    "home": {
+        "title": "Välkommen till Techtonic",
+        "subtitle": "Planera dina fokuserade sessioner. Ha kontroll.",
+        "button": "Kom igång"
     }
 }

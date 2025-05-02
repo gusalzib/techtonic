@@ -15,7 +15,7 @@
 
       <!-- Navigation links -->
       <nav :class="['nav-links', { open: menuOpen }]">
-        <router-link to="/timoria">{{ $t('nav.home') }}</router-link>
+        <router-link to="/">{{ $t('nav.home') }}</router-link>
         <router-link to="/about">{{ $t('nav.about') }}</router-link>
         <router-link to="/timoria">{{ $t('nav.blog') }}</router-link>
         <router-link to="/timoria">{{ $t('nav.timoria') }}</router-link>
