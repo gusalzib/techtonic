@@ -14,7 +14,9 @@
         "reset": "Återställ",
         "delete": "Ta bort",
         "save": "Spara",
-        "add": "Lägg till"
+        "add": "Lägg till",
+        "edit": "Redigera",
+        "undo": "Ångra"
     },
     "todayPomos": {
         "title": "Dagens Pomodoros",
@@ -25,7 +27,8 @@
         "duration": "Varaktighet",
         "subject": "Ämne",
         "topic": "Ämnesområde",
-        "tag": "Etikett"
+        "tag": "Etikett",
+        "actions": "Åtgärder"
     },
     "example": {
         "task": "Skriv blogginlägg",
@@ -50,6 +53,13 @@
     },
     "nav": {
         "about": "Om",
-        "timoria": "Timoria"
+        "timoria": "Timoria",
+        "home": "Hem",
+        "blog": "Blog"
+    },
+    "home": {
+        "title": "Välkommen till Techtonic",
+        "subtitle": "Planera dina fokuserade sessioner. Ha kontroll.",
+        "button": "Kom igång"
     }
 }

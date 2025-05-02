@@ -33,6 +33,7 @@
     --dark-btn: #0000005d;
     --standard-btn-hover: #4D48D4;
     --border: #000000;
+    --dark-header: #16091f;
 
     --viridian: #2E8C6E;
     --tiffany-blue: #9BCABD;
@@ -143,10 +144,88 @@ body{
 }
 
 
+/*############################################### HOME PAGE STYLE #######################################################*/
+.home-container {
+  min-height: 100vh;
+  background-color: var(--dark-header);
+  color: var(--section-text);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  animation: fadeInDown 0.7s ease-out;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--section-subtext);
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.7s ease-out;
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--standard-btn);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.btn:hover {
+  background-color: var(--standard-btn-hover);
+}
+
+.IN-PAGE-logo img {
+  margin-top: 3rem;
+  width: 120px;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.IN-PAGE-logo img:hover {
+  opacity: 1;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /*############################################### HEADER STYLE #######################################################*/
 /* Layout */
 .nav-header {
-  background-color: var(--iris);
+  background-color: var(--dark-header);
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
@@ -162,7 +241,13 @@ body{
 }
 
 /* Logo */
+.logo{
+  display: flex;
+  flex-direction: row;
+}
 .logo a {
+  margin: auto;
+  margin-left: 15px;
   font-size: 1.5rem;
   font-weight: bold;
   color: #ffffff;
@@ -278,6 +363,13 @@ select {
 
 
 /*-------------------------------------------TIMER syle------------------------------------------------------------*/
+
+.total-time {
+  font-weight: bold;
+  margin-bottom: 1em;
+  color: #444;
+}
+
 .timer-container {
   width: 60%;
   margin: 0 auto;
@@ -382,6 +474,13 @@ select {
   padding: 10px;
   border: 1px solid var(--section-border);
   text-align: left;
+}
+.today-pomos table td input {
+  max-width: 150px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  font-size: 14px;
 }
 
 .today-pomos table th {
@@ -498,7 +597,6 @@ select {
 }
 
 
-
 #plannedTimoriasList li span {
     font-size: 14px;
     flex-grow: 1;
@@ -558,14 +656,60 @@ select {
 }
 
 .delete-btn {
-  background-color: #e44;
+  background-color: rgb(207, 0, 0);
   color: #fff;
 }
 
 .delete-btn:hover {
-  background-color: #c33;
+  background-color: rgb(108, 35, 35);
 }
 
+.save-btn {
+    background-color: var(--standard-btn);
+    color: var(--section-bg);
+    border: 1px solid var(--section-border);
+}
+
+.undo-btn-container{
+    width: 100%;
+    border: 1px red solid;
+    padding: 25px;
+}
+.undo-btn {
+  display: block; /* Add this to make margin:auto work */
+  width: 50%;
+  margin: 20px auto; /* Add vertical margin for spacing */
+  background-color: var(--standard-btn);
+  color: var(--section-bg);
+  border: 1px solid var(--section-border);
+  padding: 5px 10px; /* Increased padding for size */
+  font-size: 1.1rem; /* Slightly bigger text */
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.undo-btn:hover {
+  background-color: var(--standard-btn-hover); /* Add a hover state if you want */
+}
+/* Slide-Fade Transition */
+.slide-fade-enter-active {
+  transition: all 0.4s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.slide-fade-enter-to,
+.slide-fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

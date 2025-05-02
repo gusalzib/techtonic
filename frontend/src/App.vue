@@ -2,7 +2,8 @@
   <header class="nav-header">
     <div class="nav-container">
       <div class="logo">
-        <router-link to="/">Timoria</router-link>
+        <img src="/favicon.ico" alt="">
+        <router-link to="/">Techtonic</router-link>
       </div>
 
       <!-- Burger icon -->
@@ -14,7 +15,9 @@
 
       <!-- Navigation links -->
       <nav :class="['nav-links', { open: menuOpen }]">
+        <router-link to="/">{{ $t('nav.home') }}</router-link>
         <router-link to="/about">{{ $t('nav.about') }}</router-link>
+        <router-link to="/timoria">{{ $t('nav.blog') }}</router-link>
         <router-link to="/timoria">{{ $t('nav.timoria') }}</router-link>
         <LanguageSwitcher />
         <ThemeToggle />

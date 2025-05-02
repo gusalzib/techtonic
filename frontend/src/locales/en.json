@@ -15,18 +15,22 @@
         "delete": "Delete",
         "save": "Save",
         "add": "Add",
-        "finish": "Finish"
+        "finish": "Finish",
+        "edit": "Edit",
+        "undo": "Undo"
     },
     "todayPomos": {
-        "title": "Today's Pomodoros",
-        "summary": "Summary of today's sessions:"
+        "title": "Today's Timorias",
+        "summary": "Summary of today's sessions:",
+        "total": "Total Time"
     },
     "table": {
         "task": "Task",
         "duration": "Duration",
         "subject": "Subject",
         "topic": "Topic",
-        "tag": "Tag"
+        "tag": "Tag",
+        "actions": "Actions"
     },
     "example": {
         "task": "Write blog post",
@@ -51,6 +55,17 @@
     },
     "nav": {
         "about": "About",
-        "timoria": "Timoria"
+        "timoria": "Timoria",
+        "home": "Home",
+        "blog": "Blog"
+    },
+    "time": {
+        "hours": "hours",
+        "minutes": "minutes"
+    },
+    "home": {
+        "title": "Welcome to Tectonic",
+        "subtitle": "Plan your focus sessions. Stay in control.",
+        "button": "Get Started"
     }
 }
