@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { createI18n } from 'vue-i18n'
+import { createPinia } from 'pinia';
 
 // Import your language files
 import en from './locales/en.json'
@@ -26,6 +27,11 @@ export { i18n }
 
 // Create and mount app
 const app = createApp(App)
+
+// Create and use Pinia store
+const pinia = createPinia();
+app.use(pinia);
+
 app.use(i18n) // MUST come before mount
 app.use(router)
 app.mount('#app')

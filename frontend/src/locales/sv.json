@@ -55,11 +55,16 @@
         "about": "Om",
         "timoria": "Timoria",
         "home": "Hem",
-        "blog": "Blog"
+        "blog": "Blog",
+        "login": "Logga in",
+        "signup": "Skapa nytt konto"
     },
     "home": {
         "title": "Välkommen till Techtonic",
         "subtitle": "Planera dina fokuserade sessioner. Ha kontroll.",
-        "button": "Kom igång"
+        "button": "Kom igång",
+        "login": "Logga in",
+        "signup": "Skapa nytt konto",
+        "signupBtn": "Skapa konto"
     }
 }
