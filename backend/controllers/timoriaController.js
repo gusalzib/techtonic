@@ -16,11 +16,14 @@ exports.getAllTimorias = async (req, res) => {
 // Create new
 exports.createTimoria = async (req, res) => {
   const { subject, topic, tag, task, duration, status } = req.body
+  const userId = req.user.id;
   try {
-    const newTimoria = new Timoria({ subject, topic, tag, task, duration, status })
+    const newTimoria = new Timoria({ subject, topic, tag, task, duration, status, user: userId })
     await newTimoria.save()
     res.status(201).json(newTimoria)
   } catch (err) {
+    console.log(err.message);
+    
     res.status(400).json({ error: err.message })
   }
 }

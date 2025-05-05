@@ -250,8 +250,11 @@ export default {
                     duration: this.duration,
                     status: 'planned' 
                 }
-
-                const response = await axios.post(`${this.url}`, payload);
+                const token = localStorage.getItem('token');
+                const response = await axios.post(`${this.url}`, payload, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },                });
                 alert('Timoria saved successfully');
                 console.log('Saved: ', response.data);
 
