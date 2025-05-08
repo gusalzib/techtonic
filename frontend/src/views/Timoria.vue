@@ -233,9 +233,9 @@ export default {
     },
 
     mounted() {
-        console.log('Locale:', this.$i18n.locale)
-        console.log('t(timer.title):', this.$t('timer.title'))
-        console.log('Available messages:', this.$i18n.messages)
+        // console.log('Locale:', this.$i18n.locale)
+        // console.log('t(timer.title):', this.$t('timer.title'))
+        // console.log('Available messages:', this.$i18n.messages)
         this.getPlannedTimorias()
         this.getTodaysTimorias()
     },

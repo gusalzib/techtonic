@@ -327,6 +327,7 @@ export default {
                 ...this.localTimoria,
                 status: 'done',
                 duration: Math.floor(elapsedDuration / 60),
+                finishedAt: new Date().toISOString(), //override the date field to reflect the actual completion time
             };
 
             fetch(`${this.url}/${this.localTimoria._id}`, {

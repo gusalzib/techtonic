@@ -21,6 +21,7 @@
         <router-link to="/about">{{ $t('nav.about') }}</router-link>
         <router-link to="/timoria">{{ $t('nav.blog') }}</router-link>
         <router-link to="/timoria">{{ $t('nav.timoria') }}</router-link>
+        <router-link to="/statistics">{{ $t('nav.statistics') }}</router-link>
         <router-link v-show="!isLoggedIn" to="/signup">{{ $t('nav.signup') }}</router-link>
         <router-link v-show="!isLoggedIn" to="/login">{{ $t('nav.login') }}</router-link>
         <button v-show="isLoggedIn" @click="logout">Logout</button>

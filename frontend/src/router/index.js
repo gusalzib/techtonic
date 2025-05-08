@@ -4,6 +4,7 @@ import Timoria from '@/views/Timoria.vue'
 import AboutView from '@/views/AboutView.vue'
 import Login from '@/views/Login.vue'
 import Signup from '@/views/Signup.vue'
+import Stats from '@/views/Stats.vue'
 
 // const routes = [
 //   {
@@ -31,6 +32,7 @@ const routes = [
   { path: '/timoria', component: Timoria },
   { path: '/login', component: Login },
   { path: '/signup', component: Signup },
+  { path: '/statistics', component: Stats },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

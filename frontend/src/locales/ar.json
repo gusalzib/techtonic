@@ -1,51 +1,59 @@
 {
     "timer": {
         "title": "مؤقت بومودورو",
-        "defaultTime": "٠٠:٠٠",
-        "minutesPlaceholder": "الدقائق",
-        "subjectPlaceholder": "اسم المادة",
-        "topicPlaceholder": "الموضوع",
+        "defaultTime": "00:00",
+        "minutesPlaceholder": "دقائق",
+        "subjectPlaceholder": "موضوع",
+        "topicPlaceholder": "عنوان",
         "tagPlaceholder": "وسم",
         "taskPlaceholder": "وصف المهمة"
     },
     "buttons": {
-        "start": "ابدأ",
+        "start": "بدء",
         "pause": "إيقاف مؤقت",
-        "reset": "إعادة ضبط",
+        "reset": "إعادة تعيين",
         "delete": "حذف",
         "save": "حفظ",
         "add": "إضافة",
         "edit": "تعديل",
-        "undo": "تراجع"
+        "undo": "تراجع",
+        "apply": "تطبيق"
     },
     "todayPomos": {
-        "title": "انجازات اليوم",
-        "summary": "ملخص جلسات اليوم:",
-        "total": "المدة الإجمالية"
+        "title": "جلسات بومودورو اليوم",
+        "summary": "ملخص جلسات اليوم:"
     },
     "table": {
         "task": "المهمة",
         "duration": "المدة",
-        "subject": "المادة",
-        "topic": "الموضوع",
-        "tag": "الوسم"
+        "subject": "الموضوع",
+        "topic": "العنوان",
+        "tag": "الوسم",
+        "actions": "الإجراءات",
+        "allSubjects": "جميع المواضيع",
+        "allStatuses": "جميع الحالات",
+        "allTags": "جميع الوسوم",
+        "planned": "مخطط",
+        "ongoing": "قيد التنفيذ",
+        "completed": "مكتمل"
     },
     "example": {
-        "task": "كتابة تدوينة",
-        "duration": "٢٥ دقيقة",
-        "subject": "الكتابة",
+        "task": "كتابة مقالة مدونة",
+        "duration": "25 دقيقة",
+        "subject": "كتابة",
         "topic": "بحث عن Vue",
-        "tag": "#روابط_vue"
+        "tag": "#روابط Vue"
     },
     "planned": {
-        "title": "الأنشطة المخطط لها"
+        "title": "جلسات تيموريا المخطط لها"
     },
     "inputs": {
-        "topic": "الموضوع",
-        "subject": "المادة",
+        "topic": "العنوان",
+        "subject": "الموضوع",
         "tag": "الوسم",
         "task": "المهمة",
-        "duration": "المدة (دقائق)"
+        "duration": "المدة (دقيقة)",
+        "timeRange": "النطاق الزمني (دقائق)"
     },
     "suggestions": {
         "learnVue": "تعلم Vue",
@@ -56,20 +64,26 @@
         "timoria": "تيموريا",
         "home": "الرئيسية",
         "blog": "مدونة",
-        "login": "تسجيل دخول",
-        "signup": "إنشاء حساب"
-        
-    },
-    "time": {
-        "hours": "ساعات",
-        "minutes": "دقائق"
+        "login": "تسجيل الدخول",
+        "signup": "إنشاء حساب",
+        "statistics": "إحصائيات"
     },
     "home": {
-        "title": " ‎\u200ETechtonic مرحبًا بك في ", 
-        "subtitle": "خطط لجلسات التركيز الخاصة بك. تحكم في وقتك.",
+        "title": " ‎\u200ETechtonic مرحبًا بك في ",
+        "subtitle": "خطط لجلساتك المركزة. تحكم في وقتك.",
         "button": "ابدأ الآن",
-        "login": "تسجيل دخول",
+        "login": "تسجيل الدخول",
         "signup": "إنشاء حساب",
         "signupBtn": "إنشاء حساب"
+    },
+    "stats": {
+        "title": "إحصائيات إنتاجيتك",
+        "totalTimorias": "إجمالي جلسات تيموريا",
+        "totalTimeSpent": "إجمالي الوقت المستغرق",
+        "statusBreakdown": "توزيع الحالات",
+        "timeSpentBySubject": "الوقت المستغرق حسب الموضوع",
+        "taskCompletionRate": "معدل إكمال المهام",
+        "averageDuration": "المدة المتوسطة",
+        "filters": "الفلاتر"
     }
 }

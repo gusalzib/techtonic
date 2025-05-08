@@ -3,10 +3,10 @@
         "title": "Pomodoro Timer",
         "defaultTime": "00:00",
         "minutesPlaceholder": "Minutes",
-        "subjectPlaceholder": "Subject name",
-        "topicPlaceholder": "Topic name",
+        "subjectPlaceholder": "Subject",
+        "topicPlaceholder": "Topic",
         "tagPlaceholder": "Tag",
-        "taskPlaceholder": "Task description"
+        "taskPlaceholder": "Task Description"
     },
     "buttons": {
         "start": "Start",
@@ -15,14 +15,17 @@
         "delete": "Delete",
         "save": "Save",
         "add": "Add",
-        "finish": "Finish",
         "edit": "Edit",
-        "undo": "Undo"
+        "undo": "Undo",
+        "apply": "Apply",
+        "cancel": "Cancel",
+        "finish": "Finish",
+        "notify": "Notify"
+
     },
     "todayPomos": {
-        "title": "Today's Timorias",
-        "summary": "Summary of today's sessions:",
-        "total": "Total Time"
+        "title": "Today's Pomodoros",
+        "summary": "Summary of today's sessions:"
     },
     "table": {
         "task": "Task",
@@ -30,13 +33,19 @@
         "subject": "Subject",
         "topic": "Topic",
         "tag": "Tag",
-        "actions": "Actions"
+        "actions": "Actions",
+        "allSubjects": "All Subjects",
+        "allStatuses": "All Statuses",
+        "allTags": "All Tags",
+        "planned": "Planned",
+        "ongoing": "Ongoing",
+        "completed": "Completed"
     },
     "example": {
         "task": "Write blog post",
-        "duration": "25 mins",
+        "duration": "25 minutes",
         "subject": "Writing",
-        "topic": "Research Vue",
+        "topic": "Vue Research",
         "tag": "#vue links"
     },
     "planned": {
@@ -47,7 +56,8 @@
         "subject": "Subject",
         "tag": "Tag",
         "task": "Task",
-        "duration": "Duration (min)"
+        "duration": "Duration (min)",
+        "timeRange": "Time Range (minutes)"
     },
     "suggestions": {
         "learnVue": "Learn Vue",
@@ -59,18 +69,25 @@
         "home": "Home",
         "blog": "Blog",
         "login": "Login",
-        "signup": "Sign up"
-    },
-    "time": {
-        "hours": "hours",
-        "minutes": "minutes"
+        "signup": "Sign Up",
+        "statistics": "Statistics"
     },
     "home": {
-        "title": "Welcome to Tectonic",
-        "subtitle": "Plan your focus sessions. Stay in control.",
+        "title": "Welcome to Techtonic",
+        "subtitle": "Plan your focused sessions. Stay in control.",
         "button": "Get Started",
         "login": "Login",
-        "signup": "Sign up",
-        "signupBtn": "Sign up"
+        "signup": "Sign Up",
+        "signupBtn": "Create Account"
+    },
+    "stats": {
+        "title": "Your Productivity Statistics",
+        "totalTimorias": "Total Timorias",
+        "totalTimeSpent": "Total Time Spent",
+        "statusBreakdown": "Status Breakdown",
+        "timeSpentBySubject": "Time Spent by Subject",
+        "taskCompletionRate": "Task Completion Rate",
+        "averageDuration": "Average Duration",
+        "filters": "Filters"
     }
 }

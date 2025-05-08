@@ -16,7 +16,11 @@
         "save": "Spara",
         "add": "Lägg till",
         "edit": "Redigera",
-        "undo": "Ångra"
+        "undo": "Ångra",
+        "apply": "Tillämpa",
+        "cancel": "Avbryt",
+        "finish": "Sluta",
+        "notify": "Notify"
     },
     "todayPomos": {
         "title": "Dagens Pomodoros",
@@ -28,7 +32,13 @@
         "subject": "Ämne",
         "topic": "Ämnesområde",
         "tag": "Etikett",
-        "actions": "Åtgärder"
+        "actions": "Åtgärder",
+        "allSubjects": "Alla ämnen",
+        "allStatuses": "Alla statusar",
+        "allTags": "Alla etiketter",
+        "planned": "Planerad",
+        "ongoing": "Pågående",
+        "completed": "Färdigställd"
     },
     "example": {
         "task": "Skriv blogginlägg",
@@ -45,7 +55,8 @@
         "subject": "Ämne",
         "tag": "Etikett",
         "task": "Uppgift",
-        "duration": "Varaktighet (min)"
+        "duration": "Varaktighet (min)",
+        "timeRange": "Tidsintervall (minuter)"
     },
     "suggestions": {
         "learnVue": "Lär dig Vue",
@@ -57,7 +68,8 @@
         "home": "Hem",
         "blog": "Blog",
         "login": "Logga in",
-        "signup": "Skapa nytt konto"
+        "signup": "Skapa nytt konto",
+        "statistics": "Statistik"
     },
     "home": {
         "title": "Välkommen till Techtonic",
@@ -66,5 +78,15 @@
         "login": "Logga in",
         "signup": "Skapa nytt konto",
         "signupBtn": "Skapa konto"
+    },
+    "stats": {
+        "title": "Din produktivitetsstatistik",
+        "totalTimorias": "Totalt antal Timorias",
+        "totalTimeSpent": "Total tid spenderad",
+        "statusBreakdown": "Statusfördelning",
+        "timeSpentBySubject": "Tid spenderad per ämne",
+        "taskCompletionRate": "Uppgiftsfärdigställande",
+        "averageDuration": "Genomsnittlig varaktighet",
+        "filters": "Filter"
     }
 }
