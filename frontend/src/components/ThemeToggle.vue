@@ -1,6 +1,6 @@
 <template>
   <button @click="toggleTheme" class="theme-toggle">
-    {{ isDark ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+    {{ isDark ? '☀️ ' + $t('nav.lighttheme'): '🌙 '  + $t('nav.darktheme') }}
   </button>
 </template>
 

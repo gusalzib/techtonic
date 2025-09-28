@@ -6,7 +6,11 @@
         "subjectPlaceholder": "Ämne",
         "topicPlaceholder": "Ämnesområde",
         "tagPlaceholder": "Etikett",
-        "taskPlaceholder": "Uppgiftsbeskrivning"
+        "taskPlaceholder": "Uppgiftsbeskrivning",
+        "hours": "timmar",
+        "hour": "timme",
+        "minutes": "minuter",
+        "minute": "minute"
     },
     "buttons": {
         "start": "Starta",
@@ -68,8 +72,11 @@
         "home": "Hem",
         "blog": "Blog",
         "login": "Logga in",
+        "logout": "Logga ut",
         "signup": "Skapa nytt konto",
-        "statistics": "Statistik"
+        "statistics": "Statistik",
+        "darktheme": "Mörk tema",
+        "lighttheme": "Ljus tema"
     },
     "home": {
         "title": "Välkommen till Techtonic",
@@ -77,7 +84,38 @@
         "button": "Kom igång",
         "login": "Logga in",
         "signup": "Skapa nytt konto",
-        "signupBtn": "Skapa konto"
+        "signupBtn": "Skapa konto",
+        "our-services": "Våra tjänster"
+    },
+    "our-services": {
+        "mobile-applications": {
+            "title": "Mobilapplikationer",
+            "description": "Skräddarsydda iOS- och Android-appar med fantastisk användarupplevelse och hög prestanda."
+        },
+        "web-applications": {
+            "title": "Webbapplikationer",
+            "description": "Responsiva, skalbara webbappar byggda med moderna ramverk."
+        },
+        "desktop-applications": {
+            "title": "Skrivbordsapplikationer",
+            "description": "Plattformsoberoende skrivbordsprogram för Windows, macOS och Linux."
+        },
+        "consultation": {
+            "title": "Konsultation",
+            "description": "Expertrådgivning för att guida din digitala transformationsresa."
+        },
+        "ai-integration": {
+            "title": "AI-integration",
+            "description": "Smart automatisering och AI-drivna lösningar anpassade till ditt företag."
+        },
+        "websites": {
+            "title": "Webbplatser",
+            "description": "Moderna, SEO-vänliga webbplatser för att lyfta fram ditt varumärke."
+        }
+    },
+    "about": {
+        "title": "Varför välja oss?",
+        "description": "På Timoria kombinerar vi banbrytande teknik med djup branschkunskap för att skapa skalbara, säkra och användarvänliga mjukvarulösningar. Oavsett om du är en startup eller ett företag anpassar vi våra tjänster efter dina unika behov."
     },
     "stats": {
         "title": "Din produktivitetsstatistik",

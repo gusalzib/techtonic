@@ -24,7 +24,7 @@
         <router-link to="/statistics">{{ $t('nav.statistics') }}</router-link>
         <router-link v-show="!isLoggedIn" to="/signup">{{ $t('nav.signup') }}</router-link>
         <router-link v-show="!isLoggedIn" to="/login">{{ $t('nav.login') }}</router-link>
-        <button v-show="isLoggedIn" @click="logout">Logout</button>
+        <button v-show="isLoggedIn" @click="logout">{{ $t('nav.logout') }}</button>
         <LanguageSwitcher />
         <ThemeToggle />
       </nav>

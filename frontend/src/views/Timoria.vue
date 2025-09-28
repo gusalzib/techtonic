@@ -228,7 +228,7 @@ export default {
             const totalMinutes = this.todayTimorias.reduce((sum, t) => sum + Number(t.duration || 0), 0)
             const hours = Math.floor(totalMinutes / 60)
             const minutes = totalMinutes % 60
-            return `${hours} ${this.$t('time.hours')} ${minutes} ${this.$t('time.minutes')}`
+            return `${hours} ${this.$t('timer.hours')} ${minutes} ${this.$t('timer.minutes')}`
         }
     },
 

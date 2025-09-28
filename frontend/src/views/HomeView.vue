@@ -13,23 +13,22 @@
 
   <!-- Informative Cards Section -->
     <section class="services-section">
-      <h2>Our Services</h2>
+      <h2>{{ $t('home.our-services') }}</h2>
       <div class="cards-container">
-        <div class="service-card" v-for="service in services" :key="service.title">
-          <img :src="service.icon" :alt="service.title + ' icon'" class="service-icon" />
-          <h3>{{ service.title }}</h3>
-          <p>{{ service.description }}</p>
+        <div class="service-card" v-for="service in services" :key="service.key">
+          <img :src="service.icon" :alt="$t(`our-services.${service.key}.title`)" class="service-icon" />
+          <!-- getting the service title and desc from the locales files -->
+          <h3>{{ $t(`our-services.${service.key}.title`) }}</h3>
+          <p>{{ $t(`our-services.${service.key}.description`) }}</p>
         </div>
       </div>
     </section>
 
     <!-- Company Overview / About Section -->
     <section class="about-section">
-      <h2>Why Choose Us?</h2>
+      <h2>{{ $t('about.title') }}</h2>
       <p>
-        At Timoria, we combine cutting-edge technology with deep industry knowledge
-        to craft scalable, secure, and user-friendly software solutions.
-        Whether you're a startup or an enterprise, we tailor our services to meet your unique needs.
+        {{ $t('about.description') }}
       </p>
     </section>
 
@@ -47,33 +46,27 @@ export default {
     return {
       services: [
         {
-          title: "Mobile Applications",
-          description: "Custom iOS and Android apps with stunning UX and high performance.",
+          key: "mobile-applications",
           icon: require("../assets/images/mobile-applications.png")
         },
         {
-          title: "Web Applications",
-          description: "Responsive, scalable web apps built with modern frameworks.",
+          key: "web-applications",
           icon: require("../assets/images/web-applications.png")
         },
         {
-          title: "Desktop Applications",
-          description: "Cross-platform desktop software for Windows, macOS, and Linux.",
+          key: "desktop-applications",
           icon: require("../assets/images/desktop-applications.png")
         },
         {
-          title: "Consultation",
-          description: "Expert advice to guide your digital transformation journey.",
+          key: "consultation",
           icon: require("../assets/images/mobile-applications.png")
         },
         {
-          title: "AI Integration",
-          description: "Smart automation and AI-powered solutions tailored to your business.",
+          key: "ai-integration",
           icon: require("../assets/images/ai-integrations.png")
         },
         {
-          title: "Websites",
-          description: "Modern, SEO-friendly websites to showcase your brand.",
+          key: "websites",
           icon: require("../assets/images/websites.png")
         },
       ]
