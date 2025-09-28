@@ -1,0 +1,15 @@
+[
+{"type":"header","version":"5.2.2","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"ch4k53z69_fakedestiny"},
+{"type":"table","name":"users","database":"ch4k53z69_fakedestiny","data":
+[
+{"userid":"1","username":"Admin","email":"ibrahim.alzouby1999@gmail.com","password":"$2y$10$nDHpSH3JFYPdmC0KmG.6\/egA7KdUY0qjS\/MDe50v3AtYf.ETFW.bu","createdat":"2024-07-30 12:46:53","profile_image":"5b0e7b31-fe27-40e5-803c-ce557e10b1c9.jpeg","description":"","timezone":"Europe\/Stockholm"},
+{"userid":"2","username":"Fake Destiny","email":"contact@fakedestiny.se","password":"$2y$10$tbU.BwtXGDQHToCgSjCul.9PQnux2vbIfhPKobiA\/RVQlgAVqha0i","createdat":"2024-07-30 12:51:46","profile_image":"e75ea6d2075dadd3b8704f798ac991b7.jpeg","description":"I am Fake Destiny","timezone":"Europe\/Stockholm"},
+{"userid":"3","username":"israa","email":"israa.1alzoubi@gmail.com","password":"$2y$10$gcePCpFJokaDd\/lLZqWA8.2SSGgIRcoMaFXQnk\/qffPG2QB1LiLWu","createdat":"2024-07-30 12:56:18","profile_image":"a9219b5544eb8a3d76b0623cc5ab3619.jpg","description":"","timezone":"Europe\/Stockholm"},
+{"userid":"4","username":"Adam","email":"adam@gmail.com","password":"$2y$10$SS19UWGU0ucjqT82iPd62elmilDg4w55j6RiFtGPEQly42MfsEpzq","createdat":"2024-07-30 18:29:32","profile_image":"55b86b0ec3bca7b2009f0148f18f1bfc.jpeg","description":"","timezone":"UTC"},
+{"userid":"5","username":"Maya","email":"maya.alzoubi2002@hotmail.com","password":"$2y$10$3XJ8EtJ4UZa3bgGL2y1dk.unpfNgzjyK9WQmggIHlDI11lE8j\/OC.","createdat":"2024-08-21 17:55:24","profile_image":"ccd3cde83ae809f0d66f95f74da9ce51.jpeg","description":"Hi","timezone":"UTC"},
+{"userid":"6","username":"Fardous","email":"firdous.alzouby2000@gmail.com","password":"$2y$10$q\/FqyGDDOCwFT.Bi1Zj7BevoaHYw.XDyJ1kMVUJ9vhsgYD9Kczwei","createdat":"2024-08-24 15:43:41","profile_image":"1808c241d7d9fa7d769e917905b7ba31.jpeg","description":"","timezone":"Europe\/Stockholm"},
+{"userid":"7","username":"Galala","email":"gusakerre@student.gu.se","password":"$2y$10$2fapvUKk.uI41WpU9Y2jte8yqiAa0VFvvG4\/l8Ehab4.8u90ebJj.","createdat":"2024-09-03 11:51:12","profile_image":"9a10db997bca8f3d05e6c15d48454aa4.jpeg","description":"","timezone":"UTC"}
+]
+}
+]

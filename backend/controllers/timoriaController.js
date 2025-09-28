@@ -133,6 +133,7 @@ exports.getAllTimorias = async (req, res) => {
 exports.getStatistics = async (req, res) => {
   try {
     const { startDate, endDate, subject } = req.query;
+        console.log('Backend received startDate:', startDate, 'endDate:', endDate); // Add this line
     const userId = req.user.id;
     // 1. First check if there's any data at all
     const totalCount = await Timoria.countDocuments({ user: userId });

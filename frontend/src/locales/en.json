@@ -25,7 +25,8 @@
     },
     "todayPomos": {
         "title": "Today's Pomodoros",
-        "summary": "Summary of today's sessions:"
+        "summary": "Summary of today's sessions:",
+        "total": "Total"
     },
     "table": {
         "task": "Task",
@@ -81,13 +82,22 @@
         "signupBtn": "Create Account"
     },
     "stats": {
-        "title": "Your Productivity Statistics",
+        "title": "Statistics Overview",
         "totalTimorias": "Total Timorias",
+        "totalCompletedTimorias": "Completed Timorias",
         "totalTimeSpent": "Total Time Spent",
+        "totalTopics": "Total Topics",
+        "totalSubjects": "Total Subjects",
+        "averageDuration": "Average Duration per Timoria",
         "statusBreakdown": "Status Breakdown",
+        "chartType": "Chart Type:",
         "timeSpentBySubject": "Time Spent by Subject",
-        "taskCompletionRate": "Task Completion Rate",
-        "averageDuration": "Average Duration",
-        "filters": "Filters"
+        "heatmapTitle": "Activity Heatmap (Last 12 Months)",
+        "noData": "No data available to display.",
+        "noDataForFilters": "No data matches the current filters.",
+        "filterBySubject": "Filter by Subject:",
+        "allSubjects": "All Subjects",
+        "minHours": "Min. Hours:",
+        "minHoursPlaceholder": "e.g., 1.5"
     }
 }

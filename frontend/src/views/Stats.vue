@@ -145,6 +145,8 @@ export default {
     );
 
     const fetchStatistics = async () => {
+      console.log('pressed');
+      
       try {
         const response = await axios.get('http://localhost:5000/api/timoria/statistics', {
           params: filters.value,
@@ -154,13 +156,13 @@ export default {
         });
         stats.value = response.data;
         toast.success('Statistics updated');
-        console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+        // console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
         
-        console.log('Data received for heatmap:', stats.value.timeSpentPerDay);
+        // console.log('Data received for heatmap:', stats.value.timeSpentPerDay);
 
         renderHeatmap(stats.value.timeSpentPerDay || []);
 
-        console.log('Canvas Reference:', heatmapCanvas.value);
+        // console.log('Canvas Reference:', heatmapCanvas.value);
       } catch (error) {
         toast.error('Failed to load statistics');
       }
@@ -221,17 +223,35 @@ const renderHeatmap = (data) => {
 
   const months = processYearlyData(data || []);
   console.log('Processed months:', months);
+  // Default colors for heatmap
+  const colors = ['#e0e0e0', '#9be9a8', '#40c463', '#30a14e', '#216e39'];
 
   // Prepare chart data (day of month vs month)
+  // const chartData = months.flatMap(month => {
+  //   return Object.entries(month.days).map(([day, hours]) => ({
+  //     x: parseInt(day),
+  //     y: `${month.month} ${month.year}`,
+  //     v: hours,
+  //     day: parseInt(day)
+  //   }));
+  // });
+  // Prepare chart data (day of month vs month)
   const chartData = months.flatMap(month => {
-    return Object.entries(month.days).map(([day, hours]) => ({
-      x: parseInt(day),
-      y: `${month.month} ${month.year}`,
-      v: hours,
-      day: parseInt(day)
-    }));
-  });
+    const daysData = [];
 
+    // Iterate through all days of the month (1 to 31)
+    for (let day = 1; day <= 31; day++) {
+      const hours = month.days[day] ?? 0; // Assign 0 if no data for the day
+      daysData.push({
+        x: day,
+        y: `${month.month} ${month.year}`,
+        v: hours,
+        day
+      });
+    }
+
+    return daysData;
+  });
   window.heatmapChart = new ChartJS(ctx, {
     type: 'matrix',
     data: {
@@ -306,6 +326,12 @@ const renderHeatmap = (data) => {
       }
     };
 
+    const getRandomColor = () => {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      return `rgba(${r}, ${g}, ${b}, 0.7)`;  // 0.7 for slight transparency
+    };
     return {
       stats,
       filters,
@@ -314,7 +340,7 @@ const renderHeatmap = (data) => {
       selectedCompletionChartType,
       getChartComponent,
       heatmapCanvas,
-
+      fetchStatistics,
       hasStatusData,
       hasSubjectData,
       hasCompletionData,
@@ -331,14 +357,19 @@ const renderHeatmap = (data) => {
         }],
       })),
 
-      subjectChartData: computed(() => ({
-        labels: stats.value.timeBySubject.map(s => s.subject),
+      
+    subjectChartData: computed(() => {
+      const subjects = stats.value.timeBySubject;
+      
+      return {
+        labels: subjects.map(s => s.subject),
         datasets: [{
           label: 'Hours spent',
-          data: stats.value.timeBySubject.map(s => s.hours),
-          backgroundColor: '#FF6384',
-        }],
-      })),
+          data: subjects.map(s => s.hours),
+          backgroundColor: subjects.map(() => getRandomColor()),  // Generate random color for each subject
+        }]
+      };
+    }),
 
       completionChartData: computed(() => ({
         labels: ['Completion Rate'],
