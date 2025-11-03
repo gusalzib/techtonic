@@ -124,7 +124,17 @@
         "statusBreakdown": "Statusfördelning",
         "timeSpentBySubject": "Tid spenderad per ämne",
         "taskCompletionRate": "Uppgiftsfärdigställande",
+        "percent": "Procent",
         "averageDuration": "Genomsnittlig varaktighet",
-        "filters": "Filter"
+        "filters": "Filter",
+        "totalTopics": "Totalt antal ämnesområden",
+        "totalSubjects": "Totalt antal ämnen",
+        "hours": "Timmar",
+        "minutes": "Minuter",
+        "seconds": "Sekunder",
+        "totalCompletedTimorias": "Totalt antal färdiga Timorias",
+        "chartType": "Typ av diagram:",
+        "heatmapTitle": "Aktivitetsvärmekarta (Senaste 12 månaderna)",
+        "noData": "Ingen data tillgänglig för visning."
     }
 }

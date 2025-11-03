@@ -136,6 +136,10 @@
         "filterBySubject": "Filter by Subject:",
         "allSubjects": "All Subjects",
         "minHours": "Min. Hours:",
-        "minHoursPlaceholder": "e.g., 1.5"
+        "minHoursPlaceholder": "e.g., 1.5",
+        "taskCompletionRate": "Task Completion Rate",
+        "percent": "percent",
+        "hours": "hours",
+        "minutes": "minutes"
     }
 }

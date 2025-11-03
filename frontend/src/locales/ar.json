@@ -125,7 +125,20 @@
         "statusBreakdown": "توزيع الحالات",
         "timeSpentBySubject": "الوقت المستغرق حسب الموضوع",
         "taskCompletionRate": "معدل إكمال المهام",
+        "percent": "نسبة مئوية",
         "averageDuration": "المدة المتوسطة",
-        "filters": "الفلاتر"
+        "filters": "الفلاتر",
+        "totalTopics": "إجمالي المواضيع",
+        "totalSubjects": "إجمالي المواد",
+        "hours": "ساعات",
+        "minutes": "دقائق",
+        "seconds": "ثواني",
+        "totalCompletedTimorias": "إجمالي جلسات تيموريا المكتملة",
+        "chartType": "نوع الرسم البياني:",
+        "filterBySubject": "تصفية حسب الموضوع:",
+        "allSubjects": "جميع المواضيع",
+        "heatmapTitle": "خريطة الحرارة للنشاط (آخر 12 شهرًا)",
+        "noData": "لا توجد بيانات للعرض.",
+        "noDataForFilters": "لا توجد بيانات تطابق الفلاتر الحالية."
     }
 }
