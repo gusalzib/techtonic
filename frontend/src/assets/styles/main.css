@@ -60,6 +60,15 @@
     --autocomplete-bg: #ffffff;
     --autocomplete-hover: #f2f2f2;
 
+    /* setting a light theme background for the whole website*/
+    --page-bg: rgb(209, 227, 233);
+
+    /*text color setting - avoid inconsistencies in the text color across pages and themes*/
+    --text-color: black; 
+
+    --chart-label-color: #000000; /* default light theme statistics label for x and y axis color */
+
+
 }
 .dark-theme {
   --section-bg: #1c1c1c;
@@ -77,6 +86,14 @@
   --input-text: #eeeeee;
   --input-border: var(--accent);
   --border: #ffffff;
+
+  /*text color setting - avoid inconsistencies in the text color across pages and themes*/
+  --text-color: rgb(219, 217, 217); 
+  /* creating a dark theme background for the whole website*/
+  --page-bg: #262626; 
+
+  --chart-label-color: #ddd; /* legends and stats labels should be readable on dark background */
+
 }
 /* 
 .light-theme {
@@ -139,7 +156,7 @@
 
 body{
     margin: 0;
-    background-color: rgb(209, 227, 233);
+    background-color: var(--page-bg);
 }
 
 #success {
@@ -153,6 +170,13 @@ body{
   color: red;
   font-size: 0.95rem;
   text-align: center;
+}
+
+p{
+  color: var(--text-color);
+}
+label{
+  color: var(--text-color);
 }
 /*############################################### HOME PAGE STYLE #######################################################*/
 .home-container {

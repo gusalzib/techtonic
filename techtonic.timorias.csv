@@ -1296,18 +1296,18 @@ _id,subject,topic,tag,task,duration,status,user,createdAt,finishedAt,__v
 68261e8a135f2cb0d06b1364,Svenska,SVA2,,,35,done,682328e4b838d475ecd54f91,2023-04-10T15:33:07.000Z,2023-04-09T22:00:00.000Z,0
 68261e8a135f2cb0d06b1365,Svenska,SVA2,,,26,done,682328e4b838d475ecd54f91,2023-04-10T14:21:43.000Z,2023-04-09T22:00:00.000Z,0
 68261e8a135f2cb0d06b1366,Svenska,SVA2,,,25,done,682328e4b838d475ecd54f91,2023-04-10T13:11:25.000Z,2023-04-09T22:00:00.000Z,0
-68261e8a135f2cb0d06b1367,New Product Development,exam,,,31,done,682328e4b838d475ecd54f91,2023-04-09T20:10:08.000Z,2023-04-08T22:00:00.000Z,0
-68261e8a135f2cb0d06b1368,New Product Development,exam,,,27,done,682328e4b838d475ecd54f91,2023-03-12T18:17:14.000Z,2023-03-11T23:00:00.000Z,0
-68261e8a135f2cb0d06b1369,New Product Development,exam,,,8,done,682328e4b838d475ecd54f91,2023-03-12T16:40:09.000Z,2023-03-11T23:00:00.000Z,0
-68261e8a135f2cb0d06b136a,New Product Development,exam,,,20,done,682328e4b838d475ecd54f91,2023-03-12T16:16:27.000Z,2023-03-11T23:00:00.000Z,0
-68261e8a135f2cb0d06b136b,New Product Development,exam,,,20,done,682328e4b838d475ecd54f91,2023-03-12T15:55:37.000Z,2023-03-11T23:00:00.000Z,0
-68261e8a135f2cb0d06b136c,New Product Development,exam,,,40,done,682328e4b838d475ecd54f91,2023-03-12T15:22:35.000Z,2023-03-11T23:00:00.000Z,0
-68261e8a135f2cb0d06b136d,New Product Development,exam,,,20,done,682328e4b838d475ecd54f91,2023-03-12T13:52:24.000Z,2023-03-11T23:00:00.000Z,0
-68261e8a135f2cb0d06b136e,New Product Development,exam,,,20,done,682328e4b838d475ecd54f91,2023-03-12T13:15:24.000Z,2023-03-11T23:00:00.000Z,0
-68261e8a135f2cb0d06b136f,New Product Development,exam,,,24,done,682328e4b838d475ecd54f91,2023-03-12T12:54:37.000Z,2023-03-11T23:00:00.000Z,0
-68261e8a135f2cb0d06b1370,New Product Development,exam,,,20,done,682328e4b838d475ecd54f91,2023-03-12T12:21:41.000Z,2023-03-11T23:00:00.000Z,0
-68261e8a135f2cb0d06b1371,New Product Development,exam,,,17,done,682328e4b838d475ecd54f91,2023-03-12T11:14:07.000Z,2023-03-11T23:00:00.000Z,0
-68261e8a135f2cb0d06b1372,New Product Development,exam,,,33,done,682328e4b838d475ecd54f91,2023-03-12T10:57:23.000Z,2023-03-11T23:00:00.000Z,0
+68261e8a135f2cb0d06b1367,New Product Development,exam prep,,,31,done,682328e4b838d475ecd54f91,2023-04-09T20:10:08.000Z,2023-04-08T22:00:00.000Z,0
+68261e8a135f2cb0d06b1368,New Product Development,exam prep,,,27,done,682328e4b838d475ecd54f91,2023-03-12T18:17:14.000Z,2023-03-11T23:00:00.000Z,0
+68261e8a135f2cb0d06b1369,New Product Development,exam prep,,,8,done,682328e4b838d475ecd54f91,2023-03-12T16:40:09.000Z,2023-03-11T23:00:00.000Z,0
+68261e8a135f2cb0d06b136a,New Product Development,exam prep,,,20,done,682328e4b838d475ecd54f91,2023-03-12T16:16:27.000Z,2023-03-11T23:00:00.000Z,0
+68261e8a135f2cb0d06b136b,New Product Development,exam prep,,,20,done,682328e4b838d475ecd54f91,2023-03-12T15:55:37.000Z,2023-03-11T23:00:00.000Z,0
+68261e8a135f2cb0d06b136c,New Product Development,exam prep,,,40,done,682328e4b838d475ecd54f91,2023-03-12T15:22:35.000Z,2023-03-11T23:00:00.000Z,0
+68261e8a135f2cb0d06b136d,New Product Development,exam prep,,,20,done,682328e4b838d475ecd54f91,2023-03-12T13:52:24.000Z,2023-03-11T23:00:00.000Z,0
+68261e8a135f2cb0d06b136e,New Product Development,exam prep,,,20,done,682328e4b838d475ecd54f91,2023-03-12T13:15:24.000Z,2023-03-11T23:00:00.000Z,0
+68261e8a135f2cb0d06b136f,New Product Development,exam prep,,,24,done,682328e4b838d475ecd54f91,2023-03-12T12:54:37.000Z,2023-03-11T23:00:00.000Z,0
+68261e8a135f2cb0d06b1370,New Product Development,exam prep,,,20,done,682328e4b838d475ecd54f91,2023-03-12T12:21:41.000Z,2023-03-11T23:00:00.000Z,0
+68261e8a135f2cb0d06b1371,New Product Development,exam prep,,,17,done,682328e4b838d475ecd54f91,2023-03-12T11:14:07.000Z,2023-03-11T23:00:00.000Z,0
+68261e8a135f2cb0d06b1372,New Product Development,exam prep,,,33,done,682328e4b838d475ecd54f91,2023-03-12T10:57:23.000Z,2023-03-11T23:00:00.000Z,0
 68261e8a135f2cb0d06b1373,YouTube,random vids ,,,20,done,682328e4b838d475ecd54f91,2023-03-09T19:52:38.000Z,2023-03-08T23:00:00.000Z,0
 68261e8a135f2cb0d06b1374,YouTube,random vids ,,,31,done,682328e4b838d475ecd54f91,2023-03-09T19:22:25.000Z,2023-03-08T23:00:00.000Z,0
 68261e8a135f2cb0d06b1375,YouTube,random vids,,,20,done,682328e4b838d475ecd54f91,2023-03-08T19:49:04.000Z,2023-03-07T23:00:00.000Z,0
@@ -2651,14 +2651,14 @@ _id,subject,topic,tag,task,duration,status,user,createdAt,finishedAt,__v
 68c7be1e9dbe8fdb0a4f6c15,Software Engineering for AI Systems,NumPy,Self-study,"Inrtoduction into numpy and array slicing, manipluation and creation",120,done,682328e4b838d475ecd54f91,2025-09-15T07:19:58.313Z,2025-09-15T07:45:44.763Z,0
 68c7be629dbe8fdb0a4f6c18,Software Engineering for AI Systems,NumPy,Self-study,Writing Jupyter notes on NumPy,120,done,682328e4b838d475ecd54f91,2025-09-15T07:21:06.383Z,2025-09-15T17:02:19.242Z,0
 68c7bfd99dbe8fdb0a4f6c1b,Software Engineering for AI Systems,NumPy,Self-study,Familiarizing myself with numpy and doing Lab1 questions,120,done,682328e4b838d475ecd54f91,2025-09-14T07:27:21.883Z,2025-09-14T17:01:43.842Z,0
-68c7c0159dbe8fdb0a4f6c1e,Change Management,Literature,reading,reading compulsory articles,120,done,682328e4b838d475ecd54f91,2025-09-14T07:28:21.540Z,2025-09-14T17:01:19.220Z,0
-68c7c0499dbe8fdb0a4f6c21,Change Management,Assignment1,assignment,Doing the first assignment,120,done,682328e4b838d475ecd54f91,2025-09-14T07:29:13.267Z,2025-09-14T15:38:13.742Z,0
-68c832d89dbe8fdb0a4f6c35,Change Management,Assignment1,assignment,Doing the first assignment,180,done,682328e4b838d475ecd54f91,2025-09-15T15:38:00.652Z,2025-09-15T15:38:31.852Z,0
-68c84a839dbe8fdb0a4f6c76,Change Management,Literature,reading,reading compulsory articles,71,done,682328e4b838d475ecd54f91,2025-09-15T17:18:59.991Z,2025-09-15T19:03:42.490Z,0
+68c7c0159dbe8fdb0a4f6c1e,Software Engineering - Change Management,Literature,reading,reading compulsory articles,120,done,682328e4b838d475ecd54f91,2025-09-14T07:28:21.540Z,2025-09-14T17:01:19.220Z,0
+68c7c0499dbe8fdb0a4f6c21,Software Engineering - Change Management,Assignment1,assignment,Doing the first assignment,120,done,682328e4b838d475ecd54f91,2025-09-14T07:29:13.267Z,2025-09-14T15:38:13.742Z,0
+68c832d89dbe8fdb0a4f6c35,Software Engineering - Change Management,Assignment1,assignment,Doing the first assignment,180,done,682328e4b838d475ecd54f91,2025-09-15T15:38:00.652Z,2025-09-15T15:38:31.852Z,0
+68c84a839dbe8fdb0a4f6c76,Software Engineering - Change Management,Literature,reading,reading compulsory articles,71,done,682328e4b838d475ecd54f91,2025-09-15T17:18:59.991Z,2025-09-15T19:03:42.490Z,0
 68c91cca9dbe8fdb0a4f6c86,Software Engineering for AI Systems,Lab2,assignment,understanding linear and multi-linear regression,77,done,682328e4b838d475ecd54f91,2025-09-16T08:16:10.296Z,2025-09-16T10:50:51.381Z,0
 68c91ce69dbe8fdb0a4f6c89,Software Engineering for AI Systems,Lab2,assignment,understanding linear and multi-linear regression,140,done,682328e4b838d475ecd54f91,2025-09-16T08:16:38.812Z,2025-09-16T16:42:42.642Z,0
-68c91d139dbe8fdb0a4f6c8c,Change Management,Literature,self-study,go through third lecture and do necessary reading,75,done,682328e4b838d475ecd54f91,2025-09-16T08:17:23.340Z,2025-09-18T09:33:02.820Z,0
-68c91dba9dbe8fdb0a4f6c8f,Change Management,Assignment2,assignment,go through second assignment,53,done,682328e4b838d475ecd54f91,2025-09-16T08:20:10.964Z,2025-09-18T17:26:58.778Z,0
+68c91d139dbe8fdb0a4f6c8c,Software Engineering - Change Management,Literature,self-study,go through third lecture and do necessary reading,75,done,682328e4b838d475ecd54f91,2025-09-16T08:17:23.340Z,2025-09-18T09:33:02.820Z,0
+68c91dba9dbe8fdb0a4f6c8f,Software Engineering - Change Management,Assignment2,assignment,go through second assignment,53,done,682328e4b838d475ecd54f91,2025-09-16T08:20:10.964Z,2025-09-18T17:26:58.778Z,0
 68ca7b869dbe8fdb0a4f6cad,Software Engineering for AI Systems,Lab2,assignment,understanding linear and multi-linear regression,340,done,682328e4b838d475ecd54f91,2025-09-17T09:12:38.234Z,2025-09-17T20:19:48.821Z,0
 68ca7b9d9dbe8fdb0a4f6cb0,Software Engineering for AI Systems,Lab2,assignment,understanding linear and multi-linear regression,120,done,682328e4b838d475ecd54f91,2025-09-17T09:13:01.464Z,2025-09-17T11:13:47.932Z,0
 68cc7fe61012bbb160ac65a6,حوار مع صديقي الملحد,reading,reading,reading,420,done,682328e4b838d475ecd54f91,2025-08-18T21:55:50.036Z,2025-08-18T21:59:37.402Z,0
@@ -2689,13 +2689,103 @@ _id,subject,topic,tag,task,duration,status,user,createdAt,finishedAt,__v
 68d51068d6871702b1aaa551,Software Engineering for AI Systems,Lab4,self-study,Understanding Lab4 and solving the exercises,150,done,682328e4b838d475ecd54f91,2025-09-25T09:50:32.812Z,2025-09-25T09:50:38.715Z,0
 68d58488d6871702b1aaa563,Software Engineering for AI Systems,Lab4,self-study	,Understanding Lab4 and solving the exercises,150,done,682328e4b838d475ecd54f91,2025-09-25T18:06:00.797Z,2025-09-25T18:06:07.372Z,0
 68d5ab84d6871702b1aaa575,Business,Soria,design,Brainstorming and design of a logo,90,done,682328e4b838d475ecd54f91,2025-09-25T20:52:20.689Z,2025-09-25T20:52:28.096Z,0
-68d69c99d6871702b1aaa587,Change Management,Literature,reading,reading obligatory articles,40,done,682328e4b838d475ecd54f91,2025-09-26T14:00:57.783Z,2025-09-26T14:01:02.954Z,0
+68d69c99d6871702b1aaa587,Software Engineering - Change Management,Literature,reading,reading obligatory articles,40,done,682328e4b838d475ecd54f91,2025-09-26T14:00:57.783Z,2025-09-26T14:01:02.954Z,0
 68d6a460d6871702b1aaa594,Business,Soria,design,Brainstorming and design of a log and a name,60,done,682328e4b838d475ecd54f91,2025-09-26T14:34:08.013Z,2025-09-26T14:34:12.126Z,0
-68d6bd61d6871702b1aaa5a6,Change Management,Literature,reading,reading obligatory articles,90,done,682328e4b838d475ecd54f91,2025-09-26T16:20:49.495Z,2025-09-26T16:20:54.322Z,0
-68d6bd9bd6871702b1aaa5b8,Change Management,Literature,reading,reading obligatory articles,75,done,682328e4b838d475ecd54f91,2025-09-26T16:21:47.463Z,2025-09-26T19:54:52.831Z,0
-68d6c0cad6871702b1aaa5bb,Change Management,Literature,reading,reading obligatory articles,30,done,682328e4b838d475ecd54f91,2025-09-26T16:35:22.335Z,2025-09-26T17:05:59.162Z,0
-68d78b9cd6871702b1aaa5d5,Change Management,Literature,reading,Obligatory articles,60,done,682328e4b838d475ecd54f91,2025-09-27T07:00:44.851Z,2025-09-27T10:38:58.611Z,0
-68d78bbcd6871702b1aaa5d8,Change Management,Literature,reading,Obligatory articles,75,done,682328e4b838d475ecd54f91,2025-09-27T07:01:16.954Z,2025-09-27T08:45:21.507Z,0
-68d7db21d6871702b1aaa5ef,Change Management,Literature,reading,Obligatory articles,80,done,682328e4b838d475ecd54f91,2025-09-27T12:40:01.547Z,2025-09-27T17:57:59.725Z,0
-68d7db30d6871702b1aaa5f2,Change Management,Literature,reading,Obligatory articles,69,done,682328e4b838d475ecd54f91,2025-09-27T12:40:16.388Z,2025-09-27T13:53:32.076Z,0
+68d6bd61d6871702b1aaa5a6,Software Engineering - Change Management,Literature,reading,reading obligatory articles,90,done,682328e4b838d475ecd54f91,2025-09-26T16:20:49.495Z,2025-09-26T16:20:54.322Z,0
+68d6bd9bd6871702b1aaa5b8,Software Engineering - Change Management,Literature,reading,reading obligatory articles,75,done,682328e4b838d475ecd54f91,2025-09-26T16:21:47.463Z,2025-09-26T19:54:52.831Z,0
+68d6c0cad6871702b1aaa5bb,Software Engineering - Change Management,Literature,reading,reading obligatory articles,30,done,682328e4b838d475ecd54f91,2025-09-26T16:35:22.335Z,2025-09-26T17:05:59.162Z,0
+68d78b9cd6871702b1aaa5d5,Software Engineering - Change Management,Literature,reading,Obligatory articles,60,done,682328e4b838d475ecd54f91,2025-09-27T07:00:44.851Z,2025-09-27T10:38:58.611Z,0
+68d78bbcd6871702b1aaa5d8,Software Engineering - Change Management,Literature,reading,Obligatory articles,75,done,682328e4b838d475ecd54f91,2025-09-27T07:01:16.954Z,2025-09-27T08:45:21.507Z,0
+68d7db21d6871702b1aaa5ef,Software Engineering - Change Management,Literature,reading,Obligatory articles,80,done,682328e4b838d475ecd54f91,2025-09-27T12:40:01.547Z,2025-09-27T17:57:59.725Z,0
+68d7db30d6871702b1aaa5f2,Software Engineering - Change Management,Literature,reading,Obligatory articles,69,done,682328e4b838d475ecd54f91,2025-09-27T12:40:16.388Z,2025-09-27T13:53:32.076Z,0
 68d85024d6871702b1aaa611,Quran,Surah Al Zumar,memorizing,memorizing a part of Surah Al Azumar,30,done,682328e4b838d475ecd54f91,2025-09-27T20:59:16.005Z,2025-09-27T20:59:21.984Z,0
+68d8ec29d6871702b1aaa640,Web Development,Techtonic,web-development,Working on the timoria feature branch,90,done,682328e4b838d475ecd54f91,2025-09-28T08:04:57.617Z,2025-09-28T08:05:08.322Z,0
+68d90b86d6871702b1aaa6f6,Web Development,Techtonic,web-development,Working on the timoria feature branch,110,done,682328e4b838d475ecd54f91,2025-09-28T10:18:46.227Z,2025-09-28T10:18:50.809Z,0
+68de8501d6871702b1aaa70f,Software Engineering - Thesis,Thesis Topic Research,self-study,Going through the list of thesis topics,90,done,682328e4b838d475ecd54f91,2025-10-02T13:58:25.871Z,2025-10-02T13:58:30.505Z,0
+68dfc63ed6871702b1aaa721,Software Engineering - Thesis,Thesis,meeting,Meeting with Jawad to discuss the thesis topics,60,done,682328e4b838d475ecd54f91,2025-10-03T12:49:02.808Z,2025-10-03T12:49:07.346Z,0
+68dfc666d6871702b1aaa72e,Software Engineering - Thesis,Thesis,meeting,Meeting with Jawad and Rebecka to discuss the thesis topics,90,done,682328e4b838d475ecd54f91,2025-10-03T12:49:42.292Z,2025-10-03T12:49:47.871Z,0
+68e2b6a52c3f525028cddcfe,Web Development,Sams cafe,web-development,Setting up the project,90,done,682328e4b838d475ecd54f91,2025-10-05T18:19:17.398Z,2025-10-05T18:19:22.540Z,0
+68e2b6d22c3f525028cddd0b,Web Development,Sams cafe,web-development,Setting up the project,30,done,682328e4b838d475ecd54f91,2025-10-05T18:20:02.598Z,2025-10-05T21:37:34.112Z,0
+68e3628d2c3f525028cddd1d,Software Engineering - Thesis,project ideas,brainstorming,Brainstorming for Groupware project idea,120,done,682328e4b838d475ecd54f91,2025-10-06T06:32:45.129Z,2025-10-06T08:03:06.721Z,0
+68e379232c3f525028cddd29,Software Engineering - Change Management,Literature,reading,Reading/annotating printed articles,30,done,682328e4b838d475ecd54f91,2025-10-06T08:09:07.894Z,2025-10-06T10:06:26.032Z,0
+68e3bbeb2c3f525028cddd44,Software Engineering - Thesis,project ideas,meeting,Brainstorming for project ideas with the team,80,done,682328e4b838d475ecd54f91,2025-10-06T12:54:03.338Z,2025-10-06T12:54:08.262Z,0
+68e3bcf52c3f525028cddd58,Software Engineering - Change Management,Literature,reading,Reading/annotating printed articles,40,done,682328e4b838d475ecd54f91,2025-10-06T12:58:29.296Z,2025-10-06T13:56:35.243Z,0
+68e3db7d2c3f525028cddd65,Software Engineering - Change Management,Literature,reading,Reading/annotating printed articles,55,done,682328e4b838d475ecd54f91,2025-10-06T15:08:45.727Z,2025-10-06T16:08:31.330Z,0
+68e3ff6f2c3f525028cddd77,Software Engineering - Change Management,Literature,reading,Reading/annotating printed articles,35,done,682328e4b838d475ecd54f91,2025-10-06T17:42:07.114Z,2025-10-06T18:29:05.546Z,0
+68e4137f2c3f525028cddd88,Software Engineering - Change Management,Literature,reading,Reading/annotating printed articles,60,done,682328e4b838d475ecd54f91,2025-10-06T19:07:43.327Z,2025-10-06T20:14:35.366Z,0
+68e4dc97a7f4a82cf23d10a7,Software Engineering - Change Management,Literature,reading,Reading Explaining Development and CHange in Organizations,75,done,682328e4b838d475ecd54f91,2025-10-07T09:25:43.401Z,2025-10-07T11:11:40.090Z,0
+68e4dd03a7f4a82cf23d10af,Software Engineering for AI Systems,Lab6,self-study,Exploring Artificial Nueral Networks,36,done,682328e4b838d475ecd54f91,2025-10-07T09:27:31.607Z,2025-10-07T16:27:39.528Z,0
+68e4dd3ca7f4a82cf23d10b2,Software Engineering for AI Systems,Lab6,self-study,Exploring Artificial Nueral Networks,29,done,682328e4b838d475ecd54f91,2025-10-07T09:28:28.088Z,2025-10-07T12:47:16.190Z,0
+68e53f9ca7f4a82cf23d10d0,Software Engineering for AI Systems,Lab6,self-study	,Exploring Artificial Nueral Networks,120,done,682328e4b838d475ecd54f91,2025-10-07T16:28:12.393Z,2025-10-07T19:48:41.467Z,0
+68e53fb1a7f4a82cf23d10d3,Software Engineering for AI Systems,Lab6,self-study,Exploring Artificial Nueral Networks,90,done,682328e4b838d475ecd54f91,2025-10-07T16:28:33.445Z,2025-10-07T18:08:40.053Z,0
+68e60168a7f4a82cf23d10fe,Software Engineering for AI Systems,Lab6,self-study,Learning about nueral networks,25,done,682328e4b838d475ecd54f91,2025-10-08T06:15:04.915Z,2025-10-08T15:02:31.188Z,0
+68e60178a7f4a82cf23d1101,Software Engineering for AI Systems,Lab6,self-study,Learning about nueral networks,90,done,682328e4b838d475ecd54f91,2025-10-08T06:15:20.810Z,2025-10-08T09:10:42.142Z,0
+68e60197a7f4a82cf23d1104,Software Engineering for AI Systems,Lab6,self-study,Learning about nueral networks,60,done,682328e4b838d475ecd54f91,2025-10-08T06:15:51.303Z,2025-10-08T07:37:55.311Z,0
+68ea49b1a7f4a82cf23d113a,Software Engineering for AI Systems,Lab6,self-study,Solve Lab6 exercises,90,done,682328e4b838d475ecd54f91,2025-10-11T12:12:33.558Z,2025-10-11T17:25:23.842Z,0
+68ea4a41a7f4a82cf23d113d,Software Engineering for AI Systems,Lab6,self-study,Solve Lab6 exercises,90,done,682328e4b838d475ecd54f91,2025-10-11T12:14:57.525Z,2025-10-11T15:50:44.108Z,0
+68ea6050a7f4a82cf23d1154,Software Engineering for AI Systems,Lab6,self-study,Solve Lab6 exercises,80,done,682328e4b838d475ecd54f91,2025-10-11T13:49:04.796Z,2025-10-11T13:49:08.229Z,0
+68eb66daa7f4a82cf23d118b,Software Engineering for AI Systems,Lab7,self-study,Solving Lab7 exercises,45,done,682328e4b838d475ecd54f91,2025-10-12T08:29:14.961Z,2025-10-12T10:50:50.841Z,0
+68eb670ba7f4a82cf23d1194,Software Engineering for AI Systems,Lab7,self-study,Solving Lab7 exercises,120,done,682328e4b838d475ecd54f91,2025-10-12T08:30:03.661Z,2025-10-12T10:00:45.408Z,0
+68eb95aaa7f4a82cf23d11e3,Software Engineering for AI Systems,Lab7,meeting,Meeting with the team to solve Assignment 3,170,done,682328e4b838d475ecd54f91,2025-10-12T11:48:58.349Z,2025-10-12T13:38:45.382Z,0
+68ebe2b9a7f4a82cf23d11f5,Software Engineering for AI Systems,Lab7,self-study,Solving Lab7 exercises,60,done,682328e4b838d475ecd54f91,2025-10-12T17:17:45.351Z,2025-10-12T18:48:10.640Z,0
+68ec9b94a7f4a82cf23d120c,Software Engineering for AI Systems,Lab7,self-study,Trying to understand and construct Convolutional Neural Networks,52,done,682328e4b838d475ecd54f91,2025-10-13T06:26:28.324Z,2025-10-13T07:57:46.338Z,0
+68ec9bc6a7f4a82cf23d1212,Software Engineering for AI Systems,Lab7,self-study,Trying to understand and construct Convolutional Neural Networks,42,done,682328e4b838d475ecd54f91,2025-10-13T06:27:18.551Z,2025-10-13T09:13:57.352Z,0
+68ec9bd7a7f4a82cf23d1215,Software Engineering for AI Systems,Lab7,meeting,Trying to understand and construct Convolutional Neural Networks,69,done,682328e4b838d475ecd54f91,2025-10-13T06:27:35.072Z,2025-10-13T10:55:03.387Z,0
+68ecec1ca7f4a82cf23d1251,Software Engineering for AI Systems,Lab7,meeting,Trying to understand and construct Convolutional Neural Networks,160,done,682328e4b838d475ecd54f91,2025-10-13T12:10:04.036Z,2025-10-13T13:40:46.467Z,0
+68ee109fa7f4a82cf23d1267,Bayyinah,Ayah of Hijab,taking-notes,Taking notes on the Ayah of Hijab Course starting from the beginning,40,done,682328e4b838d475ecd54f91,2025-10-14T08:58:07.563Z,2025-10-14T10:42:17.387Z,0
+68ee10b1a7f4a82cf23d126a,Bayyinah,Ayah of Hijab,taking-notes,Taking notes on the Ayah of Hijab Course starting from the beginning,60,done,682328e4b838d475ecd54f91,2025-10-14T08:58:25.086Z,2025-10-14T09:59:47.853Z,0
+68ef73008f7391357dffd0f7,Software Engineering for AI Systems,Lab7,meeting,Meeting to get lab7 done,260,done,682328e4b838d475ecd54f91,2025-10-15T10:10:08.408Z,2025-10-15T11:40:30.080Z,0
+68f12a688f7391357dffd111,Web Development,kirby-gaming,programming,"Adding edit, delete and save buttons to customer cards",150,done,682328e4b838d475ecd54f91,2025-10-16T17:24:56.573Z,2025-10-16T17:25:00.455Z,0
+68f12e178f7391357dffd11e,Software Engineering for AI Systems,Lab9,self-study,Exploring lab 9,90,done,682328e4b838d475ecd54f91,2025-10-16T17:40:39.943Z,2025-10-16T19:11:31.877Z,0
+68f1edc70a0d3e9b867f9198,Software Engineering for AI Systems,lab9,meeting,Solving the exercises,130,done,682328e4b838d475ecd54f91,2025-10-17T07:18:31.471Z,2025-10-17T15:34:42.657Z,0
+68f1edda0a0d3e9b867f919b,Software Engineering for AI Systems,lab9,self-study,Exploring lab9,135,done,682328e4b838d475ecd54f91,2025-10-17T07:18:50.443Z,2025-10-17T09:50:05.307Z,0
+68f28acc0a0d3e9b867f91be,Software Engineering for AI Systems,lab9,self-study,Solving the exercises,80,done,682328e4b838d475ecd54f91,2025-10-17T18:28:28.504Z,2025-10-17T20:01:07.390Z,0
+68f354a90a0d3e9b867f91da,Software Engineering for AI Systems,Lab9,self-study,solving the rest of lab9,45,done,682328e4b838d475ecd54f91,2025-10-18T08:49:45.829Z,2025-10-18T10:20:42.841Z,0
+68f39c0a0a0d3e9b867f91e7,Software Engineering for AI Systems,Lab9,self-study,solving the rest of lab9,60,done,682328e4b838d475ecd54f91,2025-10-18T13:54:18.761Z,2025-10-18T13:54:23.832Z,0
+68f3b22c0a0d3e9b867f91f9,Software Engineering for AI Systems,Lab10,self-study,solving lab10 exercises,75,done,682328e4b838d475ecd54f91,2025-10-18T15:28:44.965Z,2025-10-18T15:28:48.860Z,0
+68f3cede0a0d3e9b867f920b,Software Engineering for AI Systems,Lab9,meeting,Discussing lab9 ,90,done,682328e4b838d475ecd54f91,2025-10-18T17:31:10.837Z,2025-10-18T19:02:43.279Z,0
+68f4a9b60a0d3e9b867f921e,Bayyinah,Ayah of Hijab,taking-notes,Taking notes on the Ayah of Hijab Course- lecture 3,150,done,682328e4b838d475ecd54f91,2025-10-19T09:04:54.629Z,2025-10-19T11:05:44.083Z,0
+68f4ddd50a0d3e9b867f9243,Software Engineering for AI Systems,Lab10,self-study,Do the rest of the tasks in Lab10,51,done,682328e4b838d475ecd54f91,2025-10-19T12:47:17.858Z,2025-10-19T13:38:50.638Z,0
+68f4fb520a0d3e9b867f9255,Software Engineering for AI Systems,Lab10,self-study,Do the rest of the tasks in Lab10,50,done,682328e4b838d475ecd54f91,2025-10-19T14:53:06.545Z,2025-10-19T16:23:44.131Z,0
+68f5354c0a0d3e9b867f9267,When Breath Becomes Air,Reading,reading,read pages 88-127,50,done,682328e4b838d475ecd54f91,2025-10-19T19:00:28.064Z,2025-10-19T19:00:32.971Z,0
+68f6137c0a0d3e9b867f9279,Software Engineering - Change Management,Assignemnt 3,self-study,Starting assignment 3,74,done,682328e4b838d475ecd54f91,2025-10-20T10:48:28.284Z,2025-10-20T15:28:32.162Z,0
+68f67d860a0d3e9b867f9285,Quran,Surah Al Nur,reading,Readin surah Al Nur,45,done,682328e4b838d475ecd54f91,2025-10-20T18:20:54.271Z,2025-10-20T18:21:01.083Z,0
+68f733750a0d3e9b867f9294,Software Engineering - Change Management,Assignment3,meeting,doing A3,240,done,682328e4b838d475ecd54f91,2025-10-21T07:17:09.160Z,2025-10-21T12:53:45.322Z,0
+68f7338a0a0d3e9b867f9297,Software Engineering - Change Management,Assignment3,self-study,doing A3,60,done,682328e4b838d475ecd54f91,2025-10-21T07:17:30.204Z,2025-10-21T10:32:27.929Z,0
+68f733990a0d3e9b867f929a,Software Engineering - Change Management,Assignment3,self-study,doing A3,60,done,682328e4b838d475ecd54f91,2025-10-21T07:17:45.469Z,2025-10-21T08:29:01.765Z,0
+68f7f53f0a0d3e9b867f92c5,Software Engineering - Change Management,Assignment3,meeting,doing A3,140,done,682328e4b838d475ecd54f91,2025-10-21T21:03:59.012Z,2025-10-21T21:04:11.558Z,0
+68f896970a0d3e9b867f92dd,Software Engineering for AI Systems,exam prep,exam-study,Taking notes on the improtant topics in preparartion for the exam,11,done,682328e4b838d475ecd54f91,2025-10-22T08:32:23.066Z,2025-10-22T12:06:01.447Z,0
+68f897660a0d3e9b867f92e0,Software Engineering for AI Systems,exam prep,exam-study,Taking notes on the improtant topics in preparartion for the exam,51,done,682328e4b838d475ecd54f91,2025-10-22T08:35:50.072Z,2025-10-22T10:35:43.477Z,0
+68f897750a0d3e9b867f92e3,Software Engineering for AI Systems,exam prep,exam-study,Taking notes on the improtant topics in preparartion for the exam,40,done,682328e4b838d475ecd54f91,2025-10-22T08:36:05.383Z,2025-10-22T09:40:21.536Z,0
+68f90dc20a0d3e9b867f930e,Software Engineering for AI Systems,Lab9,meeting,going through the labs and submitting them,105,done,682328e4b838d475ecd54f91,2025-10-22T17:00:50.486Z,2025-10-22T17:00:55.225Z,0
+68f93eb60a0d3e9b867f9320,Software Engineering for AI Systems,exam prep,exam-study,Taking notes on the improtant topics in preparartion for the exam,120,done,682328e4b838d475ecd54f91,2025-10-22T20:29:42.014Z,2025-10-22T20:29:50.958Z,0
+68f950b70a0d3e9b867f9332,When Breath Becomes Air,Reading,reading,reading until page 164,45,done,682328e4b838d475ecd54f91,2025-10-22T21:46:31.993Z,2025-10-22T21:46:38.278Z,0
+68f9f03b0a0d3e9b867f9347,Software Engineering for AI Systems,exam prep,exam-study,Doing past exams,50,done,682328e4b838d475ecd54f91,2025-10-23T09:07:07.858Z,2025-10-23T18:17:34.141Z,0
+68f9f0490a0d3e9b867f934a,Software Engineering for AI Systems,exam prep,exam-study,Doing past exams,90,done,682328e4b838d475ecd54f91,2025-10-23T09:07:21.438Z,2025-10-23T13:11:37.269Z,0
+68f9f0570a0d3e9b867f934d,Software Engineering for AI Systems,exam prep,exam-study,Doing past exams,84,done,682328e4b838d475ecd54f91,2025-10-23T09:07:35.422Z,2025-10-23T10:32:08.142Z,0
+68fa7c010a0d3e9b867f9370,When Breath Becomes Air,Reading,reading,reading until page 191,40,done,682328e4b838d475ecd54f91,2025-10-23T19:03:29.311Z,2025-10-23T19:03:35.368Z,0
+68fb20400a0d3e9b867f938f,Software Engineering for AI Systems,exam prep,exam-study,studying for the exam,79,done,682328e4b838d475ecd54f91,2025-10-24T06:44:16.646Z,2025-10-24T21:44:10.036Z,0
+68fb204f0a0d3e9b867f9392,Software Engineering for AI Systems,exam prep,exam-study,studying for the exam,90,done,682328e4b838d475ecd54f91,2025-10-24T06:44:31.020Z,2025-10-24T20:04:52.893Z,0
+68fb205e0a0d3e9b867f9395,Software Engineering for AI Systems,exam prep,exam-study,studying for the exam,90,done,682328e4b838d475ecd54f91,2025-10-24T06:44:46.109Z,2025-10-24T08:21:47.229Z,0
+68fc82089359a780cc96ecef,Software Engineering for AI Systems,exam prep,exam-study,Studying for the SEAIS exam,65,done,682328e4b838d475ecd54f91,2025-10-25T07:53:44.532Z,2025-10-25T15:02:02.751Z,0
+68fc82239359a780cc96ecf2,Software Engineering for AI Systems,exam prep,exam-study,Studying for the SEAIS exam,34,done,682328e4b838d475ecd54f91,2025-10-25T07:54:11.797Z,2025-10-25T12:35:59.497Z,0
+68fc82409359a780cc96ecf5,Software Engineering for AI Systems,exam prep,exam-study,Studying for the SEAIS exam,83,done,682328e4b838d475ecd54f91,2025-10-25T07:54:40.486Z,2025-10-25T10:24:01.544Z,0
+68fc82599359a780cc96ecf8,Software Engineering for AI Systems,exam prep,exam-study,Studying for the SIAIS exam,44,done,682328e4b838d475ecd54f91,2025-10-25T07:55:05.851Z,2025-10-25T08:39:29.334Z,0
+68fde0b59359a780cc96ed23,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exam,45,done,682328e4b838d475ecd54f91,2025-10-26T08:49:57.511Z,2025-10-26T14:19:34.987Z,0
+68fde0cd9359a780cc96ed26,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exam,50,done,682328e4b838d475ecd54f91,2025-10-26T08:50:21.021Z,2025-10-26T13:07:25.513Z,0
+68fde0da9359a780cc96ed29,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exam,120,done,682328e4b838d475ecd54f91,2025-10-26T08:50:34.844Z,2025-10-26T10:22:40.521Z,0
+68fe3ff79359a780cc96ed50,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exam,60,done,682328e4b838d475ecd54f91,2025-10-26T15:36:23.782Z,2025-10-26T15:36:27.098Z,0
+68fe79f89359a780cc96ed6a,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exam,120,done,682328e4b838d475ecd54f91,2025-10-26T19:43:52.127Z,2025-10-26T21:14:40.771Z,0
+68ff3f0b9359a780cc96ed82,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exams,90,done,682328e4b838d475ecd54f91,2025-10-27T09:44:43.982Z,2025-10-27T20:21:17.407Z,0
+68ff3f239359a780cc96ed85,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exam,70,done,682328e4b838d475ecd54f91,2025-10-27T09:45:07.193Z,2025-10-27T11:15:40.625Z,0
+68ff58939359a780cc96ed97,Software Engineering - Thesis,Thesis topic,meeting,deciding on the topic of the thesis,220,done,682328e4b838d475ecd54f91,2025-10-27T11:33:39.602Z,2025-10-27T13:04:40.613Z,0
+6901b4939359a780cc96edc2,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exam,80,done,682328e4b838d475ecd54f91,2025-10-28T06:30:43.921Z,2025-10-28T06:32:17.037Z,0
+6901b4a99359a780cc96edc5,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exam,70,done,682328e4b838d475ecd54f91,2025-10-28T06:31:05.850Z,2025-10-28T06:32:11.513Z,0
+6901b4c79359a780cc96edc8,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exam,120,done,682328e4b838d475ecd54f91,2025-10-28T06:31:35.529Z,2025-10-28T06:32:05.776Z,0
+6901b4da9359a780cc96edcb,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exam,40,done,682328e4b838d475ecd54f91,2025-10-28T06:31:54.352Z,2025-10-28T06:32:00.435Z,0
+6901b5359359a780cc96edf6,Software Engineering for AI Systems,exam prep,exam-study,Studying for the exam,90,done,682328e4b838d475ecd54f91,2025-10-29T06:33:25.951Z,2025-10-29T06:33:31.746Z,0
+69038b319359a780cc96ee18,Software Engineering - Thesis,Thesis topic,meeting,Deciding on thesis topic,210,done,682328e4b838d475ecd54f91,2025-10-29T15:58:41.213Z,2025-10-29T15:58:45.912Z,0
+69038ba49359a780cc96ee2c,Software Engineering - Change Management,exam prep,exam-study,Writing the home exam,110,done,682328e4b838d475ecd54f91,2025-10-30T16:00:36.869Z,2025-10-30T21:03:44.034Z,0
+69038bbd9359a780cc96ee2f,Software Engineering - Change Management,exam prep,exam-study,Writing the home exam,25,done,682328e4b838d475ecd54f91,2025-10-30T16:01:01.945Z,2025-10-30T16:56:57.259Z,0
+690398ec9359a780cc96ee3c,Software Engineering - Change Management,exam prep,exam-study,Writing the home exam,90,done,682328e4b838d475ecd54f91,2025-10-30T16:57:16.924Z,2025-10-30T18:27:42.736Z,0
+690468d49359a780cc96ee5d,Software Engineering - Change Management,exam prep,exam-study,Writing the home exam,105,done,682328e4b838d475ecd54f91,2025-10-31T07:44:20.118Z,2025-10-31T09:24:21.394Z,0

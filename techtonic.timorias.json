@@ -27240,7 +27240,7 @@
     "$oid": "68261e8a135f2cb0d06b1367"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 31,
@@ -27261,7 +27261,7 @@
     "$oid": "68261e8a135f2cb0d06b1368"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 27,
@@ -27282,7 +27282,7 @@
     "$oid": "68261e8a135f2cb0d06b1369"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 8,
@@ -27303,7 +27303,7 @@
     "$oid": "68261e8a135f2cb0d06b136a"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 20,
@@ -27324,7 +27324,7 @@
     "$oid": "68261e8a135f2cb0d06b136b"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 20,
@@ -27345,7 +27345,7 @@
     "$oid": "68261e8a135f2cb0d06b136c"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 40,
@@ -27366,7 +27366,7 @@
     "$oid": "68261e8a135f2cb0d06b136d"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 20,
@@ -27387,7 +27387,7 @@
     "$oid": "68261e8a135f2cb0d06b136e"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 20,
@@ -27408,7 +27408,7 @@
     "$oid": "68261e8a135f2cb0d06b136f"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 24,
@@ -27429,7 +27429,7 @@
     "$oid": "68261e8a135f2cb0d06b1370"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 20,
@@ -27450,7 +27450,7 @@
     "$oid": "68261e8a135f2cb0d06b1371"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 17,
@@ -27471,7 +27471,7 @@
     "$oid": "68261e8a135f2cb0d06b1372"
   },
   "subject": "New Product Development",
-  "topic": "exam",
+  "topic": "exam prep",
   "tag": "",
   "task": "",
   "duration": 33,
@@ -55694,7 +55694,7 @@
   "_id": {
     "$oid": "68c7c0159dbe8fdb0a4f6c1e"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Literature",
   "tag": "reading",
   "task": "reading compulsory articles",
@@ -55715,7 +55715,7 @@
   "_id": {
     "$oid": "68c7c0499dbe8fdb0a4f6c21"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Assignment1",
   "tag": "assignment",
   "task": "Doing the first assignment",
@@ -55736,7 +55736,7 @@
   "_id": {
     "$oid": "68c832d89dbe8fdb0a4f6c35"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Assignment1",
   "tag": "assignment",
   "task": "Doing the first assignment",
@@ -55757,7 +55757,7 @@
   "_id": {
     "$oid": "68c84a839dbe8fdb0a4f6c76"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Literature",
   "tag": "reading",
   "task": "reading compulsory articles",
@@ -55820,7 +55820,7 @@
   "_id": {
     "$oid": "68c91d139dbe8fdb0a4f6c8c"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Literature",
   "tag": "self-study",
   "task": "go through third lecture and do necessary reading",
@@ -55841,7 +55841,7 @@
   "_id": {
     "$oid": "68c91dba9dbe8fdb0a4f6c8f"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Assignment2",
   "tag": "assignment",
   "task": "go through second assignment",
@@ -56492,7 +56492,7 @@
   "_id": {
     "$oid": "68d69c99d6871702b1aaa587"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Literature",
   "tag": "reading",
   "task": "reading obligatory articles",
@@ -56534,7 +56534,7 @@
   "_id": {
     "$oid": "68d6bd61d6871702b1aaa5a6"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Literature",
   "tag": "reading",
   "task": "reading obligatory articles",
@@ -56555,7 +56555,7 @@
   "_id": {
     "$oid": "68d6bd9bd6871702b1aaa5b8"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Literature",
   "tag": "reading",
   "task": "reading obligatory articles",
@@ -56576,7 +56576,7 @@
   "_id": {
     "$oid": "68d6c0cad6871702b1aaa5bb"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Literature",
   "tag": "reading",
   "task": "reading obligatory articles",
@@ -56597,7 +56597,7 @@
   "_id": {
     "$oid": "68d78b9cd6871702b1aaa5d5"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Literature",
   "tag": "reading",
   "task": "Obligatory articles",
@@ -56618,7 +56618,7 @@
   "_id": {
     "$oid": "68d78bbcd6871702b1aaa5d8"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Literature",
   "tag": "reading",
   "task": "Obligatory articles",
@@ -56639,7 +56639,7 @@
   "_id": {
     "$oid": "68d7db21d6871702b1aaa5ef"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Literature",
   "tag": "reading",
   "task": "Obligatory articles",
@@ -56660,7 +56660,7 @@
   "_id": {
     "$oid": "68d7db30d6871702b1aaa5f2"
   },
-  "subject": "Change Management",
+  "subject": "Software Engineering - Change Management",
   "topic": "Literature",
   "tag": "reading",
   "task": "Obligatory articles",
@@ -56695,6 +56695,1896 @@
   },
   "finishedAt": {
     "$date": "2025-09-27T20:59:21.984Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68d8ec29d6871702b1aaa640"
+  },
+  "subject": "Web Development",
+  "topic": "Techtonic",
+  "tag": "web-development",
+  "task": "Working on the timoria feature branch",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-09-28T08:04:57.617Z"
+  },
+  "finishedAt": {
+    "$date": "2025-09-28T08:05:08.322Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68d90b86d6871702b1aaa6f6"
+  },
+  "subject": "Web Development",
+  "topic": "Techtonic",
+  "tag": "web-development",
+  "task": "Working on the timoria feature branch",
+  "duration": 110,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-09-28T10:18:46.227Z"
+  },
+  "finishedAt": {
+    "$date": "2025-09-28T10:18:50.809Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68de8501d6871702b1aaa70f"
+  },
+  "subject": "Software Engineering - Thesis",
+  "topic": "Thesis Topic Research",
+  "tag": "self-study",
+  "task": "Going through the list of thesis topics",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-02T13:58:25.871Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-02T13:58:30.505Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68dfc63ed6871702b1aaa721"
+  },
+  "subject": "Software Engineering - Thesis",
+  "topic": "Thesis",
+  "tag": "meeting",
+  "task": "Meeting with Jawad to discuss the thesis topics",
+  "duration": 60,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-03T12:49:02.808Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-03T12:49:07.346Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68dfc666d6871702b1aaa72e"
+  },
+  "subject": "Software Engineering - Thesis",
+  "topic": "Thesis",
+  "tag": "meeting",
+  "task": "Meeting with Jawad and Rebecka to discuss the thesis topics",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-03T12:49:42.292Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-03T12:49:47.871Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e2b6a52c3f525028cddcfe"
+  },
+  "subject": "Web Development",
+  "topic": "Sams cafe",
+  "tag": "web-development",
+  "task": "Setting up the project",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-05T18:19:17.398Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-05T18:19:22.540Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e2b6d22c3f525028cddd0b"
+  },
+  "subject": "Web Development",
+  "topic": "Sams cafe",
+  "tag": "web-development",
+  "task": "Setting up the project",
+  "duration": 30,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-05T18:20:02.598Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-05T21:37:34.112Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e3628d2c3f525028cddd1d"
+  },
+  "subject": "Software Engineering - Thesis",
+  "topic": "project ideas",
+  "tag": "brainstorming",
+  "task": "Brainstorming for Groupware project idea",
+  "duration": 120,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-06T06:32:45.129Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-06T08:03:06.721Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e379232c3f525028cddd29"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "Literature",
+  "tag": "reading",
+  "task": "Reading/annotating printed articles",
+  "duration": 30,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-06T08:09:07.894Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-06T10:06:26.032Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e3bbeb2c3f525028cddd44"
+  },
+  "subject": "Software Engineering - Thesis",
+  "topic": "project ideas",
+  "tag": "meeting",
+  "task": "Brainstorming for project ideas with the team",
+  "duration": 80,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-06T12:54:03.338Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-06T12:54:08.262Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e3bcf52c3f525028cddd58"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "Literature",
+  "tag": "reading",
+  "task": "Reading/annotating printed articles",
+  "duration": 40,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-06T12:58:29.296Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-06T13:56:35.243Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e3db7d2c3f525028cddd65"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "Literature",
+  "tag": "reading",
+  "task": "Reading/annotating printed articles",
+  "duration": 55,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-06T15:08:45.727Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-06T16:08:31.330Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e3ff6f2c3f525028cddd77"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "Literature",
+  "tag": "reading",
+  "task": "Reading/annotating printed articles",
+  "duration": 35,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-06T17:42:07.114Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-06T18:29:05.546Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e4137f2c3f525028cddd88"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "Literature",
+  "tag": "reading",
+  "task": "Reading/annotating printed articles",
+  "duration": 60,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-06T19:07:43.327Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-06T20:14:35.366Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e4dc97a7f4a82cf23d10a7"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "Literature",
+  "tag": "reading",
+  "task": "Reading Explaining Development and CHange in Organizations",
+  "duration": 75,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-07T09:25:43.401Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-07T11:11:40.090Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e4dd03a7f4a82cf23d10af"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab6",
+  "tag": "self-study",
+  "task": "Exploring Artificial Nueral Networks",
+  "duration": 36,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-07T09:27:31.607Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-07T16:27:39.528Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e4dd3ca7f4a82cf23d10b2"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab6",
+  "tag": "self-study",
+  "task": "Exploring Artificial Nueral Networks",
+  "duration": 29,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-07T09:28:28.088Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-07T12:47:16.190Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e53f9ca7f4a82cf23d10d0"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab6",
+  "tag": "self-study\t",
+  "task": "Exploring Artificial Nueral Networks",
+  "duration": 120,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-07T16:28:12.393Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-07T19:48:41.467Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e53fb1a7f4a82cf23d10d3"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab6",
+  "tag": "self-study",
+  "task": "Exploring Artificial Nueral Networks",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-07T16:28:33.445Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-07T18:08:40.053Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e60168a7f4a82cf23d10fe"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab6",
+  "tag": "self-study",
+  "task": "Learning about nueral networks",
+  "duration": 25,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-08T06:15:04.915Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-08T15:02:31.188Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e60178a7f4a82cf23d1101"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab6",
+  "tag": "self-study",
+  "task": "Learning about nueral networks",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-08T06:15:20.810Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-08T09:10:42.142Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e60197a7f4a82cf23d1104"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab6",
+  "tag": "self-study",
+  "task": "Learning about nueral networks",
+  "duration": 60,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-08T06:15:51.303Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-08T07:37:55.311Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ea49b1a7f4a82cf23d113a"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab6",
+  "tag": "self-study",
+  "task": "Solve Lab6 exercises",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-11T12:12:33.558Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-11T17:25:23.842Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ea4a41a7f4a82cf23d113d"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab6",
+  "tag": "self-study",
+  "task": "Solve Lab6 exercises",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-11T12:14:57.525Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-11T15:50:44.108Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ea6050a7f4a82cf23d1154"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab6",
+  "tag": "self-study",
+  "task": "Solve Lab6 exercises",
+  "duration": 80,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-11T13:49:04.796Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-11T13:49:08.229Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68eb66daa7f4a82cf23d118b"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab7",
+  "tag": "self-study",
+  "task": "Solving Lab7 exercises",
+  "duration": 45,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-12T08:29:14.961Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-12T10:50:50.841Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68eb670ba7f4a82cf23d1194"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab7",
+  "tag": "self-study",
+  "task": "Solving Lab7 exercises",
+  "duration": 120,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-12T08:30:03.661Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-12T10:00:45.408Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68eb95aaa7f4a82cf23d11e3"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab7",
+  "tag": "meeting",
+  "task": "Meeting with the team to solve Assignment 3",
+  "duration": 170,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-12T11:48:58.349Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-12T13:38:45.382Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebe2b9a7f4a82cf23d11f5"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab7",
+  "tag": "self-study",
+  "task": "Solving Lab7 exercises",
+  "duration": 60,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-12T17:17:45.351Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-12T18:48:10.640Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ec9b94a7f4a82cf23d120c"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab7",
+  "tag": "self-study",
+  "task": "Trying to understand and construct Convolutional Neural Networks",
+  "duration": 52,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-13T06:26:28.324Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-13T07:57:46.338Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ec9bc6a7f4a82cf23d1212"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab7",
+  "tag": "self-study",
+  "task": "Trying to understand and construct Convolutional Neural Networks",
+  "duration": 42,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-13T06:27:18.551Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-13T09:13:57.352Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ec9bd7a7f4a82cf23d1215"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab7",
+  "tag": "meeting",
+  "task": "Trying to understand and construct Convolutional Neural Networks",
+  "duration": 69,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-13T06:27:35.072Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-13T10:55:03.387Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ecec1ca7f4a82cf23d1251"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab7",
+  "tag": "meeting",
+  "task": "Trying to understand and construct Convolutional Neural Networks",
+  "duration": 160,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-13T12:10:04.036Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-13T13:40:46.467Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ee109fa7f4a82cf23d1267"
+  },
+  "subject": "Bayyinah",
+  "topic": "Ayah of Hijab",
+  "tag": "taking-notes",
+  "task": "Taking notes on the Ayah of Hijab Course starting from the beginning",
+  "duration": 40,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-14T08:58:07.563Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-14T10:42:17.387Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ee10b1a7f4a82cf23d126a"
+  },
+  "subject": "Bayyinah",
+  "topic": "Ayah of Hijab",
+  "tag": "taking-notes",
+  "task": "Taking notes on the Ayah of Hijab Course starting from the beginning",
+  "duration": 60,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-14T08:58:25.086Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-14T09:59:47.853Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ef73008f7391357dffd0f7"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab7",
+  "tag": "meeting",
+  "task": "Meeting to get lab7 done",
+  "duration": 260,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-15T10:10:08.408Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-15T11:40:30.080Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f12a688f7391357dffd111"
+  },
+  "subject": "Web Development",
+  "topic": "kirby-gaming",
+  "tag": "programming",
+  "task": "Adding edit, delete and save buttons to customer cards",
+  "duration": 150,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-16T17:24:56.573Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-16T17:25:00.455Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f12e178f7391357dffd11e"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab9",
+  "tag": "self-study",
+  "task": "Exploring lab 9",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-16T17:40:39.943Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-16T19:11:31.877Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f1edc70a0d3e9b867f9198"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "lab9",
+  "tag": "meeting",
+  "task": "Solving the exercises",
+  "duration": 130,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-17T07:18:31.471Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-17T15:34:42.657Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f1edda0a0d3e9b867f919b"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "lab9",
+  "tag": "self-study",
+  "task": "Exploring lab9",
+  "duration": 135,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-17T07:18:50.443Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-17T09:50:05.307Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f28acc0a0d3e9b867f91be"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "lab9",
+  "tag": "self-study",
+  "task": "Solving the exercises",
+  "duration": 80,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-17T18:28:28.504Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-17T20:01:07.390Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f354a90a0d3e9b867f91da"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab9",
+  "tag": "self-study",
+  "task": "solving the rest of lab9",
+  "duration": 45,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-18T08:49:45.829Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-18T10:20:42.841Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f39c0a0a0d3e9b867f91e7"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab9",
+  "tag": "self-study",
+  "task": "solving the rest of lab9",
+  "duration": 60,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-18T13:54:18.761Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-18T13:54:23.832Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f3b22c0a0d3e9b867f91f9"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab10",
+  "tag": "self-study",
+  "task": "solving lab10 exercises",
+  "duration": 75,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-18T15:28:44.965Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-18T15:28:48.860Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f3cede0a0d3e9b867f920b"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab9",
+  "tag": "meeting",
+  "task": "Discussing lab9 ",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-18T17:31:10.837Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-18T19:02:43.279Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f4a9b60a0d3e9b867f921e"
+  },
+  "subject": "Bayyinah",
+  "topic": "Ayah of Hijab",
+  "tag": "taking-notes",
+  "task": "Taking notes on the Ayah of Hijab Course- lecture 3",
+  "duration": 150,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-19T09:04:54.629Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-19T11:05:44.083Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f4ddd50a0d3e9b867f9243"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab10",
+  "tag": "self-study",
+  "task": "Do the rest of the tasks in Lab10",
+  "duration": 51,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-19T12:47:17.858Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-19T13:38:50.638Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f4fb520a0d3e9b867f9255"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab10",
+  "tag": "self-study",
+  "task": "Do the rest of the tasks in Lab10",
+  "duration": 50,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-19T14:53:06.545Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-19T16:23:44.131Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f5354c0a0d3e9b867f9267"
+  },
+  "subject": "When Breath Becomes Air",
+  "topic": "Reading",
+  "tag": "reading",
+  "task": "read pages 88-127",
+  "duration": 50,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-19T19:00:28.064Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-19T19:00:32.971Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f6137c0a0d3e9b867f9279"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "Assignemnt 3",
+  "tag": "self-study",
+  "task": "Starting assignment 3",
+  "duration": 74,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-20T10:48:28.284Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-20T15:28:32.162Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f67d860a0d3e9b867f9285"
+  },
+  "subject": "Quran",
+  "topic": "Surah Al Nur",
+  "tag": "reading",
+  "task": "Readin surah Al Nur",
+  "duration": 45,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-20T18:20:54.271Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-20T18:21:01.083Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f733750a0d3e9b867f9294"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "Assignment3",
+  "tag": "meeting",
+  "task": "doing A3",
+  "duration": 240,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-21T07:17:09.160Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-21T12:53:45.322Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f7338a0a0d3e9b867f9297"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "Assignment3",
+  "tag": "self-study",
+  "task": "doing A3",
+  "duration": 60,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-21T07:17:30.204Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-21T10:32:27.929Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f733990a0d3e9b867f929a"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "Assignment3",
+  "tag": "self-study",
+  "task": "doing A3",
+  "duration": 60,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-21T07:17:45.469Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-21T08:29:01.765Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f7f53f0a0d3e9b867f92c5"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "Assignment3",
+  "tag": "meeting",
+  "task": "doing A3",
+  "duration": 140,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-21T21:03:59.012Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-21T21:04:11.558Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f896970a0d3e9b867f92dd"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Taking notes on the improtant topics in preparartion for the exam",
+  "duration": 11,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-22T08:32:23.066Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-22T12:06:01.447Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f897660a0d3e9b867f92e0"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Taking notes on the improtant topics in preparartion for the exam",
+  "duration": 51,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-22T08:35:50.072Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-22T10:35:43.477Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f897750a0d3e9b867f92e3"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Taking notes on the improtant topics in preparartion for the exam",
+  "duration": 40,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-22T08:36:05.383Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-22T09:40:21.536Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f90dc20a0d3e9b867f930e"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "Lab9",
+  "tag": "meeting",
+  "task": "going through the labs and submitting them",
+  "duration": 105,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-22T17:00:50.486Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-22T17:00:55.225Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f93eb60a0d3e9b867f9320"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Taking notes on the improtant topics in preparartion for the exam",
+  "duration": 120,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-22T20:29:42.014Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-22T20:29:50.958Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f950b70a0d3e9b867f9332"
+  },
+  "subject": "When Breath Becomes Air",
+  "topic": "Reading",
+  "tag": "reading",
+  "task": "reading until page 164",
+  "duration": 45,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-22T21:46:31.993Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-22T21:46:38.278Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f9f03b0a0d3e9b867f9347"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Doing past exams",
+  "duration": 50,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-23T09:07:07.858Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-23T18:17:34.141Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f9f0490a0d3e9b867f934a"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Doing past exams",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-23T09:07:21.438Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-23T13:11:37.269Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f9f0570a0d3e9b867f934d"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Doing past exams",
+  "duration": 84,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-23T09:07:35.422Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-23T10:32:08.142Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fa7c010a0d3e9b867f9370"
+  },
+  "subject": "When Breath Becomes Air",
+  "topic": "Reading",
+  "tag": "reading",
+  "task": "reading until page 191",
+  "duration": 40,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-23T19:03:29.311Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-23T19:03:35.368Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fb20400a0d3e9b867f938f"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "studying for the exam",
+  "duration": 79,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-24T06:44:16.646Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-24T21:44:10.036Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fb204f0a0d3e9b867f9392"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "studying for the exam",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-24T06:44:31.020Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-24T20:04:52.893Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fb205e0a0d3e9b867f9395"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "studying for the exam",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-24T06:44:46.109Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-24T08:21:47.229Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fc82089359a780cc96ecef"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the SEAIS exam",
+  "duration": 65,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-25T07:53:44.532Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-25T15:02:02.751Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fc82239359a780cc96ecf2"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the SEAIS exam",
+  "duration": 34,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-25T07:54:11.797Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-25T12:35:59.497Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fc82409359a780cc96ecf5"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the SEAIS exam",
+  "duration": 83,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-25T07:54:40.486Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-25T10:24:01.544Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fc82599359a780cc96ecf8"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the SIAIS exam",
+  "duration": 44,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-25T07:55:05.851Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-25T08:39:29.334Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fde0b59359a780cc96ed23"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exam",
+  "duration": 45,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-26T08:49:57.511Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-26T14:19:34.987Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fde0cd9359a780cc96ed26"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exam",
+  "duration": 50,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-26T08:50:21.021Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-26T13:07:25.513Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fde0da9359a780cc96ed29"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exam",
+  "duration": 120,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-26T08:50:34.844Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-26T10:22:40.521Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fe3ff79359a780cc96ed50"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exam",
+  "duration": 60,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-26T15:36:23.782Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-26T15:36:27.098Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fe79f89359a780cc96ed6a"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exam",
+  "duration": 120,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-26T19:43:52.127Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-26T21:14:40.771Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ff3f0b9359a780cc96ed82"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exams",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-27T09:44:43.982Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-27T20:21:17.407Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ff3f239359a780cc96ed85"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exam",
+  "duration": 70,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-27T09:45:07.193Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-27T11:15:40.625Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ff58939359a780cc96ed97"
+  },
+  "subject": "Software Engineering - Thesis",
+  "topic": "Thesis topic",
+  "tag": "meeting",
+  "task": "deciding on the topic of the thesis",
+  "duration": 220,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-27T11:33:39.602Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-27T13:04:40.613Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6901b4939359a780cc96edc2"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exam",
+  "duration": 80,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-28T06:30:43.921Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-28T06:32:17.037Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6901b4a99359a780cc96edc5"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exam",
+  "duration": 70,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-28T06:31:05.850Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-28T06:32:11.513Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6901b4c79359a780cc96edc8"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exam",
+  "duration": 120,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-28T06:31:35.529Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-28T06:32:05.776Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6901b4da9359a780cc96edcb"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exam",
+  "duration": 40,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-28T06:31:54.352Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-28T06:32:00.435Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6901b5359359a780cc96edf6"
+  },
+  "subject": "Software Engineering for AI Systems",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Studying for the exam",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-29T06:33:25.951Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-29T06:33:31.746Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69038b319359a780cc96ee18"
+  },
+  "subject": "Software Engineering - Thesis",
+  "topic": "Thesis topic",
+  "tag": "meeting",
+  "task": "Deciding on thesis topic",
+  "duration": 210,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-29T15:58:41.213Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-29T15:58:45.912Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69038ba49359a780cc96ee2c"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Writing the home exam",
+  "duration": 110,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-30T16:00:36.869Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-30T21:03:44.034Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69038bbd9359a780cc96ee2f"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Writing the home exam",
+  "duration": 25,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-30T16:01:01.945Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-30T16:56:57.259Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690398ec9359a780cc96ee3c"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Writing the home exam",
+  "duration": 90,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-30T16:57:16.924Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-30T18:27:42.736Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690468d49359a780cc96ee5d"
+  },
+  "subject": "Software Engineering - Change Management",
+  "topic": "exam prep",
+  "tag": "exam-study",
+  "task": "Writing the home exam",
+  "duration": 105,
+  "status": "done",
+  "user": {
+    "$oid": "682328e4b838d475ecd54f91"
+  },
+  "createdAt": {
+    "$date": "2025-10-31T07:44:20.118Z"
+  },
+  "finishedAt": {
+    "$date": "2025-10-31T09:24:21.394Z"
   },
   "__v": 0
 }]
