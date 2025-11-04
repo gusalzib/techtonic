@@ -13,12 +13,14 @@
       <div class="total-timorias">
         <p>{{ $t('stats.totalTimorias') }}: {{ stats.totalTimorias }}</p>
         <p>{{ $t('stats.totalCompletedTimorias') }}: {{ stats.totalCompletedTimorias }}</p>
-        <p>{{ $t('stats.totalTimeSpent') }}: {{ stats.totalTimeSpent.toFixed(2) }} {{ $t('hours') }}</p>
+        <p>{{ $t('stats.totalTimeSpent') }}: {{ stats.totalTimeSpent.toFixed(2) }} {{ $t('stats.hours') }}</p>
         <p>{{ $t('stats.totalTopics') }}: {{ stats.totalTopics }} </p>
         <p>{{ $t('stats.totalSubjects') }}: {{ stats.totalSubjects }} </p>
-        <p>{{ $t('stats.averageDuration') }}: {{ stats.averageDuration }} {{ $t('minutes') }}</p>
+        <p>{{ $t('stats.averageDuration') }}: {{ stats.averageDuration }} {{ $t('stats.minutes') }}</p>
+        <p>{{ $t('stats.taskCompletionRate') }}: {{ stats.completionRate }} {{ $t('stats.percent') }}</p>
       </div>
 
+      <!-- This is the chart where the status of the timorias is broken down into Planned, Ongoing and Completed -->
       <div class="status-breakdown">
         <p>{{ $t('stats.statusBreakdown') }}:</p>
         <div class="chart-controls">
@@ -41,6 +43,7 @@
       </div>
     </div>
 
+    <!-- this is the time per subject bar chart -->
     <div class="stats-details">
       <div class="time-by-subject">
         <p>{{ $t('stats.timeSpentBySubject') }}</p>
@@ -63,6 +66,7 @@
         </div>
       </div>
 
+      <!-- this is the heatmap section -->
       <div class="stats-detail">
           <div class="heatmap-section">
             <p>{{ $t('stats.heatmapTitle') }}</p>
@@ -76,7 +80,7 @@
   </div>
 </template>
 
-<script>
+<!-- <script>
 import { ref, onMounted, watch, computed } from 'vue'; //ref, computed, onMounted, watch, nextTick → Vue Composition API functions for reactive data, lifecycle hooks, and DOM updates.
 import axios from 'axios'; //axios → for HTTP requests to fetch statistics from backend.
 import { useToast } from 'vue-toastification'; //useToast → provides toast notifications for user feedback.
@@ -581,7 +585,422 @@ export default {
     };
   },
 };
+</script> -->
+
+<script>
+// Imports (mirroring your other file’s style)
+import axios from 'axios'
+import { useToast } from 'vue-toastification'
+import { Pie, Bar, Line } from 'vue-chartjs'
+import {
+  Chart as ChartJS,
+  ArcElement, Tooltip, Legend,
+  CategoryScale, LinearScale,
+  BarElement, PointElement, LineElement
+} from 'chart.js'
+import { MatrixController, MatrixElement } from 'chartjs-chart-matrix'
+
+// Register Chart.js parts once
+ChartJS.register(
+  ArcElement, Tooltip, Legend,
+  CategoryScale, LinearScale,
+  BarElement, PointElement, LineElement,
+  MatrixElement, MatrixController
+)
+
+export default {
+  name: 'StatusStats',
+  components: {
+    PieChart: Pie,
+    BarChart: Bar,
+    LineChart: Line
+  },
+
+  data() {
+    return {
+      // ----- UI state -----
+      loading: false,
+      error_message: '',
+      toast: null, // will be set in mounted()
+
+      // ----- Filters -----
+      filters: {
+        startDate: '',
+        endDate: '',
+        subject: '',
+        status: '',
+        tag: ''
+      },
+
+      // ----- Stats payload (from API) -----
+      stats: {
+        totalTimorias: 0,
+        totalTimeSpent: 0,
+        totalTopics: 0,
+        totalSubjects: 0,
+        totalCompletedTimorias: 0,
+        statusBreakdown: { planned: 0, ongoing: 0, done: 0 },
+        timeBySubject: [],
+        completionRate: 0,
+        averageDuration: 0,
+        timeSpentPerDay: [] // array (not 0) to match usage
+      },
+
+      // ----- Chart selections -----
+      selectedStatusChartType: 'Pie',
+      selectedSubjectChartType: 'Bar',
+      selectedCompletionChartType: 'Line',
+      chartComponentMap: {
+        Pie: 'PieChart',
+        Bar: 'BarChart',
+        Line: 'LineChart'
+      },
+      // ----- Chart options shared by Pie/Bar/Line -----
+      /**
+       * Everything inside the chart options controls global behaviour for
+       * how the chart looks, resizes and interacts
+       * responsive: true makes the chart resize with its container
+       * maintainAspectRatio: false allows the chart to fill the container’s height
+       * Normally, Chart.js keeps a fixed width:height ratio (default 2:1). Setting this to false
+       * lets the chart stretch vertically to fill the parent container’s height.
+       */
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          // tooltip is when we hover over the data points in the chart. It will show more detailed information
+          tooltip: {
+            enabled: true, // enable tooltips
+            backgroundColor: 'rgba(0,0,0,0.7)',
+            titleColor: '#fff',
+            bodyColor: '#fff',
+            titleFont: { size: 14 },
+            bodyFont: { size: 12 },
+            callbacks: {
+              label: ctx=> `${ctx.label}: ${ctx.formattedValue} hours`
+            },
+          }
+        }
+      },
+
+      // ----- Heatmap (Chart.js instance) -----
+      /**
+       * simply a placeholder to store the Chart.js heatmap instance so it can be accessed, updated, or destroyed later when re-rendering.
+       * It prevents creating multiple overlapping charts on the same canvas.
+       * In short: it tracks the active chart object, not chart settings.
+       */
+      heatmapChart: null
+    }
+  },
+
+  computed: {
+    hasStatusData() {
+      // we need to extract the status breakdown safely
+      const statusBreakdown = this.stats.statusBreakdown || {}
+      // collect all values (planned / ongoing / done)
+      const statusValues = Object.values(statusBreakdown);
+      // check if at least one value is greater that zero
+      const hasAnyStatus = statusValues.some(value => value > 0)
+
+      // return the boolean result
+      return hasAnyStatus
+    },
+    hasSubjectData() {
+      // we need to extract the subject array safely
+      const subjects = this.stats.timeBySubject || []
+
+      // determine how many subjects exist
+      const subjectCount = subjects.length
+
+      // check if there is at least one subject
+      const hasAnySubjects = subjectCount > 0 
+
+      return hasAnySubjects
+    },
+    hasCompletionData() {
+      // extracting the completion rate safely 
+      const completionRate = this.stats.completionRate || 0
+
+      const hasCompletionRate = completionRate > 0  
+
+      return hasCompletionRate
+    },
+    // -------- Chart data: Status breakdown --------
+    statusChartData() {
+      return {
+        labels: ['Planned', 'Ongoing', 'Completed'],
+        datasets: [{
+          data: [
+            this.stats.statusBreakdown.planned,
+            this.stats.statusBreakdown.ongoing,
+            this.stats.statusBreakdown.done
+          ],
+          backgroundColor: ['#FFCE56', '#36A2EB', '#4BC0C0']
+        }]
+      }
+    },
+
+    // -------- Chart data: Time by subject --------
+    subjectChartData() {
+      const subjects = this.stats.timeBySubject || []
+      return {
+        labels: subjects.map(s => s.subject),
+        datasets: [{
+          label: 'Hours spent',
+          data: subjects.map(s => s.hours),
+          backgroundColor: subjects.map(() => this.getRandomColor())
+        }]
+      }
+    },
+
+    // -------- Chart data: Completion rate --------
+    completionChartData() {
+      return {
+        labels: ['Completion Rate'],
+        datasets: [{
+          label: 'Completion %',
+          data: [this.stats.completionRate],
+          backgroundColor: '#4BC0C0'
+        }]
+      }
+    }
+  },
+
+  async mounted() {
+    // mirror your other file’s pattern: set up helpers in mounted
+    this.toast = useToast()
+
+    // Initial fetch similar to your other file’s mounted flow
+    try {
+      await this.fetchStatistics()
+    } catch (e) {
+      // already handled in fetchStatistics
+    }
+  },
+
+  methods: {
+    // -------- API: fetch statistics --------
+    async fetchStatistics() {
+      this.loading = true
+      try {
+        const response = await axios.get(
+          'http://localhost:5000/api/timoria/statistics',
+          {
+            params: this.filters,
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+          }
+        )
+
+        this.stats = response.data || this.stats
+        this.toast && this.toast.success('Statistics updated')
+
+        // heatmap render depends on canvas existing; use $nextTick to be safe
+        await this.$nextTick()
+        this.renderHeatmap(this.stats.timeSpentPerDay || [])
+      } catch (error) {
+        if (error?.response?.status === 401) {
+          this.error_message = 'Session expired. Please log in again.'
+        } else {
+          this.error_message = 'Failed to load statistics'
+        }
+        this.toast && this.toast.error(this.error_message)
+      } finally {
+        this.loading = false
+      }
+    },
+
+    // -------- Helper: pick chart component by type string --------
+    getChartComponent(type) {
+      switch (type) {
+        case 'Pie': return Pie
+        case 'Bar': return Bar
+        case 'Line': return Line
+        default: return Bar
+      }
+    },
+
+    // -------- Helper: random color (simple) --------
+    getRandomColor() {
+      const r = Math.floor(Math.random() * 256)
+      const g = Math.floor(Math.random() * 256)
+      const b = Math.floor(Math.random() * 256)
+      return `rgba(${r}, ${g}, ${b}, 0.9)`
+    },
+
+    // -------- Transform: last 12 months, month->day->hours --------
+    processYearlyData(dailyData) {
+      /**
+       * @param dailyData
+       * Converts raw daily data into structured monthly data for the last 12 months.
+       * First it does a quick check to ensure we actually have data.
+       * dailyData is expected to be an array of objects with date and hours.
+       * { date: '2023-08-15', hours: 2.5  }
+       * If it is null, undefined, or empty, we return an empty array early.
+       * to prevent further processing on invalid data
+       */
+      if (!dailyData || !dailyData.length) return []
+
+      /**
+       * then it determines the data range to cover, the last 12 months from today.
+       * endDate is the cuurent month
+       * startDate is set 11 months prior to endDate so together they cover 12 months
+       * It initializes an array monthsData to hold each month’s data structure
+       */
+      const endDate = new Date()
+      const startDate = new Date()
+      startDate.setMonth(endDate.getMonth() - 11)
+
+      /**
+       * Next, it loops through each of the 12 months to create a base structure. it builds 
+       * an array of the 12 months in that window. Each month object will eventually
+       * hold the daily hour details
+       */
+      const monthsData = []
+      for (let i = 0; i < 12; i++) {
+        /**
+         * a loop that runs 12 times (for (let i = 0; i < 12; i++)), 
+         * and we want to generate one Date object for each month in the last 12-month range, 
+         * starting from startDate and moving forward month by month.
+         */
+        const date = new Date(startDate)
+        date.setMonth(startDate.getMonth() + i)
+
+        /**
+         * push a new month entry with metadata:
+         * monthShort: abbreviated month name (e.g., "Jan")
+         * year: full year (e.g., 2023)
+         * monthIndex: numeric month index (0-11) for easier matching later
+         * days: empty object to later store { dayNumbers: hours } pairs
+         */
+        monthsData.push({
+          monthShort: date.toLocaleString('default', { month: 'short' }),
+          year: date.getFullYear(),
+          monthIndex: date.getMonth(),
+          days: {}
+        })
+      }
+
+      /**
+       * loop through every entry in the raw daily data and insert it 
+       * into the corresponsing month object in monthData
+       * It extracts the year, month, and day from each entry’s date
+       * finds the matching month object in monthsData
+       * 
+       */
+      dailyData.forEach(entry => {
+        const date = new Date(entry.date)
+        const year = date.getFullYear()
+        const month = date.getMonth()
+        const day = date.getDate()
+
+        /**
+         * find the correct month object in monthsData by matching year and monthIndex
+         * if found, set the hours for that specific day
+         */
+        const target = monthsData.find(mm => mm.year === year && mm.monthIndex === month)
+        if (target) target.days[day] = entry.hours
+      })
+
+      /**
+       * if that month exists in our 12-months range, we add the day and hours to its days object
+       * Finally, it returns the completed monthsData array, reversed to show the most recent month first.
+       */
+      return monthsData.reverse()
+    },
+
+    // -------- Render heatmap (Chart.js matrix) --------
+    renderHeatmap(data) {
+      const canvas = this.$refs.heatmapCanvas
+      if (!canvas) return
+
+      const ctx = canvas.getContext('2d')
+      if (!ctx) return
+
+      // Destroy previous instance if any
+      if (this.heatmapChart) {
+        this.heatmapChart.destroy()
+        this.heatmapChart = null
+      }
+
+      const months = this.processYearlyData(data || [])
+      const colors = ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39']
+
+      // Build full 31-day grid per month for a consistent matrix
+      const chartData = months.flatMap(m => {
+        const rows = []
+        for (let day = 1; day <= 31; day++) {
+          const hours = m.days[day] ?? 0
+          rows.push({
+            x: day,
+            y: `${m.monthShort} ${m.year}`,
+            v: hours,
+            day
+          })
+        }
+        return rows
+      })
+
+      this.heatmapChart = new ChartJS(ctx, {
+        type: 'matrix',
+        data: {
+          datasets: [{
+            label: 'Time Spent',
+            data: chartData,
+            backgroundColor: (c) => {
+              const value = c.raw?.v || 0
+              const level = Math.min(Math.floor(value), colors.length - 1)
+              return colors[level]
+            },
+            width: 15,
+            height: 15,
+            borderWidth: 1,
+            borderColor: '#f6f8fa'
+          }]
+        },
+        options: {
+          animation: false,
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              type: 'linear',
+              position: 'bottom',
+              min: 1,
+              max: 31,
+              ticks: {
+                color: '#1a8c0e',
+                stepSize: 1,
+                font: { size: 9 }
+              },
+              grid: { display: false }
+            },
+            y: {
+              type: 'category',
+              labels: months.map(mm => `${mm.monthShort} ${mm.year}`),
+              offset: true,
+              grid: { display: false },
+              ticks: { color: '#1a8c0e' }
+            }
+          },
+          plugins: {
+            legend: { display: true },
+            tooltip: {
+              callbacks: {
+                label: (c) => {
+                  const v = c.raw?.v ?? 0
+                  const unit = v === 1 ? 'hour' : 'hours'
+                  return `${c.raw.y} - Day ${c.raw.x}: ${v} ${unit}`
+                }
+              }
+            }
+          }
+        }
+      })
+    }
+  }
+}
 </script>
+
 
 <style scoped>
 .stats-container {
