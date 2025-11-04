@@ -184,23 +184,37 @@
 
 <script>
 // @ is an alias to /src
-import axios from 'axios'
-import Timer from '../components/Timer'
-import dingSound from '@/assets/audio/ding.mp3'
+import axios from 'axios' // for http POST/PUT/DELETE requests
+import Timer from '../components/Timer' // timer component that runs countdowns
+import dingSound from '@/assets/audio/ding.mp3' // sound to play when timoria ends
 
 export default {
     name: 'Timoria',
+    /**
+     * --------------------------------------------------------
+     *                  DATA SECTION
+     * --------------------------------------------------------
+     * Holds all reactive state variables for this page/view
+     * Vue automatically makes these reactive and binds them to the template
+     */
     data() {
         return {
+            // fields bound to the form inputs for creating a new Timoria (study sessions)
             subject: '',
             topic: '',
             tag: '',
             task: '',
             duration: null,
+
+            // backend API endpoint for Timoria CRUD operations
             url: 'http://localhost:5000/api/timoria',
+
+            // arrays holding current Timorias in different categories
             plannedTimorias: [],
             todayTimorias: [],
             undoStack: [],
+
+            // inline editing state
             editIndex: null,
             editForm: {
                 subject: '',
@@ -209,8 +223,12 @@ export default {
                 task: '',
                 duration: '',
             },
+
+            // timer control state
             activeTimoria: null,
             activeBreak: false,
+
+            // placeholders for currently updated Timoria (used when syncing updates)
             timoria: {
                 subject: '',
                 topic: '',
@@ -220,9 +238,23 @@ export default {
             }
         }
     },
+    /**
+     * --------------------------------------------------------
+     *                        COMPONENTS
+     * --------------------------------------------------------
+     * Registers the imported Timer component for local use
+     * 
+     */
     components: {
         Timer
     },
+    /**
+     * --------------------------------------------------------
+     *                      COMPUTED PROPERTIES 
+     * --------------------------------------------------------
+     * Computed properties are reactive values derived from data
+     * They automatically update/re-calculate when their dependencies change
+     */
     computed: {
         totalTodayDuration() {
             const totalMinutes = this.todayTimorias.reduce((sum, t) => sum + Number(t.duration || 0), 0)
@@ -232,6 +264,14 @@ export default {
         }
     },
 
+    /**
+     * --------------------------------------------------------
+     *                        LIFECYCLE HOOKS
+     * --------------------------------------------------------
+     * Vue lifecycle hooks allow you to run code at specific stages
+     * of the component's lifecycle (creation, mounting, updating, etc.)
+     * When the component mounts, fetch the initial data from the server
+     */
     mounted() {
         // console.log('Locale:', this.$i18n.locale)
         // console.log('t(timer.title):', this.$t('timer.title'))
@@ -239,7 +279,16 @@ export default {
         this.getPlannedTimorias()
         this.getTodaysTimorias()
     },
+    /**
+     * --------------------------------------------------------
+     *                        METHODS
+     * --------------------------------------------------------
+     * Methods are functions that can be called from the template
+     * or other parts of the component to perform actions
+     */
     methods: {
+
+        // create a new Timoria (study session) by sending a POST request to the backend
         async createTimoria() {
             try {
                 const payload = {
@@ -258,7 +307,7 @@ export default {
                 alert('Timoria saved successfully');
                 console.log('Saved: ', response.data);
 
-                // reset form
+                // reset form and refresh the planned Timorias list
                 this.subject = '';
                 this.topic = '';
                 this.tag = '';
@@ -272,6 +321,8 @@ export default {
 
             }
         },
+
+        // get all planned Timorias from the backend
         async getPlannedTimorias() {
             try {
                 const response = await fetch(`${this.url}?status=planned`)
@@ -284,6 +335,8 @@ export default {
                 alert('Failed to get planned Timorias.')
             }
         },
+
+        // delete a Timoria by its ID (either planned or today's). Adds to undo stack for recovery
         async deleteTimoria(id) {
             // confirm deletion 
             const confirmed = confirm('Are you sure you want to delete this item?')
@@ -310,6 +363,7 @@ export default {
 
         },
 
+        // restore the last deleted Timoria (undo delete)
         async undoDelete() {
             const lastDeleted = this.undoStack.pop()
             if (lastDeleted) {
@@ -323,6 +377,8 @@ export default {
                 }
             }
         },
+
+        // get today's Timorias from the backend (for the summary table)
         async getTodaysTimorias() {
             try {
                 const res = await fetch(`${this.url}/today`)
@@ -333,12 +389,14 @@ export default {
             }
         },
 
+        // enable inline editing for a specific Timoria
         enableEdit(index, timoria) {
             this.editIndex = index
-            this.editForm = { ...timoria }
+            this.editForm = { ...timoria } // populate form with existing data, so that the user can then change this data if they want to
 
         },
 
+        // save the edited Timoria by sending a PUT request to the backend
         async saveEdit(id) {
             try {
                 const res = await fetch(`${this.url}/${id}`, {
@@ -354,6 +412,7 @@ export default {
                 console.error('Update failed:', err)
             }
         },
+        // start a Timoria (study session) by setting it as active and updating its status in the backend
         startTimoria(timoria) {
             console.log('Starting timoria:', timoria)
             this.activeTimoria = { ...timoria }
@@ -366,10 +425,13 @@ export default {
                 'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ status: 'ongoing' })
-            }).catch(err => console.error('Failed to mark timoria as ongoing:', err));
+            }).catch(err => console.error('Failed to start Timoria:', err));
 
             this.getPlannedTimorias()
         },
+
+        // handle event from timer when a Timoria is completed. This for when the user
+        // clicks on the Finish button while the timer is running
         handleCompletedTimoria(id) {
             this.activeTimoria = null
             // start a break right after the timer finishes
@@ -377,6 +439,8 @@ export default {
             this.getPlannedTimorias()
             this.getTodaysTimorias()
         },
+
+        // cancel current timer -- reset active Timoria and refresh planned list
         handleCancelTimer() {
             // Reset the active Timoria or update UI as necessary
             this.activeTimoria = null;
@@ -387,6 +451,8 @@ export default {
                 this.getPlannedTimorias();
             });
         },
+
+        // finish timer normally and start break 
         handleFinishTimer() {
             // Reset the active Timoria or update UI as necessary
             this.activeTimoria = null;
@@ -400,20 +466,28 @@ export default {
                 this.getPlannedTimorias();
             });
         },
+
+        // receive updated Timoria from child Timer component
         updateTimoria(updatedTimoria) {
             console.log('Updated Timoria received in parent:', updatedTimoria);
 
             this.timoria = updatedTimoria;
 
         },
+
+        // refresh planned Timorias list when notified by child Timer component
         handleUpdatePlannedTimorias() {
             this.getPlannedTimorias();
         },
+
+        // refresh today's Timorias list when notified by child Timer component
         handleUpdateTodaysTimorias() {
             this.getTodaysTimorias();
         },
+
+        // start a break period after completing a Timoria
         startBreak() {
-            const breakDuration = 1; 
+            const breakDuration = 1;  // in minutes, set to 1 for testing purposes
             if (!this.activeBreak) {
                 this.activeBreak = true;
                 this.activeTimoria = {
@@ -427,8 +501,10 @@ export default {
 
 
             
-            console.log('Break started:', this.activeTimoria);
+            //console.log('Break started:', this.activeTimoria);
         },
+
+        // Called when the break timer finishes. Triggers browser notification and sound
         handleBreakFinished() {
             this.activeBreak = false;
             // Push browser notification
@@ -457,6 +533,8 @@ export default {
             // Optionally, update state or reset break status here
             // this.isOnBreak = false;
         },
+
+        // play a sound notification when a Timoria or break ends
         playTimoriaSound() {
             const audio = new Audio(dingSound)
             audio.play()
