@@ -187,6 +187,8 @@
 import axios from 'axios' // for http POST/PUT/DELETE requests
 import Timer from '../components/Timer' // timer component that runs countdowns
 import dingSound from '@/assets/audio/ding.mp3' // sound to play when timoria ends
+import { confirm as appConfirm } from '@/services/confirmService' // import the confirm function
+import { useToast } from 'vue-toastification'
 
 export default {
     name: 'Timoria',
@@ -235,7 +237,9 @@ export default {
                 tag: '',
                 task: '',
                 duration: '',
-            }
+            },
+
+            toast: null, // will be set in mounted()
         }
     },
     /**
@@ -278,6 +282,8 @@ export default {
         // console.log('Available messages:', this.$i18n.messages)
         this.getPlannedTimorias()
         this.getTodaysTimorias()
+
+        this.toast = useToast()
     },
     /**
      * --------------------------------------------------------
@@ -303,9 +309,21 @@ export default {
                 const response = await axios.post(`${this.url}`, payload, {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                    },                });
-                alert('Timoria saved successfully');
-                console.log('Saved: ', response.data);
+                    },
+                });
+
+                // the alert is not needed for when timoria is created successfully
+                // we can replace it with a toast notification 
+                // alert('Timoria saved successfully');
+                // console.log('Saved: ', response.data);
+                /**
+                 * If this.$toast is defined, then call success().
+                 * If it’s undefined or null, just do nothing.
+                 * 
+                 * The ? is a safety net to avoid runtime errors in case
+                 * the toast plugin isn’t properly installed or available.
+                 */  
+                this.toast && this.toast.success(this.$t('notification.timoriaSaved') || 'Timoria saved successfully')
 
                 // reset form and refresh the planned Timorias list
                 this.subject = '';
@@ -315,9 +333,12 @@ export default {
                 this.duration = '';
 
                 this.getPlannedTimorias() // update the list right after adding the Timoria
+
             } catch (error) {
-                console.log('Error: ', error.message);
-                alert('Failed to save Timoria.');
+
+                this.toast && this.toast.error(this.$t('notification.timoriaSaveFailed') || 'Failed to save Timoria.');
+                //console.log('Error: ', error.message);
+                // alert('Failed to save Timoria.');
 
             }
         },
@@ -331,16 +352,32 @@ export default {
 
                 this.plannedTimorias = data;
             } catch (error) {
-                console.error('Failed to fetch Timorias:', error)
-                alert('Failed to get planned Timorias.')
+                // console.error('Failed to fetch Timorias:', error)
+                // alert('Failed to get planned Timorias.')
+                this.toast && this.toast.error(this.$t('notification.failedPlannedTimoria') || 'Failed to get planned Timorias.');
+
             }
         },
 
         // delete a Timoria by its ID (either planned or today's). Adds to undo stack for recovery
-        async deleteTimoria(id) {
-            // confirm deletion 
-            const confirmed = confirm('Are you sure you want to delete this item?')
-            if (!confirmed) return
+        async deleteTimoria(id) {            
+            // confirm deletion
+            // const confirmed = confirm('Are you sure you want to delete this item?')
+
+                /**
+                 * Replacing the alert with a more user-friendly modal notification
+                 * using the ConfirmHost component and confirmStore.
+                 * This provides a better UX by avoiding disruptive alert pop-ups.
+                 */
+            const ok = await appConfirm({
+                title: this.$t('modal.confirmDeleteTitle') || 'Delete Timoria?',
+                message: this.$t('modal.confirmDeleteMessage') || 'Delete Timoria?',
+                confirmText: this.$t('modal.confirm') || 'Delete Timoria?',
+                cancelText: this.$t('modal.cancel') || 'Cancel',
+
+            })
+            if (!ok) return
+
 
             // Find the timoria you're about to delete. this is useful for the undo feature. we need to get the element before deleting it
             const toDelete = this.plannedTimorias.find(t => t._id === id) || this.todayTimorias.find(t => t._id === id)
@@ -356,8 +393,14 @@ export default {
 
                 this.getPlannedTimorias() // update the list right after deleting the Timoria
                 this.getTodaysTimorias() // update the list or today's timorias right after deleting a  Timoria
+
+                // notify the user that the deletion was successfull
+                this.toast && this.toast.success(this.$t('notification.deletedSuccessfully') || 'Timoria deleted successfully');
+
             } catch (err) {
-                console.error('Error deleting timoria:', err)
+
+                this.toast && this.toast.error(this.$t('notification.failedDelete') || 'Failed to delete Timoria.');
+                //console.error('Error deleting timoria:', err)
             }
 
 
@@ -373,7 +416,9 @@ export default {
                     this.getPlannedTimorias() // update the list right after undoing the Timoria
                     this.getTodaysTimorias() // update the list or today's timorias right after undoing a  Timoria
                 } catch (err) {
-                    console.error('Error restoring timoria:', err)
+
+                    this.toast && this.toast.error(this.$t('notification.failedToUndo') || 'Failed to undo action.');
+                    //console.error('Error restoring timoria:', err)
                 }
             }
         },
@@ -385,7 +430,8 @@ export default {
                 const data = await res.json()
                 this.todayTimorias = data
             } catch (err) {
-                console.error('Failed to fetch today\'s timorias:', err)
+                this.toast && this.toast.error(this.$t('notification.failedTodayTimorias') || 'Failed to fetch today\'s timorias.');
+                //console.error('Failed to fetch today\'s timorias:', err)
             }
         },
 
@@ -409,12 +455,13 @@ export default {
                 this.todayTimorias.splice(this.editIndex, 1, updated)
                 this.editIndex = null
             } catch (err) {
-                console.error('Update failed:', err)
+                this.toast && this.toast.error(this.$t('notification.failedUpdate') || 'Failed to update Timoria.');
+                //console.error('Update failed:', err)
             }
         },
         // start a Timoria (study session) by setting it as active and updating its status in the backend
         startTimoria(timoria) {
-            console.log('Starting timoria:', timoria)
+            //console.log('Starting timoria:', timoria)
             this.activeTimoria = { ...timoria }
 
 
@@ -425,7 +472,7 @@ export default {
                 'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ status: 'ongoing' })
-            }).catch(err => console.error('Failed to start Timoria:', err));
+            }).catch(err => this.toast && this.toast.error(this.$t('notification.startFailed') || 'Failed to start Timoria.'));
 
             this.getPlannedTimorias()
         },
@@ -469,7 +516,7 @@ export default {
 
         // receive updated Timoria from child Timer component
         updateTimoria(updatedTimoria) {
-            console.log('Updated Timoria received in parent:', updatedTimoria);
+            //console.log('Updated Timoria received in parent:', updatedTimoria);
 
             this.timoria = updatedTimoria;
 

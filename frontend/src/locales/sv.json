@@ -136,5 +136,18 @@
         "chartType": "Typ av diagram:",
         "heatmapTitle": "Aktivitetsvärmekarta (Senaste 12 månaderna)",
         "noData": "Ingen data tillgänglig för visning."
+    },
+    "modal": {
+        "confirmDeleteTitle": "Är du säker på att du vill ta bort denna Timoria?",
+        "confirmDeleteMessage": "Är du säker på att du vill ta bort denna Timoria? Du har begränsad tid att ångra denna åtgärd efter att du har godkänt.",
+        "cancel": "Avbryt",
+        "confirm": "Bekräfta"
+    },
+    "notification": {
+        "failedPlannedTimoria": "Failed to get planned Timorias.",
+        "timoriaFailed": "Failed to save Timoria.",
+        "deletedSuccessfully": "Timoria deleted successfully",
+        "failedDelete": "Failed to delete Timoria",
+        "failedToUndo": "Failed to undo action"
     }
 }

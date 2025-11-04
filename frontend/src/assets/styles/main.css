@@ -30,6 +30,7 @@
     --hashtag: radial-gradient(circle, rgba(0, 0, 0, 0.44021358543417366) 0%, rgba(255, 141, 0, 1) 85%);
     --accent: #ba69c9;
     --standard-btn: #2E8C6E; /*viridian*/
+    --delete-btn: red;
     --dark-btn: #0000005d;
     --standard-btn-hover: #4D48D4;
     --border: #000000;
@@ -1179,3 +1180,46 @@ select {
   max-width: 800px;
   margin: 1rem auto;
 }
+
+
+/*########################################## MODAL ######################################*/
+  .modal-overlay{
+      position:fixed; 
+      inset:0; 
+      background:rgba(0,0,0,.4);
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      z-index:1000;
+  }
+  .modal{
+      width:min(520px, 92vw); 
+      background:var(--section-bg); 
+      border-radius:12px; 
+      padding:1rem 1.25rem;
+      /* box-shadow:0 10px 30px rgba(0,0,0,.2); */
+  }
+  .modal-title{ 
+      margin:0 0 .5rem; 
+      font-size:1.125rem; 
+      font-weight:700;
+      color:var(--text-color)
+    }
+  .modal-message{ 
+      margin:0 0 1rem; 
+      color:var(--text-color);
+  }
+  .modal-actions{ 
+      display:flex; 
+      gap:.5rem; 
+      justify-content:flex-end; 
+  }
+  .btn{ 
+      padding:.5rem .9rem; 
+      border-radius:8px; 
+      border:none; 
+      cursor:pointer; 
+  }
+  .btn-secondary{ background:var(--delete-btn); }
+  .btn-primary{ background:var(--standard-btn); color:white; }
+  .btn-primary:hover{background: var(--standard-btn-hover);}

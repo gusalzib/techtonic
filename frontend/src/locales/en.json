@@ -141,5 +141,23 @@
         "percent": "percent",
         "hours": "hours",
         "minutes": "minutes"
+    },
+    "modal": {
+        "confirmDeleteTitle": "Are you sure you want to delete this Timoria?",
+        "confirmDeleteMessage": "Are you sure you want to delete this Timoria? You have limited time to undo this action after you agree.",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+    },
+    "notification": {
+        "failedPlannedTimoria": "Failed to get planned Timorias.",
+        "failedTodayTimorias": "Failed to get today's Timorias.",
+        "timoriaSaveFailed": "Failed to save Timoria.",
+        "failedUpdate": "Failed to update Timoria.",
+        "startFailed": "Faield to start Timoria",
+        "deletedSuccessfully": "Timoria deleted successfully",
+        "failedDelete": "Failed to delete Timoria",
+        "failedToUndo": "Failed to undo action",
+        "missingFields": "Failed to save Timoria. Missing fields",
+        "timoriaSaved": "Timoria created successfully"
     }
 }

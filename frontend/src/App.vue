@@ -30,18 +30,34 @@
       </nav>
     </div>
   </header>
+  <!-- This is a Vue Router placeholder.
+   It dynamically renders whichever page component matches the current route
+    (e.g. Timoria.vue, Stats.vue, etc.). -->
   <router-view />
+
+  <!-- 
+  This is our global confirmation modal component (the one we created in ConfirmHost.vue).
+
+  By placing it here, inside the root app template (App.vue), it’s always mounted and can appear over any page.
+
+  It listens to the shared reactive confirmState, so when you call confirm({...}) from anywhere, 
+  it shows up on top of the current route.
+  -->
+  <ConfirmHost />
+
 </template>
 <script>
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import ThemeToggle from '@/components/ThemeToggle.vue'
 import { useUserStore } from './stores/userStore'
+import ConfirmHost from './views/ConfirmHost.vue';
 
 export default {
   name: 'App',
   components: {
     LanguageSwitcher,
-    ThemeToggle
+    ThemeToggle,
+    ConfirmHost
   },
   data() {
     return {

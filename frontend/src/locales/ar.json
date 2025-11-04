@@ -140,5 +140,19 @@
         "heatmapTitle": "خريطة الحرارة للنشاط (آخر 12 شهرًا)",
         "noData": "لا توجد بيانات للعرض.",
         "noDataForFilters": "لا توجد بيانات تطابق الفلاتر الحالية."
+    },
+    "modal": {
+        "confirmDeleteTitle": "هل أنت متأكد أنك تريد حذف هذه الجلسة؟",
+        "confirmDeleteMessage": "هل أنت متأكد أنك تريد حذف هذه الجلسة؟ لديك وقت محدود للتراجع عن هذا الإجراء بعد الموافقة.",
+        "cancel": "إلغاء",
+        "confirm": "تأكيد"
+    },
+    "notification": {
+        "failedPlannedTimoria": "Failed to get planned Timorias.",
+        "timoriaFailed": "Failed to save Timoria.",
+        "deletedSuccessfully": "Timoria deleted successfully",
+        "failedDelete": "Failed to delete Timoria",
+        "failedToUndo": "Failed to undo action"
+
     }
 }
