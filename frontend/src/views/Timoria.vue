@@ -460,19 +460,27 @@ export default {
             }
         },
         // start a Timoria (study session) by setting it as active and updating its status in the backend
-        startTimoria(timoria) {
+        async startTimoria(timoria) {
             //console.log('Starting timoria:', timoria)
             this.activeTimoria = { ...timoria }
 
 
-            //  mark it as 'ongoing' in the DB
-            fetch(`${this.url}/${timoria._id}`, {
-                method: 'PUT',
-                headers: { 
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ status: 'ongoing' })
-            }).catch(err => this.toast && this.toast.error(this.$t('notification.startFailed') || 'Failed to start Timoria.'));
+            try {
+                //  mark it as 'ongoing' in the DB
+                const response = await fetch(`${this.url}/${timoria._id}`, {
+                    method: 'PUT',
+                    headers: { 
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ status: 'ongoing' })
+                }) 
+
+                if (!response.ok) {
+                    throw new Error('Failed to start Timoria.') // this will be caught in the catch block below
+                }
+            } catch(err) {
+                this.toast && this.toast.error(this.$t('notification.startFailed') || 'Failed to start Timoria.')
+            }
 
             this.getPlannedTimorias()
         },

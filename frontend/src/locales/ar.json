@@ -148,11 +148,15 @@
         "confirm": "تأكيد"
     },
     "notification": {
-        "failedPlannedTimoria": "Failed to get planned Timorias.",
-        "timoriaFailed": "Failed to save Timoria.",
-        "deletedSuccessfully": "Timoria deleted successfully",
-        "failedDelete": "Failed to delete Timoria",
-        "failedToUndo": "Failed to undo action"
-
+        "failedPlannedTimoria": "فشل في جلب جلسات تيموريا المخطط لها.",
+        "failedTodayTimorias": "فشل في جلب جلسات تيموريا الخاصة باليوم.",
+        "timoriaSaveFailed": "فشل في حفظ تيموريا.",
+        "failedUpdate": "فشل في تحديث تيموريا.",
+        "startFailed": "فشل في بدء تيموريا.",
+        "deletedSuccessfully": "تم حذف تيموريا بنجاح.",
+        "failedDelete": "فشل في حذف تيموريا.",
+        "failedToUndo": "فشل في التراجع عن العملية.",
+        "missingFields": "فشل في حفظ تيموريا. هناك حقول مفقودة.",
+        "timoriaSaved": "تم إنشاء تيموريا بنجاح."
     }
 }

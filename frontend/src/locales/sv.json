@@ -144,10 +144,15 @@
         "confirm": "Bekräfta"
     },
     "notification": {
-        "failedPlannedTimoria": "Failed to get planned Timorias.",
-        "timoriaFailed": "Failed to save Timoria.",
-        "deletedSuccessfully": "Timoria deleted successfully",
-        "failedDelete": "Failed to delete Timoria",
-        "failedToUndo": "Failed to undo action"
+        "failedPlannedTimoria": "Kunde inte hämta planerade Timoria-sessioner.",
+        "failedTodayTimorias": "Kunde inte hämta dagens Timoria-sessioner.",
+        "timoriaSaveFailed": "Kunde inte spara Timoria.",
+        "failedUpdate": "Kunde inte uppdatera Timoria.",
+        "startFailed": "Kunde inte starta Timoria.",
+        "deletedSuccessfully": "Timoria har raderats.",
+        "failedDelete": "Kunde inte radera Timoria.",
+        "failedToUndo": "Kunde inte ångra åtgärden.",
+        "missingFields": "Kunde inte spara Timoria. Fält saknas.",
+        "timoriaSaved": "Timoria har skapats."
     }
 }
