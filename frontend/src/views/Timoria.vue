@@ -46,10 +46,11 @@
         <td v-else><input v-model="editForm.tag" /></td>
 
         <td>
-        <button v-if="editIndex !== index" @click="enableEdit(index, timoria)">
+        <button class="timoria-actions-btn" @click="createTimoriaCopy(timoria)">🗍 {{ $t('buttons.copy') || 'Copy' }}</button> 
+        <button class="timoria-actions-btn" v-if="editIndex !== index" @click="enableEdit(index, timoria)">
             ✏️ {{ $t('buttons.edit') || 'Edit' }}
         </button>
-        <button v-else @click="saveEdit(timoria._id)">💾 {{ $t('buttons.save') || 'Save' }}</button>
+        <button class="timoria-actions-btn" v-else @click="saveEdit(timoria._id)">💾 {{ $t('buttons.save') || 'Save' }}</button>
         <button class="delete-btn" @click="deleteTimoria(timoria._id)">{{ $t('buttons.delete') }}</button>
         </td>
     </tr>
@@ -59,71 +60,73 @@
 
   </table>
 
-<!-- Mobile card layout -->
-<div class="pomo-card" v-for="(timoria, index) in todayTimorias" :key="'card-' + timoria._id">
-  <div class="pomo-card-content">
-    <div class="pomo-card-item">
-      <strong>{{ $t('table.task') }}:</strong>
-      <span v-if="editIndex !== index">{{ timoria.task || '—' }}</span>
-      <input v-else v-model="editForm.task" />
+    <!-- Mobile card layout -->
+    <div class="pomo-card" v-for="(timoria, index) in todayTimorias" :key="'card-' + timoria._id">
+    <div class="pomo-card-content">
+        <div class="pomo-card-item">
+        <strong>{{ $t('table.task') }}:</strong>
+        <span v-if="editIndex !== index">{{ timoria.task || '—' }}</span>
+        <input v-else v-model="editForm.task" />
+        </div>
+
+        <div class="pomo-card-item">
+        <strong>{{ $t('table.duration') }}:</strong>
+        <span v-if="editIndex !== index">{{ timoria.duration }} min</span>
+        <input v-else v-model="editForm.duration" type="number" />
+        </div>
+
+        <div class="pomo-card-item">
+        <strong>{{ $t('table.subject') }}:</strong>
+        <span v-if="editIndex !== index">{{ timoria.subject }}</span>
+        <input v-else v-model="editForm.subject" />
+        </div>
+
+        <div class="pomo-card-item">
+        <strong>{{ $t('table.topic') }}:</strong>
+        <span v-if="editIndex !== index">{{ timoria.topic }}</span>
+        <input v-else v-model="editForm.topic" />
+        </div>
+
+        <div class="pomo-card-item">
+        <strong>{{ $t('table.tag') }}:</strong>
+        <span v-if="editIndex !== index">{{ timoria.tag || '—' }}</span>
+        <input v-else v-model="editForm.tag" />
+        </div>
+    </div>
+    <!-- Add a separating line between buttons and the rest of text -->
+    <hr> 
+    <div class="card-actions">
+        
+        <button class="delete-btn" @click="deleteTimoria(timoria._id)">
+        {{ $t('buttons.delete') }}
+        </button>
+        <button class="save-btn" @click="createTimoriaCopy(timoria)">🗍 {{ $t('buttons.copy') || 'Copy' }}</button> 
+        <button v-if="editIndex !== index" class="save-btn" @click="enableEdit(index, timoria)">
+        {{ $t('buttons.edit') }}
+        </button>
+        <button v-else class="save-btn" @click="saveEdit(timoria._id)">
+        {{ $t('buttons.save') }}
+        </button>
     </div>
 
-    <div class="pomo-card-item">
-      <strong>{{ $t('table.duration') }}:</strong>
-      <span v-if="editIndex !== index">{{ timoria.duration }} min</span>
-      <input v-else v-model="editForm.duration" type="number" />
-    </div>
 
-    <div class="pomo-card-item">
-      <strong>{{ $t('table.subject') }}:</strong>
-      <span v-if="editIndex !== index">{{ timoria.subject }}</span>
-      <input v-else v-model="editForm.subject" />
-    </div>
 
-    <div class="pomo-card-item">
-      <strong>{{ $t('table.topic') }}:</strong>
-      <span v-if="editIndex !== index">{{ timoria.topic }}</span>
-      <input v-else v-model="editForm.topic" />
     </div>
-
-    <div class="pomo-card-item">
-      <strong>{{ $t('table.tag') }}:</strong>
-      <span v-if="editIndex !== index">{{ timoria.tag || '—' }}</span>
-      <input v-else v-model="editForm.tag" />
-    </div>
-  </div>
-
-  <div class="card-actions">
-    <button class="delete-btn" @click="deleteTimoria(timoria._id)">
-      {{ $t('buttons.delete') }}
+    <p class="total-time">
+    🧮 {{ $t('todayPomos.total') }}: {{ totalTodayDuration }}
+    </p>
+    <!-- UNDO BUTTON BLOCK -->
+    <!-- When deleting a timoria, we add it to the undoStack. 
+    Then if the stack length is bigger than 0, the undo button become visible -->
+    <transition name="slide-fade">
+    <button
+        v-if="undoStack.length"
+        class="undo-btn"
+        @click="undoDelete"
+    >
+        {{ $t('buttons.undo') || 'Undo Delete' }}
     </button>
-
-    <button v-if="editIndex !== index" class="save-btn" @click="enableEdit(index, timoria)">
-      {{ $t('buttons.edit') }}
-    </button>
-    <button v-else class="save-btn" @click="saveEdit(timoria._id)">
-      {{ $t('buttons.save') }}
-    </button>
-  </div>
-
-
-
-</div>
-<p class="total-time">
-  🧮 {{ $t('todayPomos.total') }}: {{ totalTodayDuration }}
-</p>
-<!-- UNDO BUTTON BLOCK -->
- <!-- When deleting a timoria, we add it to the undoStack. 
-  Then if the stack length is bigger than 0, the undo button become visible -->
-<transition name="slide-fade">
-  <button
-    v-if="undoStack.length"
-    class="undo-btn"
-    @click="undoDelete"
-  >
-    {{ $t('buttons.undo') || 'Undo Delete' }}
-  </button>
-</transition>
+    </transition>
 
     
 </section>
@@ -154,7 +157,7 @@
         <button class="start-btn" @click="startTimoria(timoria)">
         {{ $t('buttons.start') }}
         </button>
-
+        <button class="start-btn" @click="createTimoriaCopy(timoria)">🗍 {{ $t('buttons.copy') || 'Copy' }}</button> 
         <button class="delete-btn" @click="deleteTimoria(timoria._id)">{{ $t('buttons.delete') }}</button>
         </div>
     </li>
@@ -341,6 +344,42 @@ export default {
                 // alert('Failed to save Timoria.');
 
             }
+        },
+
+        async createTimoriaCopy(timoria) {
+            try {
+                const payload = {
+                    subject: timoria.subject,
+                    topic: timoria.topic,
+                    tag: timoria.tag,
+                    task: timoria.task,
+                    duration: timoria.duration,
+                    status: 'planned' 
+                }
+                const token = localStorage.getItem('token');
+                const response = await axios.post(`${this.url}`, payload, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                this.toast && this.toast.success(this.$t('notification.timoriaSaved') || 'Timoria saved successfully')
+
+                // reset form and refresh the planned Timorias list
+                this.subject = '';
+                this.topic = '';
+                this.tag = '';
+                this.task = '';
+                this.duration = '';
+
+                this.getPlannedTimorias() // update the list right after adding the Timoria
+
+            } catch (error) {
+
+                this.toast && this.toast.error(this.$t('notification.timoriaSaveFailed') || 'Failed to save Timoria.');
+            }
+
+            
         },
 
         // get all planned Timorias from the backend

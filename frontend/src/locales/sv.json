@@ -24,7 +24,8 @@
         "apply": "Tillämpa",
         "cancel": "Avbryt",
         "finish": "Sluta",
-        "notify": "Notify"
+        "notify": "Notify",
+        "copy": "Kopiera"
     },
     "todayPomos": {
         "title": "Dagens Pomodoros",

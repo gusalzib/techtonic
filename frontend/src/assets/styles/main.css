@@ -179,6 +179,15 @@ p{
 label{
   color: var(--text-color);
 }
+hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
 /*############################################### HOME PAGE STYLE #######################################################*/
 .home-container {
   min-height: 100vh;
@@ -220,8 +229,22 @@ label{
   transition: background-color 0.3s ease;
   box-shadow: 0 0 10px var(--accent);
 }
+.timoria-actions-btn {
+  display: inline-block;
+  background-color: var(--standard-btn);
+  color: var(--white);
+  /* padding: 0.75rem 1.5rem; */
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  /* box-shadow: 0 0 10px var(--accent); */
+}
 
 .btn:hover {
+  background-color: var(--standard-btn-hover);
+}
+.timoria-actions-btn:hover {
   background-color: var(--standard-btn-hover);
 }
 
@@ -701,7 +724,7 @@ select {
 
 .save-btn {
     background-color: var(--standard-btn);
-    color: var(--section-bg);
+    color: var(--text-color);
     border: 1px solid var(--section-border);
 }
 
@@ -894,12 +917,6 @@ select {
     cursor: pointer;
   }
 
-  .delete-btn,
-  .save-btn {
-    background-color: var(--standard-btn);
-    color: var(--section-bg);
-    border: 1px solid var(--section-border);
-  }
 }
 
 
