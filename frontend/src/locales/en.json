@@ -158,6 +158,8 @@
         "failedDelete": "Failed to delete Timoria",
         "failedToUndo": "Failed to undo action",
         "missingFields": "Failed to save Timoria. Missing fields",
-        "timoriaSaved": "Timoria created successfully"
+        "timoriaSaved": "Timoria created successfully",
+        "loginSuccessful": "Login successful",
+        "signupSuccessful": "Your account has been created successfully"
     }
 }

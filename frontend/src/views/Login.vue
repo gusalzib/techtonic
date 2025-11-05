@@ -4,22 +4,27 @@
     <input v-model="form.email" placeholder="Email" type="email"/>
     <input v-model="form.password" type="password" placeholder="Password" />
     <button @click="login">{{ $t('home.login') }}</button>
-    <p id="error">{{ error }}</p>
-    <p id="success">{{ message }}</p>
+    <!-- Commented out because they are not needed when we have toast notifications -->
+    <!-- <p id="error">{{ error }}</p>
+    <p id="success">{{ message }}</p> -->
   </div>
 </template>
 
 <script>
 import { useUserStore } from '@/stores/userStore';
-
+import { useToast } from 'vue-toastification'
 export default {
   data() {
     return {
       form: { email: '', password: '' },
         error: '',
         message: '',
-      url: 'http://localhost:5000/api/users/login'
+      url: 'http://localhost:5000/api/users/login',
+      toast: null, // will be set in mounted()
     };
+  },
+  mounted() {
+    this.toast = useToast();
   },
   methods: {
     async login() {
@@ -32,18 +37,28 @@ export default {
         const data = await res.json();
           if (!res.ok) throw new Error(data.msg || 'Login failed');
 
-          this.message = data.msg;
+          /**
+           * Removes the commented line below since it is redundant with the toast notification
+           * The toast notification is localized and provides better user feedback in different languages
+           */
+          //this.message = data.msg;
         localStorage.setItem('token', data.token);
         
         const userStore = useUserStore();
         await userStore.checkUserStatus();
 
-        // Wait 1 seconds before redirecting
+        this.toast && this.toast.success(this.$t('notification.loginSuccessful') || 'Login successful');
+        // Wait 2 seconds before redirecting
         setTimeout(() => {
             this.$router.push('/'); // go to home
-        }, 1000);
+        }, 2000);
       } catch (err) {
-        this.error = err.message;
+        /**
+         * Removes the commented line below since it is redundant with the toast notification
+         */
+        //this.error = err.message;
+        this.toast && this.toast.error(err.message || 'Login failed');
+        
       }
     }
   }
