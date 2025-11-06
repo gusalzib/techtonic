@@ -1,4 +1,5 @@
 const Timoria = require('../models/timoria')
+const { Types } = require('mongoose');
 
 // Get all (optionally filter by status)
 // exports.getAllTimorias = async (req, res) => {
@@ -247,4 +248,35 @@ function calculateTimeSpentPerDay(timorias) {
     date,
     hours: (minutes / 60).toFixed(2), // Convert to hours and fix to two decimal places
   }));
+}
+
+
+exports.getDistinctLists = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    /**
+     * The value of the user id may look like a string here but in mongoDB is ObjectId type
+     * if we query using the plain string it will be a mismatch even if the id is actually the same because the type does not 
+     * match. The following line will cast the String to ObjectId. Then we store that object into a filter that contains the 
+     * actual field name in the schema (user) and we query with it. 
+     */
+    const uid = Types.ObjectId.isValid(userId) ? new Types.ObjectId(userId) : userId;
+
+    const filter = { user: uid };
+
+    // Each call returns an array of unique values for that field
+    const subjects = await Timoria.distinct('subject', filter);
+    const topics   = await Timoria.distinct('topic', filter);
+    const tags     = await Timoria.distinct('tag', filter);
+
+    res.status(200).json({
+      subjects,
+      topics,
+      tags
+    });
+  } catch (err) {
+    //console.error('taxonomy error:', err);
+    res.status(400).json({ error: 'Failed to load lists.' });
+  }
 }

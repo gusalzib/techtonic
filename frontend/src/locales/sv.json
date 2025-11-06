@@ -156,6 +156,7 @@
         "missingFields": "Kunde inte spara Timoria. Fält saknas.",
         "timoriaSaved": "Timoria har skapats.",
         "loginSuccessful": "Inloggning lyckades",
-        "signupSuccessful": "Ditt konto har skapats"
+        "signupSuccessful": "Ditt konto har skapats",
+        "failedUserListsLoading": "Kunde inte ladda användarlistor"
     }
 }

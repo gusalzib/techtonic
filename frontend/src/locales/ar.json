@@ -163,6 +163,7 @@
         "missingFields": "فشل في حفظ تيموريا. هناك حقول مفقودة.",
         "timoriaSaved": "تم إنشاء تيموريا بنجاح.",
         "loginSuccessful": "تم تسجيل الدخول بنجاح",
-        "signupSuccessful": "تم إنشاء حسابك بنجاح"
+        "signupSuccessful": "تم إنشاء حسابك بنجاح",
+        "failedUserListsLoading": "فشل في تحميل قوائم المستخدم "
     }
 }

@@ -243,6 +243,11 @@ export default {
             },
 
             toast: null, // will be set in mounted()
+
+            // dropdown & type-ahead lists 
+            userSubjects: [],
+            userTopics: [],
+            userTags: [],
         }
     },
     /**
@@ -287,6 +292,8 @@ export default {
         this.getTodaysTimorias()
 
         this.toast = useToast()
+
+        this.getDistinctLists();
     },
     /**
      * --------------------------------------------------------
@@ -632,8 +639,30 @@ export default {
         playTimoriaSound() {
             const audio = new Audio(dingSound)
             audio.play()
+        },
+        async getDistinctLists() {
+
+        try {
+            const token = localStorage.getItem('token'); // because the path requires authentication
+            const response = await axios.get(`${this.url}/taxonomy`, {
+                headers: token ? { Authorization: `Bearer ${token}` } : {}
+            });
+
+            if (response.status === 200) {
+                    
+                    this.userSubjects = response.data.subjects;
+                    this.userTopics = response.data.topics;
+                    this.userTags = response.data.tags;
+                    
+                } else {
+                    this.toast && this.toast.error(this.$t('notification.failedUserListsLoading') || 'Failed to load user lists.')
+                }
+            } catch (error) {
+                this.toast && this.toast.error(this.$t('notification.failedUserListsLoading') || 'Failed to load user lists.')
+            }
         }
     }
 }
+    
 </script>
 <style src="../assets/styles/main.css"></style>

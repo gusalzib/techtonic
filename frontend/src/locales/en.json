@@ -161,6 +161,7 @@
         "missingFields": "Failed to save Timoria. Missing fields",
         "timoriaSaved": "Timoria created successfully",
         "loginSuccessful": "Login successful",
-        "signupSuccessful": "Your account has been created successfully"
+        "signupSuccessful": "Your account has been created successfully",
+        "failedUserListsLoading": "Failed to load dropdown lists"
     }
 }
