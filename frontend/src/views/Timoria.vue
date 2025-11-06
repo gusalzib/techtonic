@@ -137,9 +137,19 @@
 
   <form>
     <input v-model.number="duration" type="number" class="timer-input" :placeholder="$t('timer.minutesPlaceholder')" required/>
-    <input v-model="subject" type="text" class="timer-input" :placeholder="$t('timer.subjectPlaceholder')" required/>
-    <input v-model="topic" type="text" class="timer-input" :placeholder="$t('timer.topicPlaceholder')" required/>
-    <input v-model="tag" type="text" class="timer-input" :placeholder="$t('timer.tagPlaceholder')" />
+    <input v-model="subject" type="text" class="timer-input" list="subjectList" :placeholder="$t('timer.subjectPlaceholder')" required/>
+    <datalist id="subjectList">
+        <!-- 's' stands for subject. this is to avoid mixing up with the word subject that appears in the line before in v-model -->
+        <option v-for="s in userSubjects" :key="s" :value="s"></option>
+    </datalist>
+    <input v-model="topic" type="text" class="timer-input" list="topicList" :placeholder="$t('timer.topicPlaceholder')" required/>
+    <datalist id="topicList">
+        <option v-for="t in userTopics" :key="t" :value="t"></option>
+    </datalist>
+    <input v-model="tag" type="text" class="timer-input" list="tagList" :placeholder="$t('timer.tagPlaceholder')" />
+    <datalist id="tagList">
+        <option v-for="tg in userTags" :key="tg" :value="tg"></option>
+    </datalist>
     <input v-model="task" type="text" class="timer-input" :placeholder="$t('timer.taskPlaceholder')" />
     <button type="button" id="addPlannedTimoriaBtn" @click="createTimoria">{{ $t('buttons.add') }}</button>
   </form>
@@ -661,6 +671,26 @@ export default {
                 this.toast && this.toast.error(this.$t('notification.failedUserListsLoading') || 'Failed to load user lists.')
             }
         }
+    },
+    getSubjects() {
+        document.getElementById("subject").classList.toggle("show");
+
+        window.onclick = function (event) {
+            if (!event.target.matches('.subject-dropdown')) {
+                var dropdowns = document.getElementsByClassName("subject-dropdown");
+                var i; 
+
+                for (i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show')
+                    }
+                    
+                }
+            }
+        }
+
     }
 }
     
