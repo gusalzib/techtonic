@@ -53,7 +53,10 @@ exports.getTodayTimorias = async (req, res) => {
   endOfDay.setHours(23, 59, 59, 999)
 
   try {
+    const uid = Types.ObjectId.isValid(req.user.id) ? new Types.ObjectId(req.user.id) : req.user.id;
+
     const todayTimorias = await Timoria.find({
+      user: uid, // makes sure we only get today's timorias for the logged in user and not everyone
       finishedAt: { $gte: startOfDay, $lte: endOfDay },
       status: 'done'
     }).sort({ finishedAt: -1 })
@@ -189,7 +192,38 @@ exports.getStatistics = async (req, res) => {
   }
 };
 
-// Helper functions
+
+exports.getDistinctLists = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    /**
+     * The value of the user id may look like a string here but in mongoDB is ObjectId type
+     * if we query using the plain string it will be a mismatch even if the id is actually the same because the type does not 
+     * match. The following line will cast the String to ObjectId. Then we store that object into a filter that contains the 
+     * actual field name in the schema (user) and we query with it. 
+     */
+    const uid = Types.ObjectId.isValid(userId) ? new Types.ObjectId(userId) : userId;
+
+    const filter = { user: uid };
+
+    // Each call returns an array of unique values for that field
+    const subjects = await Timoria.distinct('subject', filter);
+    const topics   = await Timoria.distinct('topic', filter);
+    const tags     = await Timoria.distinct('tag', filter);
+
+    res.status(200).json({
+      subjects,
+      topics,
+      tags
+    });
+  } catch (err) {
+    //console.error('taxonomy error:', err);
+    res.status(400).json({ error: 'Failed to load lists.' });
+  }
+}
+
+// ########################################################################### Helper functions ##################################################################################3
 function calculateStatusBreakdown(timorias) {
   const counts = { planned: 0, ongoing: 0, done: 0 };
   timorias.forEach(t => counts[t.status]++);
@@ -251,32 +285,3 @@ function calculateTimeSpentPerDay(timorias) {
 }
 
 
-exports.getDistinctLists = async (req, res) => {
-  try {
-    const userId = req.user.id;
-
-    /**
-     * The value of the user id may look like a string here but in mongoDB is ObjectId type
-     * if we query using the plain string it will be a mismatch even if the id is actually the same because the type does not 
-     * match. The following line will cast the String to ObjectId. Then we store that object into a filter that contains the 
-     * actual field name in the schema (user) and we query with it. 
-     */
-    const uid = Types.ObjectId.isValid(userId) ? new Types.ObjectId(userId) : userId;
-
-    const filter = { user: uid };
-
-    // Each call returns an array of unique values for that field
-    const subjects = await Timoria.distinct('subject', filter);
-    const topics   = await Timoria.distinct('topic', filter);
-    const tags     = await Timoria.distinct('tag', filter);
-
-    res.status(200).json({
-      subjects,
-      topics,
-      tags
-    });
-  } catch (err) {
-    //console.error('taxonomy error:', err);
-    res.status(400).json({ error: 'Failed to load lists.' });
-  }
-}

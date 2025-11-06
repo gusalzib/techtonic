@@ -482,7 +482,11 @@ export default {
         // get today's Timorias from the backend (for the summary table)
         async getTodaysTimorias() {
             try {
-                const res = await fetch(`${this.url}/today`)
+                const token = localStorage.getItem('token');
+                const res = await fetch(`${this.url}/today`, {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {}
+                });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
                 const data = await res.json()
                 this.todayTimorias = data
             } catch (err) {
