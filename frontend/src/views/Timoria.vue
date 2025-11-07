@@ -467,7 +467,10 @@ export default {
             const lastDeleted = this.undoStack.pop()
             if (lastDeleted) {
                 try {
-                    const res = await axios.post(`${this.url}`, lastDeleted)
+                    const token = localStorage.getItem('token');
+                    const res = await axios.post(`${this.url}`, lastDeleted, {
+                        headers: token ? { Authorization: `Bearer ${token}` } : {}
+                    });
                     this.plannedTimorias.unshift(res.data)
                     this.getPlannedTimorias() // update the list right after undoing the Timoria
                     this.getTodaysTimorias() // update the list or today's timorias right after undoing a  Timoria
