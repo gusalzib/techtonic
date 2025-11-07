@@ -45,6 +45,8 @@ export default {
   data() {
     return {
       remaining: 0,
+      accumulatedMs: 0,
+      plannedSeconds: 0,
       interval: null,
       isRunning: false,
       startTime: null,
@@ -166,29 +168,66 @@ export default {
         this.interval = null;
       }
       if (!this.isRunning) {
-          const now = Date.now()
-          this.startTime = this.startTime || now
-          this.endTime = this.startTime + this.localTimoria.duration * 60 * 1000
-          this.remaining = this.localTimoria.duration * 60
+        const now = Date.now()
+
+        // fresh start id remaining is invalid/empty
+        if (typeof this.remaining === 'number' && this.remaining > 0 && this.remaining !== Infinity) {
+          this.startTime = now;
+          this.endTime = now + this.remaining * 1000;
+        } else {
+          this.remaining = (this.localTimoria.duration || 0) * 60; // seconds
+          this.startTime = now;
+          this.endTime = now + this.remaining * 1000;
+        }
+          // this.startTime = this.startTime || now
+          // this.endTime = this.startTime + this.localTimoria.duration * 60 * 1000
+          // this.remaining = this.localTimoria.duration * 60
 
           localStorage.setItem('activeTimoria', JSON.stringify({
               timoria: this.localTimoria,
               startTime: this.startTime,
               endTime: this.endTime,
               timerType: this.timerType,   /* storing the timer type in the localstorage to identify what timer was running after a potential //page reload */
+              remaining: this.remaining,
+              accumulatedMs: this.accumulatedMs
           }))
 
+          this.isRunning = true
           this.tick()
           this.interval = setInterval(this.tick, 1000)
-          this.isRunning = true
+          
 
           this.$emit('updatePlannedTimorias');  // Update the parent component
       }
     },
 
     pauseTimer() {
-      clearInterval(this.interval)
-      this.isRunning = false
+      // clearInterval(this.interval)
+      // this.isRunning = false
+      if (this.interval) {
+        clearInterval(this.interval);
+        this.interval = null;
+      }
+
+      if (this.isRunning && this.startTime) {
+        this.accumulatedMs = this.accumulatedMs + (Date.now() - this.startTime);
+      }
+
+      this.isRunning = false;
+
+      const active = localStorage.getItem('activeTimoria');
+
+      if (active) {
+        const data = JSON.parse(active)
+        data.remaining = this.remaining;
+
+        data.accumulatedMs = this.accumulatedMs;
+
+        delete data.endTime;
+
+        localStorage.setItem('activeTimoria', JSON.stringify(data));
+
+      }
     },
 
     resetTimer() {
@@ -313,50 +352,87 @@ export default {
       }
     },
 
+    // finishTimer() {
+    //     if (this.interval) {
+    //         clearInterval(this.interval);
+    //         this.interval = null;
+    //     }
+
+    //     const now = Date.now();
+    //     const elapsedDuration = Math.floor((now - this.startTime) / 1000);  // seconds
+
+    //     if (this.localTimoria?._id) {
+    //         const updatedTimoria = {
+    //             ...this.localTimoria,
+    //             status: 'done',
+    //             duration: Math.floor(elapsedDuration / 60),
+    //             finishedAt: new Date().toISOString(), //override the date field to reflect the actual completion time
+    //         };
+
+    //         fetch(`${this.url}/${this.localTimoria._id}`, {
+    //             method: 'PUT',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify(updatedTimoria)
+    //         })
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             console.log('Timoria marked as completed:', data);
+
+    //             // Clean up timer
+    //             this.resetTimer();
+
+    //             // Fully remove from local state
+    //             this.localTimoria = null;
+
+    //             // Emit all updates AFTER state is cleaned
+    //             this.$emit('updateTimoria', updatedTimoria);
+    //             this.$emit('updatePlannedTimorias');
+    //             this.$emit('updateTodaysTimorias');
+    //             this.$emit('finishTimer');
+    //         })
+    //         .catch((err) => {
+    //             console.error('Error finishing timoria:', err);
+    //         });
+    //     }
+    // },
     finishTimer() {
-        if (this.interval) {
-            clearInterval(this.interval);
-            this.interval = null;
-        }
+      if (this.interval) {
+        clearInterval(this.interval);
+        this.interval = null;
+      }
 
-        const now = Date.now();
-        const elapsedDuration = Math.floor((now - this.startTime) / 1000);  // seconds
+      const now = Date.now();
+      let totalMs = this.accumulatedMs;
+      if (this.isRunning && this.startTime) {
+        totalMs += (now - this.startTime);
+      }
+      const minutes = Math.max(1, Math.round(totalMs / 60000)); // avoid 0
 
-        if (this.localTimoria?._id) {
-            const updatedTimoria = {
-                ...this.localTimoria,
-                status: 'done',
-                duration: Math.floor(elapsedDuration / 60),
-                finishedAt: new Date().toISOString(), //override the date field to reflect the actual completion time
-            };
+      if (this.localTimoria?._id) {
+        const updatedTimoria = {
+          ...this.localTimoria,
+          status: 'done',
+          duration: minutes,
+          finishedAt: new Date().toISOString(),
+        };
 
-            fetch(`${this.url}/${this.localTimoria._id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(updatedTimoria)
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Timoria marked as completed:', data);
-
-                // Clean up timer
-                this.resetTimer();
-
-                // Fully remove from local state
-                this.localTimoria = null;
-
-                // Emit all updates AFTER state is cleaned
-                this.$emit('updateTimoria', updatedTimoria);
-                this.$emit('updatePlannedTimorias');
-                this.$emit('updateTodaysTimorias');
-                this.$emit('finishTimer');
-            })
-            .catch((err) => {
-                console.error('Error finishing timoria:', err);
-            });
-        }
+        fetch(`${this.url}/${this.localTimoria._id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedTimoria)
+        })
+          .then(r => r.json())
+          .then(() => {
+            this.resetTimer();
+            this.localTimoria = null;
+            this.$emit('updateTimoria', updatedTimoria);
+            this.$emit('updatePlannedTimorias');
+            this.$emit('updateTodaysTimorias');
+            this.$emit('finishTimer');
+          })
+          .catch(err => console.error('Error finishing timoria:', err));
+      }
     },
-
   requestNotificationPermission() {
       if ('Notification' in window && Notification.permission !== 'granted') {
         Notification.requestPermission().then(permission => {
