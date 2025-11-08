@@ -1046,9 +1046,9 @@ select {
 /* Summary Section */
 .summary-overview {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   gap: 2rem;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .summary-overview .total-timorias, .summary-overview .status-breakdown {
@@ -1056,7 +1056,10 @@ select {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  flex-basis: 45%;
+  min-width: 46%;
+  margin-left: auto;
+  margin-right: auto;
+  /* flex-basis: 45%;  */ /*cancelled this to make the stats boxes stack vertically intsead of a grid*/
   border: 1px solid var(--section-border);
 }
 
@@ -1085,8 +1088,9 @@ select {
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex-basis: 30%;
-  min-width: 45%;
+  /* flex-basis: 30%; */ /*cancelled this to make the stats boxes stack vertically intsead of a grid*/
+  min-width: 90%; /*changed this from 45 to 90 to make the stats boxes stack vertically intsead of a grid*/
+  margin: auto; /*added this to make the stats boxes stack vertically intsead of a grid*/
   border: 1px solid var(--section-border);
 }
 

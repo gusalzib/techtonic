@@ -139,6 +139,8 @@
         "minHours": "Min. Hours:",
         "minHoursPlaceholder": "e.g., 1.5",
         "taskCompletionRate": "Task Completion Rate",
+        "averageTimePerActivityDay": "Average Time Per Activity Day",
+        "averageTimoriasPerActivityDay": "Average Number of Timorias Per Activity Day",
         "percent": "percent",
         "hours": "hours",
         "minutes": "minutes"

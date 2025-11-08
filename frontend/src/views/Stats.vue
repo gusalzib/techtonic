@@ -18,6 +18,8 @@
         <p>{{ $t('stats.totalSubjects') }}: {{ stats.totalSubjects }} </p>
         <p>{{ $t('stats.averageDuration') }}: {{ stats.averageDuration }} {{ $t('stats.minutes') }}</p>
         <p>{{ $t('stats.taskCompletionRate') }}: {{ stats.completionRate }} {{ $t('stats.percent') }}</p>
+        <p>{{ $t('stats.averageTimePerActivityDay') }}: {{ stats.averageTimePerActivityDay }} {{ $t('stats.hours') }}</p>
+        <p>{{ $t('stats.averageTimoriasPerActivityDay') }}: {{ stats.averageTimoriasPerActivityDay }}</p>
       </div>
 
       <!-- This is the chart where the status of the timorias is broken down into Planned, Ongoing and Completed -->

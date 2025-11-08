@@ -137,9 +137,11 @@ exports.getAllTimorias = async (req, res) => {
 exports.getStatistics = async (req, res) => {
   try {
     const { startDate, endDate, subject } = req.query;
-        console.log('Backend received startDate:', startDate, 'endDate:', endDate); // Add this line
+
+    // console.log('Backend received startDate:', startDate, 'endDate:', endDate); 
+    
     const userId = req.user.id;
-    // 1. First check if there's any data at all
+    // First check if there's any data at all
     const totalCount = await Timoria.countDocuments({ user: userId });
     if (totalCount === 0) {
       return res.json({
@@ -151,6 +153,8 @@ exports.getStatistics = async (req, res) => {
         timeBySubject: [],
         completionRate: 0,
         averageDuration: 0,
+        averageTimePerActivityDay: 0,
+        averageTimoriasPerActivityDay: 0,
         message: "No data found" // Add this for debugging
       });
     }
@@ -183,12 +187,16 @@ exports.getStatistics = async (req, res) => {
       totalTopics: calculateNumberOfTopics(timorias),
       totalSubjects: calculateNumberOfSubjects(timorias),
       timeSpentPerDay: calculateTimeSpentPerDay(timorias),  
+      averageTimePerActivityDay: calculateAverageTimePerActivityDay(timorias),
+      averageTimoriasPerActivityDay: calculateAverageTimoriasPerActivityDay(timorias),
 
     };
 
     res.json(statistics);
   } catch (err) {
     res.status(500).json({ error: err.message });
+    console.log(err.message);
+    
   }
 };
 
@@ -284,4 +292,72 @@ function calculateTimeSpentPerDay(timorias) {
   }));
 }
 
+function calculateAverageTimePerActivityDay(timorias) {
+  if (!timorias || timorias.length === 0) {
+    return 0; 
+  }
 
+
+  // total minutes across all timorias
+  const totalMinutes = timorias.reduce((sum, t) => sum + (t.duration || 0), 0);
+
+  // count distinct days that have at least one timoria based on the createdAt to match our filter
+  const activeDays = new Set();
+
+  for (const t of timorias) {
+    const dateSource = t.createdAt || t.finishedAt;
+
+    if (dateSource) {
+      const d = new Date(dateSource);
+
+      if (!isNaN(d.getTime())) {
+        // YYYY-MM-DD timezone agnostic day key
+        activeDays.add(d.toISOString().slice(0, 10))
+      }
+    }
+  }
+
+  const daysCount = activeDays.size;
+
+  if (daysCount === 0) {
+    return 0;
+  }
+
+  // convert minutes -> hours  then dividing by the number of active days
+  const hoursPerActivityDay = (totalMinutes / 60) / daysCount;
+
+  return Number(hoursPerActivityDay.toFixed(2))
+}
+
+
+function calculateAverageTimoriasPerActivityDay(timorias){
+  if (!timorias || timorias.length === 0) {
+    return 0; 
+  }
+  // count distinct days that have at least one timoria based on the createdAt to match our filter
+  const activeDays = new Set();
+
+  for (const t of timorias) {
+    const dateSource = t.createdAt || t.finishedAt;
+
+    if (dateSource) {
+      const d = new Date(dateSource);
+
+      if (!isNaN(d.getTime())) {
+        // YYYY-MM-DD timezone agnostic day key
+        activeDays.add(d.toISOString().slice(0, 10))
+      }
+    }
+  }
+
+  const daysCount = activeDays.size;
+
+  if (daysCount === 0) {
+    return 0;
+  }
+
+
+  const average = timorias.length / daysCount;
+  
+  return Math.round(average * 100) / 100; // 2 decimals  
+}
