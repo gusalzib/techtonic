@@ -131,6 +131,8 @@
         "statusBreakdown": "Status Breakdown",
         "chartType": "Chart Type:",
         "timeSpentBySubject": "Time Spent by Subject",
+        "timeSpentByTag": "Time Spent by Tag",
+        "timeSpentByTopic": "Time Spent by Topic",
         "heatmapTitle": "Activity Heatmap (Last 12 Months)",
         "noData": "No data available to display.",
         "noDataForFilters": "No data matches the current filters.",

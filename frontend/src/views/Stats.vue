@@ -102,6 +102,30 @@
         </div>
       </div>
 
+
+      <!-- time by tag -->
+      <div class="time-by-tag stat-card">
+        <p>{{ $t('stats.timeSpentByTag') }}</p>
+
+        <div class="chart-controls">
+          <label>{{ $t('stats.chartType') }}</label>
+          <select v-model="selectedTagChartType">
+            <option value="Pie">Pie</option>
+            <option value="Bar">Bar</option>
+            <option value="Line">Line</option>
+          </select>
+        </div>
+
+        <div class="chart-container">
+          <component
+            :is="getChartComponent(selectedTagChartType)"
+            v-if="hasTagData"
+            :data="tagChartData"
+            :options="chartOptions"
+          />
+          <div v-else class="no-data">{{ $t('stats.noData') }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -667,6 +691,7 @@ export default {
         totalCompletedTimorias: 0,
         statusBreakdown: { planned: 0, ongoing: 0, done: 0 },
         timeBySubject: [],
+        timeByTag: [],
         hasTopicData: [],
         completionRate: 0,
         averageDuration: 0,
@@ -678,6 +703,7 @@ export default {
       selectedSubjectChartType: 'Bar',
       selectedCompletionChartType: 'Line',
       selectedTopicChartType: 'Bar',
+      selectedTagChartType: 'Bar',
       chartComponentMap: {
         Pie: 'PieChart',
         Bar: 'BarChart',
@@ -757,6 +783,18 @@ export default {
 
       return hasAnyTopics
     },
+    hasTagData() {
+      // we need to extract the tags array safely
+      const tags = this.stats.timeByTag || []
+
+      // determine how many tags exist
+      const tagCount = tags.length
+
+      // check if there is at least one tag
+      const hasAnyTags = tagCount > 0 
+
+      return hasAnyTags
+    },
     hasCompletionData() {
       // extracting the completion rate safely 
       const completionRate = this.stats.completionRate || 0
@@ -801,6 +839,18 @@ export default {
           label: 'Hours spent',
           data: topics.map(s => s.hours),
           backgroundColor: topics.map(() => this.getRandomColor())
+        }]
+      }
+    },
+    // -------- Chart data: Time by tag --------
+    tagChartData() {
+      const tags = this.stats.timeByTag|| []
+      return {
+        labels: tags.map(s => s.tag),
+        datasets: [{
+          label: 'Hours spent',
+          data: tags.map(s => s.hours),
+          backgroundColor: tags.map(() => this.getRandomColor())
         }]
       }
     },
