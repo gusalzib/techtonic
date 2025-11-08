@@ -151,6 +151,7 @@ exports.getStatistics = async (req, res) => {
         totalSubjects: 0,
         statusBreakdown: { planned: 0, ongoing: 0, done: 0 },
         timeBySubject: [],
+        timeByTopic: [],
         completionRate: 0,
         averageDuration: 0,
         averageTimePerActivityDay: 0,
@@ -182,6 +183,7 @@ exports.getStatistics = async (req, res) => {
       totalTimeSpent: timorias.reduce((sum, t) => sum + t.duration, 0) / 60,
       statusBreakdown: calculateStatusBreakdown(timorias),
       timeBySubject: calculateTimeBySubject(timorias),
+      timeByTopic: calculateTimeByTopic(timorias),
       completionRate: calculateCompletionRate(timorias),
       averageDuration: calculateAverageDuration(timorias),
       totalTopics: calculateNumberOfTopics(timorias),
@@ -360,4 +362,26 @@ function calculateAverageTimoriasPerActivityDay(timorias){
   const average = timorias.length / daysCount;
   
   return Math.round(average * 100) / 100; // 2 decimals  
+}
+
+function calculateTimeByTopic(timorias) {
+  if (!timorias || timorias.length === 0) {
+    return 0; 
+  }
+
+  const minutesByTopic = new Map();
+
+  for (const t of timorias) {
+    const topic = (t.topic || t.topics || 'Unknown'); 
+
+    const minutes = t.duration || 0;
+    minutesByTopic.set(topic, (minutesByTopic.get(topic) || 0) + minutes);
+  }
+
+  // Return both minutes and hours; frontend can choose
+  return Array.from(minutesByTopic.entries()).map(([topic, minutes]) => ({
+    topic,
+    minutes,
+    hours: Math.round((minutes / 60) * 100) / 100
+  }));
 }

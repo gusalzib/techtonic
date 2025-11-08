@@ -78,6 +78,30 @@
           </div>
       </div>
 
+      <!-- time by topic -->
+      <div class="time-by-topic stat-card">
+        <p>{{ $t('stats.timeSpentByTopic') }}</p>
+
+        <div class="chart-controls">
+          <label>{{ $t('stats.chartType') }}</label>
+          <select v-model="selectedTopicChartType">
+            <option value="Pie">Pie</option>
+            <option value="Bar">Bar</option>
+            <option value="Line">Line</option>
+          </select>
+        </div>
+
+        <div class="chart-container topics-section">
+          <component
+            :is="getChartComponent(selectedTopicChartType)"
+            v-if="hasTopicData"
+            :data="topicChartData"
+            :options="chartOptions"
+          />
+          <div v-else class="no-data">{{ $t('stats.noData') }}</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -643,6 +667,7 @@ export default {
         totalCompletedTimorias: 0,
         statusBreakdown: { planned: 0, ongoing: 0, done: 0 },
         timeBySubject: [],
+        hasTopicData: [],
         completionRate: 0,
         averageDuration: 0,
         timeSpentPerDay: [] // array (not 0) to match usage
@@ -652,6 +677,7 @@ export default {
       selectedStatusChartType: 'Pie',
       selectedSubjectChartType: 'Bar',
       selectedCompletionChartType: 'Line',
+      selectedTopicChartType: 'Bar',
       chartComponentMap: {
         Pie: 'PieChart',
         Bar: 'BarChart',
@@ -719,6 +745,18 @@ export default {
 
       return hasAnySubjects
     },
+    hasTopicData() {
+      // we need to extract the topics array safely
+      const topics = this.stats.timeByTopic || []
+
+      // determine how many topics exist
+      const topicCount = topics.length
+
+      // check if there is at least one topic
+      const hasAnyTopics = topicCount > 0 
+
+      return hasAnyTopics
+    },
     hasCompletionData() {
       // extracting the completion rate safely 
       const completionRate = this.stats.completionRate || 0
@@ -751,6 +789,18 @@ export default {
           label: 'Hours spent',
           data: subjects.map(s => s.hours),
           backgroundColor: subjects.map(() => this.getRandomColor())
+        }]
+      }
+    },
+    // -------- Chart data: Time by topic --------
+    topicChartData() {
+      const topics = this.stats.timeByTopic || []
+      return {
+        labels: topics.map(s => s.topic),
+        datasets: [{
+          label: 'Hours spent',
+          data: topics.map(s => s.hours),
+          backgroundColor: topics.map(() => this.getRandomColor())
         }]
       }
     },

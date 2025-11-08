@@ -1094,6 +1094,11 @@ select {
   border: 1px solid var(--section-border);
 }
 
+.topics-section{
+  min-height: 700px;
+  overflow: auto;
+  /* border: 1px solid red; */
+}
 /* Filters Sidebar */
 .filters-sidebar {
   background-color: var(--section-bg);
