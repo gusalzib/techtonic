@@ -16,18 +16,31 @@ const { Types } = require('mongoose');
 
 // Create new
 exports.createTimoria = async (req, res) => {
-  const { subject, topic, tag, task, duration, status } = req.body
+  const { subject, topic, tag, task, duration, status } = req.body;
   const userId = req.user.id;
+
   try {
-    const newTimoria = new Timoria({ subject, topic, tag, task, duration, status, user: userId })
-    await newTimoria.save()
-    res.status(201).json(newTimoria)
+    // Normalize the tag string into proper hashtags
+    const normalizedTag = normalizeTagString(tag);  // e.g. "focus math" -> "#focus #math"
+
+    const newTimoria = new Timoria({
+      subject,
+      topic,
+      tag: normalizedTag,     // store back into the existing 'tag' field
+      task,
+      duration,
+      status,
+      user: userId,
+    });
+
+    await newTimoria.save();
+    res.status(201).json(newTimoria);
   } catch (err) {
     console.log(err.message);
-    
-    res.status(400).json({ error: err.message })
+    res.status(400).json({ error: err.message });
   }
-}
+};
+
 
 
 // Delete
@@ -390,22 +403,107 @@ function calculateTimeByTopic(timorias) {
 
 function calculateTimeByTag(timorias) {
   if (!timorias || timorias.length === 0) {
-    return 0; 
+    return []; // array is easier for frontend to work with
   }
 
   const minutesByTag = new Map();
 
   for (const t of timorias) {
-    const tag = (t.tag || t.tags || 'Unknown'); 
+    // Parse the single 'tag' string into individual tags
+    let tags = parseTagsToArray(t.tag);
+
+    if (tags.length === 0) {
+      tags = ['#unknown']; // if the tag field is empty, fill it with the 'unkown' value
+    }
 
     const minutes = t.duration || 0;
-    minutesByTag.set(tag, (minutesByTag.get(tag) || 0) + minutes);
+
+    for (const tag of tags) {
+      minutesByTag.set(tag, (minutesByTag.get(tag) || 0) + minutes);
+    }
   }
 
-  // Return both minutes and hours; frontend can choose
   return Array.from(minutesByTag.entries()).map(([tag, minutes]) => ({
     tag,
     minutes,
-    hours: Math.round((minutes / 60) * 100) / 100
+    hours: Math.round((minutes / 60) * 100) / 100,
   }));
+}
+
+
+// This function takes a single string of tags typed by the user 
+// (for example: "focus math #DeepWork") 
+// and converts it into a clean array of properly formatted tags
+// (for example: ["#focus", "#math", "#deepwork"]).
+//
+// The purpose is to standardize tags because the database stores them 
+// as one string, but we need them as separate items for statistics.
+//
+// Steps this function performs:
+// 1. Validates that the input is a proper string.
+// 2. Removes leading/trailing spaces.
+// 3. Splits the string into individual words (each word is considered a tag).
+// 4. Removes any empty entries that might appear due to multiple spaces.
+// 5. Ensures every tag starts with a "#" character.
+// 6. Converts all tags to lowercase for consistency.
+// 7. Removes duplicate tags so each tag appears only once.
+//
+// Finally, it returns an array of cleaned tag strings.
+
+function parseTagsToArray(tagString) {
+  // if tagString is empty, null, undefined, or not a string
+  // we return an empty array because there are no valid tags
+  if (!tagString || typeof tagString !== 'string') {
+    return [];
+  } 
+
+  return tagString
+    .trim()
+    /**
+     * Removes leading and trainlin spaces from the whole string
+     * example: "   focus math   " become "focus math"
+     */
+    .split(/\s+/)              // split by whitespace
+    /**
+     * splits the string into separate words based on ANY amount of whitespace
+     * this means that it handles spaces, tabs, or even multiple spaces (between the words)
+     * example: "focus    math  deepwork" becomes ["focus", "math", "deepwork"]
+     */
+
+    .map(t => t.trim())
+    /**
+     * ensures each individual tag has no surrounding spaces
+     * usually it is not necessary after a split but it is here for safety 
+     */
+
+    .filter(Boolean)           // remove empties
+    /**
+     * removes any empty string that might still exist
+     * Example: ["focus", "", "math"] => ["focus", "math"]
+     */
+
+    .map(t => (t.startsWith('#') ? t : `#${t}`))
+    // Ensures every tag begins with a "#" sign.
+    // If the user typed "math" -> "#math"
+    // If user typed "#math" -> "#math" (unchanged)
+
+
+    .map(t => t.toLowerCase()) // optional: normalize case
+    // Converts the tag to lowercase.
+    // This ensures "Math", "math", "MATH", "#Math" all become "#math".
+    // Helps keep tags consistent across the entire application.
+
+    .filter((tag, idx, arr) => arr.indexOf(tag) === idx); // dedupe
+    // Removes duplicate tags.
+    // Example before: ["#focus", "#math", "#focus"]
+    // Example after:  ["#focus", "#math"]
+    //
+    // How it works:
+    // - arr.indexOf(tag) gives the *first* occurrence of that tag.
+    // - If the current index (idx) is NOT that first occurrence,
+    //   then it's a duplicate and will be filtered out.
+}
+
+function normalizeTagString(tagString) {
+  return parseTagsToArray(tagString).join(' ');
 }
