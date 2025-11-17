@@ -33,7 +33,9 @@
     "todayPomos": {
         "title": "جلسات بومودورو اليوم",
         "summary": "ملخص جلسات اليوم:",
-        "total": "المجموع"
+        "total": "المجموع",
+        "numberOfTodaysTimorias": "عدد الجلسات",
+        "averageDurationPerTodaysTimorias": "متوسط الوقت لكل جلسة"
     },
     "table": {
         "task": "المهمة",

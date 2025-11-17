@@ -114,6 +114,8 @@
     </div>
     <p class="total-time">
     🧮 {{ $t('todayPomos.total') }}: {{ totalTodayDuration }}
+    | {{ $t('todayPomos.numberOfTodaysTimorias') }}: {{ numberOfTodaysTimorias }}
+    | {{ $t('todayPomos.averageDurationPerTodaysTimorias') }}: {{ averageDurationPerTodaysTimorias }}
     </p>
     <!-- UNDO BUTTON BLOCK -->
     <!-- When deleting a timoria, we add it to the undoStack. 
@@ -283,6 +285,20 @@ export default {
             const hours = Math.floor(totalMinutes / 60)
             const minutes = totalMinutes % 60
             return `${hours} ${this.$t('timer.hours')} ${minutes} ${this.$t('timer.minutes')}`
+        },
+        numberOfTodaysTimorias() {
+            const totalCount = this.todayTimorias.length
+            return totalCount
+        },
+        averageDurationPerTodaysTimorias() {
+            if (this.todayTimorias.length === 0) {
+                return `0 ${this.$t('timer.hours')} 0 ${this.$t('timer.minutes')}`
+            }
+            const totalMinutes = this.todayTimorias.reduce((sum, t) => sum + Number(t.duration || 0), 0)
+            const average = totalMinutes / this.todayTimorias.length
+            const hours = Math.floor(average / 60)
+            const minutes = average % 60
+            return `${hours} ${this.$t('timer.hours')} ${minutes.toFixed(1)} ${this.$t('timer.minutes')}`
         }
     },
 

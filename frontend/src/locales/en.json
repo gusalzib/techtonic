@@ -31,7 +31,9 @@
     "todayPomos": {
         "title": "Today's Pomodoros",
         "summary": "Summary of today's sessions:",
-        "total": "Total"
+        "total": "Total",
+        "numberOfTodaysTimorias": "Number of sessions",
+        "averageDurationPerTodaysTimorias" : "Average time per session"
     },
     "table": {
         "task": "Task",

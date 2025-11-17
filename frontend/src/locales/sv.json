@@ -29,7 +29,9 @@
     },
     "todayPomos": {
         "title": "Dagens Pomodoros",
-        "summary": "Sammanfattning av dagens sessioner:"
+        "summary": "Sammanfattning av dagens sessioner:",
+        "numberOfTodaysTimorias": "Antal sessioner",
+        "averageDurationPerTodaysTimorias": "Genomsnittlig tid per session"
     },
     "table": {
         "task": "Uppgift",
