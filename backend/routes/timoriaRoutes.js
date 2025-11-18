@@ -6,7 +6,9 @@ const authMiddleware = require('../authenticationMiddleware');
 // Specific Routes 
 router.get('/today', authMiddleware.checkAuth, timoriaController.getTodayTimorias)
 router.get('/statistics', authMiddleware.checkAuth, timoriaController.getStatistics);
-router.get('/taxonomy', authMiddleware.checkAuth, timoriaController.getDistinctLists)
+router.get('/taxonomy', authMiddleware.checkAuth, timoriaController.getDistinctLists);
+router.get('/history', authMiddleware.checkAuth, timoriaController.getTimoriaHistory);
+
 
 
 // Generic Routes

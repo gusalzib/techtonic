@@ -1,4 +1,23 @@
 <template>
+
+  <!-- In-page header to switch views -->
+  <header class="timoria-view-switcher">
+    <button
+      :class="['view-tab', { active: activeView === 'timer' }]"
+      @click="activeView = 'timer'"
+    >
+      ⏱ {{ $t('views.timer') || 'Timer' }}
+    </button>
+    <button
+      :class="['view-tab', { active: activeView === 'summary' }]"
+      @click="activeView = 'summary'"
+    >
+      📊 {{ $t('views.summary') || 'Summary' }}
+    </button>
+  </header>
+
+
+<div v-if="activeView === 'timer'">
 <!-- Timer Section -->
 <Timer :timoria="activeTimoria" :key="activeTimoria?._id" 
     @completed="handleCompletedTimoria" 
@@ -9,6 +28,7 @@
     @updateTodaysTimorias="handleUpdateTodaysTimorias"
     @break-finished="handleBreakFinished"
     />
+
 
 
 <!-- Today’s Pomodoros Section -->
@@ -193,7 +213,11 @@
   <div class="suggestion-item">{{ $t('suggestions.fixBugs') }}</div>
 </div>
 
+</div>
 
+<div v-else-if="activeView === 'summary'">
+    <TimoriaSummary/>
+</div>
 </template>
 
 
@@ -201,6 +225,7 @@
 // @ is an alias to /src
 import axios from 'axios' // for http POST/PUT/DELETE requests
 import Timer from '../components/Timer' // timer component that runs countdowns
+import TimoriaSummary from '../components/TimoriaSummary';
 import dingSound from '@/assets/audio/ding.mp3' // sound to play when timoria ends
 import { confirm as appConfirm } from '@/services/confirmService' // import the confirm function
 import { useToast } from 'vue-toastification'
@@ -222,6 +247,8 @@ export default {
             tag: '',
             task: '',
             duration: null,
+
+            activeView: 'timer',
 
             // backend API endpoint for Timoria CRUD operations
             url: 'http://localhost:5000/api/timoria',
@@ -270,7 +297,8 @@ export default {
      * 
      */
     components: {
-        Timer
+        Timer,
+        TimoriaSummary
     },
     /**
      * --------------------------------------------------------

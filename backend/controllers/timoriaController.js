@@ -248,6 +248,51 @@ exports.getDistinctLists = async (req, res) => {
   }
 }
 
+exports.getTimoriaHistory = async (req, res) => {
+ try {
+    const userId = req.user.id;
+
+    // Pagination params (default: page 1, 20 items per page)
+    const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
+    const limit = Math.max(parseInt(req.query.limit, 10) || 20, 1);
+    const skip = (page - 1) * limit;
+
+    // Optional date range filters
+    const { startDate, endDate } = req.query;
+
+    const filter = { user: userId };
+
+    if (startDate && endDate) {
+      filter.createdAt = {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate),
+      };
+    }
+
+    // Fetch data + total count in parallel
+    const [timorias, total] = await Promise.all([
+      Timoria.find(filter)
+        .sort({ createdAt: -1 }) // newest first
+        .skip(skip)
+        .limit(limit),
+      Timoria.countDocuments(filter),
+    ]);
+
+    const totalPages = Math.ceil(total / limit);
+
+    res.json({
+      timorias,
+      total,
+      page,
+      limit,
+      totalPages,
+    });
+  } catch (err) {
+    console.error('Error in getTimoriaHistory:', err);
+    res.status(500).json({ error: err.message });
+  }
+}
+
 // ########################################################################### Helper functions ##################################################################################3
 function calculateStatusBreakdown(timorias) {
   const counts = { planned: 0, ongoing: 0, done: 0 };

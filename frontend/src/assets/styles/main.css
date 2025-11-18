@@ -431,7 +431,7 @@ select {
 .timer-container {
   width: 60%;
   margin: 0 auto;
-  margin-top: 10%;
+  /* margin-top: 10%; */ /*removed this line after adding the timer/summary tabs on top*/
   background: var(--timer-bg);
   color: var(--timer-text);
   padding: 20px;
@@ -554,6 +554,31 @@ select {
   background-color: var(--hover-row-bg);
 }
 
+.timoria-view-switcher {
+  display: flex;
+  gap: 0.5rem;
+  background-color: var(--section-bg);
+  margin: 20px auto;
+  padding: 10px;
+  width: 20%;
+  justify-content: center;
+}
+
+.view-tab {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  width: 100%;
+  border: 1px solid var(--accent);
+  background: var(--viridian);
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.view-tab.active {
+  background: var(--accent);
+  border-bottom: 2px solid #007bff;
+  font-weight: 500;
+}
 
 
 /* Style for the autocomplete suggestions */
@@ -934,6 +959,110 @@ select {
     }
     
 
+}
+
+/*################################### TIMORIA SUMMARY ##################################################*/
+
+.timoria-summary {
+  margin: 2rem;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--section-bg);
+  color: var(--text-color);
+  border: 1px solid var(--accent);
+}
+
+.summary-header h2 {
+  margin-bottom: 0.25rem;
+}
+
+.summary-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  padding: 8px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.month-navigation {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.current-period {
+  font-weight: 600;
+}
+
+.custom-range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  
+}
+
+.custom-range button, .month-navigation button{
+  background-color: var(--standard-btn);
+  padding: 8px;
+  border-radius: 10px;
+}
+.custom-range button:hover, .month-navigation button:hover{
+  background-color: var(--standard-btn-hover);
+  cursor: pointer;
+}
+
+.custom-range input{
+  padding: 8px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  color: var(--text-color);
+}
+
+.summary-table th,
+.summary-table td {
+  border: 1px solid var(--accent);
+  padding: 0.5rem;
+}
+
+.summary-table th {
+  background: var(--accent);
+  text-align: left;
+  font-size: large;
+}
+
+.summary-table tbody tr:hover {
+  background-color: var(--hover-row-bg);
+}
+.summary-table tbody tr:nth-child(even) {
+  background-color: var(--alt-row-bg);
+}
+
+.no-data {
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+.pagination {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 /*################################### LOGIN STYLE ##################################################*/

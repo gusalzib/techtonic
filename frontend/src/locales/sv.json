@@ -45,7 +45,9 @@
         "allTags": "Alla etiketter",
         "planned": "Planerad",
         "ongoing": "Pågående",
-        "completed": "Färdigställd"
+        "completed": "Färdigställd",
+        "date": "Datum",
+        "status": "Status"
     },
     "example": {
         "task": "Skriv blogginlägg",
@@ -163,6 +165,40 @@
         "timoriaSaved": "Timoria har skapats.",
         "loginSuccessful": "Inloggning lyckades",
         "signupSuccessful": "Ditt konto har skapats",
-        "failedUserListsLoading": "Kunde inte ladda användarlistor"
+        "failedUserListsLoading": "Kunde inte ladda användarlistor",
+        "failedHistory": "Det gick inte att hämta Timoria-historiken"
+    },
+    "views": {
+        "timer": "Timer",
+        "summary": "Översikt"
+    },
+    "summary": {
+        "title": "Timoriaöversikt",
+        "description": "Bläddra bland alla dina tidigare Timorias",
+        "prevMonth": "Föregående månad",
+        "nextMonth": "Nästa månad",
+        "startDate": "Startdatum",
+        "endDate": "Slutdatum",
+        "applyRange": "Använd intervall",
+        "clearRange": "Rensa intervall",
+        "noData": "Inga Timorias hittades för den här perioden.",
+        "prevPage": "Föregående",
+        "nextPage": "Nästa",
+        "page": "Sida",
+        "rangeError": "Välj både start- och slutdatum."
+    },
+    "months": {
+        "jan": "Januari",
+        "feb": "Februari",
+        "mar": "Mars",
+        "apr": "April",
+        "may": "Maj",
+        "jun": "Juni",
+        "jul": "Juli",
+        "aug": "Augusti",
+        "sep": "September",
+        "oct": "Oktober",
+        "nov": "November",
+        "dec": "December"
     }
 }

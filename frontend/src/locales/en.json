@@ -47,7 +47,9 @@
         "allTags": "All Tags",
         "planned": "Planned",
         "ongoing": "Ongoing",
-        "completed": "Completed"
+        "completed": "Completed",
+        "date": "Date",
+        "status": "Status"
     },
     "example": {
         "task": "Write blog post",
@@ -168,6 +170,40 @@
         "timoriaSaved": "Timoria created successfully",
         "loginSuccessful": "Login successful",
         "signupSuccessful": "Your account has been created successfully",
-        "failedUserListsLoading": "Failed to load dropdown lists"
+        "failedUserListsLoading": "Failed to load dropdown lists",
+        "failedHistory": "Failed to fetch timoria history"
+    },
+    "views": {
+        "timer": "Timer",
+        "summary": "Summary"
+    },
+    "summary": {
+        "title": "Timoria Summary",
+        "description": "Browse all your past Timorias",
+        "prevMonth": "Previous month",
+        "nextMonth": "Next month",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "applyRange": "Apply range",
+        "clearRange": "Clear range",
+        "noData": "No Timorias found for this period.",
+        "prevPage": "Previous",
+        "nextPage": "Next",
+        "page": "Page",
+        "rangeError": "Please select both start and end dates."
+    },
+    "months": {
+        "jan": "January",
+        "feb": "February",
+        "mar": "March",
+        "apr": "April",
+        "may": "May",
+        "jun": "June",
+        "jul": "July",
+        "aug": "August",
+        "sep": "September",
+        "oct": "October",
+        "nov": "November",
+        "dec": "December"
     }
 }
