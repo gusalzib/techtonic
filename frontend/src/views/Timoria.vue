@@ -207,11 +207,7 @@
 
 </section>
 
-<!-- Autocomplete Suggestions -->
-<div class="autocomplete-suggestions">
-  <div class="suggestion-item">{{ $t('suggestions.learnVue') }}</div>
-  <div class="suggestion-item">{{ $t('suggestions.fixBugs') }}</div>
-</div>
+
 
 </div>
 
@@ -649,7 +645,7 @@ export default {
 
         // start a break period after completing a Timoria
         startBreak() {
-            const breakDuration = 1;  // in minutes, set to 1 for testing purposes
+            const breakDuration = 10;  // in minutes, set to 1 for testing purposes
             if (!this.activeBreak) {
                 this.activeBreak = true;
                 this.activeTimoria = {

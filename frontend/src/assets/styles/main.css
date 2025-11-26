@@ -155,9 +155,11 @@
 } */
 
 
-body{
+body, html{
     margin: 0;
     background-color: var(--page-bg);
+    overflow-x: hidden;
+
 }
 
 #success {
@@ -283,10 +285,12 @@ hr {
 /*############################################### HEADER STYLE #######################################################*/
 /* Layout */
 .nav-header {
+  position: relative;
+  max-width: 100%;
   background-color: var(--dark-header);
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
+  
 }
 
 .nav-container {
@@ -345,6 +349,7 @@ hr {
   flex-direction: column;
   cursor: pointer;
   gap: 5px;
+  box-sizing: content-box;
 }
 
 .burger span {
@@ -367,17 +372,22 @@ hr {
 }
 
 /* Mobile */
-@media (max-width: 768px) {
+@media (max-width: 945px) {
+  .nav-header{
+    position: relative;
+  }
   .nav-links {
     position: absolute;
     top: 70px;
     right: 0;
+    left: 0;
     flex-direction: column;
     background-color: #2E8C6E;
     width: 100%;
     padding: 1rem;
     transform: translateX(100%);
     transition: transform 0.3s ease;
+    z-index: 1000; 
   }
 
   .nav-links.open {
@@ -397,26 +407,6 @@ select {
   border-radius: 50px;
   background-color: var(--tiffany-blue);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -581,8 +571,9 @@ select {
 }
 
 
-/* Style for the autocomplete suggestions */
-.autocomplete-suggestions {
+/* I removed the auto */
+/* Style for the autocomplete suggestions */ 
+/* .autocomplete-suggestions {
   max-width: 30%;
   margin: 0 auto;
   position: relative;
@@ -602,7 +593,7 @@ select {
 
 .suggestion-item:hover {
   background-color: var(--autocomplete-hover);
-}
+} */
 
 
 
@@ -961,7 +952,7 @@ select {
 
 }
 
-/*################################### TIMORIA SUMMARY ##################################################*/
+/*############################################################## TIMORIA SUMMARY ##############################################################*/
 
 .timoria-summary {
   margin: 2rem;
@@ -1063,6 +1054,113 @@ select {
   display: flex;
   gap: 1rem;
   align-items: center;
+}
+/*#################### TIMORIA SUMMARY – RESPONSIVE ####################*/
+
+@media (max-width: 768px) {
+  .timoria-summary {
+    margin: 1rem;
+    padding: 0.75rem;
+  }
+
+  .summary-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .month-navigation {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .custom-range {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .custom-range label {
+    width: 100%;
+  }
+
+  .custom-range input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .custom-range button,
+  .month-navigation button {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Make table horizontally scrollable instead of squashing */
+  .summary-table {
+    display: block;          /* so we can scroll the whole thing */
+    width: 100%;
+    overflow-x: auto;        /* horizontal scroll on small screens */
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.9rem;       /* slightly smaller text on mobile */
+  }
+
+  .summary-table table {
+    width: 100%;
+  }
+
+  .summary-table th,
+  .summary-table td {
+    white-space: nowrap;     /* keep columns readable; let user scroll */
+  }
+
+  .pagination {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagination button {
+    width: 100%;
+  }
+
+  .pagination span {
+    text-align: center;
+  }
+}
+/*#################### TABS – RESPONSIVE ####################*/
+@media (max-width: 1400px) {
+  .timoria-view-switcher {
+    width: 60%;
+    justify-content: center;
+    gap: 0;                 /* so buttons sit flush */
+  }
+
+  .view-tab {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+}
+@media (max-width: 1000px) {
+  .timoria-view-switcher {
+    width: 90%;
+    justify-content: center;
+    gap: 0;                 /* so buttons sit flush */
+  }
+
+  .view-tab {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timoria-view-switcher {
+    width: 95%;
+    margin: 10px auto;
+  }
+
+  .view-tab {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
 }
 
 /*################################### LOGIN STYLE ##################################################*/
