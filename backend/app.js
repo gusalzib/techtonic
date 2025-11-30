@@ -7,11 +7,19 @@ const mongoose = require('mongoose');
 // Import CORS middleware to allow cross-origin requests (from frontend to backend)
 const cors = require('cors');
 
+const morgan = require('morgan');
+
+
 // Load environment variables from a .env file into process.env
 require('dotenv').config();
 
 // Create an Express application instance
 const app = express();
+
+const authMiddleware = require('./authenticationMiddleware');
+
+// Middleware to log incoming HTTP requests
+app.use(morgan('dev'));
 
 // Enable CORS to allow the frontend (possibly on a different port) to access the backend
 app.use(cors());
@@ -26,17 +34,17 @@ app.get('/', (req, res) => {
 
 
 // Routes
-const timoriaRoutes = require('./routes/timoriaRoutes') // update the path if needed
+const timoriaRoutes = require('./routes/timoriaRoutes') 
+const userRoutes = require('./routes/userRoutes');
 
-app.use('/api/timoria', timoriaRoutes)
+
+app.use('/api/timoria', timoriaRoutes);
+app.use('/api/users', userRoutes);
 
 // Connect to MongoDB using the URI stored in the .env file
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,         // Use the new URL parser instead of the deprecated one
-  useUnifiedTopology: true       // Use the new server discovery and monitoring engine
-})
-  .then(() => console.log('MongoDB Connected')) // Log success if connected
-  .catch(err => console.error(err));            // Log error if connection fails
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // Define the port to listen on: from .env or fallback to 5000
 const PORT = process.env.PORT || 5000;

@@ -1,6 +1,6 @@
 <template>
   <button @click="toggleTheme" class="theme-toggle">
-    {{ isDark ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+    {{ isDark ? '☀️ ' + $t('nav.lighttheme'): '🌙 '  + $t('nav.darktheme') }}
   </button>
 </template>
 
@@ -23,6 +23,9 @@ export default {
       const html = document.documentElement
       html.classList.toggle('dark-theme', this.isDark)
       localStorage.setItem('theme', this.isDark ? 'dark' : 'light')
+
+      // emit a global event so charts can react to theme switches. Without it, chart labels will not switch color and there will be inconsistencies
+      // window.dispatchEvent(new Event('theme-changed'))
     }
   }
 }

@@ -10,6 +10,28 @@
     </div>
   </div>
   
+
+  <!-- Informative Cards Section -->
+    <section class="services-section">
+      <h2>{{ $t('home.our-services') }}</h2>
+      <div class="cards-container">
+        <div class="service-card" v-for="service in services" :key="service.key">
+          <img :src="service.icon" :alt="$t(`our-services.${service.key}.title`)" class="service-icon" />
+          <!-- getting the service title and desc from the locales files -->
+          <h3>{{ $t(`our-services.${service.key}.title`) }}</h3>
+          <p>{{ $t(`our-services.${service.key}.description`) }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Overview / About Section -->
+    <section class="about-section">
+      <h2>{{ $t('about.title') }}</h2>
+      <p>
+        {{ $t('about.description') }}
+      </p>
+    </section>
+
 </template>
 
 <script>
@@ -19,6 +41,36 @@ export default {
   name: 'HomeView',
   components: {
     
+  },
+  data() {
+    return {
+      services: [
+        {
+          key: "mobile-applications",
+          icon: require("../assets/images/mobile-applications.png")
+        },
+        {
+          key: "web-applications",
+          icon: require("../assets/images/web-applications.png")
+        },
+        {
+          key: "desktop-applications",
+          icon: require("../assets/images/desktop-applications.png")
+        },
+        {
+          key: "consultation",
+          icon: require("../assets/images/mobile-applications.png")
+        },
+        {
+          key: "ai-integration",
+          icon: require("../assets/images/ai-integrations.png")
+        },
+        {
+          key: "websites",
+          icon: require("../assets/images/websites.png")
+        },
+      ]
+    }
   }
 }
 </script>

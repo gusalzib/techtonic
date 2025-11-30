@@ -2,6 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { createI18n } from 'vue-i18n'
+import { createPinia } from 'pinia';
+
+// vue toastification library
+import Toast, { POSITION } from 'vue-toastification'
+import 'vue-toastification/dist/index.css' // getting the required styles
 
 // Import your language files
 import en from './locales/en.json'
@@ -26,6 +31,17 @@ export { i18n }
 
 // Create and mount app
 const app = createApp(App)
+
+// Create and use Pinia store
+const pinia = createPinia();
+app.use(pinia);
+
 app.use(i18n) // MUST come before mount
 app.use(router)
+app.use(Toast, {
+  position: POSITION.BOTTOM_CENTER,
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnHover: true,
+})
 app.mount('#app')

@@ -6,7 +6,11 @@
         "subjectPlaceholder": "Ämne",
         "topicPlaceholder": "Ämnesområde",
         "tagPlaceholder": "Etikett",
-        "taskPlaceholder": "Uppgiftsbeskrivning"
+        "taskPlaceholder": "Uppgiftsbeskrivning",
+        "hours": "timmar",
+        "hour": "timme",
+        "minutes": "minuter",
+        "minute": "minute"
     },
     "buttons": {
         "start": "Starta",
@@ -16,11 +20,18 @@
         "save": "Spara",
         "add": "Lägg till",
         "edit": "Redigera",
-        "undo": "Ångra"
+        "undo": "Ångra",
+        "apply": "Tillämpa",
+        "cancel": "Avbryt",
+        "finish": "Sluta",
+        "notify": "Notify",
+        "copy": "Kopiera"
     },
     "todayPomos": {
         "title": "Dagens Pomodoros",
-        "summary": "Sammanfattning av dagens sessioner:"
+        "summary": "Sammanfattning av dagens sessioner:",
+        "numberOfTodaysTimorias": "Antal sessioner",
+        "averageDurationPerTodaysTimorias": "Genomsnittlig tid per session"
     },
     "table": {
         "task": "Uppgift",
@@ -28,7 +39,15 @@
         "subject": "Ämne",
         "topic": "Ämnesområde",
         "tag": "Etikett",
-        "actions": "Åtgärder"
+        "actions": "Åtgärder",
+        "allSubjects": "Alla ämnen",
+        "allStatuses": "Alla statusar",
+        "allTags": "Alla etiketter",
+        "planned": "Planerad",
+        "ongoing": "Pågående",
+        "completed": "Färdigställd",
+        "date": "Datum",
+        "status": "Status"
     },
     "example": {
         "task": "Skriv blogginlägg",
@@ -45,7 +64,8 @@
         "subject": "Ämne",
         "tag": "Etikett",
         "task": "Uppgift",
-        "duration": "Varaktighet (min)"
+        "duration": "Varaktighet (min)",
+        "timeRange": "Tidsintervall (minuter)"
     },
     "suggestions": {
         "learnVue": "Lär dig Vue",
@@ -55,11 +75,130 @@
         "about": "Om",
         "timoria": "Timoria",
         "home": "Hem",
-        "blog": "Blog"
+        "blog": "Blog",
+        "login": "Logga in",
+        "logout": "Logga ut",
+        "signup": "Skapa nytt konto",
+        "statistics": "Statistik",
+        "darktheme": "Mörk tema",
+        "lighttheme": "Ljus tema"
     },
     "home": {
         "title": "Välkommen till Techtonic",
         "subtitle": "Planera dina fokuserade sessioner. Ha kontroll.",
-        "button": "Kom igång"
+        "button": "Kom igång",
+        "login": "Logga in",
+        "signup": "Skapa nytt konto",
+        "signupBtn": "Skapa konto",
+        "our-services": "Våra tjänster"
+    },
+    "our-services": {
+        "mobile-applications": {
+            "title": "Mobilapplikationer",
+            "description": "Skräddarsydda iOS- och Android-appar med fantastisk användarupplevelse och hög prestanda."
+        },
+        "web-applications": {
+            "title": "Webbapplikationer",
+            "description": "Responsiva, skalbara webbappar byggda med moderna ramverk."
+        },
+        "desktop-applications": {
+            "title": "Skrivbordsapplikationer",
+            "description": "Plattformsoberoende skrivbordsprogram för Windows, macOS och Linux."
+        },
+        "consultation": {
+            "title": "Konsultation",
+            "description": "Expertrådgivning för att guida din digitala transformationsresa."
+        },
+        "ai-integration": {
+            "title": "AI-integration",
+            "description": "Smart automatisering och AI-drivna lösningar anpassade till ditt företag."
+        },
+        "websites": {
+            "title": "Webbplatser",
+            "description": "Moderna, SEO-vänliga webbplatser för att lyfta fram ditt varumärke."
+        }
+    },
+    "about": {
+        "title": "Varför välja oss?",
+        "description": "På Timoria kombinerar vi banbrytande teknik med djup branschkunskap för att skapa skalbara, säkra och användarvänliga mjukvarulösningar. Oavsett om du är en startup eller ett företag anpassar vi våra tjänster efter dina unika behov."
+    },
+    "stats": {
+        "title": "Din produktivitetsstatistik",
+        "totalTimorias": "Totalt antal Timorias",
+        "totalTimeSpent": "Total tid spenderad",
+        "statusBreakdown": "Statusfördelning",
+        "timeSpentBySubject": "Tid spenderad per ämne",
+        "timeSpentByTag": "Tid spenderad per etikett",
+        "timeSpentByTopic": "Tid spenderad per ämnesområde",
+        "taskCompletionRate": "Uppgiftsfärdigställande",
+        "percent": "Procent",
+        "averageDuration": "Genomsnittlig varaktighet",
+        "filters": "Filter",
+        "totalTopics": "Totalt antal ämnesområden",
+        "totalSubjects": "Totalt antal ämnen",
+        "hours": "Timmar",
+        "minutes": "Minuter",
+        "seconds": "Sekunder",
+        "totalCompletedTimorias": "Totalt antal färdiga Timorias",
+        "averageTimePerActivityDay": "Genomsnittlig tid per aktivitetsdag",
+        "averageTimoriasPerActivityDay": "Genomsnittligt antal Timorias per aktivitetsdag",
+        "chartType": "Typ av diagram:",
+        "heatmapTitle": "Aktivitetsvärmekarta (Senaste 12 månaderna)",
+        "noData": "Ingen data tillgänglig för visning."
+    },
+    "modal": {
+        "confirmDeleteTitle": "Är du säker på att du vill ta bort denna Timoria?",
+        "confirmDeleteMessage": "Är du säker på att du vill ta bort denna Timoria? Du har begränsad tid att ångra denna åtgärd efter att du har godkänt.",
+        "cancel": "Avbryt",
+        "confirm": "Bekräfta"
+    },
+    "notification": {
+        "failedPlannedTimoria": "Kunde inte hämta planerade Timoria-sessioner.",
+        "failedTodayTimorias": "Kunde inte hämta dagens Timoria-sessioner.",
+        "timoriaSaveFailed": "Kunde inte spara Timoria.",
+        "failedUpdate": "Kunde inte uppdatera Timoria.",
+        "startFailed": "Kunde inte starta Timoria.",
+        "deletedSuccessfully": "Timoria har raderats.",
+        "failedDelete": "Kunde inte radera Timoria.",
+        "failedToUndo": "Kunde inte ångra åtgärden.",
+        "missingFields": "Kunde inte spara Timoria. Fält saknas.",
+        "timoriaSaved": "Timoria har skapats.",
+        "loginSuccessful": "Inloggning lyckades",
+        "signupSuccessful": "Ditt konto har skapats",
+        "failedUserListsLoading": "Kunde inte ladda användarlistor",
+        "failedHistory": "Det gick inte att hämta Timoria-historiken"
+    },
+    "views": {
+        "timer": "Timer",
+        "summary": "Översikt"
+    },
+    "summary": {
+        "title": "Timoriaöversikt",
+        "description": "Bläddra bland alla dina tidigare Timorias",
+        "prevMonth": "Föregående månad",
+        "nextMonth": "Nästa månad",
+        "startDate": "Startdatum",
+        "endDate": "Slutdatum",
+        "applyRange": "Använd intervall",
+        "clearRange": "Rensa intervall",
+        "noData": "Inga Timorias hittades för den här perioden.",
+        "prevPage": "Föregående",
+        "nextPage": "Nästa",
+        "page": "Sida",
+        "rangeError": "Välj både start- och slutdatum."
+    },
+    "months": {
+        "jan": "Januari",
+        "feb": "Februari",
+        "mar": "Mars",
+        "apr": "April",
+        "may": "Maj",
+        "jun": "Juni",
+        "jul": "Juli",
+        "aug": "Augusti",
+        "sep": "September",
+        "oct": "Oktober",
+        "nov": "November",
+        "dec": "December"
     }
 }

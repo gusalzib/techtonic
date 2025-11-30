@@ -1,51 +1,75 @@
 {
     "timer": {
         "title": "مؤقت بومودورو",
-        "defaultTime": "٠٠:٠٠",
-        "minutesPlaceholder": "الدقائق",
-        "subjectPlaceholder": "اسم المادة",
-        "topicPlaceholder": "الموضوع",
+        "defaultTime": "00:00",
+        "minutesPlaceholder": "دقائق",
+        "subjectPlaceholder": "موضوع",
+        "topicPlaceholder": "عنوان",
         "tagPlaceholder": "وسم",
-        "taskPlaceholder": "وصف المهمة"
+        "taskPlaceholder": "وصف المهمة",
+        "hours": "ساعات",
+        "hour": "ساعة",
+        "minutes": "دقائق",
+        "minute": "دقيقة"
     },
     "buttons": {
-        "start": "ابدأ",
+        "start": "بدء",
         "pause": "إيقاف مؤقت",
-        "reset": "إعادة ضبط",
+        "reset": "إعادة تعيين",
         "delete": "حذف",
         "save": "حفظ",
         "add": "إضافة",
         "edit": "تعديل",
-        "undo": "تراجع"
+        "undo": "تراجع",
+        "apply": "تطبيق",
+        "login" : "تسجيل دخول",
+        "logout" : "تسجيل خروج",
+        "signup" : "إنشاء حساب",
+        "cancel": "إلغاء",
+        "finish": "إنهاء",
+        "notify": "إشعار",
+        "copy": "نسخ"
     },
     "todayPomos": {
-        "title": "انجازات اليوم",
+        "title": "جلسات بومودورو اليوم",
         "summary": "ملخص جلسات اليوم:",
-        "total": "المدة الإجمالية"
+        "total": "المجموع",
+        "numberOfTodaysTimorias": "عدد الجلسات",
+        "averageDurationPerTodaysTimorias": "متوسط الوقت لكل جلسة"
     },
     "table": {
         "task": "المهمة",
         "duration": "المدة",
-        "subject": "المادة",
-        "topic": "الموضوع",
-        "tag": "الوسم"
+        "subject": "الموضوع",
+        "topic": "العنوان",
+        "tag": "الوسم",
+        "actions": "الإجراءات",
+        "allSubjects": "جميع المواضيع",
+        "allStatuses": "جميع الحالات",
+        "allTags": "جميع الوسوم",
+        "planned": "مخطط",
+        "ongoing": "قيد التنفيذ",
+        "completed": "مكتمل",
+        "date": "التاريخ",
+        "status": "الحالة"
     },
     "example": {
-        "task": "كتابة تدوينة",
-        "duration": "٢٥ دقيقة",
-        "subject": "الكتابة",
+        "task": "كتابة مقالة مدونة",
+        "duration": "25 دقيقة",
+        "subject": "كتابة",
         "topic": "بحث عن Vue",
-        "tag": "#روابط_vue"
+        "tag": "#روابط Vue"
     },
     "planned": {
-        "title": "الأنشطة المخطط لها"
+        "title": "جلسات تيموريا المخطط لها"
     },
     "inputs": {
-        "topic": "الموضوع",
-        "subject": "المادة",
+        "topic": "العنوان",
+        "subject": "الموضوع",
         "tag": "الوسم",
         "task": "المهمة",
-        "duration": "المدة (دقائق)"
+        "duration": "المدة (دقيقة)",
+        "timeRange": "النطاق الزمني (دقائق)"
     },
     "suggestions": {
         "learnVue": "تعلم Vue",
@@ -55,16 +79,133 @@
         "about": "حول",
         "timoria": "تيموريا",
         "home": "الرئيسية",
-        "blog": "مدونة"
-        
-    },
-    "time": {
-        "hours": "ساعات",
-        "minutes": "دقائق"
+        "blog": "مدونة",
+        "login": "تسجيل الدخول",
+        "signup": "إنشاء حساب",
+        "statistics": "إحصائيات",
+        "logout": "تسجيل خروج",
+        "darktheme": "الوضع المظلم",
+        "lighttheme": "الوضع المضيء"        
     },
     "home": {
-        "title": " ‎\u200ETechtonic مرحبًا بك في ", 
-        "subtitle": "خطط لجلسات التركيز الخاصة بك. تحكم في وقتك.",
-        "button": "ابدأ الآن"
+        "title": " ‎\u200ETechtonic مرحبًا بك في ",
+        "subtitle": "خطط لجلساتك المركزة. تحكم في وقتك.",
+        "button": "ابدأ الآن",
+        "login": "تسجيل الدخول",
+        "signup": "إنشاء حساب",
+        "signupBtn": "إنشاء حساب",
+        "our-services": "خدماتنا"
+    },
+    "our-services": {
+        "mobile-applications": {
+            "title": "تطبيقات الجوال",
+            "description": "تطبيقات آي أو إس وأندرويد مخصصة مع تجربة مستخدم مذهلة وأداء عالي."
+        },
+        "web-applications": {
+            "title": "تطبيقات الويب",
+            "description": "تطبيقات ويب سريعة الاستجابة وقابلة للتوسع مبنية بأحدث الأطر."
+        },
+        "desktop-applications": {
+            "title": "تطبيقات سطح المكتب",
+            "description": " برامج متعددة المنصات لأنظمة ويندوز و ماك"
+        },
+        "consultation": {
+            "title": "الاستشارات",
+            "description": "نصائح خبراء لمساعدتك في رحلتك نحو التحول الرقمي."
+        },
+        "ai-integration": {
+            "title": "دمج الذكاء الاصطناعي",
+            "description": "أتمتة ذكية وحلول مدعومة بالذكاء الاصطناعي مصممة خصيصًا لعملك."
+        },
+        "websites": {
+            "title": "المواقع الإلكترونية",
+            "description": "مواقع عصرية محسّنة لمحركات البحث لعرض علامتك التجارية."
+        }
+    },
+    "about": {
+        "title": "لماذا تختارنا؟",
+        "description": "في تيموريا، نجمع بين أحدث التقنيات والمعرفة العميقة بالصناعة لنصنع حلول برمجيات قابلة للتوسع وآمنة وسهلة الاستخدام. سواء كنت شركة ناشئة أو مؤسسة كبيرة، فإننا نخصص خدماتنا لتلبية احتياجاتك الفريدة."
+    },
+    "stats": {
+        "title": "إحصائيات إنتاجيتك",
+        "totalTimorias": "إجمالي جلسات تيموريا",
+        "totalTimeSpent": "إجمالي الوقت المستغرق",
+        "statusBreakdown": "توزيع الحالات",
+        "timeSpentBySubject": "الوقت المستغرق حسب المادة",
+        "timeSpentByTag": "الوقت المستغرق حسب الوسم",
+        "timeSpentByTopic": "الوقت المستغرق حسب الموضوع",
+        "taskCompletionRate": "معدل إكمال المهام",
+        "averageTimePerActivityDay": "متوسط الوقت لكل يوم نشاط",
+        "averageTimoriasPerActivityDay": "متوسط عدد جلسات تيموريا لكل يوم نشاط",
+        "percent": "نسبة مئوية",
+        "averageDuration": "المدة المتوسطة",
+        "filters": "الفلاتر",
+        "totalTopics": "إجمالي المواضيع",
+        "totalSubjects": "إجمالي المواد",
+        "hours": "ساعات",
+        "minutes": "دقائق",
+        "seconds": "ثواني",
+        "totalCompletedTimorias": "إجمالي جلسات تيموريا المكتملة",
+        "chartType": "نوع الرسم البياني:",
+        "filterBySubject": "تصفية حسب المادة:",
+        "allSubjects": "جميع المواضيع",
+        "heatmapTitle": "خريطة الحرارة للنشاط (آخر 12 شهرًا)",
+        "noData": "لا توجد بيانات للعرض.",
+        "noDataForFilters": "لا توجد بيانات تطابق الفلاتر الحالية."
+    },
+    "modal": {
+        "confirmDeleteTitle": "هل أنت متأكد أنك تريد حذف هذه الجلسة؟",
+        "confirmDeleteMessage": "هل أنت متأكد أنك تريد حذف هذه الجلسة؟ لديك وقت محدود للتراجع عن هذا الإجراء بعد الموافقة.",
+        "cancel": "إلغاء",
+        "confirm": "تأكيد"
+    },
+    "notification": {
+        "failedPlannedTimoria": "فشل في جلب جلسات تيموريا المخطط لها.",
+        "failedTodayTimorias": "فشل في جلب جلسات تيموريا الخاصة باليوم.",
+        "timoriaSaveFailed": "فشل في حفظ تيموريا.",
+        "failedUpdate": "فشل في تحديث تيموريا.",
+        "startFailed": "فشل في بدء تيموريا.",
+        "deletedSuccessfully": "تم حذف تيموريا بنجاح.",
+        "failedDelete": "فشل في حذف تيموريا.",
+        "failedToUndo": "فشل في التراجع عن العملية.",
+        "missingFields": "فشل في حفظ تيموريا. هناك حقول مفقودة.",
+        "timoriaSaved": "تم إنشاء تيموريا بنجاح.",
+        "loginSuccessful": "تم تسجيل الدخول بنجاح",
+        "signupSuccessful": "تم إنشاء حسابك بنجاح",
+        "failedUserListsLoading": "فشل في تحميل قوائم المستخدم ",
+        "failedHistory": "فشل في جلب سجلّ تيموريا"
+    },
+    "views": {
+        "timer": "المؤقّت",
+        "summary": "ملخّص الجلسات"
+    },
+    "summary": {
+        "title": "ملخّص تيموريا",
+        "description": "تصفّح جميع جلسات تيموريا السابقة",
+        "prevMonth": "الشهر السابق",
+        "nextMonth": "الشهر التالي",
+        "startDate": "تاريخ البداية",
+        "endDate": "تاريخ النهاية",
+        "applyRange": "تطبيق الفترة",
+        "clearRange": "مسح الفترة",
+        "noData": "لا توجد أي تيموريا في هذه الفترة.",
+        "prevPage": "السابق",
+        "nextPage": "التالي",
+        "page": "الصفحة",
+        "rangeError": "يُرجى اختيار تاريخ البداية وتاريخ النهاية معاً."
+    },
+    "months": {
+        "jan": "يناير",
+        "feb": "فبراير",
+        "mar": "مارس",
+        "apr": "أبريل",
+        "may": "مايو",
+        "jun": "يونيو",
+        "jul": "يوليو",
+        "aug": "أغسطس",
+        "sep": "سبتمبر",
+        "oct": "أكتوبر",
+        "nov": "نوفمبر",
+        "dec": "ديسمبر"
     }
 }

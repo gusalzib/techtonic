@@ -1,4 +1,23 @@
 <template>
+
+  <!-- In-page header to switch views -->
+  <header class="timoria-view-switcher">
+    <button
+      :class="['view-tab', { active: activeView === 'timer' }]"
+      @click="activeView = 'timer'"
+    >
+      ⏱ {{ $t('views.timer') || 'Timer' }}
+    </button>
+    <button
+      :class="['view-tab', { active: activeView === 'summary' }]"
+      @click="activeView = 'summary'"
+    >
+      📊 {{ $t('views.summary') || 'Summary' }}
+    </button>
+  </header>
+
+
+<div v-if="activeView === 'timer'">
 <!-- Timer Section -->
 <Timer :timoria="activeTimoria" :key="activeTimoria?._id" 
     @completed="handleCompletedTimoria" 
@@ -9,6 +28,7 @@
     @updateTodaysTimorias="handleUpdateTodaysTimorias"
     @break-finished="handleBreakFinished"
     />
+
 
 
 <!-- Today’s Pomodoros Section -->
@@ -46,10 +66,11 @@
         <td v-else><input v-model="editForm.tag" /></td>
 
         <td>
-        <button v-if="editIndex !== index" @click="enableEdit(index, timoria)">
+        <button class="timoria-actions-btn" @click="createTimoriaCopy(timoria)">🗍 {{ $t('buttons.copy') || 'Copy' }}</button> 
+        <button class="timoria-actions-btn" v-if="editIndex !== index" @click="enableEdit(index, timoria)">
             ✏️ {{ $t('buttons.edit') || 'Edit' }}
         </button>
-        <button v-else @click="saveEdit(timoria._id)">💾 {{ $t('buttons.save') || 'Save' }}</button>
+        <button class="timoria-actions-btn" v-else @click="saveEdit(timoria._id)">💾 {{ $t('buttons.save') || 'Save' }}</button>
         <button class="delete-btn" @click="deleteTimoria(timoria._id)">{{ $t('buttons.delete') }}</button>
         </td>
     </tr>
@@ -59,71 +80,75 @@
 
   </table>
 
-<!-- Mobile card layout -->
-<div class="pomo-card" v-for="(timoria, index) in todayTimorias" :key="'card-' + timoria._id">
-  <div class="pomo-card-content">
-    <div class="pomo-card-item">
-      <strong>{{ $t('table.task') }}:</strong>
-      <span v-if="editIndex !== index">{{ timoria.task || '—' }}</span>
-      <input v-else v-model="editForm.task" />
+    <!-- Mobile card layout -->
+    <div class="pomo-card" v-for="(timoria, index) in todayTimorias" :key="'card-' + timoria._id">
+    <div class="pomo-card-content">
+        <div class="pomo-card-item">
+        <strong>{{ $t('table.task') }}:</strong>
+        <span v-if="editIndex !== index">{{ timoria.task || '—' }}</span>
+        <input v-else v-model="editForm.task" />
+        </div>
+
+        <div class="pomo-card-item">
+        <strong>{{ $t('table.duration') }}:</strong>
+        <span v-if="editIndex !== index">{{ timoria.duration }} min</span>
+        <input v-else v-model="editForm.duration" type="number" />
+        </div>
+
+        <div class="pomo-card-item">
+        <strong>{{ $t('table.subject') }}:</strong>
+        <span v-if="editIndex !== index">{{ timoria.subject }}</span>
+        <input v-else v-model="editForm.subject" />
+        </div>
+
+        <div class="pomo-card-item">
+        <strong>{{ $t('table.topic') }}:</strong>
+        <span v-if="editIndex !== index">{{ timoria.topic }}</span>
+        <input v-else v-model="editForm.topic" />
+        </div>
+
+        <div class="pomo-card-item">
+        <strong>{{ $t('table.tag') }}:</strong>
+        <span v-if="editIndex !== index">{{ timoria.tag || '—' }}</span>
+        <input v-else v-model="editForm.tag" />
+        </div>
+    </div>
+    <!-- Add a separating line between buttons and the rest of text -->
+    <hr> 
+    <div class="card-actions">
+        
+        <button class="delete-btn" @click="deleteTimoria(timoria._id)">
+        {{ $t('buttons.delete') }}
+        </button>
+        <button class="save-btn" @click="createTimoriaCopy(timoria)">🗍 {{ $t('buttons.copy') || 'Copy' }}</button> 
+        <button v-if="editIndex !== index" class="save-btn" @click="enableEdit(index, timoria)">
+        {{ $t('buttons.edit') }}
+        </button>
+        <button v-else class="save-btn" @click="saveEdit(timoria._id)">
+        {{ $t('buttons.save') }}
+        </button>
     </div>
 
-    <div class="pomo-card-item">
-      <strong>{{ $t('table.duration') }}:</strong>
-      <span v-if="editIndex !== index">{{ timoria.duration }} min</span>
-      <input v-else v-model="editForm.duration" type="number" />
-    </div>
 
-    <div class="pomo-card-item">
-      <strong>{{ $t('table.subject') }}:</strong>
-      <span v-if="editIndex !== index">{{ timoria.subject }}</span>
-      <input v-else v-model="editForm.subject" />
-    </div>
 
-    <div class="pomo-card-item">
-      <strong>{{ $t('table.topic') }}:</strong>
-      <span v-if="editIndex !== index">{{ timoria.topic }}</span>
-      <input v-else v-model="editForm.topic" />
     </div>
-
-    <div class="pomo-card-item">
-      <strong>{{ $t('table.tag') }}:</strong>
-      <span v-if="editIndex !== index">{{ timoria.tag || '—' }}</span>
-      <input v-else v-model="editForm.tag" />
-    </div>
-  </div>
-
-  <div class="card-actions">
-    <button class="delete-btn" @click="deleteTimoria(timoria._id)">
-      {{ $t('buttons.delete') }}
+    <p class="total-time">
+    🧮 {{ $t('todayPomos.total') }}: {{ totalTodayDuration }}
+    | {{ $t('todayPomos.numberOfTodaysTimorias') }}: {{ numberOfTodaysTimorias }}
+    | {{ $t('todayPomos.averageDurationPerTodaysTimorias') }}: {{ averageDurationPerTodaysTimorias }}
+    </p>
+    <!-- UNDO BUTTON BLOCK -->
+    <!-- When deleting a timoria, we add it to the undoStack. 
+    Then if the stack length is bigger than 0, the undo button become visible -->
+    <transition name="slide-fade">
+    <button
+        v-if="undoStack.length"
+        class="undo-btn"
+        @click="undoDelete"
+    >
+        {{ $t('buttons.undo') || 'Undo Delete' }}
     </button>
-
-    <button v-if="editIndex !== index" class="save-btn" @click="enableEdit(index, timoria)">
-      {{ $t('buttons.edit') }}
-    </button>
-    <button v-else class="save-btn" @click="saveEdit(timoria._id)">
-      {{ $t('buttons.save') }}
-    </button>
-  </div>
-
-
-
-</div>
-<p class="total-time">
-  🧮 {{ $t('todayPomos.total') }}: {{ totalTodayDuration }}
-</p>
-<!-- UNDO BUTTON BLOCK -->
- <!-- When deleting a timoria, we add it to the undoStack. 
-  Then if the stack length is bigger than 0, the undo button become visible -->
-<transition name="slide-fade">
-  <button
-    v-if="undoStack.length"
-    class="undo-btn"
-    @click="undoDelete"
-  >
-    {{ $t('buttons.undo') || 'Undo Delete' }}
-  </button>
-</transition>
+    </transition>
 
     
 </section>
@@ -134,9 +159,19 @@
 
   <form>
     <input v-model.number="duration" type="number" class="timer-input" :placeholder="$t('timer.minutesPlaceholder')" required/>
-    <input v-model="subject" type="text" class="timer-input" :placeholder="$t('timer.subjectPlaceholder')" required/>
-    <input v-model="topic" type="text" class="timer-input" :placeholder="$t('timer.topicPlaceholder')" required/>
-    <input v-model="tag" type="text" class="timer-input" :placeholder="$t('timer.tagPlaceholder')" />
+    <input v-model="subject" type="text" class="timer-input" list="subjectList" :placeholder="$t('timer.subjectPlaceholder')" required/>
+    <datalist id="subjectList">
+        <!-- 's' stands for subject. this is to avoid mixing up with the word subject that appears in the line before in v-model -->
+        <option v-for="s in userSubjects" :key="s" :value="s"></option>
+    </datalist>
+    <input v-model="topic" type="text" class="timer-input" list="topicList" :placeholder="$t('timer.topicPlaceholder')" required/>
+    <datalist id="topicList">
+        <option v-for="t in userTopics" :key="t" :value="t"></option>
+    </datalist>
+    <input v-model="tag" type="text" class="timer-input" list="tagList" :placeholder="$t('timer.tagPlaceholder')" />
+    <datalist id="tagList">
+        <option v-for="tg in userTags" :key="tg" :value="tg"></option>
+    </datalist>
     <input v-model="task" type="text" class="timer-input" :placeholder="$t('timer.taskPlaceholder')" />
     <button type="button" id="addPlannedTimoriaBtn" @click="createTimoria">{{ $t('buttons.add') }}</button>
   </form>
@@ -154,7 +189,7 @@
         <button class="start-btn" @click="startTimoria(timoria)">
         {{ $t('buttons.start') }}
         </button>
-
+        <button class="start-btn" @click="createTimoriaCopy(timoria)">🗍 {{ $t('buttons.copy') || 'Copy' }}</button> 
         <button class="delete-btn" @click="deleteTimoria(timoria._id)">{{ $t('buttons.delete') }}</button>
         </div>
     </li>
@@ -172,35 +207,54 @@
 
 </section>
 
-<!-- Autocomplete Suggestions -->
-<div class="autocomplete-suggestions">
-  <div class="suggestion-item">{{ $t('suggestions.learnVue') }}</div>
-  <div class="suggestion-item">{{ $t('suggestions.fixBugs') }}</div>
+
+
 </div>
 
-
+<div v-else-if="activeView === 'summary'">
+    <TimoriaSummary/>
+</div>
 </template>
 
 
 <script>
 // @ is an alias to /src
-import axios from 'axios'
-import Timer from '../components/Timer'
-import dingSound from '@/assets/audio/ding.mp3'
+import axios from 'axios' // for http POST/PUT/DELETE requests
+import Timer from '../components/Timer' // timer component that runs countdowns
+import TimoriaSummary from '../components/TimoriaSummary';
+import dingSound from '@/assets/audio/ding.mp3' // sound to play when timoria ends
+import { confirm as appConfirm } from '@/services/confirmService' // import the confirm function
+import { useToast } from 'vue-toastification'
 
 export default {
     name: 'Timoria',
+    /**
+     * --------------------------------------------------------
+     *                  DATA SECTION
+     * --------------------------------------------------------
+     * Holds all reactive state variables for this page/view
+     * Vue automatically makes these reactive and binds them to the template
+     */
     data() {
         return {
+            // fields bound to the form inputs for creating a new Timoria (study sessions)
             subject: '',
             topic: '',
             tag: '',
             task: '',
             duration: null,
+
+            activeView: 'timer',
+
+            // backend API endpoint for Timoria CRUD operations
             url: 'http://localhost:5000/api/timoria',
+
+            // arrays holding current Timorias in different categories
             plannedTimorias: [],
             todayTimorias: [],
             undoStack: [],
+
+            // inline editing state
             editIndex: null,
             editForm: {
                 subject: '',
@@ -209,37 +263,98 @@ export default {
                 task: '',
                 duration: '',
             },
+
+            // timer control state
             activeTimoria: null,
             activeBreak: false,
+
+            // placeholders for currently updated Timoria (used when syncing updates)
             timoria: {
                 subject: '',
                 topic: '',
                 tag: '',
                 task: '',
                 duration: '',
-            }
+            },
+
+            toast: null, // will be set in mounted()
+
+            // dropdown & type-ahead lists 
+            userSubjects: [],
+            userTopics: [],
+            userTags: [],
         }
     },
+    /**
+     * --------------------------------------------------------
+     *                        COMPONENTS
+     * --------------------------------------------------------
+     * Registers the imported Timer component for local use
+     * 
+     */
     components: {
-        Timer
+        Timer,
+        TimoriaSummary
     },
+    /**
+     * --------------------------------------------------------
+     *                      COMPUTED PROPERTIES 
+     * --------------------------------------------------------
+     * Computed properties are reactive values derived from data
+     * They automatically update/re-calculate when their dependencies change
+     */
     computed: {
         totalTodayDuration() {
             const totalMinutes = this.todayTimorias.reduce((sum, t) => sum + Number(t.duration || 0), 0)
             const hours = Math.floor(totalMinutes / 60)
             const minutes = totalMinutes % 60
-            return `${hours} ${this.$t('time.hours')} ${minutes} ${this.$t('time.minutes')}`
+            return `${hours} ${this.$t('timer.hours')} ${minutes} ${this.$t('timer.minutes')}`
+        },
+        numberOfTodaysTimorias() {
+            const totalCount = this.todayTimorias.length
+            return totalCount
+        },
+        averageDurationPerTodaysTimorias() {
+            if (this.todayTimorias.length === 0) {
+                return `0 ${this.$t('timer.hours')} 0 ${this.$t('timer.minutes')}`
+            }
+            const totalMinutes = this.todayTimorias.reduce((sum, t) => sum + Number(t.duration || 0), 0)
+            const average = totalMinutes / this.todayTimorias.length
+            const hours = Math.floor(average / 60)
+            const minutes = average % 60
+            return `${hours} ${this.$t('timer.hours')} ${minutes.toFixed(1)} ${this.$t('timer.minutes')}`
         }
     },
 
+    /**
+     * --------------------------------------------------------
+     *                        LIFECYCLE HOOKS
+     * --------------------------------------------------------
+     * Vue lifecycle hooks allow you to run code at specific stages
+     * of the component's lifecycle (creation, mounting, updating, etc.)
+     * When the component mounts, fetch the initial data from the server
+     */
     mounted() {
-        console.log('Locale:', this.$i18n.locale)
-        console.log('t(timer.title):', this.$t('timer.title'))
-        console.log('Available messages:', this.$i18n.messages)
+        // console.log('Locale:', this.$i18n.locale)
+        // console.log('t(timer.title):', this.$t('timer.title'))
+        // console.log('Available messages:', this.$i18n.messages)
         this.getPlannedTimorias()
         this.getTodaysTimorias()
+
+        this.toast = useToast()
+
+        this.getDistinctLists();
     },
+    /**
+     * --------------------------------------------------------
+     *                        METHODS
+     * --------------------------------------------------------
+     * Methods are functions that can be called from the template
+     * or other parts of the component to perform actions
+     */
     methods: {
+
+        // create a new Timoria (study session) by sending a POST request to the backend
         async createTimoria() {
             try {
                 const payload = {
@@ -250,12 +365,27 @@ export default {
                     duration: this.duration,
                     status: 'planned' 
                 }
+                const token = localStorage.getItem('token');
+                const response = await axios.post(`${this.url}`, payload, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
 
-                const response = await axios.post(`${this.url}`, payload);
-                alert('Timoria saved successfully');
-                console.log('Saved: ', response.data);
+                // the alert is not needed for when timoria is created successfully
+                // we can replace it with a toast notification 
+                // alert('Timoria saved successfully');
+                // console.log('Saved: ', response.data);
+                /**
+                 * If this.$toast is defined, then call success().
+                 * If it’s undefined or null, just do nothing.
+                 * 
+                 * The ? is a safety net to avoid runtime errors in case
+                 * the toast plugin isn’t properly installed or available.
+                 */  
+                this.toast && this.toast.success(this.$t('notification.timoriaSaved') || 'Timoria saved successfully')
 
-                // reset form
+                // reset form and refresh the planned Timorias list
                 this.subject = '';
                 this.topic = '';
                 this.tag = '';
@@ -263,12 +393,53 @@ export default {
                 this.duration = '';
 
                 this.getPlannedTimorias() // update the list right after adding the Timoria
+
             } catch (error) {
-                console.log('Error: ', error.message);
-                alert('Failed to save Timoria.');
+
+                this.toast && this.toast.error(this.$t('notification.timoriaSaveFailed') || 'Failed to save Timoria.');
+                //console.log('Error: ', error.message);
+                // alert('Failed to save Timoria.');
 
             }
         },
+
+        async createTimoriaCopy(timoria) {
+            try {
+                const payload = {
+                    subject: timoria.subject,
+                    topic: timoria.topic,
+                    tag: timoria.tag,
+                    task: timoria.task,
+                    duration: timoria.duration,
+                    status: 'planned' 
+                }
+                const token = localStorage.getItem('token');
+                const response = await axios.post(`${this.url}`, payload, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                this.toast && this.toast.success(this.$t('notification.timoriaSaved') || 'Timoria saved successfully')
+
+                // reset form and refresh the planned Timorias list
+                this.subject = '';
+                this.topic = '';
+                this.tag = '';
+                this.task = '';
+                this.duration = '';
+
+                this.getPlannedTimorias() // update the list right after adding the Timoria
+
+            } catch (error) {
+
+                this.toast && this.toast.error(this.$t('notification.timoriaSaveFailed') || 'Failed to save Timoria.');
+            }
+
+            
+        },
+
+        // get all planned Timorias from the backend
         async getPlannedTimorias() {
             try {
                 const response = await fetch(`${this.url}?status=planned`)
@@ -277,14 +448,32 @@ export default {
 
                 this.plannedTimorias = data;
             } catch (error) {
-                console.error('Failed to fetch Timorias:', error)
-                alert('Failed to get planned Timorias.')
+                // console.error('Failed to fetch Timorias:', error)
+                // alert('Failed to get planned Timorias.')
+                this.toast && this.toast.error(this.$t('notification.failedPlannedTimoria') || 'Failed to get planned Timorias.');
+
             }
         },
-        async deleteTimoria(id) {
-            // confirm deletion 
-            const confirmed = confirm('Are you sure you want to delete this item?')
-            if (!confirmed) return
+
+        // delete a Timoria by its ID (either planned or today's). Adds to undo stack for recovery
+        async deleteTimoria(id) {            
+            // confirm deletion
+            // const confirmed = confirm('Are you sure you want to delete this item?')
+
+                /**
+                 * Replacing the alert with a more user-friendly modal notification
+                 * using the ConfirmHost component and confirmStore.
+                 * This provides a better UX by avoiding disruptive alert pop-ups.
+                 */
+            const ok = await appConfirm({
+                title: this.$t('modal.confirmDeleteTitle') || 'Delete Timoria?',
+                message: this.$t('modal.confirmDeleteMessage') || 'Delete Timoria?',
+                confirmText: this.$t('modal.confirm') || 'Delete Timoria?',
+                cancelText: this.$t('modal.cancel') || 'Cancel',
+
+            })
+            if (!ok) return
+
 
             // Find the timoria you're about to delete. this is useful for the undo feature. we need to get the element before deleting it
             const toDelete = this.plannedTimorias.find(t => t._id === id) || this.todayTimorias.find(t => t._id === id)
@@ -300,42 +489,63 @@ export default {
 
                 this.getPlannedTimorias() // update the list right after deleting the Timoria
                 this.getTodaysTimorias() // update the list or today's timorias right after deleting a  Timoria
+
+                // notify the user that the deletion was successfull
+                this.toast && this.toast.success(this.$t('notification.deletedSuccessfully') || 'Timoria deleted successfully');
+
             } catch (err) {
-                console.error('Error deleting timoria:', err)
+
+                this.toast && this.toast.error(this.$t('notification.failedDelete') || 'Failed to delete Timoria.');
+                //console.error('Error deleting timoria:', err)
             }
 
 
         },
 
+        // restore the last deleted Timoria (undo delete)
         async undoDelete() {
             const lastDeleted = this.undoStack.pop()
             if (lastDeleted) {
                 try {
-                    const res = await axios.post(`${this.url}`, lastDeleted)
+                    const token = localStorage.getItem('token');
+                    const res = await axios.post(`${this.url}`, lastDeleted, {
+                        headers: token ? { Authorization: `Bearer ${token}` } : {}
+                    });
                     this.plannedTimorias.unshift(res.data)
                     this.getPlannedTimorias() // update the list right after undoing the Timoria
                     this.getTodaysTimorias() // update the list or today's timorias right after undoing a  Timoria
                 } catch (err) {
-                    console.error('Error restoring timoria:', err)
+
+                    this.toast && this.toast.error(this.$t('notification.failedToUndo') || 'Failed to undo action.');
+                    //console.error('Error restoring timoria:', err)
                 }
             }
         },
+
+        // get today's Timorias from the backend (for the summary table)
         async getTodaysTimorias() {
             try {
-                const res = await fetch(`${this.url}/today`)
+                const token = localStorage.getItem('token');
+                const res = await fetch(`${this.url}/today`, {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {}
+                });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
                 const data = await res.json()
                 this.todayTimorias = data
             } catch (err) {
-                console.error('Failed to fetch today\'s timorias:', err)
+                this.toast && this.toast.error(this.$t('notification.failedTodayTimorias') || 'Failed to fetch today\'s timorias.');
+                //console.error('Failed to fetch today\'s timorias:', err)
             }
         },
 
+        // enable inline editing for a specific Timoria
         enableEdit(index, timoria) {
             this.editIndex = index
-            this.editForm = { ...timoria }
+            this.editForm = { ...timoria } // populate form with existing data, so that the user can then change this data if they want to
 
         },
 
+        // save the edited Timoria by sending a PUT request to the backend
         async saveEdit(id) {
             try {
                 const res = await fetch(`${this.url}/${id}`, {
@@ -348,25 +558,38 @@ export default {
                 this.todayTimorias.splice(this.editIndex, 1, updated)
                 this.editIndex = null
             } catch (err) {
-                console.error('Update failed:', err)
+                this.toast && this.toast.error(this.$t('notification.failedUpdate') || 'Failed to update Timoria.');
+                //console.error('Update failed:', err)
             }
         },
-        startTimoria(timoria) {
-            console.log('Starting timoria:', timoria)
+        // start a Timoria (study session) by setting it as active and updating its status in the backend
+        async startTimoria(timoria) {
+            //console.log('Starting timoria:', timoria)
             this.activeTimoria = { ...timoria }
 
 
-            //  mark it as 'ongoing' in the DB
-            fetch(`${this.url}/${timoria._id}`, {
-                method: 'PUT',
-                headers: { 
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ status: 'ongoing' })
-            }).catch(err => console.error('Failed to mark timoria as ongoing:', err));
+            try {
+                //  mark it as 'ongoing' in the DB
+                const response = await fetch(`${this.url}/${timoria._id}`, {
+                    method: 'PUT',
+                    headers: { 
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ status: 'ongoing' })
+                }) 
+
+                if (!response.ok) {
+                    throw new Error('Failed to start Timoria.') // this will be caught in the catch block below
+                }
+            } catch(err) {
+                this.toast && this.toast.error(this.$t('notification.startFailed') || 'Failed to start Timoria.')
+            }
 
             this.getPlannedTimorias()
         },
+
+        // handle event from timer when a Timoria is completed. This for when the user
+        // clicks on the Finish button while the timer is running
         handleCompletedTimoria(id) {
             this.activeTimoria = null
             // start a break right after the timer finishes
@@ -374,6 +597,8 @@ export default {
             this.getPlannedTimorias()
             this.getTodaysTimorias()
         },
+
+        // cancel current timer -- reset active Timoria and refresh planned list
         handleCancelTimer() {
             // Reset the active Timoria or update UI as necessary
             this.activeTimoria = null;
@@ -384,6 +609,8 @@ export default {
                 this.getPlannedTimorias();
             });
         },
+
+        // finish timer normally and start break 
         handleFinishTimer() {
             // Reset the active Timoria or update UI as necessary
             this.activeTimoria = null;
@@ -397,20 +624,28 @@ export default {
                 this.getPlannedTimorias();
             });
         },
+
+        // receive updated Timoria from child Timer component
         updateTimoria(updatedTimoria) {
-            console.log('Updated Timoria received in parent:', updatedTimoria);
+            //console.log('Updated Timoria received in parent:', updatedTimoria);
 
             this.timoria = updatedTimoria;
 
         },
+
+        // refresh planned Timorias list when notified by child Timer component
         handleUpdatePlannedTimorias() {
             this.getPlannedTimorias();
         },
+
+        // refresh today's Timorias list when notified by child Timer component
         handleUpdateTodaysTimorias() {
             this.getTodaysTimorias();
         },
+
+        // start a break period after completing a Timoria
         startBreak() {
-            const breakDuration = 1; 
+            const breakDuration = 10;  // in minutes, set to 1 for testing purposes
             if (!this.activeBreak) {
                 this.activeBreak = true;
                 this.activeTimoria = {
@@ -424,8 +659,10 @@ export default {
 
 
             
-            console.log('Break started:', this.activeTimoria);
+            //console.log('Break started:', this.activeTimoria);
         },
+
+        // Called when the break timer finishes. Triggers browser notification and sound
         handleBreakFinished() {
             this.activeBreak = false;
             // Push browser notification
@@ -454,11 +691,55 @@ export default {
             // Optionally, update state or reset break status here
             // this.isOnBreak = false;
         },
+
+        // play a sound notification when a Timoria or break ends
         playTimoriaSound() {
             const audio = new Audio(dingSound)
             audio.play()
+        },
+        async getDistinctLists() {
+
+        try {
+            const token = localStorage.getItem('token'); // because the path requires authentication
+            const response = await axios.get(`${this.url}/taxonomy`, {
+                headers: token ? { Authorization: `Bearer ${token}` } : {}
+            });
+
+            if (response.status === 200) {
+                    
+                    this.userSubjects = response.data.subjects;
+                    this.userTopics = response.data.topics;
+                    this.userTags = response.data.tags;
+                    
+                } else {
+                    this.toast && this.toast.error(this.$t('notification.failedUserListsLoading') || 'Failed to load user lists.')
+                }
+            } catch (error) {
+                this.toast && this.toast.error(this.$t('notification.failedUserListsLoading') || 'Failed to load user lists.')
+            }
         }
+    },
+    getSubjects() {
+        document.getElementById("subject").classList.toggle("show");
+
+        window.onclick = function (event) {
+            if (!event.target.matches('.subject-dropdown')) {
+                var dropdowns = document.getElementsByClassName("subject-dropdown");
+                var i; 
+
+                for (i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show')
+                    }
+                    
+                }
+            }
+        }
+
     }
 }
+    
 </script>
 <style src="../assets/styles/main.css"></style>
