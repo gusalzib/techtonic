@@ -15,6 +15,10 @@ router.post('/login', userController.login);
 // Protect logout so it is available only to logged-in users
 router.post('/logout', userController.logout);
 
+// protected endpoint to get and update the user profile 
+router.get('/profile', authMiddleware.checkAuth, userController.getUserProfile);
+router.put('/profile', authMiddleware.checkAuth, userController.updateUserProfile);
+
 
 // Protected route to get user status (only accessible to logged-in users)
 router.get('/status', authMiddleware.checkAuth, authMiddleware.getUserStatus);
