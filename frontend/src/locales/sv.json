@@ -81,7 +81,8 @@
         "signup": "Skapa nytt konto",
         "statistics": "Statistik",
         "darktheme": "Mörk tema",
-        "lighttheme": "Ljus tema"
+        "lighttheme": "Ljus tema",
+        "profile": "Konto"
     },
     "home": {
         "title": "Välkommen till Techtonic",
@@ -166,7 +167,33 @@
         "loginSuccessful": "Inloggning lyckades",
         "signupSuccessful": "Ditt konto har skapats",
         "failedUserListsLoading": "Kunde inte ladda användarlistor",
-        "failedHistory": "Det gick inte att hämta Timoria-historiken"
+        "failedHistory": "Det gick inte att hämta Timoria-historiken.",
+        "loadingFailed": "Laddningen misslyckades.",
+        "somethingWentWrong": "Något gick fel.",
+        "duplicateInformation": "Det finns redan ett konto med denna e-post eller användarnamn.",
+        "sessionExpired": "Din session har gått ut.",
+        "failedToLoadUserInfo": "Det gick inte att ladda användaruppgifter.",
+        "updateSuccessful": "Uppdateringen lyckades."
+    },
+    "sidebar": {
+        "menu": "Meny",
+        "profile": "Profil",
+        "favorite_songs": "Favoritsånger",
+        "history": "Historik"
+    },
+    "profile": {
+        "updateInfo": "Uppdatera",
+        "editProfile": "Redigera profil"
+    },
+    "labels": {
+        "email": "E-post",
+        "password": "Lösenord",
+        "username": "Användarnamn",
+        "ShowPassword": "Visa lösenord",
+        "role": "Kontotyp",
+        "accountCreatedAt": "Konto skapades",
+        "timezone": "Tidszon",
+        "currentTimezone": "Nuvarande tidszon"
     },
     "views": {
         "timer": "Timer",

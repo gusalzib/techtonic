@@ -173,7 +173,33 @@
         "loginSuccessful": "تم تسجيل الدخول بنجاح",
         "signupSuccessful": "تم إنشاء حسابك بنجاح",
         "failedUserListsLoading": "فشل في تحميل قوائم المستخدم ",
-        "failedHistory": "فشل في جلب سجلّ تيموريا"
+        "failedHistory": "فشل في جلب سجلّ تيموريا",
+        "loadingFailed": "فشل التحميل.",
+        "somethingWentWrong": "حدث خطأ ما.",
+        "duplicateInformation": "يوجد حساب بنفس البريد الإلكتروني أو اسم المستخدم.",
+        "sessionExpired": "انتهت صلاحية الجلسة.",
+        "failedToLoadUserInfo": "فشل في تحميل بيانات المستخدم.",
+        "updateSuccessful": "تم التحديث بنجاح."
+    },
+    "sidebar": {
+        "menu": "القائمة",
+        "profile": "الملف الشخصي",
+        "favorite_songs": "الأغاني المفضلة",
+        "history": "السجل"
+    },
+    "profile": {
+        "updateInfo": "تحديث",
+        "editProfile": "تعديل الملف الشخصي"
+    },
+    "labels": {
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "username": "اسم المستخدم",
+        "ShowPassword": "إظهار كلمة المرور",
+        "role": "نوع الحساب",
+        "accountCreatedAt": "تاريخ إنشاء الحساب",
+        "timezone": "المنطقة الزمنية",
+        "currentTimezone": "المنطقة الزمنية الحالية"
     },
     "views": {
         "timer": "المؤقّت",

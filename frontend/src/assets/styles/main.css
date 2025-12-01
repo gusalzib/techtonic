@@ -61,6 +61,9 @@
     --autocomplete-bg: #ffffff;
     --autocomplete-hover: #f2f2f2;
 
+    /* sidebar user account schemas */
+    --color-sidebar-hover: var(--iris);
+
     /* setting a light theme background for the whole website*/
     --page-bg: rgb(209, 227, 233);
 
@@ -786,7 +789,7 @@ select {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 1320px) {
     .planned-timorias {
         width: 85%;
     }
@@ -798,12 +801,13 @@ select {
     }
 
     .planned-timorias .timer-input {
-        width: 92%; /* Ensure inputs take full width */
+        width: 95%; /* Ensure inputs take full width */
     }
     
     #plannedTimoriasList li {
         flex-direction: column; /* Stack items vertically on small screens */
         align-items: flex-start; /* Align items to the start */
+        
     }
 
     .timoria-info {
@@ -812,7 +816,9 @@ select {
     }
 
     .timoria-info span {
-        margin-bottom: 8px; /* Space between stacked items */
+      margin: auto;
+      max-width: 95%;
+      margin-bottom: 8px; /* Space between stacked items */
     }
 
     #plannedTimoriasList li span {
@@ -1476,3 +1482,157 @@ select {
   .btn-secondary{ background:var(--delete-btn); }
   .btn-primary{ background:var(--standard-btn); color:white; }
   .btn-primary:hover{background: var(--standard-btn-hover);}
+
+
+  /* ###########################################################  USER ACCOUNT PAGE  ###########################################################*/
+
+.account-main-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  height: 100%;
+  min-height: 400px;
+  margin: 5% auto;
+  margin-top: 5%;
+  /* border: 3px var(--palette-deep-space-blue-test) solid; */
+  background-color: var(--section-bg);
+  border-radius: 10px;
+  box-shadow: var(--heavy-shadow);
+  padding: 30px;
+  color: var(--text-color);
+}
+.account-sidebar-menu h2{
+  color: var(--text-color);
+}
+.account-sidebar{
+  color: var(--text-color);
+  position: sticky;
+  top: 25%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: var(--section-bg);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  box-shadow: var(--light-shadow);
+  width: 20%;
+  max-height: 300px;
+}
+
+.account-sidebar-menu{
+  padding: 40px 0;
+  padding-top: 5px;
+  text-align: center;
+}
+
+#sidebar-links{
+  display: block;
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 10px 20px;
+  margin: auto;
+  cursor: pointer;
+  text-align: left;
+  font-size: large;
+}
+
+#sidebar-links:hover{
+    background-color: var(--color-sidebar-hover);
+    color: black;
+}
+
+.profile-container{
+  width: 70%;
+  height: 100%;
+  background-color: var(--section-bg);
+  border: 1px solid var(--accent);
+  border-radius: 15px;
+  box-shadow: var(--light-shadow);
+  overflow: hidden;
+  padding: 20px;
+  transition: transform 750ms;
+  margin:  auto;
+  margin-right: 5%;
+  cursor: pointer;
+}
+
+
+/* ###########################################################  USER Profile COMPONENT  ###########################################################*/
+.profile{
+  padding: 40px 30px;
+  margin: auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 30px;
+}
+
+.profile h3{
+  text-align: center;
+  margin: auto;
+}
+
+
+.profile label{
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.profile button{
+  width: 60%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+  color: var(--text-color);
+	background: var(--standard-btn);
+	font-size: 1.3em;
+	font-weight: bold;
+	margin-top: 30px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+
+  box-shadow: 0 4px 6px rgba(150, 1, 142, 0.329);
+	cursor: pointer;
+}
+
+.profile button:hover{
+  background-color: var(--standard-btn-hover);
+  color: var(--text-color);
+
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 0 2px var(--accent);
+}
+
+.profile input{
+  width: 95%;
+	height: 10px;
+	background: var(--input-bg);
+  border: 0.5px solid var(--accent);
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 12px;
+	outline: none;
+	border-radius: 5px;
+  font-size: medium;
+  font-weight: 550;
+  color: var(--text-color);
+
+}
+
+.profile input:hover{
+  border: 1px solid var(--viridian);
+}
+
+.profile hr{
+  color: var(--accent);
+  background-color: var(--accent);
+  height: 1px;
+  width: 100%;
+  border-width:0;
+}

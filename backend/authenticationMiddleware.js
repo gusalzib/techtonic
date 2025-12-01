@@ -57,6 +57,7 @@ const getUserStatus = (req, res) => {
         isRegular: user.role === 'regular',  // This checks if the user's role is 'regular' and returns true/false.
         isPaid: user.role === 'paid',  // This checks if the user's role is 'paid' and returns true/false.
         username: user.username,  // The user's username is returned as part of the response.
+        timezone: user.userTz,
     });
 };
 

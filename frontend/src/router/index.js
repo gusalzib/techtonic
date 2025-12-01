@@ -5,6 +5,7 @@ import AboutView from '@/views/AboutView.vue'
 import Login from '@/views/Login.vue'
 import Signup from '@/views/Signup.vue'
 import Stats from '@/views/Stats.vue'
+import UserAccount from '@/views/UserAccount.vue'
 
 // const routes = [
 //   {
@@ -33,6 +34,7 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/signup', component: Signup },
   { path: '/statistics', component: Stats },
+  { path: '/account', component: UserAccount },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

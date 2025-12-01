@@ -1,5 +1,7 @@
 const Timoria = require('../models/timoria')
 const { Types } = require('mongoose');
+const { DateTime } = require('luxon');
+
 
 // Get all (optionally filter by status)
 // exports.getAllTimorias = async (req, res) => {
@@ -59,11 +61,32 @@ exports.deleteTimoria = async (req, res) => {
 
 // Get today's completed Timorias
 exports.getTodayTimorias = async (req, res) => {
-  const startOfDay = new Date()
-  startOfDay.setHours(0, 0, 0, 0)
 
-  const endOfDay = new Date()
-  endOfDay.setHours(23, 59, 59, 999)
+  // Europe/Stockholm as a fallback timezone if the user does not have a timezone registered
+  const userTimezone = req.user.userTz || 'Europe/Stockholm';
+  console.log(userTimezone);
+  
+
+  // commented out so that we can test the dynamic timezone feature
+  // const startOfDay = new Date()
+  // startOfDay.setHours(0, 0, 0, 0)
+
+  // const endOfDay = new Date()
+  // endOfDay.setHours(23, 59, 59, 999)
+  
+  // Define "today" in the user's timezone,
+  // then convert the boundaries to UTC for Mongo query.
+  const startOfDay = DateTime.now()
+    .setZone(userTimezone)
+    .startOf('day')
+    .toUTC()
+    .toJSDate();
+
+  const endOfDay = DateTime.now()
+    .setZone(userTimezone)
+    .endOf('day')
+    .toUTC()
+    .toJSDate();
 
   try {
     const uid = Types.ObjectId.isValid(req.user.id) ? new Types.ObjectId(req.user.id) : req.user.id;
@@ -108,8 +131,10 @@ exports.updateTimoria = async (req, res) => {
 exports.getAllTimorias = async (req, res) => {
   const { status, subject, topic, tag, task, startDate, endDate } = req.query;
 
-  // Build the filter object
-  let filter = {};
+  const userId = req.user.id;
+  const userTz = req.user.userTz || 'Europe/Stockholm';
+
+  let filter = { user: userId }; // ensure per-user filter here too
 
   // Add filters based on query parameters
   if (status) {
@@ -130,9 +155,16 @@ exports.getAllTimorias = async (req, res) => {
   
   // Date range filtering
   if (startDate && endDate) {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    filter.createdAt = { $gte: start, $lte: end };
+    // commented out to test dynamic timezone feature
+    // const start = new Date(startDate);
+    // const end = new Date(endDate);
+    // filter.createdAt = { $gte: start, $lte: end };
+
+    const range = buildDateRange(startDate, endDate, userTz);
+    if (range) {
+      filter.createdAt = {$gte: range.start, $lte: range.end}
+    }
+    
   }
 
   try {
@@ -154,6 +186,8 @@ exports.getStatistics = async (req, res) => {
     // console.log('Backend received startDate:', startDate, 'endDate:', endDate); 
     
     const userId = req.user.id;
+    const userTz = req.user.userTz || 'Europe/Stockholm';
+
     // First check if there's any data at all
     const totalCount = await Timoria.countDocuments({ user: userId });
     if (totalCount === 0) {
@@ -170,16 +204,21 @@ exports.getStatistics = async (req, res) => {
         averageDuration: 0,
         averageTimePerActivityDay: 0,
         averageTimoriasPerActivityDay: 0,
-        message: "No data found" // Add this for debugging
+        message: "No data found" // for debugging
       });
     }
     // Base filter with user and optional date range
     let filter = { user: userId };
     if (startDate && endDate) {
-      filter.createdAt = { 
-        $gte: new Date(startDate), 
-        $lte: new Date(endDate) 
-      };
+      // commented out to test dynamic timezone feature
+      // filter.createdAt = { 
+      //   $gte: new Date(startDate), 
+      //   $lte: new Date(endDate) 
+      // };
+      const range = buildDateRange(startDate, endDate, userTz);
+      if (range) {
+        filter.createdAt = {$gte: range.start, $lte: range.end}
+      }
     }
     if (subject) {
       filter.subject = subject;
@@ -188,7 +227,8 @@ exports.getStatistics = async (req, res) => {
     // Get all matching timorias first
     const timorias = await Timoria.find(filter);
     const totalCompletedTimorias = await Timoria.countDocuments({ ...filter, status: 'done' }); // getting the total number of completed timorias
-    console.log('total completed timorias ', totalCompletedTimorias);
+
+    //console.log('total completed timorias ', totalCompletedTimorias);
     
     // Calculate statistics
     const statistics = {
@@ -212,7 +252,7 @@ exports.getStatistics = async (req, res) => {
     res.json(statistics);
   } catch (err) {
     res.status(500).json({ error: err.message });
-    console.log(err.message);
+    //console.log(err.message);
     
   }
 };
@@ -259,16 +299,22 @@ exports.getTimoriaHistory = async (req, res) => {
 
     // Optional date range filters
     const { startDate, endDate } = req.query;
-
+    const userTz = req.user.userTz || 'Europe/Stockholm';
     const filter = { user: userId };
 
+    // commented out to test dynamic timezone feature
+    // if (startDate && endDate) {
+    //   filter.createdAt = {
+    //     $gte: new Date(startDate),
+    //     $lte: new Date(endDate),
+    //   };
+    // }
     if (startDate && endDate) {
-      filter.createdAt = {
-        $gte: new Date(startDate),
-        $lte: new Date(endDate),
-      };
+      const range = buildDateRange(startDate, endDate, userTz);
+      if (range) {
+        filter.createdAt = { $gte: range.start, $lte: range.end };
+      }
     }
-
     // Fetch data + total count in parallel
     const [timorias, total] = await Promise.all([
       Timoria.find(filter)
@@ -551,4 +597,23 @@ function parseTagsToArray(tagString) {
 
 function normalizeTagString(tagString) {
   return parseTagsToArray(tagString).join(' ');
+}
+
+
+function buildDateRange(startDate, endDate, timezone) {
+  if (!startDate || !endDate) return null;
+
+  const tz = timezone || 'Europe/Stockholm';
+
+  const start = DateTime.fromISO(startDate, { zone: tz })
+    .startOf('day')
+    .toUTC()
+    .toJSDate();
+
+  const end = DateTime.fromISO(endDate, { zone: tz })
+    .endOf('day')
+    .toUTC()
+    .toJSDate();
+
+  return { start, end };
 }

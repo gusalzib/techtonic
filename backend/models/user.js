@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema({
         default: 'regular',
     },
     createdAt: { type: Date, default: Date.now },
+    timezone: {   
+      type: String,
+      default: 'Europe/Stockholm', // default until they change it
+    }
 });
 
 // Hook that runs before a user document is saved to the database
