@@ -44,6 +44,7 @@
         <th>{{ $t('table.subject') }}</th> 
         <th>{{ $t('table.topic') }}</th>
         <th>{{ $t('table.tag') }}</th>    
+        <th>{{ $t('table.finishedAt') }}</th>    
         <th>{{ $t('table.actions') }}</th> 
       </tr>
     </thead>
@@ -64,6 +65,15 @@
 
         <td v-if="editIndex !== index">{{ timoria.tag || '—' }}</td>
         <td v-else><input v-model="editForm.tag" /></td>
+
+        <td>
+            <div>{{ transformDate(timoria.finishedAt)[0] }}</div>
+            <br>
+            <!-- transform date returns a time string that looks something like this 08:05:52.795Z. getHourMinute cleans that up and displays in the HH:MM format-->
+            <div>{{ transformDate(timoria.finishedAt)[1] }}</div>
+        </td>
+
+
 
         <td>
         <button class="timoria-actions-btn" @click="createTimoriaCopy(timoria)">🗍 {{ $t('buttons.copy') || 'Copy' }}</button> 
@@ -184,6 +194,7 @@
         <span class="timoria-topic">{{ timoria.tag || '—' }}</span>
         <span class="timoria-topic">{{ timoria.task || '—' }}</span>
         <span class="timoria-duration">{{ timoria.duration }} min</span>
+        <span class="timoria-duration">{{ transformDate(timoria.createdAt)[0] }} - {{ transformDate(timoria.createdAt)[1] }}</span>
         </div>
         <div class="timoria-actions">
         <button class="start-btn" @click="startTimoria(timoria)">
@@ -225,6 +236,9 @@ import TimoriaSummary from '../components/TimoriaSummary';
 import dingSound from '@/assets/audio/ding.mp3' // sound to play when timoria ends
 import { confirm as appConfirm } from '@/services/confirmService' // import the confirm function
 import { useToast } from 'vue-toastification'
+import { useUserStore } from '@/stores/userStore';
+import { DateTime } from 'luxon';
+import { transformDateWithTimezone } from '@/utils/datetime';
 
 export default {
     name: 'Timoria',
@@ -353,7 +367,35 @@ export default {
      * or other parts of the component to perform actions
      */
     methods: {
+        transformDate(date) {
+            // if no date, return empty strings
+            if (!date) {
+                return ['_', '_']
+            }
 
+            const userStore = useUserStore();
+            const userTz = userStore.timezone || 'Europe/Stockholm'            
+
+            // this part works but I refactored this code to { transformDateWithTimezone } from '@/utils/datetime'
+            // const dt = typeof date === 'string'
+            //     ? DateTime.fromISO(date, { zone: 'utc' }).setZone(userTz)
+            //     : DateTime.fromJSDate(date).setZone(userTz);
+
+            // const day  = dt.toFormat('yyyy-LL-dd'); // 2025-12-01
+            // const time = dt.toFormat('HH:mm');      // 17:52
+
+
+            return transformDateWithTimezone(date, userTz);
+        },
+        getHourMinute(timeString) {
+            if (!timeString) {
+                return '';
+            }
+
+            const [hours, minutes] = timeString.split(':');
+
+            return `${hours}:${minutes}`
+        },
         // create a new Timoria (study session) by sending a POST request to the backend
         async createTimoria() {
             try {
@@ -442,7 +484,12 @@ export default {
         // get all planned Timorias from the backend
         async getPlannedTimorias() {
             try {
-                const response = await fetch(`${this.url}?status=planned`)
+                const token = localStorage.getItem('token');
+                const response = await fetch(`${this.url}?status=planned`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
 
                 const data = await response.json()
 
@@ -738,7 +785,8 @@ export default {
             }
         }
 
-    }
+    },
+
 }
     
 </script>

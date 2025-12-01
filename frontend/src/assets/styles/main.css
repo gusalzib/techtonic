@@ -789,7 +789,7 @@ select {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 1320px) {
     .planned-timorias {
         width: 85%;
     }
@@ -801,12 +801,13 @@ select {
     }
 
     .planned-timorias .timer-input {
-        width: 92%; /* Ensure inputs take full width */
+        width: 95%; /* Ensure inputs take full width */
     }
     
     #plannedTimoriasList li {
         flex-direction: column; /* Stack items vertically on small screens */
         align-items: flex-start; /* Align items to the start */
+        
     }
 
     .timoria-info {
@@ -815,7 +816,9 @@ select {
     }
 
     .timoria-info span {
-        margin-bottom: 8px; /* Space between stacked items */
+      margin: auto;
+      max-width: 95%;
+      margin-bottom: 8px; /* Space between stacked items */
     }
 
     #plannedTimoriasList li span {

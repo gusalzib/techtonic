@@ -41,6 +41,7 @@
 import axios from 'axios';
 import { useToast } from 'vue-toastification';
 import { DateTime, Settings, Info } from 'luxon';
+import { useUserStore } from '@/stores/userStore';
 
 export default {
     name: 'Profile',
@@ -155,8 +156,6 @@ export default {
         },
         async updateUserInfo() {
             try {
-                // get token of the logged in user - the token should hold the userid
-                const userId = localStorage.getItem('token');
 
                 // put request to update the user info if the user makes any changes
                 const response = await axios.put(
@@ -171,6 +170,13 @@ export default {
 
                     // refresh the user info displayed 
                     this.getUserInfo()
+                    
+                    // Update the user store so UI reacts immediately
+                    const userStore = useUserStore();
+                    // if backend returns user with timezone, prefer that
+                    const updatedUser = response.data.user || this.form;
+                    userStore.timezone = updatedUser.timezone || userStore.timezone;
+                    
 
                     // display notification
                     this.toast && this.toast.success(this.$t('notification.updateSuccessful') || 'Updated successfully');

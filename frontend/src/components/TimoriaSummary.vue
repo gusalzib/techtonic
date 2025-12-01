@@ -105,6 +105,7 @@
       <thead>
         <tr>
           <th>{{ $t('table.date') || 'Date' }}</th>
+          <th>{{ $t('table.time') || 'Time' }}</th>
           <th>{{ $t('table.task') }}</th>
           <th>{{ $t('table.duration') }}</th>
           <th>{{ $t('table.subject') }}</th>
@@ -126,7 +127,10 @@
             If createdAt is missing or invalid, we show "—".
           -->
           <td>{{ formatDate(t.createdAt) }}</td>
-
+          <td>
+              <!-- transform date returns a time string that looks something like this 08:05:52.795Z. getHourMinute cleans that up and displays in the HH:MM format-->
+              <div>{{ transformDate(t.finishedAt)[1] }}</div>
+          </td>
           <!--
             Show task if present, else fallback to "—" so the column doesn't look empty.
           -->
@@ -188,7 +192,8 @@
 <script>
 import axios from 'axios';
 import { useToast } from 'vue-toastification';
-
+import { useUserStore } from '@/stores/userStore';
+import { transformDateWithTimezone } from '@/utils/datetime';
 export default {
   name: 'TimoriaSummary',
   data() {
@@ -324,7 +329,26 @@ export default {
     this.fetchTimorias();
   },
   methods: {
+    transformDate(date) {
+        // if no date, return empty strings
+        if (!date) {
+            return ['_', '_']
+        }
 
+        const userStore = useUserStore();
+        const userTz = userStore.timezone || 'Europe/Stockholm'            
+
+        // this part works but I refactored this code to { transformDateWithTimezone } from '@/utils/datetime'
+        // const dt = typeof date === 'string'
+        //     ? DateTime.fromISO(date, { zone: 'utc' }).setZone(userTz)
+        //     : DateTime.fromJSDate(date).setZone(userTz);
+
+        // const day  = dt.toFormat('yyyy-LL-dd'); // 2025-12-01
+        // const time = dt.toFormat('HH:mm');      // 17:52
+
+
+        return transformDateWithTimezone(date, userTz);
+    },
     // Fetch Timoria data from the backend API based on current state.
     //
     // It uses:

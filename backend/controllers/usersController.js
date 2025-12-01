@@ -31,12 +31,13 @@ const login = async (req, res) => {
     // console.log(email);
     // console.log(user.email);
     // console.log(user.password);
+    console.log(user.timezone);
     
     if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({ msg: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, {
+    const token = jwt.sign({ id: user._id, role: user.role, userTz: user.timezone }, JWT_SECRET, {
       expiresIn: '7d',
     });
 
@@ -136,7 +137,7 @@ const updateUserProfile = async (req, res) => {
         user.email = normalizedEmail;
       }
     }
-    
+
     if (typeof password === 'string' && password.trim() !== '') {
       // Assigning password and calling `save()` ensures your pre-save
       // password hashing middleware runs (e.g., userSchema.pre('save', ...)).

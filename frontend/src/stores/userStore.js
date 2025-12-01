@@ -8,6 +8,7 @@ export const useUserStore = defineStore('user', {
     isRegular: false,
     isPaid: false,
     username: '',
+    timezone: '' 
   }),
   // Actions are like methods: async functions that update the state
   actions: {
@@ -32,11 +33,14 @@ export const useUserStore = defineStore('user', {
 
     // Update state based on response
       const data = await response.json();
+      console.log(data);
+      
       this.isLoggedIn = data.isLoggedIn;
       this.isAdmin = data.isAdmin;
       this.isRegular = data.isRegular;
       this.isPaid = data.isPaid;
       this.username = data.username;
+      this.timezone   = data.timezone || this.timezone || 'Europe/Stockholm';
     },
     /**
      * Clear local user state and remove token
@@ -55,6 +59,7 @@ export const useUserStore = defineStore('user', {
       this.isRegular = false;
       this.isPaid = false;
       this.username = '';
+      this.timezone   = '';
     }
   
   }
