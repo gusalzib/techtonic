@@ -20,11 +20,11 @@
     </div>
 
     <div>
-      <button class="timer-btn" @click="startTimer">{{ $t('buttons.start') }}</button>
-      <button class="timer-btn" @click="pauseTimer">{{ $t('buttons.pause') }}</button>
-      <button class="timer-btn" @click="resetTimer">{{ $t('buttons.reset') }}</button>
-      <button class="timer-btn" @click="cancelTimer">{{ $t('buttons.cancel') }}</button>
-      <button class="timer-btn" @click="finishTimer">{{ $t('buttons.finish') }}</button>
+      <button v-tooltip="$t('tooltip.buttons.start')" class="timer-btn" @click="startTimer">{{ $t('buttons.start') }}</button>
+      <button v-tooltip="$t('tooltip.buttons.pause')" class="timer-btn" @click="pauseTimer">{{ $t('buttons.pause') }}</button>
+      <button v-tooltip="$t('tooltip.buttons.reset')" class="timer-btn" @click="resetTimer">{{ $t('buttons.reset') }}</button>
+      <button v-tooltip="$t('tooltip.buttons.cancel')" class="timer-btn" @click="cancelTimer">{{ $t('buttons.cancel') }}</button>
+      <button v-tooltip="$t('tooltip.buttons.finish')" class="timer-btn" @click="finishTimer">{{ $t('buttons.finish') }}</button>
       <button class="timer-btn" @click="pushNotification">{{ $t('buttons.notify') }}</button>
     </div>
   </div>

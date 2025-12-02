@@ -5,21 +5,21 @@
       <div class="date-range-filter">
         <input type="date" v-model="filters.startDate" />
         <input type="date" v-model="filters.endDate" />
-        <button @click="fetchStatistics">{{ $t('buttons.apply') }}</button>
+        <button class="standard-btn" @click="fetchStatistics">{{ $t('buttons.apply') }}</button>
       </div>
     </header>
 
     <div class="summary-overview">
       <div class="total-timorias">
-        <p>{{ $t('stats.totalTimorias') }}: {{ stats.totalTimorias }}</p>
-        <p>{{ $t('stats.totalCompletedTimorias') }}: {{ stats.totalCompletedTimorias }}</p>
-        <p>{{ $t('stats.totalTimeSpent') }}: {{ stats.totalTimeSpent.toFixed(2) }} {{ $t('stats.hours') }}</p>
-        <p>{{ $t('stats.totalTopics') }}: {{ stats.totalTopics }} </p>
-        <p>{{ $t('stats.totalSubjects') }}: {{ stats.totalSubjects }} </p>
-        <p>{{ $t('stats.averageDuration') }}: {{ stats.averageDuration }} {{ $t('stats.minutes') }}</p>
-        <p>{{ $t('stats.taskCompletionRate') }}: {{ stats.completionRate }} {{ $t('stats.percent') }}</p>
-        <p>{{ $t('stats.averageTimePerActivityDay') }}: {{ stats.averageTimePerActivityDay }} {{ $t('stats.hours') }}</p>
-        <p>{{ $t('stats.averageTimoriasPerActivityDay') }}: {{ stats.averageTimoriasPerActivityDay }}</p>
+        <p>{{ $t('stats.totalTimorias') }}: {{ stats.totalTimorias }} <i v-tooltip="$t('tooltip.stats.totalTimorias')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.totalCompletedTimorias') }}: {{ stats.totalCompletedTimorias }} <i v-tooltip="$t('tooltip.stats.completedTimorias')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.totalTimeSpent') }}: {{ stats.totalTimeSpent.toFixed(2) }} {{ $t('stats.hours') }} <i v-tooltip="$t('tooltip.stats.totalTimeSpent')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.totalTopics') }}: {{ stats.totalTopics }} <i v-tooltip="$t('tooltip.stats.totalTopics')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.totalSubjects') }}: {{ stats.totalSubjects }} <i v-tooltip="$t('tooltip.stats.totalSubjects')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.averageDuration') }}: {{ stats.averageDuration }} {{ $t('stats.minutes') }} <i v-tooltip="$t('tooltip.stats.averageDurationPerTimoria')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.taskCompletionRate') }}: {{ stats.completionRate }} {{ $t('stats.percent') }} <i v-tooltip="$t('tooltip.stats.taskCompletionRate')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.averageTimePerActivityDay') }}: {{ stats.averageTimePerActivityDay }} {{ $t('stats.hours') }} <i v-tooltip="$t('tooltip.stats.averageTimePerActivityDay')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.averageTimoriasPerActivityDay') }}: {{ stats.averageTimoriasPerActivityDay }} <i v-tooltip="$t('tooltip.stats.averageTimoriasPerActivityDay')" class="bi bi-exclamation-circle"></i></p>
       </div>
 
       <!-- This is the chart where the status of the timorias is broken down into Planned, Ongoing and Completed -->
@@ -48,7 +48,7 @@
     <!-- this is the time per subject bar chart -->
     <div class="stats-details">
       <div class="time-by-subject">
-        <p>{{ $t('stats.timeSpentBySubject') }}</p>
+        <p>{{ $t('stats.timeSpentBySubject') }} <i v-tooltip="$t('tooltip.stats.timeSpentBySubject')" class="bi bi-exclamation-circle"></i></p>
         <div class="chart-controls">
           <label>{{ $t('stats.chartType') }}</label>
           <select v-model="selectedSubjectChartType">
@@ -71,7 +71,7 @@
       <!-- this is the heatmap section -->
       <div class="stats-detail">
           <div class="heatmap-section">
-            <p>{{ $t('stats.heatmapTitle') }}</p>
+            <p>{{ $t('stats.heatmapTitle') }} <i v-tooltip="$t('tooltip.stats.activityHeatmap')" class="bi bi-exclamation-circle"></i></p>
             <div class="chart-container">
               <canvas ref="heatmapCanvas"></canvas>
             </div>
@@ -80,7 +80,7 @@
 
       <!-- time by topic -->
       <div class="time-by-topic stat-card">
-        <p>{{ $t('stats.timeSpentByTopic') }}</p>
+        <p>{{ $t('stats.timeSpentByTopic') }} <i v-tooltip="$t('tooltip.stats.timeSpentByTopic')" class="bi bi-exclamation-circle"></i></p>
 
         <div class="chart-controls">
           <label>{{ $t('stats.chartType') }}</label>
@@ -105,7 +105,7 @@
 
       <!-- time by tag -->
       <div class="time-by-tag stat-card">
-        <p>{{ $t('stats.timeSpentByTag') }}</p>
+        <p>{{ $t('stats.timeSpentByTag') }} <i v-tooltip="$t('tooltip.stats.timeSpentByTag')" class="bi bi-exclamation-circle"></i></p>
 
         <div class="chart-controls">
           <label>{{ $t('stats.chartType') }}</label>

@@ -165,24 +165,24 @@
 
 <!-- Planned Timorias Section -->
 <section class="planned-timorias">
-  <h2>{{ $t('planned.title') }}</h2>
+  <h2>{{ $t('planned.title') }} <i v-tooltip="$t('tooltip.form.structure')" class="bi bi-exclamation-circle"></i></h2>
 
-  <form>
+  <form novalidate>
     <input v-model.number="duration" type="number" class="timer-input" :placeholder="$t('timer.minutesPlaceholder')" required/>
-    <input v-model="subject" type="text" class="timer-input" list="subjectList" :placeholder="$t('timer.subjectPlaceholder')" required/>
+    <input v-tooltip="$t('tooltip.form.subject')" v-model="subject" type="text" class="timer-input" list="subjectList" :placeholder="$t('timer.subjectPlaceholder')" required/>
     <datalist id="subjectList">
         <!-- 's' stands for subject. this is to avoid mixing up with the word subject that appears in the line before in v-model -->
         <option v-for="s in userSubjects" :key="s" :value="s"></option>
     </datalist>
-    <input v-model="topic" type="text" class="timer-input" list="topicList" :placeholder="$t('timer.topicPlaceholder')" required/>
+    <input v-tooltip="$t('tooltip.form.topic')" v-model="topic" type="text" class="timer-input" list="topicList" :placeholder="$t('timer.topicPlaceholder')" required/>
     <datalist id="topicList">
         <option v-for="t in userTopics" :key="t" :value="t"></option>
     </datalist>
-    <input v-model="tag" type="text" class="timer-input" list="tagList" :placeholder="$t('timer.tagPlaceholder')" />
+    <input v-tooltip="$t('tooltip.form.tag')" v-model="tag" type="text" class="timer-input" list="tagList" :placeholder="$t('timer.tagPlaceholder')" />
     <datalist id="tagList">
         <option v-for="tg in userTags" :key="tg" :value="tg"></option>
     </datalist>
-    <input v-model="task" type="text" class="timer-input" :placeholder="$t('timer.taskPlaceholder')" />
+    <input v-tooltip="$t('tooltip.form.task')" v-model="task" type="text" class="timer-input" :placeholder="$t('timer.taskPlaceholder')" />
     <button type="button" id="addPlannedTimoriaBtn" @click="createTimoria">{{ $t('buttons.add') }}</button>
   </form>
 

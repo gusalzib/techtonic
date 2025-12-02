@@ -1667,12 +1667,11 @@ select {
     padding: 10px 20px;
     border-radius: 4px;
     font-size: 15px;
+    max-width: 300px;
     
     /* 3. TRANSITION/FADE EFFECT */
     opacity: 0; /* Important: Start hidden */
     transition: opacity 0.2s;
     
-    /* Optional: Ensure text doesn't wrap awkwardly */
-    white-space: nowrap;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
