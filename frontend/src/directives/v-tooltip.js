@@ -25,6 +25,7 @@ function showTooltip(el, text) {
     tooltipElement.textContent = text;
     
     // 2. Apply basic styling (for demonstration)
+    // remomved the styling from here and moved to main.css so that it is globally accessible
     // Object.assign(tooltipElement.style, {
     //     position: 'absolute',
     //     backgroundColor: '#0c0505ff',
@@ -45,7 +46,7 @@ function showTooltip(el, text) {
     const rect = el.getBoundingClientRect();
     
     // Calculate tooltip position (e.g., center horizontally, slightly above the element)
-    const top = rect.top + window.scrollY - 30; // 30px above the element
+    const top = rect.top + window.scrollY - 80; // 80px above the element
     const left = rect.left + window.scrollX + (rect.width / 2) - (tooltipElement.offsetWidth / 2);
 
     tooltipElement.style.top = `${top}px`;
@@ -88,6 +89,13 @@ const TooltipDirective = {
         // Ensure the value exists and is a string
         if (!binding.value) return; 
 
+        // removing the built-in tooltip element from html elements. 
+        // this is needed because some elements will have their own tooltip which overlaps with the one I am creating here
+        if (el.title) {
+            el.__originalTitle = el.title;
+            el.removeAttribute('title')
+        }
+
         // 1. Store the text and the handlers on the element itself
         el.__tooltipText = binding.value;
         el.__showTooltipHandler = () => showTooltip(el, el.__tooltipText);
@@ -115,7 +123,7 @@ const TooltipDirective = {
         if (tooltipElement) {
              hideTooltip();
         }
-        
+
         // 3. Clean up stored data
         delete el.__tooltipText;
         delete el.__showTooltipHandler;
