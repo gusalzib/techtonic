@@ -25,7 +25,7 @@
         <router-link to="/account" v-show="isLoggedIn">{{ $t('nav.profile') }}</router-link>
         <router-link v-show="!isLoggedIn" to="/signup">{{ $t('nav.signup') }}</router-link>
         <router-link v-show="!isLoggedIn" to="/login">{{ $t('nav.login') }}</router-link>
-        <button v-show="isLoggedIn" @click="logout">{{ $t('nav.logout') }}</button>
+        <button class="standard-btn" v-show="isLoggedIn" @click="logout">{{ $t('nav.logout') }}</button>
         <LanguageSwitcher />
         <ThemeToggle />
       </nav>
@@ -60,6 +60,7 @@ export default {
     ThemeToggle,
     ConfirmHost
   },
+
   data() {
     return {
       menuOpen: false,

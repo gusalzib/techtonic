@@ -193,6 +193,22 @@ hr {
   border-style: inset;
   border-width: 1px;
 }
+
+.standard-btn{
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--standard-btn);
+  color: white;
+  transition: background-color 0.3s;
+  margin: 10px 10px;
+}
+
+.standard-btn:hover{
+  background-color: var(--standard-btn-hover);
+}
 /*############################################### HOME PAGE STYLE #######################################################*/
 .home-container {
   min-height: 100vh;
@@ -1635,4 +1651,28 @@ select {
   height: 1px;
   width: 100%;
   border-width:0;
+}
+
+/* ###########################################################  TOOLTIP STYLES  ###########################################################*/
+
+.v-tooltip-box{
+    /* 1. POSITIONING IS MANDATORY */
+    position: absolute; 
+    z-index: 10000;
+    pointer-events: none; /* Prevents blocking clicks on elements below */
+
+    /* 2. VISUAL STYLING (The styles you want to control) */
+    background-color: var(--page-bg); /* Or whatever dark color you prefer */
+    color: var(--text-color); 
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 15px;
+    
+    /* 3. TRANSITION/FADE EFFECT */
+    opacity: 0; /* Important: Start hidden */
+    transition: opacity 0.2s;
+    
+    /* Optional: Ensure text doesn't wrap awkwardly */
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

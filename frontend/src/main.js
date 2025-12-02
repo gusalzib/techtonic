@@ -4,6 +4,15 @@ import router from './router'
 import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia';
 
+// Create and mount app
+const app = createApp(App)
+
+// importing the tooltip directive 
+import TooltipDirective from './directives/v-tooltip';
+
+// this registers the tooltip directive globally instead of having to import it in every file/page
+app.directive('tooltip', TooltipDirective);
+
 // vue toastification library
 import Toast, { POSITION } from 'vue-toastification'
 import 'vue-toastification/dist/index.css' // getting the required styles
@@ -29,8 +38,7 @@ const i18n = createI18n({
 
 export { i18n }
 
-// Create and mount app
-const app = createApp(App)
+
 
 // Create and use Pinia store
 const pinia = createPinia();
