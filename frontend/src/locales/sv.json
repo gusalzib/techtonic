@@ -227,5 +227,37 @@
         "oct": "Oktober",
         "nov": "November",
         "dec": "December"
+    },
+    "tooltip": {
+        "stats": {
+            "totalTimorias": "Totalt antal Timoria som skapats inom vald period/filtrering (alla statusar). Formel: antal av alla Timoria.",
+            "completedTimorias": "Antal Timoria som markerats som slutförda inom vald period/filtrering. Formel: antal där status = 'done'.",
+            "totalTimeSpent": "Summa tid på slutförda Timoria. Formel: summa varaktighet (minuter) ÷ 60 (timmar).",
+            "totalTopics": "Antal unika ämnen (topic) bland Timoria inom vald period/filtrering. Formel: distinkt antal av 'topic'.",
+            "totalSubjects": "Antal unika kategorier (subject) bland Timoria inom vald period/filtrering. Formel: distinkt antal av 'subject'.",
+            "averageDurationPerTimoria": "Genomsnittlig längd per slutförd Timoria (minuter). Formel: summa varaktighet ÷ antal slutförda.",
+            "taskCompletionRate": "Andel Timoria som slutförts. Formel: slutförda ÷ totalt × 100 %. ",
+            "averageTimePerActivityDay": "Genomsnittliga timmar per aktivitetsdag (dag med ≥1 slutförd Timoria). Formel: total tid (timmar) ÷ antal aktivitetsdagar.",
+            "averageTimoriasPerActivityDay": "Genomsnittligt antal Timoria per aktivitetsdag. Formel: slutförda ÷ antal aktivitetsdagar.",
+            "timeSpentByTag": "Total tid som lagts på varje tagg. Formel: summa varaktighet för slutförda Timoria grupperade per tagg (visas oftast i timmar). Observera: den totala summan över alla taggar blir högre än den totala tiden, eftersom en Timoria kan ha flera taggar och räknas en gång per tagg.",
+            "timeSpentByTopic": "Total tid som lagts på varje ämne (topic). Formel: summa varaktighet för slutförda Timoria grupperade per topic (visas oftast i timmar).",
+            "timeSpentBySubject": "Total tid som lagts på varje kategori (subject). Formel: summa varaktighet för slutförda Timoria grupperade per subject (visas oftast i timmar). Summan över alla subject ska motsvara den totala tiden, eftersom varje Timoria har exakt ett subject.",
+            "activityHeatmap": "Översikt över daglig aktivitet i en kalenderliknande heatmap. Varje ruta motsvarar en dag. Mörkare färg betyder mer aktivitet (mer tid eller fler slutförda Timoria) under den dagen inom vald period/filtrering."
+        },
+        "form": {
+            "structure": "Timoria använder en enkel hierarki för att beskriva ditt arbete: Subject → Topic → Tag → Task description.\n\n• Subject = det stora området (t.ex. ”Jobb”, ”Studier”, ”Matematik”, ”Hälsa”).\n• Topic = en mer specifik del inom området (t.ex. ”Algebra”, ”Projekt X”, ”Träningsprogram”).\n• Tag = flexibla etiketter som du kan återanvända (t.ex. ”Tentaplugg”, ”Deep work”, ”Admin”).\n• Task description = vad du faktiskt ska göra under passet.\n\nDen här strukturen gör det enklare att söka i historiken och se statistik, till exempel tid per ämne, topic eller tagg.\nExempel: Subject: ”Matematik”, Topic: ”Algebra – ekvationer”, Tag: ”Tentaplugg”, Task: ”Lös uppgift 1–10 i kapitel 3”.",
+            "duration": "Antalet minuter du planerar att fokusera i den här Timorian. Det är längden på timern (t.ex. 25, 45, 60).",
+            "subject": "Subject är det övergripande området du jobbar med. Använd det för stora kategorier som ”Jobb”, ”Universitet”, ”Matematik”, ”Programmering”, ”Hälsa”.\nExempel: Om du pluggar analys kan subject vara ”Matematik”.",
+            "topic": "Topic är en mer specifik del inom subject. Använd det för att gruppera liknande pass.\nExempel: Subject: ”Matematik”, Topic: ”Analys – derivator”. Senare kan du se hur mycket tid du lagt på varje topic.",
+            "tag": "Taggar är frivilliga och kan återanvändas mellan olika Timoria. De går tvärs över olika ämnen och topics.\nExempel: ”Tentaplugg”, ”Deep work”, ”Admin”, ”Skrivande”, ”Repetition”. Taggar är bra för statistik, t.ex. hur mycket tid du lagt på ”Tentaplugg” totalt.",
+            "task": "Task description är frivillig men rekommenderas. Skriv vad du faktiskt ska göra under det här passet.\nExempel: ”Skriva inledning till rapporten”, ”Gå igenom föreläsning 5”, ”Lösa uppgift 1–10”, ”Refaktorera login-komponenten”. Det gör historiken lättare att förstå i efterhand."
+        },
+        "buttons": {
+            "start": "Starta timern för denna Timoria.",
+            "pause": "Pausa timern. Du kan fortsätta senare utan att tappa tiden.",
+            "reset": "Återställ timern till den ursprungliga tiden.",
+            "cancel": "Avbryt denna Timoria och flytta tillbaka den till planerade uppgifter.",
+            "finish": "Avsluta Timorian manuellt och spara tiden du har arbetat hittills."
+        }
     }
 }

@@ -80,7 +80,7 @@
         "home": "Home",
         "blog": "Blog",
         "login": "Login",
-        "logout": "Log out",
+        "logout": "Logout",
         "signup": "Sign Up",
         "statistics": "Statistics",
         "darktheme": "Dark theme",
@@ -233,5 +233,38 @@
         "oct": "October",
         "nov": "November",
         "dec": "December"
+    },
+    "tooltip": {
+        "timezoneTooltip": "Select the timezone you are in",
+        "stats": {
+            "totalTimorias": "Total number of Timorias created in the selected period/filters (all statuses). Formula: count of all Timorias.",
+            "completedTimorias": "Number of Timorias marked as done in the selected period/filters. Formula: count where status = 'done'.",
+            "totalTimeSpent": "Sum of time on completed Timorias. Formula: sum(duration in minutes) ÷ 60 (hours).",
+            "totalTopics": "Number of unique topics across Timorias in the selected period/filters. Formula: distinct count of 'topic'.",
+            "totalSubjects": "Number of unique subjects across Timorias in the selected period/filters. Formula: distinct count of 'subject'.",
+            "averageDurationPerTimoria": "Average length per completed Timoria (minutes). Formula: sum(duration) ÷ completed count.",
+            "taskCompletionRate": "Share of Timorias completed. Formula: completed ÷ total × 100%.",
+            "averageTimePerActivityDay": "Average hours per activity day (a day with ≥1 completed Timoria). Formula: total time (hours) ÷ activity days.",
+            "averageTimoriasPerActivityDay": "Average Timorias per activity day. Formula: completed ÷ activity days. (activity days are the days where there was at least one completed Timoria)",
+            "timeSpentByTopic": "Total time spent on each topic. Formula: sum of durations for completed Timorias grouped by topic (usually shown in hours).",
+            "timeSpentByTag": "Total time spent on each tag. Formula: sum of durations for completed Timorias grouped by tag (usually shown in hours). Note: the sum across all tags will be higher than the total time spent, because a single Timoria can have multiple tags and is counted once per tag.",
+            "timeSpentBySubject": "Total time spent on each subject. Formula: sum of durations for completed Timorias grouped by subject (usually shown in hours). The sum across all subjects should match the total time spent, since each Timoria has exactly one subject.",
+            "activityHeatmap": "Daily activity overview on a calendar-style heatmap. Each cell represents one day. Darker colors mean more activity (more time spent and/or more Timorias completed) on that day within the selected period/filters."
+        },
+        "form": {
+            "structure": "Timoria uses a simple hierarchy to describe your work: Subject → Topic → Tag → Task description.\n\n• Subject = the big area (e.g. “Math”, “Work”, “Health”).\n• Topic = a more specific part of that subject (e.g. “Algebra”, “Project X”, “Workout plan”).\n• Tag = flexible labels you can reuse (e.g. “Exam prep”, “Deep work”, “Admin”).\n• Task description = what you will actually do in this session.\n\nThis structure makes it easier to search your history and see stats like time per subject/topic/tag.\nExample: Subject: “Math”, Topic: “Algebra – equations”, Tag: “Exam prep”, Task: “Solve exercises 1–10 from chapter 3”.",
+            "duration": "How many minutes you plan to focus in this Timoria. This is the length of the timer (e.g. 25, 45, 60).",
+            "subject": "Subject is the broad area you are working on. Use it for big categories like “Work”, “University”, “Math”, “Programming”, “Health”.\nExample: If you are studying calculus, the subject could be “Math”.",
+            "topic": "Topic is a more specific part inside the subject. Use it to group related sessions.\nExample: Subject: “Math”, Topic: “Calculus – derivatives”. Later, you can see how much time you spent on each topic.",
+            "tag": "Tags are optional, reusable labels that cut across subjects and topics. You can use multiple tags on different Timorias.\nExamples: “Exam prep”, “Deep work”, “Admin”, “Writing”, “Revision”. Tags are useful for stats like time spent on “Exam prep” across all subjects.",
+            "task": "Task description is optional but recommended. Write what you will actually do during this Timoria.\nExamples: “Write introduction for report”, “Review lecture 5 notes”, “Solve exercises 1–10”, “Refactor login component”. This makes your history easier to understand later."
+        },
+        "buttons": {
+            "start": "Start the timer for this Timoria.",
+            "pause": "Pause the timer. You can resume later without losing progress.",
+            "reset": "Reset the timer to its original duration.",
+            "cancel": "Cancel this Timoria and return it to your planned list.",
+            "finish": "Manually finish the Timoria and save the time you’ve spent so far."
+        }
     }
 }
