@@ -265,6 +265,15 @@
             "reset": "Reset the timer to its original duration.",
             "cancel": "Cancel this Timoria and return it to your planned list.",
             "finish": "Manually finish the Timoria and save the time you’ve spent so far."
+        },
+        "summary": {
+            "prevMonth": "Show Timorias for the previous calendar month.",
+            "nextMonth": "Show Timorias for the next calendar month (if available).",
+            "currentPeriod": "Shows which dates you are currently viewing. In month mode: one month. In custom mode: your selected date range.",
+            "startDate": "Choose the first day of the period you want to see in the summary.",
+            "endDate": "Choose the last day of the period you want to see in the summary.",
+            "applyRange": "Apply the selected start and end dates and show only Timorias in that date range.",
+            "clearRange": "Clear the custom date range and go back to viewing a single month."
         }
     }
 }

@@ -258,6 +258,15 @@
             "reset": "Återställ timern till den ursprungliga tiden.",
             "cancel": "Avbryt denna Timoria och flytta tillbaka den till planerade uppgifter.",
             "finish": "Avsluta Timorian manuellt och spara tiden du har arbetat hittills."
+        },
+        "summary": {
+            "prevMonth": "Visa Timoria för föregående kalendermånad.",
+            "nextMonth": "Visa Timoria för nästa kalendermånad (om data finns).",
+            "currentPeriod": "Visar vilka datum du tittar på just nu. I månads-läge: en månad. I anpassat läge: ditt valda datumintervall.",
+            "startDate": "Välj första dagen i perioden du vill se i sammanställningen.",
+            "endDate": "Välj sista dagen i perioden du vill se i sammanställningen.",
+            "applyRange": "Använd valt start- och slutdatum och visa bara Timoria inom detta intervall.",
+            "clearRange": "Rensa det anpassade datumintervallet och gå tillbaka till att visa en månad i taget."
         }
     }
 }

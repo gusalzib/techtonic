@@ -30,7 +30,7 @@
       -->
       <div class="month-navigation">
         <!-- Go to previous month (if not in custom range mode) -->
-        <button @click="goToPreviousMonth">« {{ $t('summary.prevMonth') || 'Previous month' }}</button>
+        <button @click="goToPreviousMonth" v-tooltip="$t('tooltip.summary.prevMonth')">« {{ $t('summary.prevMonth') || 'Previous month' }} </button>
 
         <!-- Shows either a month label (e.g. "November 2025") or the custom range text -->
         <span class="current-period">
@@ -38,7 +38,7 @@
         </span>
 
          <!-- Go to next month (if not in custom range mode) -->
-        <button @click="goToNextMonth">{{ $t('summary.nextMonth') || 'Next month' }} »</button>
+        <button @click="goToNextMonth" v-tooltip="$t('tooltip.summary.nextMonth')">{{ $t('summary.nextMonth') || 'Next month' }} »</button>
       </div>
 
 
@@ -60,7 +60,7 @@
         - Re-fetch data for the current month
       -->
       <div class="custom-range">
-        <label>
+        <label  v-tooltip="$t('tooltip.summary.startDate')">
           {{ $t('summary.startDate') || 'Start date' }}
            <!--
             v-model on a date input gives us a string in YYYY-MM-DD format.
@@ -68,13 +68,13 @@
           -->
           <input type="date" v-model="customStartDate">
         </label>
-        <label>
+        <label  v-tooltip="$t('tooltip.summary.endDate')">
           {{ $t('summary.endDate') || 'End date' }}
           <input type="date" v-model="customEndDate">
         </label>
 
         <!-- Apply the selected custom range (triggers a fetch with those dates) -->
-        <button @click="applyCustomRange">
+        <button @click="applyCustomRange" v-tooltip="$t('tooltip.summary.applyRange')">
           {{ $t('summary.applyRange') || 'Apply range' }}
         </button>
 
@@ -83,7 +83,7 @@
           isCustomRangeActive is a computed property that returns true when
           customStartDate AND customEndDate are non-empty.
         -->
-        <button @click="clearCustomRange" v-if="isCustomRangeActive">
+        <button @click="clearCustomRange" v-if="isCustomRangeActive" v-tooltip="$t('tooltip.summary.clearRange')">
           {{ $t('summary.clearRange') || 'Clear range' }}
         </button>
       </div>
