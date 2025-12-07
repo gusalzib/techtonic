@@ -1041,6 +1041,24 @@ select {
   color: var(--input-text);
 }
 
+.summary-search {
+  width: 100%;
+  display: flex;             /* Make the container a flexible box */
+  gap: 12px;                 /* Add a small gap between the items */
+  align-items: center;       /* Optional: Vertically align inputs */
+  margin-bottom: 20px;       /* Add some space below the filter row */
+}
+.summary-search input{
+  padding: 8px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+
+  flex: 1;                   /* Ensure each input takes up an equal portion of the available space */
+  min-width: 0;              /* Prevents inputs from overflowing on smaller screens */
+    
+}
 .summary-table {
   width: 100%;
   border-collapse: collapse;
@@ -1079,6 +1097,19 @@ select {
   align-items: center;
 }
 /*#################### TIMORIA SUMMARY – RESPONSIVE ####################*/
+/* 💡 MOBILE VIEW: Stack fields vertically */
+@media (max-width: 640px) {
+    .summary-search {
+      width: 97%;
+      flex-direction: column; /* Stack items vertically on small screens */
+      margin: auto;
+    }
+
+    .summary-search input {
+      width: 100%;            /* Ensure inputs take up full width when stacked */
+      margin-bottom: 0;       /* Use the gap property for spacing */
+    }
+}
 
 @media (max-width: 768px) {
   .timoria-summary {

@@ -212,7 +212,11 @@
         "prevPage": "Föregående",
         "nextPage": "Nästa",
         "page": "Sida",
-        "rangeError": "Välj både start- och slutdatum."
+        "rangeError": "Välj både start- och slutdatum.",
+        "searchSubject": "Sök efter ett ämne",
+        "searchTopic": "Sök efter ett ämnesområde",
+        "searchTag": "Sök efter en tagg",
+        "searchTask": "Sök efter en uppgift"
     },
     "months": {
         "jan": "Januari",

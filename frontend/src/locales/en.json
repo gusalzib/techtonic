@@ -221,7 +221,11 @@
         "prevPage": "Previous",
         "nextPage": "Next",
         "page": "Page",
-        "rangeError": "Please select both start and end dates."
+        "rangeError": "Please select both start and end dates.",
+        "searchSubject": "Search for a subject",
+        "searchTopic": "Search for a topic",
+        "searchTag": "Search for a tag",
+        "searchTask": "Search for a task"
     },
     "months": {
         "jan": "January",
