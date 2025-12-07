@@ -162,6 +162,7 @@ body, html{
     margin: 0;
     background-color: var(--page-bg);
     overflow-x: hidden;
+    height: fit-content;
 
 }
 
@@ -1674,4 +1675,37 @@ select {
     transition: opacity 0.2s;
     
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ############################################################# MOBILE VIEW PLANNED TIMORIAS DROPDOWNS ############################################## */
+.autocomplete-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.autocomplete-list {
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: var(--section-bg);
+  color: var(--text-color);
+  border: 1px solid var(--accent);
+  border-top: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.autocomplete-list li {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+  background: var(--hover-row-bg)
 }

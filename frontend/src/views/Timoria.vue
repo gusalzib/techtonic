@@ -168,20 +168,129 @@
   <h2>{{ $t('planned.title') }} <i v-tooltip="$t('tooltip.form.structure')" class="bi bi-exclamation-circle"></i></h2>
 
   <form novalidate>
+    
     <input v-model.number="duration" type="number" class="timer-input" :placeholder="$t('timer.minutesPlaceholder')" required/>
-    <input v-tooltip="$t('tooltip.form.subject')" v-model="subject" type="text" class="timer-input" list="subjectList" :placeholder="$t('timer.subjectPlaceholder')" required/>
-    <datalist id="subjectList">
-        <!-- 's' stands for subject. this is to avoid mixing up with the word subject that appears in the line before in v-model -->
-        <option v-for="s in userSubjects" :key="s" :value="s"></option>
-    </datalist>
-    <input v-tooltip="$t('tooltip.form.topic')" v-model="topic" type="text" class="timer-input" list="topicList" :placeholder="$t('timer.topicPlaceholder')" required/>
-    <datalist id="topicList">
-        <option v-for="t in userTopics" :key="t" :value="t"></option>
-    </datalist>
-    <input v-tooltip="$t('tooltip.form.tag')" v-model="tag" type="text" class="timer-input" list="tagList" :placeholder="$t('timer.tagPlaceholder')" />
-    <datalist id="tagList">
-        <option v-for="tg in userTags" :key="tg" :value="tg"></option>
-    </datalist>
+
+    <!-- ----------------------------------- SUBJECT MOBILE SELECT VIEW  ------------------------------------->
+    <!-- if the user is logged in from a mobile then we display a select tag  -->
+    <template v-if="isMobile">
+    <div class="autocomplete-wrapper">
+        <input
+        v-tooltip="$t('tooltip.form.subject')"
+        v-model="subject"
+        type="text"
+        class="timer-input"
+        :placeholder="$t('timer.subjectPlaceholder')"
+        required
+        @focus="onSubjectFocus"
+        @input="showSubjectDropdown = true"
+        @blur="onSubjectBlur"
+        autocomplete="off"
+        />
+
+        <ul
+        v-if="showSubjectDropdown && filteredSubjects.length"
+        class="autocomplete-list"
+        >
+        <li
+            v-for="s in filteredSubjects"
+            :key="s"
+            @mousedown.prevent="selectSubject(s)"
+        >
+            {{ s }}
+        </li>
+        </ul>
+    </div>
+    </template>
+
+     <!-- ----------------------------------- SUBJECT DESKTOP DATALIST VIEW  ------------------------------------->
+    <!-- else we display a datalist tag-->
+     <template v-else>
+        <input v-tooltip="$t('tooltip.form.subject')" v-model="subject" type="text" class="timer-input" list="subjectList" :placeholder="$t('timer.subjectPlaceholder')" required/>
+        <datalist id="subjectList">
+            <!-- 's' stands for subject. this is to avoid mixing up with the word subject that appears in the line before in v-model -->
+            <option v-for="s in userSubjects" :key="s" :value="s"></option>
+        </datalist>
+     </template>
+
+      <!-- ----------------------------------- TOPIC MOBILE SELECT VIEW  ------------------------------------->
+     <template v-if="isMobile">
+        <div class="autocomplete-wrapper">
+            <input
+            v-tooltip="$t('tooltip.form.topic')"
+            v-model="topic"
+            type="text"
+            class="timer-input"
+            :placeholder="$t('timer.topicPlaceholder')"
+            required
+            @focus="onTopicFocus"
+            @input="showTopicDropdown = true"
+            @blur="onTopicBlur"
+            autocomplete="off"
+            />
+
+            <ul
+            v-if="showTopicDropdown && filteredTopics.length"
+            class="autocomplete-list"
+            >
+            <li
+                v-for="t in filteredTopics"
+                :key="t"
+                @mousedown.prevent="selectTopic(t)"
+            >
+                {{ t }}
+            </li>
+            </ul>
+        </div>
+     </template>
+
+     <!-- ----------------------------------- TOPIC DESKTOP DATALIST VIEW  ------------------------------------->
+     <template v-else>
+        <input v-tooltip="$t('tooltip.form.topic')" v-model="topic" type="text" class="timer-input" list="topicList" :placeholder="$t('timer.topicPlaceholder')" required/>
+        <datalist id="topicList">
+            <option v-for="t in userTopics" :key="t" :value="t"></option>
+        </datalist>
+     </template>
+
+     <!-- ----------------------------------- TAG MOBILE SELECT VIEW  ------------------------------------->
+     <template v-if="isMobile">
+        <div class="autocomplete-wrapper">
+            <input
+            v-tooltip="$t('tooltip.form.tag')"
+            v-model="tag"
+            type="text"
+            class="timer-input"
+            :placeholder="$t('timer.tagPlaceholder')"
+            required
+            @focus="onTagFocus"
+            @input="showTagDropdown = true"
+            @blur="onTagBlur"
+            autocomplete="off"
+            />
+
+            <ul
+            v-if="showTagDropdown && filteredTags.length"
+            class="autocomplete-list"
+            >
+            <li
+                v-for="tag in filteredTags"
+                :key="tag"
+                @mousedown.prevent="selectTag(tag)"
+            >
+                {{ tag }}
+            </li>
+            </ul>
+        </div>
+     </template>
+     <!-- ----------------------------------- TAG DESKTOP DATALIST VIEW  ------------------------------------->
+      <template v-else>
+        <input v-tooltip="$t('tooltip.form.tag')" v-model="tag" type="text" class="timer-input" list="tagList" :placeholder="$t('timer.tagPlaceholder')" />
+        <datalist id="tagList">
+            <option v-for="tg in userTags" :key="tg" :value="tg"></option>
+        </datalist>
+      </template>
+
+
     <input v-tooltip="$t('tooltip.form.task')" v-model="task" type="text" class="timer-input" :placeholder="$t('timer.taskPlaceholder')" />
     <button type="button" id="addPlannedTimoriaBtn" @click="createTimoria">{{ $t('buttons.add') }}</button>
   </form>
@@ -297,6 +406,12 @@ export default {
             userSubjects: [],
             userTopics: [],
             userTags: [],
+
+            isMobile: false, // assuming the user is logged it from a desktop first
+            showSubjectDropdown: false,
+            showTopicDropdown: false,
+            showTagDropdown: false,
+
         }
     },
     /**
@@ -337,6 +452,27 @@ export default {
             const hours = Math.floor(average / 60)
             const minutes = average % 60
             return `${hours} ${this.$t('timer.hours')} ${minutes.toFixed(1)} ${this.$t('timer.minutes')}`
+        },
+        filteredSubjects() {
+            if (!this.subject) return this.userSubjects;
+            const term = this.subject.toLowerCase();
+            return this.userSubjects.filter(s =>
+            s.toLowerCase().includes(term)
+            );
+        },
+        filteredTopics() {
+            if (!this.topic) return this.userTopics;
+            const term = this.topic.toLowerCase();
+            return this.userTopics.filter(t =>
+            t.toLowerCase().includes(term)
+            );
+        },
+        filteredTags() {
+            if (!this.tag) return this.userTags;
+            const term = this.tag.toLowerCase();
+            return this.userTags.filter(tag =>
+            tag.toLowerCase().includes(term)
+            );
         }
     },
 
@@ -349,15 +485,17 @@ export default {
      * When the component mounts, fetch the initial data from the server
      */
     mounted() {
-        // console.log('Locale:', this.$i18n.locale)
-        // console.log('t(timer.title):', this.$t('timer.title'))
-        // console.log('Available messages:', this.$i18n.messages)
         this.getPlannedTimorias()
         this.getTodaysTimorias()
 
         this.toast = useToast()
 
         this.getDistinctLists();
+
+        /* The datalist html tag is not supported by many mobile browsers so we need to identify whether the user is 
+            logged in from a mobile phone in order to display a select tag instead of datalists */
+        // Super simple mobile detection – good enough for this UX choice
+        this.isMobile = /Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     },
     /**
      * --------------------------------------------------------
@@ -367,6 +505,68 @@ export default {
      * or other parts of the component to perform actions
      */
     methods: {
+
+        /**
+         * --------------------------------------------------------------------------------
+         *                              MOBILE SELECT FUNCTIONS
+         * --------------------------------------------------------------------------------
+         * I ran into the problem where the datalist did not work on mobile view simply
+         * because datalists are not supported on mobile. So I had create two views. I kept 
+         * the datalists for desktop and implemented dynamic select blocks for mobile. 
+         * However, to populate these blocks dynamically while keeping the option of free 
+         * text, I needed a bunch of helper functions. 
+         * 
+         * One function for when the user makes the selection: selectSubject(option). It closes the dropdown
+         * Another to open the dropdown when the select blcok is clicked/touched onSubjectFocus()
+         * Then onSubjectBlur() to allow some timeout before closing to allow the selection to be captured
+         * 
+         * @param option 
+        */
+        // SUBJECT SELECTION FUNCTIONS
+        selectSubject(option) {
+            this.subject = option;
+            this.showSubjectDropdown = false;
+        },
+        onSubjectFocus() {
+            this.showSubjectDropdown = true;
+        },
+        onSubjectBlur() {
+            // tiny timeout so click can register before hiding
+            setTimeout(() => {
+            this.showSubjectDropdown = false;
+            }, 150);
+        },
+        // TOPIC SELECTION FUNCTIONS
+        selectTopic(option) {
+            this.topic = option;
+            this.showTopicDropdown = false;
+        },
+        onTopicFocus() {
+            this.showTopicDropdown = true;
+        },
+        onTopicBlur() {
+            // tiny timeout so click can register before hiding
+            setTimeout(() => {
+            this.showTopicDropdown = false;
+            }, 150);
+        },
+        // TAG SELECTION FUNCTIONS
+        selectTag(option) {
+            this.tag = option;
+            this.showTagDropdown = false;
+        },
+        onTagFocus() {
+            this.showTagDropdown = true;
+        },
+        onTagBlur() {
+            // tiny timeout so click can register before hiding
+            setTimeout(() => {
+            this.showTagDropdown = false;
+            }, 150);
+        },
+
+
+
         transformDate(date) {
             // if no date, return empty strings
             if (!date) {
