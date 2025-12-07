@@ -125,7 +125,7 @@
             "description": "Modern, SEO-friendly websites to showcase your brand."
         }
     },
-    "about": {
+    "homeAboutSection": {
         "title": "Why Choose Us?",
         "description": "At Timoria, we combine cutting-edge technology with deep industry knowledge to craft scalable, secure, and user-friendly software solutions. Whether you're a startup or an enterprise, we tailor our services to meet your unique needs."
     },
@@ -283,6 +283,54 @@
             "endDate": "Choose the last day of the period you want to see in the summary.",
             "applyRange": "Apply the selected start and end dates and show only Timorias in that date range.",
             "clearRange": "Clear the custom date range and go back to viewing a single month."
+        }
+    },
+    "about": {
+        "title": "About Timoria",
+        "subtitle": "Timoria is a small, opinionated tool that helps you turn your time into something visible, understandable, and intentional.",
+        "highlight1": {
+            "title": "Track real work, not just hours",
+            "body": "Each Timoria captures what you did, how long you spent, and why it mattered – not just a number in a spreadsheet."
+        },
+        "highlight2": {
+            "title": "See patterns in your days",
+            "body": "Statistics, summaries, and timelines help you notice which subjects, topics, and habits actually move you forward."
+        },
+        "highlight3": {
+            "title": "Built for focus, not pressure",
+            "body": "The timer, breaks, and history are designed to support sustainable progress – not guilt or burnout."
+        },
+        "section1": {
+            "title": "What is Timoria?",
+            "body1": "Timoria is a personal time-tracking and focus companion. Instead of treating your day as a blur of hours, you register focused sessions called Timorias. Each Timoria has a subject, topic, tags, a task description, and a duration. Together, they give you a structured picture of how you actually spend your time.",
+            "body2": "The goal is not to “optimize every minute” but to make your effort visible, so you can make calmer and more informed decisions about what to do next."
+        },
+        "section2": {
+            "title": "Why subjects, topics, tags, and tasks?",
+            "body1": "The breakdown Subject → Topic → Tag → Task is a simple way of capturing context without being overwhelming. The subject is the broad area, like “Work”, “Studies”, or “Health”. The topic zooms in a bit further, for example “Project X”, “Exam preparation”, or “Strength training”.",
+            "body2": "Tags help you group things that cut across subjects, such as “Deep work”, “Admin”, or “Writing”. The task description is where you write what you actually plan to do in that session. This structure makes your statistics, search, and history much more meaningful over time."
+        },
+        "section3": {
+            "title": "How the timer fits in",
+            "body1": "The timer is at the heart of Timoria. You start a session with a clear intention and a planned duration. If you get into a good flow, you can extend the timer by a few minutes instead of breaking the rhythm.",
+            "body2": "When a Timoria ends, it is saved with the actual time you spent. That means your history gradually becomes a realistic reflection of your focus, not just your calendar."
+        },
+        "section4": {
+            "title": "Understanding your stats and history",
+            "body1": "The summary and stats pages let you explore your past Timorias. You can filter by date ranges, search by subject, topic, tag, or task, and see how much time you actually give to different areas of your life.",
+            "body2": "Over time, these views reveal patterns: which days tend to be more active, which topics receive consistent attention, and where you might want to adjust your focus."
+        },
+        "section5": {
+            "title": "Privacy and ownership of your data",
+            "body1": "Your Timorias are personal. They are meant to help you reflect, not to be a performance scoreboard. The app stores your sessions so that statistics and history can work, but the intention is that you remain in control.",
+            "body2": "You decide how detailed you want your entries to be. You can keep them minimal, or write descriptive tasks if that helps you later. The design is intentionally simple so that your data stays understandable to you first."
+        },
+        "footer": {
+            "madeWith": "Timoria is a personal project, built to support slow, steady progress and kinder self-reflection. Future releases will introduce more and more productivity features like weekly planners, reminders, habit tracker, diary documentation and data export (so that you can migrate your data whenever you want)",
+            "version": "Current version: Timoria – summary & stats, with support for subjects, topics, tags, and a focus timer.",
+            "copyright": "© 2025 Techtonic-Timoria. All rights reserved.",
+            "privacy": "Privacy Policy",
+            "license": "License"
         }
     }
 }
