@@ -25,7 +25,10 @@
         "cancel": "Cancel",
         "finish": "Finish",
         "notify": "Notify",
-        "copy": "Copy"
+        "copy": "Copy",
+        "fiveMoreMinutes": "+ 5",
+        "oneMoreMinute": "+ 1"
+
 
     },
     "todayPomos": {
@@ -264,7 +267,9 @@
             "pause": "Pause the timer. You can resume later without losing progress.",
             "reset": "Reset the timer to its original duration.",
             "cancel": "Cancel this Timoria and return it to your planned list.",
-            "finish": "Manually finish the Timoria and save the time you’ve spent so far."
+            "finish": "Manually finish the Timoria and save the time you’ve spent so far.",
+            "oneMoreMinute": "Extend the current Timoria by 1 minute. Useful when you're focused and want just a little more time before it ends.",
+            "fiveMoreMinutes": "Extend the current Timoria by 5 minutes. Perfect for staying in the flow without interrupting your work."
         },
         "summary": {
             "prevMonth": "Show Timorias for the previous calendar month.",

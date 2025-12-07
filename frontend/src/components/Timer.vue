@@ -25,6 +25,8 @@
       <button v-tooltip="$t('tooltip.buttons.reset')" class="timer-btn" @click="resetTimer">{{ $t('buttons.reset') }}</button>
       <button v-tooltip="$t('tooltip.buttons.cancel')" class="timer-btn" @click="cancelTimer">{{ $t('buttons.cancel') }}</button>
       <button v-tooltip="$t('tooltip.buttons.finish')" class="timer-btn" @click="finishTimer">{{ $t('buttons.finish') }}</button>
+      <button v-tooltip="$t('tooltip.buttons.oneMoreMinute')" class="timer-btn" @click="extendTimer(60)">{{ $t('buttons.oneMoreMinute') || '+1 min' }}</button>
+      <button v-tooltip="$t('tooltip.buttons.fiveMoreMinutes')" class="timer-btn" @click="extendTimer(300)">{{ $t('buttons.fiveMoreMinutes') || '+5 min' }}</button>
       <button class="timer-btn" @click="pushNotification">{{ $t('buttons.notify') }}</button>
     </div>
   </div>
@@ -50,6 +52,7 @@ export default {
       interval: null,
       isRunning: false,
       startTime: null,
+      endTime: '', // used for the extendTimer functionality
       url: 'http://localhost:5000/api/timoria',
       localTimoria: null, // timoria in props is readonly and cannot be assigned and re-assigned so we use a local copy of it
       hasCompleted: false, // Prevent duplicate complete calls
@@ -160,7 +163,7 @@ export default {
       }
 
       
-      this.hasCompleted = false; // ✅ reset before starting again
+      this.hasCompleted = false; //  reset before starting again
       
       //Kill old intervals on startTimer() just in case
       if (this.interval) {
@@ -239,44 +242,44 @@ export default {
       localStorage.removeItem('activeTimoria');
     },
 
-  cancelTimer() {
-    // Stop the timer if it's running
-    if (this.interval) {
-      clearInterval(this.interval);
-      this.interval = null;
-      this.resetTimer(); 
+    cancelTimer() {
+      // Stop the timer if it's running
+      if (this.interval) {
+        clearInterval(this.interval);
+        this.interval = null;
+        this.resetTimer(); 
 
-    }
+      }
 
-    // Send a request to update the status of the timoria from 'ongoing' to 'planned'
-    if (this.localTimoria?._id) {
-      const updatedTimoria = {
-        ...this.localTimoria,
-        status: 'planned'  // Set the status back to 'planned'
-      };
+      // Send a request to update the status of the timoria from 'ongoing' to 'planned'
+      if (this.localTimoria?._id) {
+        const updatedTimoria = {
+          ...this.localTimoria,
+          status: 'planned'  // Set the status back to 'planned'
+        };
 
-      // Send the updated Timoria to the backend to save the new status
-      fetch(`${this.url}/${this.localTimoria._id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedTimoria)
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Timoria status updated to planned:', data);
-        // Emit event to update the UI in parent (Timoria.vue)
-        this.$emit('updateTimoria', updatedTimoria);  // Update the parent component
-        this.$emit('updatePlannedTimorias');  // Update the parent component
-      })
-      .catch((err) => {
-        console.error('Error updating timoria status:', err);
-      });
-    }
+        // Send the updated Timoria to the backend to save the new status
+        fetch(`${this.url}/${this.localTimoria._id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedTimoria)
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Timoria status updated to planned:', data);
+          // Emit event to update the UI in parent (Timoria.vue)
+          this.$emit('updateTimoria', updatedTimoria);  // Update the parent component
+          this.$emit('updatePlannedTimorias');  // Update the parent component
+        })
+        .catch((err) => {
+          console.error('Error updating timoria status:', err);
+        });
+      }
 
-    // Reset the activeTimoria to null, since it's no longer active
-    this.localTimoria = null;
-    this.$emit('cancelTimer');  // Notify parent that the timer was canceled
-  },
+      // Reset the activeTimoria to null, since it's no longer active
+      this.localTimoria = null;
+      this.$emit('cancelTimer');  // Notify parent that the timer was canceled
+    },
 
     tick() {
       if (this.hasCompleted || !this.isRunning || this.interval === null) {
@@ -321,6 +324,17 @@ export default {
       if (this.hasCompleted == true) return;
 
       this.hasCompleted = true;
+
+      // computed the actual elapsed time
+      const now = Date.now();
+      let totalMs = this.accumulatedMs || 0;
+
+      if (this.startTime) {
+        totalMs = totalMs + (now - this.startTime);
+      }
+
+      const minutes = Math.max(1, Math.round(totalMs / 60000));
+
       
       try {
         await fetch(`${this.url}/${this.localTimoria._id}`, {
@@ -329,6 +343,7 @@ export default {
           body: JSON.stringify({
             ...this.localTimoria,
             status: 'done',
+            duration: minutes,
             finishedAt: new Date().toISOString(), //override the date field to reflect the actual completion time
           })
         })
@@ -433,17 +448,67 @@ export default {
           .catch(err => console.error('Error finishing timoria:', err));
       }
     },
-  requestNotificationPermission() {
-      if ('Notification' in window && Notification.permission !== 'granted') {
-        Notification.requestPermission().then(permission => {
-          if (permission === 'granted') {
-            console.log('🔔 Notification permission granted.')
-          } else {
-            console.log('❌ Notification permission denied.')
-          }
-        })
+    extendTimer(seconds) {
+      // only allow extending real Timoria sessions that are not completed
+      if (this.hasCompleted || !this.localTimoria || this.timerType !== 'timoria') {
+        return; // terminate
       }
+
+      const extra = Number(seconds) || 0;
+      // saftey check to make sure extra has a value bigger than zero
+      if (extra <= 0) {
+        return; 
+      }
+
+      // extend the timer
+      this.remaining = this.remaining + extra;
+
+      // If timer is running, push endTime forward
+      if (this.isRunning) {
+        if (typeof this.endTime === 'number') {
+          this.endTime = this.endTime + (extra * 1000);
+
+        } else {
+          // fallback: reconstruct an endTime from now + remaining
+          this.endTime = Date.now() + this.remaining * 1000; 
+        }
+        
+      }
+
+      // keep localStorage in sync so reloads respect the extension
+      const activeStr = localStorage.getItem('activeTimoria');
+      if (activeStr) {
+        try {
+          const data = JSON.parse(activeStr);
+          data.remaining = this.remaining;
+
+          if (this.isRunning) {
+            // when running, we presist the new endTime 
+            data.endTime = this.endTime; 
+          } else {
+            // when paused, we keep it as "remaining only"; endTime is recalculated on resume 
+            delete data.endTime; 
+          }
+
+          localStorage.setItem('activeTimoria', JSON.stringify(data));
+
+        } catch (error) {
+          console.error('Error updating activeTimoria in extendTimer: ', error);
+        }
+      }
+
     },
+    requestNotificationPermission() {
+        if ('Notification' in window && Notification.permission !== 'granted') {
+          Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+              console.log('🔔 Notification permission granted.')
+            } else {
+              console.log('❌ Notification permission denied.')
+            }
+          })
+        }
+      },
 
     pushNotification() {
       if (Notification.permission === 'granted') {

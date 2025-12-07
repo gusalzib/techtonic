@@ -17,7 +17,7 @@
   </header>
 
 
-<div v-if="activeView === 'timer'">
+<div v-show="activeView === 'timer'">
 <!-- Timer Section -->
 <Timer :timoria="activeTimoria" :key="activeTimoria?._id" 
     @completed="handleCompletedTimoria" 
@@ -331,7 +331,7 @@
 
 </div>
 
-<div v-else-if="activeView === 'summary'">
+<div v-show="activeView === 'summary'">
     <TimoriaSummary/>
 </div>
 </template>

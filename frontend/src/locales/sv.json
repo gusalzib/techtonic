@@ -257,7 +257,9 @@
             "pause": "Pausa timern. Du kan fortsätta senare utan att tappa tiden.",
             "reset": "Återställ timern till den ursprungliga tiden.",
             "cancel": "Avbryt denna Timoria och flytta tillbaka den till planerade uppgifter.",
-            "finish": "Avsluta Timorian manuellt och spara tiden du har arbetat hittills."
+            "finish": "Avsluta Timorian manuellt och spara tiden du har arbetat hittills.",
+            "oneMoreMinute": "Förläng den pågående Timorian med 1 minut. Användbart när du är fokuserad och vill fortsätta lite längre.",
+            "fiveMoreMinutes": "Förläng den pågående Timorian med 5 minuter. Perfekt när du är i ett bra arbetsflöde och inte vill avbryta."
         },
         "summary": {
             "prevMonth": "Visa Timoria för föregående kalendermånad.",
