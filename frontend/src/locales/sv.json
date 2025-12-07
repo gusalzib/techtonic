@@ -322,5 +322,66 @@
             "privacy": "Integritetspolicy",
             "license": "Licens"
         }
+    },
+    "privacy": {
+        "title": "Integritetspolicy",
+        "subtitle": "Här förklaras hur Timoria hanterar dina data, vad som sparas och hur du behåller kontrollen över din information.",
+        "section1": {
+            "title": "1. Vad Timoria är",
+            "body1": "Timoria är ett personligt verktyg för fokustid och tidsloggning. Du använder det för att registrera fokuserade arbetspass (Timoria) med subject, topic, valfria taggar, en uppgiftsbeskrivning och en varaktighet.",
+            "body2": "Syftet med att samla in denna information är att hjälpa dig att se hur du använder din tid, förstå dina mönster och kunna reflektera över ditt arbete på ett lugnare och mer strukturerat sätt."
+        },
+        "section2": {
+            "title": "2. Vilka uppgifter som sparas",
+            "body1": "Timoria sparar de Timoria du skapar: subject, topic, taggar, uppgiftsbeskrivningar, varaktighet, tidsstämplar (till exempel när en Timoria avslutades) och grundläggande metadata som behövs för sammanställningar och statistik.",
+            "body2": "Beroende på hur din installation ser ut kan applikationen också spara teknisk information som användarkonton, inloggnings-token och din valda tidszon, så att datum och tider visas korrekt."
+        },
+        "section3": {
+            "title": "3. Hur dina data används",
+            "body1": "Dina uppgifter används inne i appen för att ge funktioner som sammanställningstabellen, statistik, daglig historik och sökningar. De används inte för att skapa reklamprofiler och säljs inte vidare till tredje part.",
+            "body2": "Timoria är medvetet enkel i sin design. Data behandlas bara för att stödja de kärnfunktioner du ser: timers, historik och analys av dina egna Timoria."
+        },
+        "section4": {
+            "title": "4. Lagring, säkerhet och bevarandetid",
+            "body1": "Dina Timoria sparas i applikationens databas så att du kan komma åt din historik över tid. Som med alla onlinetjänster finns det alltid en viss teknisk risk, men rimliga åtgärder vidtas för att skydda dina data, till exempel begränsad åtkomst och autentisering.",
+            "body2": "Data sparas så länge ditt konto finns kvar eller tills du väljer att ta bort poster. Om du tar bort en Timoria visas den inte längre i din statistik eller historik. Beroende på den tekniska miljön kan säkerhetskopior eller loggar tillfälligt innehålla äldre data innan de roteras bort."
+        },
+        "section5": {
+            "title": "5. Dina val och kontakt",
+            "body1": "Du väljer själv vad du skriver in i Timoria. Du kan hålla beskrivningar vaga eller detaljerade, och du kan ta bort Timoria som du inte längre vill spara. Om du är osäker på vad som finns lagrat kan du alltid granska dina uppgifter via sidorna för sammanfattning och statistik.",
+            "body2": "Om du har frågor om hur data hanteras i just denna installation av Timoria kan du kontakta personen eller gruppen som driver tjänsten. De kan ge mer detaljer om drift, säkerhetskopior och konfiguration."
+        },
+        "footer": {
+            "note": "Denna integritetspolicy beskriver den generella avsikten med hur Timoria är tänkt att hantera data. Exakta detaljer kan skilja sig beroende på hur och var appen är hostad.",
+            "lastUpdated": "Senast uppdaterad: 2025-12-07"
+        }
+    },
+    "license": {
+        "title": "Licens",
+        "subtitle": "Här beskrivs hur du får använda Timoria och vilka rättigheter som förbehålls upphovspersonen.",
+        "section1": {
+            "title": "1. Äganderätt",
+            "body1": "Timoria är ett personligt mjukvaruprojekt. Om inget annat anges ägs all kod, design och allt innehåll i denna applikation av upphovspersonen.",
+            "body2": "Namnet ”Timoria”, den visuella identiteten och appens struktur är delar av detta verk och får inte framställas som om de vore dina egna."
+        },
+        "section2": {
+            "title": "2. Personlig användning",
+            "body1": "Du får använda Timoria för egna, personliga och icke-kommersiella syften. Det inkluderar att registrera tid, se statistik och använda appen i din vardag.",
+            "body2": "Du får inte sälja vidare åtkomst till Timoria, paketera den som en del av en kommersiell produkt eller erbjuda den som en hostad tjänst till andra utan uttryckligt tillstånd från upphovspersonen."
+        },
+        "section3": {
+            "title": "3. Ändringar och vidare­spridning",
+            "body1": "Om ingen separat öppen källkodslicens tydligt anges för koden ska Timoria behandlas som proprietär programvara.",
+            "body2": "Det innebär att du inte får sprida modifierade eller omodifierade kopior av applikationen, eller publicera en klon under annat namn, utan skriftligt tillstånd. Om du är intresserad av att bidra eller samarbeta kan du kontakta upphovspersonen."
+        },
+        "section4": {
+            "title": "4. Ingen garanti",
+            "body1": "Timoria tillhandahålls i befintligt skick (\"as is\") utan några uttryckliga eller underförstådda garantier. Det finns ingen garanti för att appen är felfri, alltid tillgänglig eller lämplig för ett visst syfte.",
+            "body2": "Genom att använda Timoria accepterar du att du själv ansvarar för hur du förlitar dig på informationen i appen. Spara alltid egna säkerhetskopior av viktig data och använd inte appen som ditt enda register för kritisk information."
+        },
+        "footer": {
+            "note": "Denna licenstext är en enkel sammanfattning av hur Timoria får användas. Om du behöver ett annat upplägg eller ett mer formellt avtal kan du kontakta upphovspersonen.",
+            "lastUpdated": "Senast uppdaterad: 2025-12-07"
+        }
     }
 }

@@ -332,5 +332,66 @@
             "privacy": "Privacy Policy",
             "license": "License"
         }
+    },
+    "privacy": {
+        "title": "Privacy Policy",
+        "subtitle": "This page explains how Timoria handles your data, what is stored, and how you stay in control of your own information.",
+        "section1": {
+            "title": "1. What Timoria is",
+            "body1": "Timoria is a personal time-tracking and focus tool. You use it to register focused work sessions (Timorias) with a subject, topic, optional tags, a task description, and a duration.",
+            "body2": "The purpose of collecting this information is to help you see how you spend your time, understand your patterns, and reflect on your work in a calmer and more structured way."
+        },
+        "section2": {
+            "title": "2. What data is stored",
+            "body1": "Timoria stores the Timorias you create: subjects, topics, tags, task descriptions, durations, timestamps (such as when a Timoria was finished), and basic metadata needed to show summaries and statistics.",
+            "body2": "Depending on your setup, the application may also store technical information such as your user account, login tokens, and your preferred timezone so that dates and times are displayed correctly."
+        },
+        "section3": {
+            "title": "3. How your data is used",
+            "body1": "Your data is used inside the app to provide features such as the summary table, statistics, daily history, and search. It is not used to build advertising profiles or sold to third parties.",
+            "body2": "The design of Timoria is intentionally simple. Data is processed only to support the core features you see: timers, history, and analytics about your own Timorias."
+        },
+        "section4": {
+            "title": "4. Storage, security, and retention",
+            "body1": "Your Timorias are stored in the application’s database so that you can access your history over time. As with any online service, there is always some technical risk, but reasonable measures are taken to protect your data, such as limiting access and using authentication.",
+            "body2": "Data is kept as long as your account exists or until you decide to delete entries. If you remove a Timoria, it will no longer appear in your statistics or history. Depending on the technical setup, backups or logs may temporarily contain old data before they are rotated."
+        },
+        "section5": {
+            "title": "5. Your choices and contact",
+            "body1": "You choose what you enter into Timoria. You can keep descriptions vague or detailed, and you can delete Timorias that you no longer want to keep. If you are unsure about what is stored, you can always review your data through the summary and stats pages.",
+            "body2": "If you have questions about how your data is handled in this specific deployment of Timoria, please contact the person or team running the instance. They can provide more details about hosting, backups, and configuration."
+        },
+        "footer": {
+            "note": "This privacy policy describes the general intent of how Timoria is designed to handle data. The exact details may depend on how and where the app is hosted.",
+            "lastUpdated": "Last updated: 2025-12-07"
+        }
+    },
+    "license": {
+        "title": "License",
+        "subtitle": "This page explains how you are allowed to use Timoria and what rights are reserved by the author.",
+        "section1": {
+            "title": "1. Ownership",
+            "body1": "Timoria is a personal software project. Unless otherwise stated, all code, design, and content in this application are owned by the author.",
+            "body2": "The name \"Timoria\", its visual identity, and the structure of the app are part of this work and may not be misrepresented as your own."
+        },
+        "section2": {
+            "title": "2. Personal use",
+            "body1": "You are allowed to use Timoria for your own personal, non-commercial purposes. This includes tracking your time, viewing statistics, and using the app as part of your daily routine.",
+            "body2": "You may not resell access to Timoria, bundle it as part of a commercial product, or provide it as a hosted service to others without explicit permission from the author."
+        },
+        "section3": {
+            "title": "3. Modifications and redistribution",
+            "body1": "Unless a separate open-source license is clearly provided for the source code, Timoria should be treated as proprietary software.",
+            "body2": "This means you may not redistribute modified or unmodified copies of the application, nor publish a clone under a different name, without written permission. If you are interested in contributing or collaborating, please contact the author directly."
+        },
+        "section4": {
+            "title": "4. No warranty",
+            "body1": "Timoria is provided \"as is\", without any express or implied warranty. There is no guarantee that the app will be error-free, uninterrupted, or suitable for any particular purpose.",
+            "body2": "By using Timoria, you agree that you are responsible for how you rely on the data shown in the app. Always keep your own backups of important information and do not use the app as the sole record for critical data."
+        },
+        "footer": {
+            "note": "This license text is a simple summary of how Timoria may be used. If you need a different arrangement or a formal agreement, please reach out to the author.",
+            "lastUpdated": "Last updated: 2025-12-07"
+        }
     }
 }
