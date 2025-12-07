@@ -304,9 +304,7 @@ export default {
       // for some reason when I do (this.currentYear, this.currentMonth, 1) I get the last day of the last month in the result
       // but when I set it to 2 I get the first day of the current month (as I want it)
       // YYYY-MM-DD string
-      const d = new Date(this.currentYear, this.currentMonth, 2);
-      console.log('DATE OF START ', d.toISOString().slice(0, 10));
-      
+      const d = new Date(this.currentYear, this.currentMonth, 2);      
       return d.toISOString().slice(0, 10);
     },
 

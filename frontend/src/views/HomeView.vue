@@ -26,9 +26,9 @@
 
     <!-- Company Overview / About Section -->
     <section class="about-section">
-      <h2>{{ $t('about.title') }}</h2>
+      <h2>{{ $t('homeAboutSection.title') }}</h2>
       <p>
-        {{ $t('about.description') }}
+        {{ $t('homeAboutSection.description') }}
       </p>
     </section>
 

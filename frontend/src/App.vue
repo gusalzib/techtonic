@@ -19,7 +19,7 @@
       <nav :class="['nav-links', { open: menuOpen }]">
         <router-link to="/">{{ $t('nav.home') }}</router-link>
         <router-link to="/about">{{ $t('nav.about') }}</router-link>
-        <router-link to="/timoria">{{ $t('nav.blog') }}</router-link>
+        <!-- <router-link to="/timoria">{{ $t('nav.blog') }}</router-link> -->
         <router-link to="/timoria" v-show="isLoggedIn">{{ $t('nav.timoria') }}</router-link>
         <router-link to="/statistics" v-show="isLoggedIn">{{ $t('nav.statistics') }}</router-link>
         <router-link to="/account" v-show="isLoggedIn">{{ $t('nav.profile') }}</router-link>
