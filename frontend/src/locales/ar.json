@@ -151,7 +151,17 @@
         "allSubjects": "جميع المواضيع",
         "heatmapTitle": "خريطة الحرارة للنشاط (آخر 12 شهرًا)",
         "noData": "لا توجد بيانات للعرض.",
-        "noDataForFilters": "لا توجد بيانات تطابق الفلاتر الحالية."
+        "noDataForFilters": "لا توجد بيانات تطابق الفلاتر الحالية.",
+        "quick": {
+            "last7Days": "آخر 7 أيام",
+            "last30Days": "آخر 30 يومًا",
+            "last365Days": "آخر 365 يومًا",
+            "allTime": "كل الأوقات"
+        },
+        "presets": {
+            "thisWeek": "هذا الأسبوع",
+            "thisMonth": "هذا الشهر"
+        }
     },
     "modal": {
         "confirmDeleteTitle": "هل أنت متأكد أنك تريد حذف هذه الجلسة؟",

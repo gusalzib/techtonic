@@ -1319,6 +1319,28 @@ select {
   display: flex;
   gap: 10px;
   align-items: center;
+  align-items: flex-start;
+}
+
+.quick-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.manual-range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+
+.quick-filters .standard-btn.active {
+  /* Highlight the active preset */
+  background-color: #1a8c0e;
+  color: #fff;
+  border-color: #1a8c0e;
 }
 
 .date-range-filter input {
@@ -1451,6 +1473,45 @@ select {
     margin-top: 20px;
   }
 }
+@media (max-width: 768px) {
+  .stats-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .stats-header h1 {
+    margin-bottom: 0.25rem;
+    text-align: left;
+  }
+
+  .date-range-filter {
+    flex-direction: column;
+    align-items: stretch; /* full width buttons/inputs */
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .quick-filters {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .quick-filters .standard-btn {
+    flex: 1 1 45%; /* two per row on small screens */
+  }
+
+  .manual-range {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .manual-range input,
+  .manual-range .standard-btn {
+    width: 100%;
+  }
+}
+
 /*################################### TIMER STYLE ANIMATIONS ##################################################*/
 .fade-out {
   opacity: 0;

@@ -154,7 +154,17 @@
         "averageTimoriasPerActivityDay": "Average Number of Timorias Per Activity Day",
         "percent": "percent",
         "hours": "hours",
-        "minutes": "minutes"
+        "minutes": "minutes",
+        "quick": {
+            "last7Days": "Last 7 days",
+            "last30Days": "Last 30 days",
+            "last365Days": "Last 365 days",
+            "allTime": "All time"
+        },
+        "presets": {
+            "thisWeek": "This Week",
+            "thisMonth": "This Month"
+        }
     },
     "modal": {
         "confirmDeleteTitle": "Are you sure you want to delete this Timoria?",

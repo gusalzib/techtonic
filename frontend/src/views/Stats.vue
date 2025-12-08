@@ -2,10 +2,76 @@
   <div class="stats-container">
     <header class="stats-header">
       <h1>{{ $t('stats.title') }}</h1>
-      <div class="date-range-filter">
+
+
+      <!-- the old custom range filters -->
+      <!-- <div class="date-range-filter">
         <input type="date" v-model="filters.startDate" />
         <input type="date" v-model="filters.endDate" />
         <button class="standard-btn" @click="fetchStatistics">{{ $t('buttons.apply') }}</button>
+      </div> -->
+
+      <!-- the new custom range filters combined with ready-made period buttons -->
+      <div class="date-range-filter">
+        <!-- Quick preset buttons -->
+        <div class="quick-filters">
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === '7d' }"
+            @click="applyQuickRange('7d')"
+          >
+            {{ $t('stats.quick.last7Days') || 'Last 7 days' }}
+          </button>
+
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === '30d' }"
+            @click="applyQuickRange('30d')"
+          >
+            {{ $t('stats.quick.last30Days') || 'Last 30 days' }}
+          </button>
+
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === '365d' }"
+            @click="applyQuickRange('365d')"
+          >
+            {{ $t('stats.quick.last365Days') || 'Last 365 days' }}
+          </button>
+
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === 'all' }"
+            @click="applyQuickRange('all')"
+          >
+            {{ $t('stats.quick.allTime') || 'All time' }}
+          </button>
+
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === 'thisWeek' }"
+            @click="applyQuickRange('thisWeek')"
+          >
+            {{ $t('stats.presets.thisWeek') }}
+          </button>
+
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === 'thisMonth' }"
+            @click="applyQuickRange('thisMonth')"
+          >
+            {{ $t('stats.presets.thisMonth') }}
+          </button>
+        </div>
+
+        <!-- Manual custom range still available -->
+        <div class="manual-range">
+          <input type="date" v-model="filters.startDate" />
+          <input type="date" v-model="filters.endDate" />
+          <button class="standard-btn" @click="applyManualRange">
+            {{ $t('buttons.apply') }}
+          </button>
+        </div>
       </div>
     </header>
 
@@ -743,7 +809,11 @@ export default {
        * It prevents creating multiple overlapping charts on the same canvas.
        * In short: it tracks the active chart object, not chart settings.
        */
-      heatmapChart: null
+      heatmapChart: null,
+
+      // Which quick range is currently active:
+      // '7d' | '30d' | '365d' | 'all' | null
+      selectedQuickRange: 'all'
     }
   },
 
@@ -910,6 +980,72 @@ export default {
         this.loading = false
       }
     },
+    // --- wrapper for manual Apply button ---
+    applyManualRange() {
+      // manual range means "no preset"
+      this.selectedQuickRange = null
+      this.fetchStatistics()
+    },
+    // --- quick range presets ---
+    applyQuickRange(preset) {
+      this.selectedQuickRange = preset;
+
+      const today = new Date();
+
+      const format = (d) => {
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      };
+
+      // "All time" → clear date filters
+      if (preset === 'all') {
+        this.filters.startDate = '';
+        this.filters.endDate = '';
+        this.fetchStatistics();
+        return;
+      }
+
+      let start;
+
+      if (preset === '7d') {
+        // Include today + 6 previous days
+        start = new Date(today);
+        start.setDate(today.getDate() - 6);
+      } else if (preset === '30d') {
+        start = new Date(today);
+        start.setDate(today.getDate() - 29);
+      } else if (preset === '365d') {
+        start = new Date(today);
+        start.setDate(today.getDate() - 364);
+      } else if (preset === 'thisWeek') {
+        // ISO week: Monday–Sunday
+        const day = today.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
+        const diffFromMonday = day === 0 ? -6 : 1 - day; // if Sunday, go back 6 days
+        start = new Date(today);
+        start.setDate(today.getDate() + diffFromMonday);
+      } else if (preset === 'thisMonth') {
+        start = new Date(today.getFullYear(), today.getMonth(), 1);
+      } else {
+        // Unknown preset → do nothing
+        return;
+      }
+
+      this.filters.startDate = format(start);
+      this.filters.endDate = format(today);
+
+      this.fetchStatistics();
+    },
+
+    // when applying manual custom dates:
+    applyCustomRange() {
+      // manual date range → no quick preset highlighted
+      this.selectedQuickRange = null;
+      // your existing validation here if needed, then:
+      this.fetchStatistics();
+    },
+
 
     // -------- Helper: pick chart component by type string --------
     getChartComponent(type) {

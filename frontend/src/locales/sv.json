@@ -145,7 +145,17 @@
         "averageTimoriasPerActivityDay": "Genomsnittligt antal Timorias per aktivitetsdag",
         "chartType": "Typ av diagram:",
         "heatmapTitle": "Aktivitetsvärmekarta (Senaste 12 månaderna)",
-        "noData": "Ingen data tillgänglig för visning."
+        "noData": "Ingen data tillgänglig för visning.",
+        "quick": {
+            "last7Days": "Senaste 7 dagarna",
+            "last30Days": "Senaste 30 dagarna",
+            "last365Days": "Senaste 365 dagarna",
+            "allTime": "Hela perioden"
+        },
+        "presets": {
+            "thisWeek": "Denna vecka",
+            "thisMonth": "Denna månad"
+        }
     },
     "modal": {
         "confirmDeleteTitle": "Är du säker på att du vill ta bort denna Timoria?",
