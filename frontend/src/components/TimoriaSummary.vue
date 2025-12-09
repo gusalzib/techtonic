@@ -462,7 +462,7 @@ export default {
 
         // detect whether the search is active. in such cases we want to increase the page limit
         const userSearchMode = this.isSearchActive;
-        const effectiveLimit = userSearchMode ? 50 : this.limit; // if the search mode is on, then we make the limit 50 per page, otherwise we go with the default
+        const effectiveLimit = userSearchMode ? 5000 : this.limit; // if the search mode is on, then we make the limit 5000 per page, otherwise we go with the default
         const effectivePage = userSearchMode ? 1 : this.page; 
 
         // Query parameters sent to the backend.
