@@ -37,6 +37,7 @@
 import dingSound from '@/assets/audio/ding.mp3'
 import breakOver from '@/assets/audio/break_over.mp3'
 import { useToast } from 'vue-toastification'
+import { API_BASE_URL } from '@/config/api';
 
 export default {
   props: {
@@ -56,7 +57,7 @@ export default {
       isPaused: false, // used to control the pause/resume button display
       startTime: null, // when the current run segment started
       endTime: null, // used for the extendTimer functionality
-      url: 'http://localhost:5000/api/timoria',
+      url: `${API_BASE_URL}/timoria`,
       localTimoria: null, // timoria in props is readonly and cannot be assigned and re-assigned so we use a local copy of it
       hasCompleted: false, // Prevent duplicate complete calls
       hasBreakFinished: false,

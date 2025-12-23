@@ -27,6 +27,7 @@
 <script>
 import Profile from '@/components/Profile.vue';
 import { useToast } from 'vue-toastification'
+import { API_BASE_URL } from '@/config/api';
 
 export default {
     name: 'UserAccount',
@@ -44,7 +45,7 @@ export default {
                 accountCreatedAt: ''
             },
             error: '',
-            url: 'http://localhost:5000/api/users',
+            url: `${API_BASE_URL}/users`,
             toast: null, // declare a toast variable to be used with toastification library for notifications
             timeout: 2000, 
             activeSection: 'profile', //this controls which section in visible to the user at any time. I set it to the profile page as default

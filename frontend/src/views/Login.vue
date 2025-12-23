@@ -12,14 +12,15 @@
 
 <script>
 import { useUserStore } from '@/stores/userStore';
-import { useToast } from 'vue-toastification'
+import { useToast } from 'vue-toastification';
+import { API_BASE_URL } from '@/config/api';
 export default {
   data() {
     return {
       form: { email: '', password: '' },
         error: '',
         message: '',
-      url: 'http://localhost:5000/api/users/login',
+      url: `${API_BASE_URL}/users/login`,
       toast: null, // will be set in mounted()
     };
   },

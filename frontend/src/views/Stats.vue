@@ -715,6 +715,7 @@ import {
   BarElement, PointElement, LineElement
 } from 'chart.js'
 import { MatrixController, MatrixElement } from 'chartjs-chart-matrix'
+import { API_BASE_URL } from '@/config/api';
 
 // Register Chart.js parts once
 ChartJS.register(
@@ -734,6 +735,7 @@ export default {
 
   data() {
     return {
+      url: `${API_BASE_URL}/timoria/statistics`,
       // ----- UI state -----
       loading: false,
       error_message: '',
@@ -956,7 +958,7 @@ export default {
       this.loading = true
       try {
         const response = await axios.get(
-          'http://localhost:5000/api/timoria/statistics',
+          this.url,
           {
             params: this.filters,
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }

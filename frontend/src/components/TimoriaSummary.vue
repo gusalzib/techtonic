@@ -201,6 +201,8 @@ import axios from 'axios';
 import { useToast } from 'vue-toastification';
 import { useUserStore } from '@/stores/userStore';
 import { transformDateWithTimezone } from '@/utils/datetime';
+import { API_BASE_URL } from '@/config/api';
+
 export default {
   name: 'TimoriaSummary',
   data() {
@@ -210,7 +212,7 @@ export default {
     return {
       // Base URL for the history API endpoint.
       // In production, this might be replaced with an env variable.
-      url: 'http://localhost:5000/api/timoria/history',
+      url: `${API_BASE_URL}/timoria/history`,
 
       // PAGINATION STATE
       // ----------------

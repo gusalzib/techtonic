@@ -359,6 +359,7 @@ import { useToast } from 'vue-toastification'
 import { useUserStore } from '@/stores/userStore';
 import { DateTime } from 'luxon';
 import { transformDateWithTimezone } from '@/utils/datetime';
+import { API_BASE_URL } from '@/config/api';
 
 export default {
     name: 'Timoria',
@@ -382,7 +383,7 @@ export default {
             activeView: 'timer',
 
             // backend API endpoint for Timoria CRUD operations
-            url: 'http://localhost:5000/api/timoria',
+            url: `${API_BASE_URL}/timoria`,
 
             // arrays holding current Timorias in different categories
             plannedTimorias: [],

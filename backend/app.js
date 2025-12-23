@@ -10,8 +10,12 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 
-// Load environment variables from a .env file into process.env
-require('dotenv').config();
+// Load environment variables depending on NODE_ENV
+const dotenv = require('dotenv');
+const env = process.env.NODE_ENV || 'development';
+const envFile = env === 'production' ? '.env.production' : '.env.development';
+dotenv.config({ path: envFile }); 
+console.log(`Loaded env file: ${envFile}`);
 
 // Create an Express application instance
 const app = express();
@@ -28,7 +32,7 @@ app.use(cors());
 app.use(express.json());
 
 // Define a basic test route at the root URL to confirm the server is running
-app.get('/', (req, res) => {
+app.get('/api/health', (req, res) => {
   res.send('API is running...');
 });
 
@@ -41,9 +45,30 @@ const userRoutes = require('./routes/userRoutes');
 app.use('/api/timoria', timoriaRoutes);
 app.use('/api/users', userRoutes);
 
+
+/**########################################################## PROD CODE ########################################################## */
+// Import Path (Built-in Node module) - No installation needed
+const path = require('path');
+
+// This block serves the frontend. It must come AFTER API routes 
+// so that API requests don't get caught by the '*' wildcard.
+
+// In CommonJS, __dirname is available globally, so you don't need 'fileURLToPath'
+// Note: Check if process.env.NODE_ENV is set to 'production' if you only want this in prod
+// For now, I've left it enabled as per your snippet.
+
+// Serve static files from the 'dist' folder
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// SPA Fallback: Any route not handled by API or static files returns index.html
+app.get(/^(?!\/api).*/, (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+/**XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+
 // Connect to MongoDB using the URI stored in the .env file
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('MongoDB Connected'))
+  .then(() => console.log(`MongoDB Connected (${process.env.NODE_ENV})`))
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Define the port to listen on: from .env or fallback to 5000

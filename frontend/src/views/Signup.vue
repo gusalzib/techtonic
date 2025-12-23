@@ -5,14 +5,12 @@
     <input v-model="form.email" type="email" placeholder="example@gmail.com" />
     <input v-model="form.password" type="password" placeholder="Password" />
     <button @click="signup">{{ $t('home.signupBtn') }}</button>
-    <!-- Commented out because they are not needed when we have toast notifications -->
-    <!-- <p id="error">{{ error }}</p>
-    <p id="success">{{ message }}</p> -->
   </div>
 </template>
 
 <script>
-import { useToast } from 'vue-toastification'
+import { useToast } from 'vue-toastification';
+import { API_BASE_URL } from '@/config/api';
 
 export default {
   data() {
@@ -20,7 +18,7 @@ export default {
       form: { username: '', email: '', password: '' },
         error: '',
         message: '',
-      url: 'http://localhost:5000/api/users/signup',
+      url: `${API_BASE_URL}/users/signup`,
       toast: null,
     };
   },
