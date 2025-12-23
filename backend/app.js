@@ -47,7 +47,11 @@ const userRoutes = require('./routes/userRoutes');
 app.use('/api/timoria', timoriaRoutes);
 app.use('/api/users', userRoutes);
 
-
+// Catch-all for unhandled errors
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Internal server error' });
+});
 /**########################################################## PROD CODE ########################################################## */
 // Import Path (Built-in Node module) - No installation needed
 const path = require('path');
