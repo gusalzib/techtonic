@@ -33,7 +33,6 @@ export const useUserStore = defineStore('user', {
 
     // Update state based on response
       const data = await response.json();
-      console.log(data);
       
       this.isLoggedIn = data.isLoggedIn;
       this.isAdmin = data.isAdmin;

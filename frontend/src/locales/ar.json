@@ -28,7 +28,8 @@
         "cancel": "إلغاء",
         "finish": "إنهاء",
         "notify": "إشعار",
-        "copy": "نسخ"
+        "copy": "نسخ",
+        "resume": "استئناف"
     },
     "todayPomos": {
         "title": "جلسات بومودورو اليوم",
@@ -189,7 +190,9 @@
         "duplicateInformation": "يوجد حساب بنفس البريد الإلكتروني أو اسم المستخدم.",
         "sessionExpired": "انتهت صلاحية الجلسة.",
         "failedToLoadUserInfo": "فشل في تحميل بيانات المستخدم.",
-        "updateSuccessful": "تم التحديث بنجاح."
+        "updateSuccessful": "تم التحديث بنجاح.",
+        "timoriaSessionFinished": "انتهت جلسة تيموريا الخاصة بك. أحسنت!",
+        "failedToCancelTimoria": "تعذر إلغاء تيموريا."
     },
     "sidebar": {
         "menu": "القائمة",

@@ -811,7 +811,11 @@ export default {
         },
         // start a Timoria (study session) by setting it as active and updating its status in the backend
         async startTimoria(timoria) {
-            //console.log('Starting timoria:', timoria)
+            /**
+             * The timer does NOT know that a timoria has been started because of localStorage
+             * The timer knows because Vue reactivity propagates activeTimoria from the parent to the child as a prop.
+             * LocalStorage is persistence, not communication.
+             */
             this.activeTimoria = { ...timoria }
 
 

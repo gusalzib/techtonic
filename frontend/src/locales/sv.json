@@ -25,7 +25,8 @@
         "cancel": "Avbryt",
         "finish": "Sluta",
         "notify": "Notify",
-        "copy": "Kopiera"
+        "copy": "Kopiera",
+        "resume": "Återuppta"
     },
     "todayPomos": {
         "title": "Dagens Pomodoros",
@@ -183,7 +184,9 @@
         "duplicateInformation": "Det finns redan ett konto med denna e-post eller användarnamn.",
         "sessionExpired": "Din session har gått ut.",
         "failedToLoadUserInfo": "Det gick inte att ladda användaruppgifter.",
-        "updateSuccessful": "Uppdateringen lyckades."
+        "updateSuccessful": "Uppdateringen lyckades.",
+        "timoriaSessionFinished": "Din Timoria-session är klar. Bra jobbat!",
+        "failedToCancelTimoria": "Misslyckades med att avbryta Timoria."
     },
     "sidebar": {
         "menu": "Meny",
