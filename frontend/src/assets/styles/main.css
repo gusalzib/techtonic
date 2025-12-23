@@ -481,6 +481,29 @@ select {
   color: var(--input-text);
 }
 
+.break-settings{
+  display: block;
+  width: 350px;
+  padding: 5px;
+  font-size: 16px;
+  margin: 10px auto;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+#break-length-input{
+  padding: 5px;
+  font-size: 16px;
+  margin: 5px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
 .timer-input{
     border: 1px solid white;
 }

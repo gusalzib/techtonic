@@ -520,6 +520,12 @@ export default {
       this.accumulatedMs = 0
       this.hasCompleted = false
       this.hasBreakFinished = false
+
+      // clear synthetic break data
+      if (this.localTimoria?.subject === 'Break') {
+        this.localTimoria = null
+      } 
+
       localStorage.removeItem('activeTimoria'); // purge localStorage of timoria data
     },
     async cancelTimer() {

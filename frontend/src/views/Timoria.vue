@@ -29,7 +29,18 @@
     @break-finished="handleBreakFinished"
     />
 
-
+      <div class="break-settings">
+        <label>
+          💤 {{ $t('table.breakLength') }}:
+          <input
+            id="break-length-input"
+            type="number"
+            min="1"
+            max="60"
+            v-model.number="breakDurationMinutes"
+          />
+        </label>
+      </div>
 
 <!-- Today’s Pomodoros Section -->
 <section class="today-pomos">
@@ -366,6 +377,7 @@ export default {
             tag: '',
             task: '',
             duration: null,
+            breakDurationMinutes: 5, // default 5 minutes
 
             activeView: 'timer',
 
@@ -412,6 +424,11 @@ export default {
             showTopicDropdown: false,
             showTagDropdown: false,
 
+        }
+    },
+    watch: {
+        breakDurationMinutes(val) {
+            localStorage.setItem('breakDuration', val);
         }
     },
     /**
@@ -896,7 +913,7 @@ export default {
 
         // start a break period after completing a Timoria
         startBreak() {
-            const breakDuration = 10;  // in minutes, set to 1 for testing purposes
+            // const breakDuration = 10;  // in minutes, set to 1 for testing purposes
             if (!this.activeBreak) {
                 this.activeBreak = true;
                 this.activeTimoria = {
@@ -904,7 +921,7 @@ export default {
                     topic: 'Break',
                     tag: 'Break',
                     task: 'Take a short break',
-                    duration: breakDuration
+                    duration: this.breakDurationMinutes
                 }
             }
 

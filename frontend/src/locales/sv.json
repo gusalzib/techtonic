@@ -48,7 +48,8 @@
         "ongoing": "Pågående",
         "completed": "Färdigställd",
         "date": "Datum",
-        "status": "Status"
+        "status": "Status",
+        "breakLength": "Bestäm längden på din nästa paus"
     },
     "example": {
         "task": "Skriv blogginlägg",

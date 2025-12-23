@@ -54,7 +54,8 @@
         "completed": "Completed",
         "date": "Date",
         "status": "Status",
-        "finishedAt": "Finished At"
+        "finishedAt": "Finished At",
+        "breakLength": "Decide your next break length"
     },
     "example": {
         "task": "Write blog post",
