@@ -22,7 +22,7 @@ export const useUserStore = defineStore('user', {
         return;
       }
 
-      const response = await fetch('https://techtonic-2wot.onrender.com/api/users/status', {
+      const response = await fetch('https://techtonic-v0qp.onrender.com/api/users/status', {
         headers: { Authorization: `Bearer ${token}` }
       });
 
