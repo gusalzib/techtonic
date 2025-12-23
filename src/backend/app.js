@@ -27,7 +27,7 @@ app.use(morgan('dev'));
 
 // Enable CORS to allow the frontend (possibly on a different port) to access the backend
 app.use(cors({
-  origin: ['http://localhost:5174', 'http://localhost:5173', 'https://techtonic-2wot.onrender.com/']
+  origin: ['http://localhost:5174', 'http://localhost:5173', 'https://techtonic-v0qp.onrender.com/']
 }));
 
 // Middleware to automatically parse incoming JSON requests (req.body will be available as a JS object)
