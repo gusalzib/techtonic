@@ -2,24 +2,90 @@
   <div class="stats-container">
     <header class="stats-header">
       <h1>{{ $t('stats.title') }}</h1>
-      <div class="date-range-filter">
+
+
+      <!-- the old custom range filters -->
+      <!-- <div class="date-range-filter">
         <input type="date" v-model="filters.startDate" />
         <input type="date" v-model="filters.endDate" />
-        <button @click="fetchStatistics">{{ $t('buttons.apply') }}</button>
+        <button class="standard-btn" @click="fetchStatistics">{{ $t('buttons.apply') }}</button>
+      </div> -->
+
+      <!-- the new custom range filters combined with ready-made period buttons -->
+      <div class="date-range-filter">
+        <!-- Quick preset buttons -->
+        <div class="quick-filters">
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === '7d' }"
+            @click="applyQuickRange('7d')"
+          >
+            {{ $t('stats.quick.last7Days') || 'Last 7 days' }}
+          </button>
+
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === '30d' }"
+            @click="applyQuickRange('30d')"
+          >
+            {{ $t('stats.quick.last30Days') || 'Last 30 days' }}
+          </button>
+
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === '365d' }"
+            @click="applyQuickRange('365d')"
+          >
+            {{ $t('stats.quick.last365Days') || 'Last 365 days' }}
+          </button>
+
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === 'all' }"
+            @click="applyQuickRange('all')"
+          >
+            {{ $t('stats.quick.allTime') || 'All time' }}
+          </button>
+
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === 'thisWeek' }"
+            @click="applyQuickRange('thisWeek')"
+          >
+            {{ $t('stats.presets.thisWeek') }}
+          </button>
+
+          <button
+            class="standard-btn"
+            :class="{ active: selectedQuickRange === 'thisMonth' }"
+            @click="applyQuickRange('thisMonth')"
+          >
+            {{ $t('stats.presets.thisMonth') }}
+          </button>
+        </div>
+
+        <!-- Manual custom range still available -->
+        <div class="manual-range">
+          <input type="date" v-model="filters.startDate" />
+          <input type="date" v-model="filters.endDate" />
+          <button class="standard-btn" @click="applyManualRange">
+            {{ $t('buttons.apply') }}
+          </button>
+        </div>
       </div>
     </header>
 
     <div class="summary-overview">
       <div class="total-timorias">
-        <p>{{ $t('stats.totalTimorias') }}: {{ stats.totalTimorias }}</p>
-        <p>{{ $t('stats.totalCompletedTimorias') }}: {{ stats.totalCompletedTimorias }}</p>
-        <p>{{ $t('stats.totalTimeSpent') }}: {{ stats.totalTimeSpent.toFixed(2) }} {{ $t('stats.hours') }}</p>
-        <p>{{ $t('stats.totalTopics') }}: {{ stats.totalTopics }} </p>
-        <p>{{ $t('stats.totalSubjects') }}: {{ stats.totalSubjects }} </p>
-        <p>{{ $t('stats.averageDuration') }}: {{ stats.averageDuration }} {{ $t('stats.minutes') }}</p>
-        <p>{{ $t('stats.taskCompletionRate') }}: {{ stats.completionRate }} {{ $t('stats.percent') }}</p>
-        <p>{{ $t('stats.averageTimePerActivityDay') }}: {{ stats.averageTimePerActivityDay }} {{ $t('stats.hours') }}</p>
-        <p>{{ $t('stats.averageTimoriasPerActivityDay') }}: {{ stats.averageTimoriasPerActivityDay }}</p>
+        <p>{{ $t('stats.totalTimorias') }}: {{ stats.totalTimorias }} <i v-tooltip="$t('tooltip.stats.totalTimorias')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.totalCompletedTimorias') }}: {{ stats.totalCompletedTimorias }} <i v-tooltip="$t('tooltip.stats.completedTimorias')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.totalTimeSpent') }}: {{ stats.totalTimeSpent.toFixed(2) }} {{ $t('stats.hours') }} <i v-tooltip="$t('tooltip.stats.totalTimeSpent')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.totalTopics') }}: {{ stats.totalTopics }} <i v-tooltip="$t('tooltip.stats.totalTopics')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.totalSubjects') }}: {{ stats.totalSubjects }} <i v-tooltip="$t('tooltip.stats.totalSubjects')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.averageDuration') }}: {{ stats.averageDuration }} {{ $t('stats.minutes') }} <i v-tooltip="$t('tooltip.stats.averageDurationPerTimoria')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.taskCompletionRate') }}: {{ stats.completionRate }} {{ $t('stats.percent') }} <i v-tooltip="$t('tooltip.stats.taskCompletionRate')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.averageTimePerActivityDay') }}: {{ stats.averageTimePerActivityDay }} {{ $t('stats.hours') }} <i v-tooltip="$t('tooltip.stats.averageTimePerActivityDay')" class="bi bi-exclamation-circle"></i></p>
+        <p>{{ $t('stats.averageTimoriasPerActivityDay') }}: {{ stats.averageTimoriasPerActivityDay }} <i v-tooltip="$t('tooltip.stats.averageTimoriasPerActivityDay')" class="bi bi-exclamation-circle"></i></p>
       </div>
 
       <!-- This is the chart where the status of the timorias is broken down into Planned, Ongoing and Completed -->
@@ -48,7 +114,7 @@
     <!-- this is the time per subject bar chart -->
     <div class="stats-details">
       <div class="time-by-subject">
-        <p>{{ $t('stats.timeSpentBySubject') }}</p>
+        <p>{{ $t('stats.timeSpentBySubject') }} <i v-tooltip="$t('tooltip.stats.timeSpentBySubject')" class="bi bi-exclamation-circle"></i></p>
         <div class="chart-controls">
           <label>{{ $t('stats.chartType') }}</label>
           <select v-model="selectedSubjectChartType">
@@ -71,7 +137,7 @@
       <!-- this is the heatmap section -->
       <div class="stats-detail">
           <div class="heatmap-section">
-            <p>{{ $t('stats.heatmapTitle') }}</p>
+            <p>{{ $t('stats.heatmapTitle') }} <i v-tooltip="$t('tooltip.stats.activityHeatmap')" class="bi bi-exclamation-circle"></i></p>
             <div class="chart-container">
               <canvas ref="heatmapCanvas"></canvas>
             </div>
@@ -80,7 +146,7 @@
 
       <!-- time by topic -->
       <div class="time-by-topic stat-card">
-        <p>{{ $t('stats.timeSpentByTopic') }}</p>
+        <p>{{ $t('stats.timeSpentByTopic') }} <i v-tooltip="$t('tooltip.stats.timeSpentByTopic')" class="bi bi-exclamation-circle"></i></p>
 
         <div class="chart-controls">
           <label>{{ $t('stats.chartType') }}</label>
@@ -105,7 +171,7 @@
 
       <!-- time by tag -->
       <div class="time-by-tag stat-card">
-        <p>{{ $t('stats.timeSpentByTag') }}</p>
+        <p>{{ $t('stats.timeSpentByTag') }} <i v-tooltip="$t('tooltip.stats.timeSpentByTag')" class="bi bi-exclamation-circle"></i></p>
 
         <div class="chart-controls">
           <label>{{ $t('stats.chartType') }}</label>
@@ -743,7 +809,11 @@ export default {
        * It prevents creating multiple overlapping charts on the same canvas.
        * In short: it tracks the active chart object, not chart settings.
        */
-      heatmapChart: null
+      heatmapChart: null,
+
+      // Which quick range is currently active:
+      // '7d' | '30d' | '365d' | 'all' | null
+      selectedQuickRange: 'all'
     }
   },
 
@@ -910,6 +980,72 @@ export default {
         this.loading = false
       }
     },
+    // --- wrapper for manual Apply button ---
+    applyManualRange() {
+      // manual range means "no preset"
+      this.selectedQuickRange = null
+      this.fetchStatistics()
+    },
+    // --- quick range presets ---
+    applyQuickRange(preset) {
+      this.selectedQuickRange = preset;
+
+      const today = new Date();
+
+      const format = (d) => {
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      };
+
+      // "All time" → clear date filters
+      if (preset === 'all') {
+        this.filters.startDate = '';
+        this.filters.endDate = '';
+        this.fetchStatistics();
+        return;
+      }
+
+      let start;
+
+      if (preset === '7d') {
+        // Include today + 6 previous days
+        start = new Date(today);
+        start.setDate(today.getDate() - 6);
+      } else if (preset === '30d') {
+        start = new Date(today);
+        start.setDate(today.getDate() - 29);
+      } else if (preset === '365d') {
+        start = new Date(today);
+        start.setDate(today.getDate() - 364);
+      } else if (preset === 'thisWeek') {
+        // ISO week: Monday–Sunday
+        const day = today.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
+        const diffFromMonday = day === 0 ? -6 : 1 - day; // if Sunday, go back 6 days
+        start = new Date(today);
+        start.setDate(today.getDate() + diffFromMonday);
+      } else if (preset === 'thisMonth') {
+        start = new Date(today.getFullYear(), today.getMonth(), 1);
+      } else {
+        // Unknown preset → do nothing
+        return;
+      }
+
+      this.filters.startDate = format(start);
+      this.filters.endDate = format(today);
+
+      this.fetchStatistics();
+    },
+
+    // when applying manual custom dates:
+    applyCustomRange() {
+      // manual date range → no quick preset highlighted
+      this.selectedQuickRange = null;
+      // your existing validation here if needed, then:
+      this.fetchStatistics();
+    },
+
 
     // -------- Helper: pick chart component by type string --------
     getChartComponent(type) {

@@ -6,6 +6,8 @@ import Login from '@/views/Login.vue'
 import Signup from '@/views/Signup.vue'
 import Stats from '@/views/Stats.vue'
 import UserAccount from '@/views/UserAccount.vue'
+import Privacy from '@/views/Privacy.vue'
+import License from '@/views/License.vue'
 
 // const routes = [
 //   {
@@ -35,6 +37,8 @@ const routes = [
   { path: '/signup', component: Signup },
   { path: '/statistics', component: Stats },
   { path: '/account', component: UserAccount },
+  { path: '/privacy', component: Privacy },
+  { path: '/license', component: License },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

@@ -72,6 +72,11 @@
 
     --chart-label-color: #000000; /* default light theme statistics label for x and y axis color */
 
+    /*Shadows */
+    --light-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    --medium-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    --heavy-shadow:rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
 
 }
 .dark-theme {
@@ -162,6 +167,7 @@ body, html{
     margin: 0;
     background-color: var(--page-bg);
     overflow-x: hidden;
+    height: fit-content;
 
 }
 
@@ -193,6 +199,22 @@ hr {
   border-style: inset;
   border-width: 1px;
 }
+
+.standard-btn{
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--standard-btn);
+  color: white;
+  transition: background-color 0.3s;
+  margin: 10px 10px;
+}
+
+.standard-btn:hover{
+  background-color: var(--standard-btn-hover);
+}
 /*############################################### HOME PAGE STYLE #######################################################*/
 .home-container {
   min-height: 100vh;
@@ -218,7 +240,7 @@ hr {
 
 .subtitle {
   font-size: 1.25rem;
-  color: var(--section-subtext);
+  color: var(--white);
   margin-bottom: 2rem;
   animation: fadeInUp 0.7s ease-out;
 }
@@ -459,6 +481,29 @@ select {
   color: var(--input-text);
 }
 
+.break-settings{
+  display: block;
+  width: 350px;
+  padding: 5px;
+  font-size: 16px;
+  margin: 10px auto;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+#break-length-input{
+  padding: 5px;
+  font-size: 16px;
+  margin: 5px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
 .timer-input{
     border: 1px solid white;
 }
@@ -1024,6 +1069,24 @@ select {
   color: var(--input-text);
 }
 
+.summary-search {
+  width: 100%;
+  display: flex;             /* Make the container a flexible box */
+  gap: 12px;                 /* Add a small gap between the items */
+  align-items: center;       /* Optional: Vertically align inputs */
+  margin-bottom: 20px;       /* Add some space below the filter row */
+}
+.summary-search input{
+  padding: 8px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+
+  flex: 1;                   /* Ensure each input takes up an equal portion of the available space */
+  min-width: 0;              /* Prevents inputs from overflowing on smaller screens */
+    
+}
 .summary-table {
   width: 100%;
   border-collapse: collapse;
@@ -1062,6 +1125,19 @@ select {
   align-items: center;
 }
 /*#################### TIMORIA SUMMARY – RESPONSIVE ####################*/
+/* 💡 MOBILE VIEW: Stack fields vertically */
+@media (max-width: 640px) {
+    .summary-search {
+      width: 97%;
+      flex-direction: column; /* Stack items vertically on small screens */
+      margin: auto;
+    }
+
+    .summary-search input {
+      width: 100%;            /* Ensure inputs take up full width when stacked */
+      margin-bottom: 0;       /* Use the gap property for spacing */
+    }
+}
 
 @media (max-width: 768px) {
   .timoria-summary {
@@ -1266,6 +1342,28 @@ select {
   display: flex;
   gap: 10px;
   align-items: center;
+  align-items: flex-start;
+}
+
+.quick-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.manual-range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+
+.quick-filters .standard-btn.active {
+  /* Highlight the active preset */
+  background-color: #1a8c0e;
+  color: #fff;
+  border-color: #1a8c0e;
 }
 
 .date-range-filter input {
@@ -1398,6 +1496,45 @@ select {
     margin-top: 20px;
   }
 }
+@media (max-width: 768px) {
+  .stats-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .stats-header h1 {
+    margin-bottom: 0.25rem;
+    text-align: left;
+  }
+
+  .date-range-filter {
+    flex-direction: column;
+    align-items: stretch; /* full width buttons/inputs */
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .quick-filters {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .quick-filters .standard-btn {
+    flex: 1 1 45%; /* two per row on small screens */
+  }
+
+  .manual-range {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .manual-range input,
+  .manual-range .standard-btn {
+    width: 100%;
+  }
+}
+
 /*################################### TIMER STYLE ANIMATIONS ##################################################*/
 .fade-out {
   opacity: 0;
@@ -1408,9 +1545,12 @@ select {
 
 .services-section {
   padding: 2rem;
-  background-color: #f9f9f9;
+  background-color: var(--section-bg);
 }
 
+.services-section h2{
+  color: var(--text-color);
+}
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -1419,10 +1559,11 @@ select {
 }
 
 .service-card {
-  background: white;
+  background: var(--section-bg);
+  color: var(--text-color);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: var(--heavy-shadow);
   max-width: 300px;
   text-align: center;
 }
@@ -1434,13 +1575,159 @@ select {
 
 .about-section {
   padding: 2rem;
-  background-color: #fff;
+  background-color: var(--section-bg);
   text-align: center;
   max-width: 800px;
   margin: 1rem auto;
 }
 
+.about-section h2{
+  color: var(--text-color);
+}
 
+/* ######################################### ABOUT PAGE ######################################### */
+.about-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+}
+
+.about-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--text-color);
+  border-radius: 12px;
+  background-color: var(--section-bg);
+  padding: .5rem;
+  padding-bottom: 1rem;
+  
+}
+
+.about-hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+  
+}
+
+.about-subtitle {
+  font-size: 1rem;
+  color: var(--text-color);
+  max-width: 600px;
+  margin: 0.5rem auto 0;
+}
+
+.about-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  
+}
+
+.about-card {
+  background: var(--section-bg);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  color: var(--text-color);
+  
+}
+
+.about-card h2 {
+  color: var(--text-color);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-card p {
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.about-section{
+  background-color: var(--section-bg);
+}
+.about-section h3 {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-section p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 0.45rem;
+}
+
+.about-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-color);
+}
+
+.about-version {
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.about-copyright {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
+
+.about-links {
+  margin: 0.7rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.about-link {
+  color: #4a7aff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.about-link:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  color: #aaa;
+}
+
+html[dir="rtl"] .about-links {
+  flex-direction: row-reverse;
+}
+/* Responsive layout */
+@media (max-width: 768px) {
+  .about-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .about-page {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .about-hero h1 {
+    font-size: 1.8rem;
+  }
+}
 /*########################################## MODAL ######################################*/
   .modal-overlay{
       position:fixed; 
@@ -1498,7 +1785,7 @@ select {
   /* border: 3px var(--palette-deep-space-blue-test) solid; */
   background-color: var(--section-bg);
   border-radius: 10px;
-  box-shadow: var(--heavy-shadow);
+  box-shadow: var(--light-shadow);
   padding: 30px;
   color: var(--text-color);
 }
@@ -1636,3 +1923,145 @@ select {
   width: 100%;
   border-width:0;
 }
+
+/* ###########################################################  TOOLTIP STYLES  ###########################################################*/
+
+.v-tooltip-box{
+    /* 1. POSITIONING IS MANDATORY */
+    position: absolute; 
+    z-index: 10000;
+    pointer-events: none; /* Prevents blocking clicks on elements below */
+
+    /* 2. VISUAL STYLING (The styles you want to control) */
+    background-color: var(--page-bg); /* Or whatever dark color you prefer */
+    color: var(--text-color); 
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 15px;
+    max-width: 300px;
+    
+    /* 3. TRANSITION/FADE EFFECT */
+    opacity: 0; /* Important: Start hidden */
+    transition: opacity 0.2s;
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ############################################################# MOBILE VIEW PLANNED TIMORIAS DROPDOWNS ############################################## */
+.autocomplete-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.autocomplete-list {
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: var(--section-bg);
+  color: var(--text-color);
+  border: 1px solid var(--accent);
+  border-top: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.autocomplete-list li {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+  background: var(--hover-row-bg)
+}
+
+
+/* ############################################################# LEGAL PRIVACY PAGE ############################################################# */
+
+.legal-page {
+  max-width: 900px; 
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--text-color);
+}
+
+.legal-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  background-color: var(--section-bg);
+  color: var(--text-color);
+}
+
+.legal-hero h1 {
+  font-size: 2.1rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+}
+
+.legal-subtitle {
+  font-size: 0.98rem;
+  color: var(--text-color);
+  max-width: 650px;
+  margin: 0.5rem auto 0;
+}
+
+.legal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-color);
+}
+
+.legal-section h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-color);
+}
+
+.legal-section p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 0.45rem;
+}
+
+
+
+.legal-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-color);
+}
+
+.legal-updated {
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+
+
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .legal-hero h1 {
+    font-size: 1.8rem;
+  }
+}
+
+
+/* ############################################################# USAGE LICENSE PAGE ############################################################# */
+
+
+

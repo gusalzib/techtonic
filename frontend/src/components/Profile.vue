@@ -2,7 +2,8 @@
     <div class="profile" id="edit-profile" v-if="activeSection === 'profile'">
         <h3>{{ $t('profile.editProfile') }}</h3>
 
-            <label>{{ $t('labels.timezone') }}</label>
+            <label>{{ $t('labels.timezone') }} <i v-tooltip="$t('tooltip.timezoneTooltip')" class="bi bi-exclamation-circle"></i></label>
+            
             <select v-model="form.timezone" id="timezone-select">
                 <option value="" disabled>{{ $t('labels.selectTimezone') }}</option>
                 <option :value="tz.id" v-for="tz in timezones" :key="tz.id">

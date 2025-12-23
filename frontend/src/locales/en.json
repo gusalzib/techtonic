@@ -15,6 +15,7 @@
     "buttons": {
         "start": "Start",
         "pause": "Pause",
+        "resume": "Resume",
         "reset": "Reset",
         "delete": "Delete",
         "save": "Save",
@@ -25,7 +26,10 @@
         "cancel": "Cancel",
         "finish": "Finish",
         "notify": "Notify",
-        "copy": "Copy"
+        "copy": "Copy",
+        "fiveMoreMinutes": "+ 5",
+        "oneMoreMinute": "+ 1"
+
 
     },
     "todayPomos": {
@@ -50,7 +54,8 @@
         "completed": "Completed",
         "date": "Date",
         "status": "Status",
-        "finishedAt": "Finished At"
+        "finishedAt": "Finished At",
+        "breakLength": "Decide your next break length"
     },
     "example": {
         "task": "Write blog post",
@@ -80,7 +85,7 @@
         "home": "Home",
         "blog": "Blog",
         "login": "Login",
-        "logout": "Log out",
+        "logout": "Logout",
         "signup": "Sign Up",
         "statistics": "Statistics",
         "darktheme": "Dark theme",
@@ -122,7 +127,7 @@
             "description": "Modern, SEO-friendly websites to showcase your brand."
         }
     },
-    "about": {
+    "homeAboutSection": {
         "title": "Why Choose Us?",
         "description": "At Timoria, we combine cutting-edge technology with deep industry knowledge to craft scalable, secure, and user-friendly software solutions. Whether you're a startup or an enterprise, we tailor our services to meet your unique needs."
     },
@@ -151,7 +156,17 @@
         "averageTimoriasPerActivityDay": "Average Number of Timorias Per Activity Day",
         "percent": "percent",
         "hours": "hours",
-        "minutes": "minutes"
+        "minutes": "minutes",
+        "quick": {
+            "last7Days": "Last 7 days",
+            "last30Days": "Last 30 days",
+            "last365Days": "Last 365 days",
+            "allTime": "All time"
+        },
+        "presets": {
+            "thisWeek": "This Week",
+            "thisMonth": "This Month"
+        }
     },
     "modal": {
         "confirmDeleteTitle": "Are you sure you want to delete this Timoria?",
@@ -179,7 +194,9 @@
         "duplicateInformation": "There is already an account with this email or username",
         "sessionExpired": "User session expired",
         "failedToLoadUserInfo": "Failed to load user data",
-        "updateSuccessful": "Updated successfully"
+        "updateSuccessful": "Updated successfully",
+        "timoriaSessionFinished": "Your Timoria session finished. Good job!",
+        "failedToCancelTimoria": "Failed to cancel Timoria."
     },
     "sidebar": {
         "menu": "Menu",
@@ -218,7 +235,11 @@
         "prevPage": "Previous",
         "nextPage": "Next",
         "page": "Page",
-        "rangeError": "Please select both start and end dates."
+        "rangeError": "Please select both start and end dates.",
+        "searchSubject": "Search for a subject",
+        "searchTopic": "Search for a topic",
+        "searchTag": "Search for a tag",
+        "searchTask": "Search for a task"
     },
     "months": {
         "jan": "January",
@@ -233,5 +254,158 @@
         "oct": "October",
         "nov": "November",
         "dec": "December"
+    },
+    "tooltip": {
+        "timezoneTooltip": "Select the timezone you are in",
+        "stats": {
+            "totalTimorias": "Total number of Timorias created in the selected period/filters (all statuses). Formula: count of all Timorias.",
+            "completedTimorias": "Number of Timorias marked as done in the selected period/filters. Formula: count where status = 'done'.",
+            "totalTimeSpent": "Sum of time on completed Timorias. Formula: sum(duration in minutes) ÷ 60 (hours).",
+            "totalTopics": "Number of unique topics across Timorias in the selected period/filters. Formula: distinct count of 'topic'.",
+            "totalSubjects": "Number of unique subjects across Timorias in the selected period/filters. Formula: distinct count of 'subject'.",
+            "averageDurationPerTimoria": "Average length per completed Timoria (minutes). Formula: sum(duration) ÷ completed count.",
+            "taskCompletionRate": "Share of Timorias completed. Formula: completed ÷ total × 100%.",
+            "averageTimePerActivityDay": "Average hours per activity day (a day with ≥1 completed Timoria). Formula: total time (hours) ÷ activity days.",
+            "averageTimoriasPerActivityDay": "Average Timorias per activity day. Formula: completed ÷ activity days. (activity days are the days where there was at least one completed Timoria)",
+            "timeSpentByTopic": "Total time spent on each topic. Formula: sum of durations for completed Timorias grouped by topic (usually shown in hours).",
+            "timeSpentByTag": "Total time spent on each tag. Formula: sum of durations for completed Timorias grouped by tag (usually shown in hours). Note: the sum across all tags will be higher than the total time spent, because a single Timoria can have multiple tags and is counted once per tag.",
+            "timeSpentBySubject": "Total time spent on each subject. Formula: sum of durations for completed Timorias grouped by subject (usually shown in hours). The sum across all subjects should match the total time spent, since each Timoria has exactly one subject.",
+            "activityHeatmap": "Daily activity overview on a calendar-style heatmap. Each cell represents one day. Darker colors mean more activity (more time spent and/or more Timorias completed) on that day within the selected period/filters."
+        },
+        "form": {
+            "structure": "Timoria uses a simple hierarchy to describe your work: Subject → Topic → Tag → Task description.\n\n• Subject = the big area (e.g. “Math”, “Work”, “Health”).\n• Topic = a more specific part of that subject (e.g. “Algebra”, “Project X”, “Workout plan”).\n• Tag = flexible labels you can reuse (e.g. “Exam prep”, “Deep work”, “Admin”).\n• Task description = what you will actually do in this session.\n\nThis structure makes it easier to search your history and see stats like time per subject/topic/tag.\nExample: Subject: “Math”, Topic: “Algebra – equations”, Tag: “Exam prep”, Task: “Solve exercises 1–10 from chapter 3”.",
+            "duration": "How many minutes you plan to focus in this Timoria. This is the length of the timer (e.g. 25, 45, 60).",
+            "subject": "Subject is the broad area you are working on. Use it for big categories like “Work”, “University”, “Math”, “Programming”, “Health”.\nExample: If you are studying calculus, the subject could be “Math”.",
+            "topic": "Topic is a more specific part inside the subject. Use it to group related sessions.\nExample: Subject: “Math”, Topic: “Calculus – derivatives”. Later, you can see how much time you spent on each topic.",
+            "tag": "Tags are optional, reusable labels that cut across subjects and topics. You can use multiple tags on different Timorias.\nExamples: “Exam prep”, “Deep work”, “Admin”, “Writing”, “Revision”. Tags are useful for stats like time spent on “Exam prep” across all subjects.",
+            "task": "Task description is optional but recommended. Write what you will actually do during this Timoria.\nExamples: “Write introduction for report”, “Review lecture 5 notes”, “Solve exercises 1–10”, “Refactor login component”. This makes your history easier to understand later."
+        },
+        "buttons": {
+            "start": "Start the timer for this Timoria.",
+            "pause": "Pause the timer. You can resume later without losing progress.",
+            "reset": "Reset the timer to its original duration.",
+            "cancel": "Cancel this Timoria and return it to your planned list.",
+            "finish": "Manually finish the Timoria and save the time you’ve spent so far.",
+            "oneMoreMinute": "Extend the current Timoria by 1 minute. Useful when you're focused and want just a little more time before it ends.",
+            "fiveMoreMinutes": "Extend the current Timoria by 5 minutes. Perfect for staying in the flow without interrupting your work."
+        },
+        "summary": {
+            "prevMonth": "Show Timorias for the previous calendar month.",
+            "nextMonth": "Show Timorias for the next calendar month (if available).",
+            "currentPeriod": "Shows which dates you are currently viewing. In month mode: one month. In custom mode: your selected date range.",
+            "startDate": "Choose the first day of the period you want to see in the summary.",
+            "endDate": "Choose the last day of the period you want to see in the summary.",
+            "applyRange": "Apply the selected start and end dates and show only Timorias in that date range.",
+            "clearRange": "Clear the custom date range and go back to viewing a single month."
+        }
+    },
+    "about": {
+        "title": "About Timoria",
+        "subtitle": "Timoria is a small, opinionated tool that helps you turn your time into something visible, understandable, and intentional.",
+        "highlight1": {
+            "title": "Track real work, not just hours",
+            "body": "Each Timoria captures what you did, how long you spent, and why it mattered – not just a number in a spreadsheet."
+        },
+        "highlight2": {
+            "title": "See patterns in your days",
+            "body": "Statistics, summaries, and timelines help you notice which subjects, topics, and habits actually move you forward."
+        },
+        "highlight3": {
+            "title": "Built for focus, not pressure",
+            "body": "The timer, breaks, and history are designed to support sustainable progress – not guilt or burnout."
+        },
+        "section1": {
+            "title": "What is Timoria?",
+            "body1": "Timoria is a personal time-tracking and focus companion. Instead of treating your day as a blur of hours, you register focused sessions called Timorias. Each Timoria has a subject, topic, tags, a task description, and a duration. Together, they give you a structured picture of how you actually spend your time.",
+            "body2": "The goal is not to “optimize every minute” but to make your effort visible, so you can make calmer and more informed decisions about what to do next."
+        },
+        "section2": {
+            "title": "Why subjects, topics, tags, and tasks?",
+            "body1": "The breakdown Subject → Topic → Tag → Task is a simple way of capturing context without being overwhelming. The subject is the broad area, like “Work”, “Studies”, or “Health”. The topic zooms in a bit further, for example “Project X”, “Exam preparation”, or “Strength training”.",
+            "body2": "Tags help you group things that cut across subjects, such as “Deep work”, “Admin”, or “Writing”. The task description is where you write what you actually plan to do in that session. This structure makes your statistics, search, and history much more meaningful over time."
+        },
+        "section3": {
+            "title": "How the timer fits in",
+            "body1": "The timer is at the heart of Timoria. You start a session with a clear intention and a planned duration. If you get into a good flow, you can extend the timer by a few minutes instead of breaking the rhythm.",
+            "body2": "When a Timoria ends, it is saved with the actual time you spent. That means your history gradually becomes a realistic reflection of your focus, not just your calendar."
+        },
+        "section4": {
+            "title": "Understanding your stats and history",
+            "body1": "The summary and stats pages let you explore your past Timorias. You can filter by date ranges, search by subject, topic, tag, or task, and see how much time you actually give to different areas of your life.",
+            "body2": "Over time, these views reveal patterns: which days tend to be more active, which topics receive consistent attention, and where you might want to adjust your focus."
+        },
+        "section5": {
+            "title": "Privacy and ownership of your data",
+            "body1": "Your Timorias are personal. They are meant to help you reflect, not to be a performance scoreboard. The app stores your sessions so that statistics and history can work, but the intention is that you remain in control.",
+            "body2": "You decide how detailed you want your entries to be. You can keep them minimal, or write descriptive tasks if that helps you later. The design is intentionally simple so that your data stays understandable to you first."
+        },
+        "footer": {
+            "madeWith": "Timoria is a personal project, built to support slow, steady progress and kinder self-reflection. Future releases will introduce more and more productivity features like weekly planners, reminders, habit tracker, diary documentation and data export (so that you can migrate your data whenever you want)",
+            "version": "Current version: Timoria – summary & stats, with support for subjects, topics, tags, and a focus timer.",
+            "copyright": "© 2025 Techtonic-Timoria. All rights reserved.",
+            "privacy": "Privacy Policy",
+            "license": "License"
+        }
+    },
+    "privacy": {
+        "title": "Privacy Policy",
+        "subtitle": "This page explains how Timoria handles your data, what is stored, and how you stay in control of your own information.",
+        "section1": {
+            "title": "1. What Timoria is",
+            "body1": "Timoria is a personal time-tracking and focus tool. You use it to register focused work sessions (Timorias) with a subject, topic, optional tags, a task description, and a duration.",
+            "body2": "The purpose of collecting this information is to help you see how you spend your time, understand your patterns, and reflect on your work in a calmer and more structured way."
+        },
+        "section2": {
+            "title": "2. What data is stored",
+            "body1": "Timoria stores the Timorias you create: subjects, topics, tags, task descriptions, durations, timestamps (such as when a Timoria was finished), and basic metadata needed to show summaries and statistics.",
+            "body2": "Depending on your setup, the application may also store technical information such as your user account, login tokens, and your preferred timezone so that dates and times are displayed correctly."
+        },
+        "section3": {
+            "title": "3. How your data is used",
+            "body1": "Your data is used inside the app to provide features such as the summary table, statistics, daily history, and search. It is not used to build advertising profiles or sold to third parties.",
+            "body2": "The design of Timoria is intentionally simple. Data is processed only to support the core features you see: timers, history, and analytics about your own Timorias."
+        },
+        "section4": {
+            "title": "4. Storage, security, and retention",
+            "body1": "Your Timorias are stored in the application’s database so that you can access your history over time. As with any online service, there is always some technical risk, but reasonable measures are taken to protect your data, such as limiting access and using authentication.",
+            "body2": "Data is kept as long as your account exists or until you decide to delete entries. If you remove a Timoria, it will no longer appear in your statistics or history. Depending on the technical setup, backups or logs may temporarily contain old data before they are rotated."
+        },
+        "section5": {
+            "title": "5. Your choices and contact",
+            "body1": "You choose what you enter into Timoria. You can keep descriptions vague or detailed, and you can delete Timorias that you no longer want to keep. If you are unsure about what is stored, you can always review your data through the summary and stats pages.",
+            "body2": "If you have questions about how your data is handled in this specific deployment of Timoria, please contact the person or team running the instance. They can provide more details about hosting, backups, and configuration."
+        },
+        "footer": {
+            "note": "This privacy policy describes the general intent of how Timoria is designed to handle data. The exact details may depend on how and where the app is hosted.",
+            "lastUpdated": "Last updated: 2025-12-07"
+        }
+    },
+    "license": {
+        "title": "License",
+        "subtitle": "This page explains how you are allowed to use Timoria and what rights are reserved by the author.",
+        "section1": {
+            "title": "1. Ownership",
+            "body1": "Timoria is a personal software project. Unless otherwise stated, all code, design, and content in this application are owned by the author.",
+            "body2": "The name \"Timoria\", its visual identity, and the structure of the app are part of this work and may not be misrepresented as your own."
+        },
+        "section2": {
+            "title": "2. Personal use",
+            "body1": "You are allowed to use Timoria for your own personal, non-commercial purposes. This includes tracking your time, viewing statistics, and using the app as part of your daily routine.",
+            "body2": "You may not resell access to Timoria, bundle it as part of a commercial product, or provide it as a hosted service to others without explicit permission from the author."
+        },
+        "section3": {
+            "title": "3. Modifications and redistribution",
+            "body1": "Unless a separate open-source license is clearly provided for the source code, Timoria should be treated as proprietary software.",
+            "body2": "This means you may not redistribute modified or unmodified copies of the application, nor publish a clone under a different name, without written permission. If you are interested in contributing or collaborating, please contact the author directly."
+        },
+        "section4": {
+            "title": "4. No warranty",
+            "body1": "Timoria is provided \"as is\", without any express or implied warranty. There is no guarantee that the app will be error-free, uninterrupted, or suitable for any particular purpose.",
+            "body2": "By using Timoria, you agree that you are responsible for how you rely on the data shown in the app. Always keep your own backups of important information and do not use the app as the sole record for critical data."
+        },
+        "footer": {
+            "note": "This license text is a simple summary of how Timoria may be used. If you need a different arrangement or a formal agreement, please reach out to the author.",
+            "lastUpdated": "Last updated: 2025-12-07"
+        }
     }
 }

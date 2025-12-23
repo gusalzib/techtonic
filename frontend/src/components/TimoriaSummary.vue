@@ -30,7 +30,7 @@
       -->
       <div class="month-navigation">
         <!-- Go to previous month (if not in custom range mode) -->
-        <button @click="goToPreviousMonth">« {{ $t('summary.prevMonth') || 'Previous month' }}</button>
+        <button @click="goToPreviousMonth" v-tooltip="$t('tooltip.summary.prevMonth')">« {{ $t('summary.prevMonth') || 'Previous month' }} </button>
 
         <!-- Shows either a month label (e.g. "November 2025") or the custom range text -->
         <span class="current-period">
@@ -38,7 +38,7 @@
         </span>
 
          <!-- Go to next month (if not in custom range mode) -->
-        <button @click="goToNextMonth">{{ $t('summary.nextMonth') || 'Next month' }} »</button>
+        <button @click="goToNextMonth" v-tooltip="$t('tooltip.summary.nextMonth')">{{ $t('summary.nextMonth') || 'Next month' }} »</button>
       </div>
 
 
@@ -60,7 +60,7 @@
         - Re-fetch data for the current month
       -->
       <div class="custom-range">
-        <label>
+        <label  v-tooltip="$t('tooltip.summary.startDate')">
           {{ $t('summary.startDate') || 'Start date' }}
            <!--
             v-model on a date input gives us a string in YYYY-MM-DD format.
@@ -68,13 +68,13 @@
           -->
           <input type="date" v-model="customStartDate">
         </label>
-        <label>
+        <label  v-tooltip="$t('tooltip.summary.endDate')">
           {{ $t('summary.endDate') || 'End date' }}
           <input type="date" v-model="customEndDate">
         </label>
 
         <!-- Apply the selected custom range (triggers a fetch with those dates) -->
-        <button @click="applyCustomRange">
+        <button @click="applyCustomRange" v-tooltip="$t('tooltip.summary.applyRange')">
           {{ $t('summary.applyRange') || 'Apply range' }}
         </button>
 
@@ -83,10 +83,17 @@
           isCustomRangeActive is a computed property that returns true when
           customStartDate AND customEndDate are non-empty.
         -->
-        <button @click="clearCustomRange" v-if="isCustomRangeActive">
+        <button @click="clearCustomRange" v-if="isCustomRangeActive" v-tooltip="$t('tooltip.summary.clearRange')">
           {{ $t('summary.clearRange') || 'Clear range' }}
         </button>
       </div>
+    </div>
+
+    <div class="summary-search">
+      <input v-model="searchSubject" type="text" class="summary-search-input" :placeholder="$t('summary.searchSubject') || 'Filter by subject'">
+      <input v-model="searchTopic" type="text" class="summary-search-input" :placeholder="$t('summary.searchTopic') || 'Filter by topic'">
+      <input v-model="searchTag" type="text" class="summary-search-input" :placeholder="$t('summary.searchTag') || 'Filter by tag'">
+      <input v-model="searchTask" type="text" class="summary-search-input" :placeholder="$t('summary.searchTask') || 'Filter by task'">
     </div>
 
     <!--
@@ -101,7 +108,7 @@
       - List all fetched Timorias for the current page and period/range
       - Columns: date, task, duration, subject, topic, tag, status
     -->    
-      <table class="summary-table" v-if="timorias.length">
+      <table class="summary-table" v-if="filteredTimorias.length">
       <thead>
         <tr>
           <th>{{ $t('table.date') || 'Date' }}</th>
@@ -121,7 +128,7 @@
           :key="t._id" is important for Vue's reactivity and performance.
           It lets Vue track which row corresponds to which data item.
         -->
-        <tr v-for="t in timorias" :key="t._id">
+        <tr v-for="t in filteredTimorias" :key="t._id">
           <!--
             Format createdAt into a human-readable date string using formatDate().
             If createdAt is missing or invalid, we show "—".
@@ -166,7 +173,7 @@
           * updates `page`
           * re-fetches data from the backend
     -->    
-    <div class="pagination" v-if="totalPages > 1">
+    <div class="pagination" v-if="totalPages > 1 && !isSearchActive">
       <button
         :disabled="page === 1"
         @click="changePage(page - 1)"
@@ -237,6 +244,12 @@ export default {
       // Toast instance reference (from vue-toastification).
       // We attach it in mounted() so we can call this.toast.success/error(...) later.
       toast: null,
+
+      // search filters 
+      searchSubject: '',
+      searchTopic: '',
+      searchTag: '',
+      searchTask: '',
     };
   },
   computed: {
@@ -288,8 +301,10 @@ export default {
     //   If currentYear = 2025 and currentMonth = 0 (January),
     //   then new Date(2025, 0, 1) is "2025-01-01T..." and we slice to "2025-01-01".
     monthStartDate() {
+      // for some reason when I do (this.currentYear, this.currentMonth, 1) I get the last day of the last month in the result
+      // but when I set it to 2 I get the first day of the current month (as I want it)
       // YYYY-MM-DD string
-      const d = new Date(this.currentYear, this.currentMonth, 1);
+      const d = new Date(this.currentYear, this.currentMonth, 2);      
       return d.toISOString().slice(0, 10);
     },
 
@@ -318,6 +333,85 @@ export default {
     effectiveEndDate() {
       return this.isCustomRangeActive ? this.customEndDate : this.monthEndDate;
     },
+
+    // filter Timorias by subject, topic, tag and task (case-sensitive)
+    filteredTimorias() {
+      // Normalize all search inputs:
+      // - trim(): remove accidental spaces
+      // - toLowerCase(): make the match case-insensitive
+      const subjectTerm = this.searchSubject.trim().toLocaleLowerCase();
+      const topicTerm = this.searchTopic.trim().toLocaleLowerCase();
+      const tagTerm = this.searchTag.trim().toLocaleLowerCase();
+      const taskTerm = this.searchTask.trim().toLocaleLowerCase();
+
+      // if no filters are set, just return the original array
+      // If no search filters are active, return all Timorias immediately.
+      // This avoids unnecessary filtering and keeps pagination behavior correct.
+      if (!subjectTerm && !topicTerm && !tagTerm && !taskTerm) {
+        return this.timorias; 
+      }
+
+      // Otherwise, filter the list using all active filters.
+      return this.timorias.filter(timoria => {
+        // Normalize each Timoria field to lowercase for case-insensitive comparison.
+        // Use fallback '' for safety in case any field is null/undefined.
+        const subject = (timoria.subject || '').toLowerCase();
+        const topic = (timoria.topic || '').toLowerCase();
+        const tag = (timoria.tag || '').toLowerCase();
+        const task = (timoria.task || '').toLowerCase();
+
+        // Each field matches if:
+        // 1) The corresponding search term is empty (meaning "ignore this filter"), OR
+        // 2) The field contains the search term (case-insensitive partial match)
+        const matchesSubject = !subjectTerm || subject.includes(subjectTerm);
+        const matchesTopic = !topicTerm || topic.includes(topicTerm);
+        const matchesTag = !tagTerm || tag.includes(tagTerm);
+        const matchesTask = !taskTerm || task.includes(taskTerm);
+
+        // A Timoria passes the filter only if *all* active filters match.
+        // This gives an AND-logic search (narrowing results).
+        return matchesSubject && matchesTopic && matchesTag && matchesTask;
+
+      })
+    },
+    /**
+     * isSearchActive: Determines if any search filter is currently active (contains non-empty data).
+     * * ------------------------------------------------------------------------------------------
+     * DETAILED EXPLANATION OF THE DOUBLE NEGATION (!!) OPERATOR
+     * ------------------------------------------------------------------------------------------
+     * * The expression relies on two core JavaScript concepts: Truthiness and the Logical OR (||)
+     * operator's return behavior.
+     * * 1. The Logical OR Chain (this.searchSubject || ...)
+     * - The || operator evaluates operands left-to-right and returns the first value
+     * that is considered 'truthy' (a non-empty string, a non-zero number, or 'true').
+     * - Example A (Active Search): If searchSubject is "math", the expression returns "math" (a truthy value).
+     * - Example B (Inactive Search): If all four variables are empty strings (""), the expression
+     * falls through and returns the value of the last variable (which is "", a falsy value).
+     * * 2. The Double Negation (!!)
+     * - The purpose of the surrounding !! is to strictly convert the result from the OR chain 
+     * into a guaranteed boolean (true or false).
+     * - First ! (Negation): Converts the value to a boolean and immediately reverses it.
+     * - !"math"  => false
+     * - !""      => true
+     * - Second ! (Negation): Reverses the result back, yielding the final, strict boolean.
+     * - !!"math" => true (Search is active)
+     * - !!""     => false (Search is inactive)
+     * * Result: This concise expression replaces a lengthy conditional check (e.g., this.subject !== '' || this.topic !== ''...)
+     * and is the idiomatic way to check if any item in a list of variables is truthy.
+     */
+    isSearchActive() {
+      return !!(this.searchSubject || this.searchTopic || this.searchTag || this.searchTask);
+    },
+  },
+  watch: {
+    // Refetch when user goes from no filters → some filter
+    // Refetch when user clears all filters (search → no search)
+    isSearchActive(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.page = 1;
+        this.fetchTimorias();
+      }
+    }
   },
   // Lifecycle hook that runs after the component is mounted into the DOM.
   mounted() {
@@ -366,10 +460,15 @@ export default {
         // Get token from localStorage to authenticate the request.
         const token = localStorage.getItem('token');
 
+        // detect whether the search is active. in such cases we want to increase the page limit
+        const userSearchMode = this.isSearchActive;
+        const effectiveLimit = userSearchMode ? 5000 : this.limit; // if the search mode is on, then we make the limit 5000 per page, otherwise we go with the default
+        const effectivePage = userSearchMode ? 1 : this.page; 
+
         // Query parameters sent to the backend.
         const params = {
-          page: this.page,
-          limit: this.limit,
+          page: effectivePage,
+          limit: effectiveLimit,
           startDate: this.effectiveStartDate,
           endDate: this.effectiveEndDate,
         };
@@ -385,7 +484,7 @@ export default {
         this.timorias = res.data.timorias || [];
 
         // Update total pages for pagination. Fallback to 1 to avoid division by zero.
-        this.totalPages = res.data.totalPages || 1;
+        this.totalPages = userSearchMode ? 1 : (res.data.totalPages || 1);
       } catch (err) {
         // On any error (network, server error, etc.), show a toast message if possible.
         // We also use i18n with a fallback to a plain English string.
@@ -403,6 +502,9 @@ export default {
     // - Update this.page if valid.
     // - Call fetchTimorias() to reload data for the new page.
     changePage(newPage) {
+      // if (this.isSearchActive) {
+      //   return; // when searching, pagination is disabled. we ignore clicks for safety
+      // }
       if (newPage < 1 || newPage > this.totalPages) return;
       this.page = newPage;
       this.fetchTimorias();

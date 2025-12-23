@@ -25,7 +25,8 @@
         "cancel": "Avbryt",
         "finish": "Sluta",
         "notify": "Notify",
-        "copy": "Kopiera"
+        "copy": "Kopiera",
+        "resume": "Återuppta"
     },
     "todayPomos": {
         "title": "Dagens Pomodoros",
@@ -47,7 +48,8 @@
         "ongoing": "Pågående",
         "completed": "Färdigställd",
         "date": "Datum",
-        "status": "Status"
+        "status": "Status",
+        "breakLength": "Bestäm längden på din nästa paus"
     },
     "example": {
         "task": "Skriv blogginlägg",
@@ -119,7 +121,7 @@
             "description": "Moderna, SEO-vänliga webbplatser för att lyfta fram ditt varumärke."
         }
     },
-    "about": {
+    "homeAboutSection": {
         "title": "Varför välja oss?",
         "description": "På Timoria kombinerar vi banbrytande teknik med djup branschkunskap för att skapa skalbara, säkra och användarvänliga mjukvarulösningar. Oavsett om du är en startup eller ett företag anpassar vi våra tjänster efter dina unika behov."
     },
@@ -145,7 +147,17 @@
         "averageTimoriasPerActivityDay": "Genomsnittligt antal Timorias per aktivitetsdag",
         "chartType": "Typ av diagram:",
         "heatmapTitle": "Aktivitetsvärmekarta (Senaste 12 månaderna)",
-        "noData": "Ingen data tillgänglig för visning."
+        "noData": "Ingen data tillgänglig för visning.",
+        "quick": {
+            "last7Days": "Senaste 7 dagarna",
+            "last30Days": "Senaste 30 dagarna",
+            "last365Days": "Senaste 365 dagarna",
+            "allTime": "Hela perioden"
+        },
+        "presets": {
+            "thisWeek": "Denna vecka",
+            "thisMonth": "Denna månad"
+        }
     },
     "modal": {
         "confirmDeleteTitle": "Är du säker på att du vill ta bort denna Timoria?",
@@ -173,7 +185,9 @@
         "duplicateInformation": "Det finns redan ett konto med denna e-post eller användarnamn.",
         "sessionExpired": "Din session har gått ut.",
         "failedToLoadUserInfo": "Det gick inte att ladda användaruppgifter.",
-        "updateSuccessful": "Uppdateringen lyckades."
+        "updateSuccessful": "Uppdateringen lyckades.",
+        "timoriaSessionFinished": "Din Timoria-session är klar. Bra jobbat!",
+        "failedToCancelTimoria": "Misslyckades med att avbryta Timoria."
     },
     "sidebar": {
         "menu": "Meny",
@@ -212,7 +226,11 @@
         "prevPage": "Föregående",
         "nextPage": "Nästa",
         "page": "Sida",
-        "rangeError": "Välj både start- och slutdatum."
+        "rangeError": "Välj både start- och slutdatum.",
+        "searchSubject": "Sök efter ett ämne",
+        "searchTopic": "Sök efter ett ämnesområde",
+        "searchTag": "Sök efter en tagg",
+        "searchTask": "Sök efter en uppgift"
     },
     "months": {
         "jan": "Januari",
@@ -227,5 +245,157 @@
         "oct": "Oktober",
         "nov": "November",
         "dec": "December"
+    },
+    "tooltip": {
+        "stats": {
+            "totalTimorias": "Totalt antal Timoria som skapats inom vald period/filtrering (alla statusar). Formel: antal av alla Timoria.",
+            "completedTimorias": "Antal Timoria som markerats som slutförda inom vald period/filtrering. Formel: antal där status = 'done'.",
+            "totalTimeSpent": "Summa tid på slutförda Timoria. Formel: summa varaktighet (minuter) ÷ 60 (timmar).",
+            "totalTopics": "Antal unika ämnen (topic) bland Timoria inom vald period/filtrering. Formel: distinkt antal av 'topic'.",
+            "totalSubjects": "Antal unika kategorier (subject) bland Timoria inom vald period/filtrering. Formel: distinkt antal av 'subject'.",
+            "averageDurationPerTimoria": "Genomsnittlig längd per slutförd Timoria (minuter). Formel: summa varaktighet ÷ antal slutförda.",
+            "taskCompletionRate": "Andel Timoria som slutförts. Formel: slutförda ÷ totalt × 100 %. ",
+            "averageTimePerActivityDay": "Genomsnittliga timmar per aktivitetsdag (dag med ≥1 slutförd Timoria). Formel: total tid (timmar) ÷ antal aktivitetsdagar.",
+            "averageTimoriasPerActivityDay": "Genomsnittligt antal Timoria per aktivitetsdag. Formel: slutförda ÷ antal aktivitetsdagar.",
+            "timeSpentByTag": "Total tid som lagts på varje tagg. Formel: summa varaktighet för slutförda Timoria grupperade per tagg (visas oftast i timmar). Observera: den totala summan över alla taggar blir högre än den totala tiden, eftersom en Timoria kan ha flera taggar och räknas en gång per tagg.",
+            "timeSpentByTopic": "Total tid som lagts på varje ämne (topic). Formel: summa varaktighet för slutförda Timoria grupperade per topic (visas oftast i timmar).",
+            "timeSpentBySubject": "Total tid som lagts på varje kategori (subject). Formel: summa varaktighet för slutförda Timoria grupperade per subject (visas oftast i timmar). Summan över alla subject ska motsvara den totala tiden, eftersom varje Timoria har exakt ett subject.",
+            "activityHeatmap": "Översikt över daglig aktivitet i en kalenderliknande heatmap. Varje ruta motsvarar en dag. Mörkare färg betyder mer aktivitet (mer tid eller fler slutförda Timoria) under den dagen inom vald period/filtrering."
+        },
+        "form": {
+            "structure": "Timoria använder en enkel hierarki för att beskriva ditt arbete: Subject → Topic → Tag → Task description.\n\n• Subject = det stora området (t.ex. ”Jobb”, ”Studier”, ”Matematik”, ”Hälsa”).\n• Topic = en mer specifik del inom området (t.ex. ”Algebra”, ”Projekt X”, ”Träningsprogram”).\n• Tag = flexibla etiketter som du kan återanvända (t.ex. ”Tentaplugg”, ”Deep work”, ”Admin”).\n• Task description = vad du faktiskt ska göra under passet.\n\nDen här strukturen gör det enklare att söka i historiken och se statistik, till exempel tid per ämne, topic eller tagg.\nExempel: Subject: ”Matematik”, Topic: ”Algebra – ekvationer”, Tag: ”Tentaplugg”, Task: ”Lös uppgift 1–10 i kapitel 3”.",
+            "duration": "Antalet minuter du planerar att fokusera i den här Timorian. Det är längden på timern (t.ex. 25, 45, 60).",
+            "subject": "Subject är det övergripande området du jobbar med. Använd det för stora kategorier som ”Jobb”, ”Universitet”, ”Matematik”, ”Programmering”, ”Hälsa”.\nExempel: Om du pluggar analys kan subject vara ”Matematik”.",
+            "topic": "Topic är en mer specifik del inom subject. Använd det för att gruppera liknande pass.\nExempel: Subject: ”Matematik”, Topic: ”Analys – derivator”. Senare kan du se hur mycket tid du lagt på varje topic.",
+            "tag": "Taggar är frivilliga och kan återanvändas mellan olika Timoria. De går tvärs över olika ämnen och topics.\nExempel: ”Tentaplugg”, ”Deep work”, ”Admin”, ”Skrivande”, ”Repetition”. Taggar är bra för statistik, t.ex. hur mycket tid du lagt på ”Tentaplugg” totalt.",
+            "task": "Task description är frivillig men rekommenderas. Skriv vad du faktiskt ska göra under det här passet.\nExempel: ”Skriva inledning till rapporten”, ”Gå igenom föreläsning 5”, ”Lösa uppgift 1–10”, ”Refaktorera login-komponenten”. Det gör historiken lättare att förstå i efterhand."
+        },
+        "buttons": {
+            "start": "Starta timern för denna Timoria.",
+            "pause": "Pausa timern. Du kan fortsätta senare utan att tappa tiden.",
+            "reset": "Återställ timern till den ursprungliga tiden.",
+            "cancel": "Avbryt denna Timoria och flytta tillbaka den till planerade uppgifter.",
+            "finish": "Avsluta Timorian manuellt och spara tiden du har arbetat hittills.",
+            "oneMoreMinute": "Förläng den pågående Timorian med 1 minut. Användbart när du är fokuserad och vill fortsätta lite längre.",
+            "fiveMoreMinutes": "Förläng den pågående Timorian med 5 minuter. Perfekt när du är i ett bra arbetsflöde och inte vill avbryta."
+        },
+        "summary": {
+            "prevMonth": "Visa Timoria för föregående kalendermånad.",
+            "nextMonth": "Visa Timoria för nästa kalendermånad (om data finns).",
+            "currentPeriod": "Visar vilka datum du tittar på just nu. I månads-läge: en månad. I anpassat läge: ditt valda datumintervall.",
+            "startDate": "Välj första dagen i perioden du vill se i sammanställningen.",
+            "endDate": "Välj sista dagen i perioden du vill se i sammanställningen.",
+            "applyRange": "Använd valt start- och slutdatum och visa bara Timoria inom detta intervall.",
+            "clearRange": "Rensa det anpassade datumintervallet och gå tillbaka till att visa en månad i taget."
+        }
+    },
+    "about": {
+        "title": "Om Timoria",
+        "subtitle": "Timoria är ett litet, genomtänkt verktyg som hjälper dig att göra din tid synlig, begriplig och mer medveten.",
+        "highlight1": {
+            "title": "Följ faktiskt arbete, inte bara timmar",
+            "body": "Varje Timoria fångar vad du gjorde, hur länge du jobbade och varför det var viktigt – inte bara en siffra i ett kalkylark."
+        },
+        "highlight2": {
+            "title": "Upptäck mönster i dina dagar",
+            "body": "Statistik, sammanfattningar och tidslinjer hjälper dig att se vilka ämnen, topics och vanor som faktiskt för dig framåt."
+        },
+        "highlight3": {
+            "title": "Byggt för fokus, inte stress",
+            "body": "Timer, pauser och historik är utformade för hållbart arbete och lugn utveckling – inte skuld eller utbrändhet."
+        },
+        "section1": {
+            "title": "Vad är Timoria?",
+            "body1": "Timoria är en personlig kombination av fokus-timer och tidsloggning. I stället för att se dagen som en suddig mängd timmar registrerar du fokuserade pass som kallas Timoria. Varje Timoria har ett subject, ett topic, taggar, en uppgiftsbeskrivning och en varaktighet. Tillsammans ger de en strukturerad bild av hur du faktiskt använder din tid.",
+            "body2": "Målet är inte att ”optimera varje minut”, utan att göra din ansträngning synlig så att du kan fatta lugnare och mer informerade beslut om vad du vill göra härnäst."
+        },
+        "section2": {
+            "title": "Varför subject, topic, tagg och uppgift?",
+            "body1": "Uppdelningen Subject → Topic → Tag → Task är ett enkelt sätt att fånga sammanhang utan att det blir krångligt. Subject är det övergripande området, till exempel ”Jobb”, ”Studier” eller ”Hälsa”. Topic går ett steg djupare, till exempel ”Projekt X”, ”Tentaplugg” eller ”Styrketräning”.",
+            "body2": "Taggar hjälper dig att samla sådant som går tvärs över olika områden, till exempel ”Deep work”, ”Admin” eller ”Skrivande”. I task description skriver du vad du faktiskt tänker göra under passet. Den här strukturen gör statistik, sök och historik mycket mer användbar över tid."
+        },
+        "section3": {
+            "title": "Hur timern passar in",
+            "body1": "Timern är hjärtat i Timoria. Du startar ett pass med en tydlig intention och en planerad längd. Om du kommer in i ett bra flow kan du förlänga timern med några minuter i stället för att bryta fokus.",
+            "body2": "När en Timoria avslutas sparas den med den verkliga tiden du arbetade. På så sätt blir din historik gradvis en realistisk bild av din koncentration, inte bara din kalender."
+        },
+        "section4": {
+            "title": "Att förstå statistik och historik",
+            "body1": "Sidorna för sammanfattning och statistik låter dig utforska dina tidigare Timoria. Du kan filtrera på datumintervall, söka på subject, topic, tagg eller uppgift och se hur mycket tid du faktiskt lägger på olika delar av livet.",
+            "body2": "Med tiden dyker mönster upp: vilka dagar som tenderar att vara mest aktiva, vilka topics som får jämn uppmärksamhet och var du kanske vill justera ditt fokus."
+        },
+        "section5": {
+            "title": "Integritet och ägarskap över dina data",
+            "body1": "Dina Timoria är personliga. De är till för att hjälpa dig att reflektera, inte för att bli en prestations-tavla. Appen lagrar dina pass för att statistik och historik ska fungera, men tanken är att du ska behålla kontrollen.",
+            "body2": "Du bestämmer själv hur detaljerade dina poster ska vara. Du kan hålla dem enkla, eller skriva mer beskrivande uppgifter om det hjälper dig senare. Designen är medvetet enkel så att dina data i första hand ska vara begripliga för dig."
+        },
+        "footer": {
+            "madeWith": "Timoria är ett personligt projekt, skapat för att stödja långsam, stadig utveckling och snällare självreflektion.",
+            "version": "Nuvarande version: Timoria – sammanfattningar och statistik med stöd för subject, topic, taggar och fokustimer.",
+            "copyright": "© 2025 Techtonic-Timoria. Alla rättigheter förbehålls.",
+            "privacy": "Integritetspolicy",
+            "license": "Licens"
+        }
+    },
+    "privacy": {
+        "title": "Integritetspolicy",
+        "subtitle": "Här förklaras hur Timoria hanterar dina data, vad som sparas och hur du behåller kontrollen över din information.",
+        "section1": {
+            "title": "1. Vad Timoria är",
+            "body1": "Timoria är ett personligt verktyg för fokustid och tidsloggning. Du använder det för att registrera fokuserade arbetspass (Timoria) med subject, topic, valfria taggar, en uppgiftsbeskrivning och en varaktighet.",
+            "body2": "Syftet med att samla in denna information är att hjälpa dig att se hur du använder din tid, förstå dina mönster och kunna reflektera över ditt arbete på ett lugnare och mer strukturerat sätt."
+        },
+        "section2": {
+            "title": "2. Vilka uppgifter som sparas",
+            "body1": "Timoria sparar de Timoria du skapar: subject, topic, taggar, uppgiftsbeskrivningar, varaktighet, tidsstämplar (till exempel när en Timoria avslutades) och grundläggande metadata som behövs för sammanställningar och statistik.",
+            "body2": "Beroende på hur din installation ser ut kan applikationen också spara teknisk information som användarkonton, inloggnings-token och din valda tidszon, så att datum och tider visas korrekt."
+        },
+        "section3": {
+            "title": "3. Hur dina data används",
+            "body1": "Dina uppgifter används inne i appen för att ge funktioner som sammanställningstabellen, statistik, daglig historik och sökningar. De används inte för att skapa reklamprofiler och säljs inte vidare till tredje part.",
+            "body2": "Timoria är medvetet enkel i sin design. Data behandlas bara för att stödja de kärnfunktioner du ser: timers, historik och analys av dina egna Timoria."
+        },
+        "section4": {
+            "title": "4. Lagring, säkerhet och bevarandetid",
+            "body1": "Dina Timoria sparas i applikationens databas så att du kan komma åt din historik över tid. Som med alla onlinetjänster finns det alltid en viss teknisk risk, men rimliga åtgärder vidtas för att skydda dina data, till exempel begränsad åtkomst och autentisering.",
+            "body2": "Data sparas så länge ditt konto finns kvar eller tills du väljer att ta bort poster. Om du tar bort en Timoria visas den inte längre i din statistik eller historik. Beroende på den tekniska miljön kan säkerhetskopior eller loggar tillfälligt innehålla äldre data innan de roteras bort."
+        },
+        "section5": {
+            "title": "5. Dina val och kontakt",
+            "body1": "Du väljer själv vad du skriver in i Timoria. Du kan hålla beskrivningar vaga eller detaljerade, och du kan ta bort Timoria som du inte längre vill spara. Om du är osäker på vad som finns lagrat kan du alltid granska dina uppgifter via sidorna för sammanfattning och statistik.",
+            "body2": "Om du har frågor om hur data hanteras i just denna installation av Timoria kan du kontakta personen eller gruppen som driver tjänsten. De kan ge mer detaljer om drift, säkerhetskopior och konfiguration."
+        },
+        "footer": {
+            "note": "Denna integritetspolicy beskriver den generella avsikten med hur Timoria är tänkt att hantera data. Exakta detaljer kan skilja sig beroende på hur och var appen är hostad.",
+            "lastUpdated": "Senast uppdaterad: 2025-12-07"
+        }
+    },
+    "license": {
+        "title": "Licens",
+        "subtitle": "Här beskrivs hur du får använda Timoria och vilka rättigheter som förbehålls upphovspersonen.",
+        "section1": {
+            "title": "1. Äganderätt",
+            "body1": "Timoria är ett personligt mjukvaruprojekt. Om inget annat anges ägs all kod, design och allt innehåll i denna applikation av upphovspersonen.",
+            "body2": "Namnet ”Timoria”, den visuella identiteten och appens struktur är delar av detta verk och får inte framställas som om de vore dina egna."
+        },
+        "section2": {
+            "title": "2. Personlig användning",
+            "body1": "Du får använda Timoria för egna, personliga och icke-kommersiella syften. Det inkluderar att registrera tid, se statistik och använda appen i din vardag.",
+            "body2": "Du får inte sälja vidare åtkomst till Timoria, paketera den som en del av en kommersiell produkt eller erbjuda den som en hostad tjänst till andra utan uttryckligt tillstånd från upphovspersonen."
+        },
+        "section3": {
+            "title": "3. Ändringar och vidare­spridning",
+            "body1": "Om ingen separat öppen källkodslicens tydligt anges för koden ska Timoria behandlas som proprietär programvara.",
+            "body2": "Det innebär att du inte får sprida modifierade eller omodifierade kopior av applikationen, eller publicera en klon under annat namn, utan skriftligt tillstånd. Om du är intresserad av att bidra eller samarbeta kan du kontakta upphovspersonen."
+        },
+        "section4": {
+            "title": "4. Ingen garanti",
+            "body1": "Timoria tillhandahålls i befintligt skick (\"as is\") utan några uttryckliga eller underförstådda garantier. Det finns ingen garanti för att appen är felfri, alltid tillgänglig eller lämplig för ett visst syfte.",
+            "body2": "Genom att använda Timoria accepterar du att du själv ansvarar för hur du förlitar dig på informationen i appen. Spara alltid egna säkerhetskopior av viktig data och använd inte appen som ditt enda register för kritisk information."
+        },
+        "footer": {
+            "note": "Denna licenstext är en enkel sammanfattning av hur Timoria får användas. Om du behöver ett annat upplägg eller ett mer formellt avtal kan du kontakta upphovspersonen.",
+            "lastUpdated": "Senast uppdaterad: 2025-12-07"
+        }
     }
 }
