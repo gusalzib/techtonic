@@ -51,6 +51,7 @@
 
 
 
+    --islamic-pattern: var(--svg-islamic-pattern-light);
     --section-bg: #ffffff;
     --section-text: var(--ultramarine);
     --section-border: var(--tiffany-blue);
@@ -77,6 +78,30 @@
     --medium-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     --heavy-shadow:rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
+/* =========================================
+     LIGHT MODE: "Diagonal Star Lattice"
+     Structure: 8-Point Star, Inner Diamond, Diagonal Cross.
+     Color: Dark Slate (#2D3748) for crisp contrast.
+     ========================================= */
+  --svg-islamic-pattern-light: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3e%3cg fill='none' stroke='%232D3748' stroke-width='1' opacity='0.2'%3e%3c!-- 1. The Outer 8-Point Star --%3e%3cpath d='M48 0 L60 12 L84 12 L84 36 L96 48 L84 60 L84 84 L60 84 L48 96 L36 84 L12 84 L12 60 L0 48 L12 36 L12 12 L36 12 Z'/%3e%3c!-- 2. The Inner Diamond --%3e%3cpath d='M48 16 L80 48 L48 80 L16 48 Z'/%3e%3c!-- 3. The Diagonal Lines --%3e%3cpath d='M0 0 L96 96'/%3e%3cpath d='M96 0 L0 96'/%3e%3c/g%3e%3c/svg%3e");
+  /* =========================================
+     DARK MODE: "The Midnight 12-Fold Star"
+     Description: Complex interlacing lines forming 12-pointed stars.
+     Recognizability: High. Looks like wood inlay or Mashrabiya screens.
+     Color: Gold/Bronze stroke on transparent.
+     ========================================= */
+/* --svg-islamic-pattern-dark: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3e%3cg fill='none' stroke='%23F6E05E' stroke-width='1' opacity='0.14'%3e%3cpath d='M48 0 L60 12 L84 12 L84 36 L96 48 L84 60 L84 84 L60 84 L48 96 L36 84 L12 84 L12 60 L0 48 L12 36 L12 12 L36 12 Z'/%3e%3cpath d='M48 16 L64 32 L48 48 L32 32 Z'/%3e%3cpath d='M48 48 L64 64 L48 80 L32 64 Z'/%3e%3cpath d='M16 48 L32 32 L48 48 L32 64 Z'/%3e%3cpath d='M80 48 L64 32 L48 48 L64 64 Z'/%3e%3c/g%3e%3c/svg%3e"); */
+
+/* --svg-islamic-pattern-dark: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3e%3cg fill='none' stroke='%23F6E05E' stroke-width='1' opacity='0.14'%3e%3c!-- outer 8-point star --%3e%3cpath d='M48 0 L60 12 L84 12 L84 36 L96 48 L84 60 L84 84 L60 84 L48 96 L36 84 L12 84 L12 60 L0 48 L12 36 L12 12 L36 12 Z'/%3e%3c!-- central rotated square --%3e%3cpath d='M48 32 L64 48 L48 64 L32 48 Z'/%3e%3c!-- square extensions (tiling straps) --%3e%3cpath d='M48 32 L48 0'/%3e%3cpath d='M64 48 L96 48'/%3e%3cpath d='M48 64 L48 96'/%3e%3cpath d='M32 48 L0 48'/%3e%3c/g%3e%3c/svg%3e"); */
+
+/* --svg-islamic-pattern-dark: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3e%3cg fill='none' stroke='%23F6E05E' stroke-width='1' opacity='0.14'%3e%3c!-- outer 8-point star --%3e%3cpath d='M48 0 L60 12 L84 12 L84 36 L96 48 L84 60 L84 84 L60 84 L48 96 L36 84 L12 84 L12 60 L0 48 L12 36 L12 12 L36 12 Z'/%3e%3c!-- four inner rotated squares --%3e%3cpath d='M48 20 L56 28 L48 36 L40 28 Z'/%3e%3cpath d='M76 48 L68 56 L60 48 L68 40 Z'/%3e%3cpath d='M48 76 L40 68 L48 60 L56 68 Z'/%3e%3cpath d='M20 48 L28 40 L36 48 L28 56 Z'/%3e%3c!-- square extensions for tiling --%3e%3cpath d='M48 20 L48 0'/%3e%3cpath d='M76 48 L96 48'/%3e%3cpath d='M48 76 L48 96'/%3e%3cpath d='M20 48 L0 48'/%3e%3c/g%3e%3c/svg%3e"); */
+
+/* --svg-islamic-pattern-dark: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3e%3cg fill='none' stroke='%23F6E05E' stroke-width='1' opacity='0.14'%3e%3c!-- The Outer 8-Point Star (Unchanged) --%3e%3cpath d='M48 0 L60 12 L84 12 L84 36 L96 48 L84 60 L84 84 L60 84 L48 96 L36 84 L12 84 L12 60 L0 48 L12 36 L12 12 L36 12 Z'/%3e%3c!-- The Inner Diamond Boundary --%3e%3cpath d='M48 16 L80 48 L48 80 L16 48 Z'/%3e%3c!-- The Interlocking Cross Lines (Stretching to edges) --%3e%3cpath d='M0 48 L96 48'/%3e%3cpath d='M48 0 L48 96'/%3e%3c/g%3e%3c/svg%3e"); */
+
+/* --svg-islamic-pattern-dark: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3e%3cg fill='none' stroke='%23F6E05E' stroke-width='1' opacity='0.14'%3e%3c!-- 1. The Outer 8-Point Star --%3e%3cpath d='M48 0 L60 12 L84 12 L84 36 L96 48 L84 60 L84 84 L60 84 L48 96 L36 84 L12 84 L12 60 L0 48 L12 36 L12 12 L36 12 Z'/%3e%3c!-- 2. The Inner Diamond --%3e%3cpath d='M48 16 L80 48 L48 80 L16 48 Z'/%3e%3c!-- 3. The Cross Lines (Horizontal & Vertical) --%3e%3cpath d='M0 48 L96 48'/%3e%3cpath d='M48 0 L48 96'/%3e%3c!-- 4. NEW: The Diagonal Lines (Corner to Corner) --%3e%3cpath d='M0 0 L96 96'/%3e%3cpath d='M96 0 L0 96'/%3e%3c/g%3e%3c/svg%3e"); */
+
+--svg-islamic-pattern-dark: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3e%3cg fill='none' stroke='%23F6E05E' stroke-width='1' opacity='0.14'%3e%3c!-- 1. The Outer 8-Point Star --%3e%3cpath d='M48 0 L60 12 L84 12 L84 36 L96 48 L84 60 L84 84 L60 84 L48 96 L36 84 L12 84 L12 60 L0 48 L12 36 L12 12 L36 12 Z'/%3e%3c!-- 2. The Inner Diamond --%3e%3cpath d='M48 16 L80 48 L48 80 L16 48 Z'/%3e%3c!-- 3. The Diagonal Lines (Corner to Corner) --%3e%3cpath d='M0 0 L96 96'/%3e%3cpath d='M96 0 L0 96'/%3e%3c/g%3e%3c/svg%3e");
+
 
 }
 .dark-theme {
@@ -95,7 +120,7 @@
   --input-text: #eeeeee;
   --input-border: var(--accent);
   --border: #ffffff;
-
+  --islamic-pattern: var(--svg-islamic-pattern-dark);
   /*text color setting - avoid inconsistencies in the text color across pages and themes*/
   --text-color: rgb(219, 217, 217); 
   /* creating a dark theme background for the whole website*/
@@ -161,14 +186,21 @@
     
     --timer-bg: linear-gradient(180deg, rgba(0,0,0,0.44021358543417366) 0%, rgba(102,0,0,1) 85%);
 } */
+html{
+  margin: 0;
+  background-color: var(--page-bg);
+  overflow-x: hidden;
+  height: fit-content;
+}
 
-
-body, html{
-    margin: 0;
-    background-color: var(--page-bg);
-    overflow-x: hidden;
-    height: fit-content;
-
+body{
+  margin: 0;
+  overflow-x: hidden;
+  height: fit-content;
+  background: var(--islamic-pattern);
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 96px 96px;
 }
 
 #success {
@@ -1541,6 +1573,126 @@ select {
   transition: opacity 0.3s ease;
 }
 
+/*################################### SERVICES DETAILS ##################################################*/
+.service-detail {
+  max-width: 70%;
+  margin: 5% auto;
+  padding: 4rem 3rem;
+  background: var(--section-bg);
+  border-radius: 15px;
+  border: 1px solid var(--accent);
+}
+
+.service-detail hr{
+  color: var(--accent);
+  background-color: var(--accent);
+  height: 1px;
+  width: 80%;
+  border-width:0;
+}
+.service-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.service-hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  max-width: 700px;
+  margin: auto;
+}
+
+.service-section {
+  margin-bottom: 4rem;
+}
+
+.service-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.service-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.service-section li {
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  color: var(--text-color);
+}
+
+.service-section li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4f46e5;
+  font-weight: bold;
+}
+
+.service-section.alt {
+  background: var(--section-bg);
+  padding: 3rem 2rem;
+  border-radius: 16px;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.benefit-card {
+  background: var(--tiffany-blue);
+  padding: 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  text-align: center;
+  font-weight: 500;
+  transition: .4s ease;
+  
+}
+
+.benefit-card:hover{
+  scale: calc(1.1);
+}
+
+.service-cta {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.service-cta h3 {
+  color: var(--text-color);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.9rem 2.2rem;
+  background: var(--standard-btn);
+  color: white;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(79,70,229,0.35);
+  background: var(--standard-btn-hover);
+}
 /*################################### SERVICES CARDS HOME PAGE ##################################################*/
 
 .services-section {
@@ -1566,6 +1718,13 @@ select {
   box-shadow: var(--heavy-shadow);
   max-width: 300px;
   text-align: center;
+  cursor: pointer;
+  transition: .3s ease;
+  text-decoration: none;
+}
+
+.service-card:hover{
+  scale: calc(1.1);
 }
 
 .service-icon {

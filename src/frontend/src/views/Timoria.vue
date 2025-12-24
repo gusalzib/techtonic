@@ -345,6 +345,10 @@
 <div v-show="activeView === 'summary'">
     <TimoriaSummary/>
 </div>
+
+    <p class="about-copyright">
+    {{ $t('about.footer.copyright') }}
+    </p>
 </template>
 
 

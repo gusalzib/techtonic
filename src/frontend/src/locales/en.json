@@ -101,30 +101,115 @@
         "signupBtn": "Create Account",
         "our-services": "Our Services"
     },
+    "service": {
+        "what-we-offer": "What we offer",
+        "benefits": "Benefits",
+        "ctaTitle": "Ready to get started?",
+        "ctaText": "Let’s talk about your project and turn ideas into reality.",
+        "contactUs": "Contact us"
+    },
     "our-services": {
         "mobile-applications": {
             "title": "Mobile Applications",
-            "description": "Custom iOS and Android apps with stunning UX and high performance."
+            "description": "Custom iOS and Android apps with stunning UX and high performance.",
+            "longDescription": "We build high-quality mobile applications for iOS and Android using modern, scalable technologies.",
+            "offerings": [
+                "Native iOS and Android development",
+                "Cross-platform mobile solutions",
+                "App Store and Google Play deployment",
+                "UI/UX design for mobile"
+            ],
+            "benefits": [
+                "Faster time to market",
+                "Scalable and maintainable codebase",
+                "Excellent user experience",
+                "High performance on all devices"
+            ]
         },
         "web-applications": {
             "title": "Web Applications",
-            "description": "Responsive, scalable web apps built with modern frameworks."
+            "description": "Responsive, scalable web apps built with modern frameworks.",
+            "longDescription": "Custom web applications tailored to your business needs with performance and security in mind.",
+            "offerings": [
+                "Custom frontend and backend development",
+                "API design and integration",
+                "Authentication and authorization systems",
+                "Performance optimization"
+            ],
+            "benefits": [
+                "Scalable architecture",
+                "Secure by design",
+                "Fast and responsive interfaces",
+                "Easier long-term maintenance"
+            ]
         },
         "desktop-applications": {
             "title": "Desktop Applications",
-            "description": "Cross-platform desktop software for Windows, macOS, and Linux."
+            "description": "Cross-platform desktop software for Windows, macOS, and Linux.",
+            "longDescription": "Cross-platform desktop applications designed for productivity and reliability.",
+            "offerings": [
+                "Windows, macOS, and Linux apps",
+                "Cross-platform frameworks",
+                "Offline-first functionality",
+                "System-level integrations"
+            ],
+            "benefits": [
+                "One codebase for multiple platforms",
+                "High performance",
+                "Improved user productivity",
+                "Reliable offline usage"
+            ]
         },
         "consultation": {
             "title": "Consultation",
-            "description": "Expert advice to guide your digital transformation journey."
+            "description": "Expert advice to guide your digital transformation journey.",
+            "longDescription": "We help you make the right technical decisions and plan sustainable software solutions.",
+            "offerings": [
+                "Technical architecture reviews",
+                "Technology stack selection",
+                "Project planning and roadmaps",
+                "Codebase audits"
+            ],
+            "benefits": [
+                "Reduced technical risk",
+                "Clear development direction",
+                "Better long-term decisions",
+                "Cost and time efficiency"
+            ]
         },
         "ai-integration": {
             "title": "AI Integration",
-            "description": "Smart automation and AI-powered solutions tailored to your business."
+            "description": "Smart automation and AI-powered solutions tailored to your business.",
+            "longDescription": "Integrate AI into your products to automate processes and unlock new capabilities.",
+            "offerings": [
+                "AI-powered automation",
+                "Machine learning model integration",
+                "Data analysis and insights",
+                "Chatbots and intelligent assistants"
+            ],
+            "benefits": [
+                "Increased efficiency",
+                "Data-driven decisions",
+                "Competitive advantage",
+                "Automation of repetitive tasks"
+            ]
         },
         "websites": {
             "title": "Websites",
-            "description": "Modern, SEO-friendly websites to showcase your brand."
+            "description": "Modern, SEO-friendly websites to showcase your brand.",
+            "longDescription": "Beautiful, fast, and SEO-friendly websites built to represent your brand.",
+            "offerings": [
+                "Custom website design",
+                "SEO optimization",
+                "Content management systems",
+                "Performance optimization"
+            ],
+            "benefits": [
+                "Strong online presence",
+                "Better search engine ranking",
+                "Fast load times",
+                "Easy content updates"
+            ]
         }
     },
     "homeAboutSection": {

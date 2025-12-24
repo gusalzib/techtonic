@@ -8,7 +8,7 @@ import Stats from '@/views/Stats.vue'
 import UserAccount from '@/views/UserAccount.vue'
 import Privacy from '@/views/Privacy.vue'
 import License from '@/views/License.vue'
-
+import ServiceDetail from "@/views/ServiceDetail.vue";
 // const routes = [
 //   {
 //     path: '/',
@@ -30,7 +30,7 @@ import License from '@/views/License.vue'
 //   }
 // ]
 const routes = [
-  {     path: '/', name: 'home', component: HomeView },
+  { path: '/', name: 'home', component: HomeView },
   { path: '/about', component: AboutView },
   { path: '/timoria', component: Timoria },
   { path: '/login', component: Login },
@@ -39,6 +39,7 @@ const routes = [
   { path: '/account', component: UserAccount },
   { path: '/privacy', component: Privacy },
   { path: '/license', component: License },
+  { path: "/services/:service", name: "ServiceDetail", component: ServiceDetail },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

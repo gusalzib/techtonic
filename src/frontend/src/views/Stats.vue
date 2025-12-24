@@ -194,6 +194,9 @@
       </div>
     </div>
   </div>
+  <p class="about-copyright">
+    {{ $t('about.footer.copyright') }}
+  </p>
 </template>
 
 <!-- <script>

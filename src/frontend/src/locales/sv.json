@@ -95,30 +95,115 @@
         "signupBtn": "Skapa konto",
         "our-services": "Våra tjänster"
     },
+    "service": {
+        "what-we-offer": "Vad vi erbjuder",
+        "benefits": "Fördelar",
+        "ctaTitle": "Redo att komma igång?",
+        "ctaText": "Låt oss prata om ditt projekt och förvandla idéer till verklighet.",
+        "contactUs": "Kontakta oss"
+    }, 
     "our-services": {
         "mobile-applications": {
             "title": "Mobilapplikationer",
-            "description": "Skräddarsydda iOS- och Android-appar med fantastisk användarupplevelse och hög prestanda."
+            "description": "Anpassade iOS- och Android-appar med hög prestanda och modern UX.",
+            "longDescription": "Vi utvecklar högkvalitativa mobilapplikationer för iOS och Android med moderna och skalbara tekniker.",
+            "offerings": [
+                "Native iOS- och Android-utveckling",
+                "Plattformsoberoende lösningar",
+                "Publicering i App Store och Google Play",
+                "UI/UX-design för mobil"
+            ],
+            "benefits": [
+                "Snabbare lansering",
+                "Skalbar och hållbar kod",
+                "Utmärkt användarupplevelse",
+                "Hög prestanda på alla enheter"
+            ]
         },
         "web-applications": {
             "title": "Webbapplikationer",
-            "description": "Responsiva, skalbara webbappar byggda med moderna ramverk."
+            "description": "Responsiva och skalbara webbapplikationer byggda med moderna ramverk.",
+            "longDescription": "Skräddarsydda webbapplikationer anpassade efter dina affärsbehov med fokus på prestanda och säkerhet.",
+            "offerings": [
+                "Frontend- och backend-utveckling",
+                "API-design och integration",
+                "Autentisering och behörighet",
+                "Prestandaoptimering"
+            ],
+            "benefits": [
+                "Skalbar arkitektur",
+                "Hög säkerhet",
+                "Snabba och responsiva gränssnitt",
+                "Enkel långsiktig förvaltning"
+            ]
         },
         "desktop-applications": {
-            "title": "Skrivbordsapplikationer",
-            "description": "Plattformsoberoende skrivbordsprogram för Windows, macOS och Linux."
+            "title": "Desktopapplikationer",
+            "description": "Plattformsoberoende programvara för Windows, macOS och Linux.",
+            "longDescription": "Stabila och produktiva desktopapplikationer för flera operativsystem.",
+            "offerings": [
+                "Applikationer för Windows, macOS och Linux",
+                "Plattformsoberoende ramverk",
+                "Offline-funktionalitet",
+                "Systemintegrationer"
+            ],
+            "benefits": [
+                "En kodbas för flera plattformar",
+                "Hög prestanda",
+                "Ökad produktivitet",
+                "Tillförlitlig offline-användning"
+            ]
         },
         "consultation": {
             "title": "Konsultation",
-            "description": "Expertrådgivning för att guida din digitala transformationsresa."
+            "description": "Expertrådgivning för att guida din digitala resa.",
+            "longDescription": "Vi hjälper dig att fatta rätt tekniska beslut och planera hållbara mjukvarulösningar.",
+            "offerings": [
+                "Granskning av teknisk arkitektur",
+                "Val av teknikstack",
+                "Projektplanering och roadmap",
+                "Kodgranskning"
+            ],
+            "benefits": [
+                "Minskad teknisk risk",
+                "Tydlig utvecklingsstrategi",
+                "Bättre långsiktiga beslut",
+                "Effektivare kostnader och tid"
+            ]
         },
         "ai-integration": {
             "title": "AI-integration",
-            "description": "Smart automatisering och AI-drivna lösningar anpassade till ditt företag."
+            "description": "Smarta och AI-drivna lösningar anpassade för ditt företag.",
+            "longDescription": "Integrera AI i dina produkter för att automatisera processer och skapa nya möjligheter.",
+            "offerings": [
+                "AI-baserad automatisering",
+                "Maskininlärningsintegration",
+                "Dataanalys och insikter",
+                "Chatbots och intelligenta assistenter"
+            ],
+            "benefits": [
+                "Ökad effektivitet",
+                "Datadrivna beslut",
+                "Konkurrensfördel",
+                "Automatisering av repetitiva uppgifter"
+            ]
         },
         "websites": {
             "title": "Webbplatser",
-            "description": "Moderna, SEO-vänliga webbplatser för att lyfta fram ditt varumärke."
+            "description": "Moderna och SEO-vänliga webbplatser för ditt varumärke.",
+            "longDescription": "Snabba, snygga och SEO-optimerade webbplatser som representerar ditt varumärke.",
+            "offerings": [
+                "Skräddarsydd webbdesign",
+                "SEO-optimering",
+                "Innehållshanteringssystem",
+                "Prestandaoptimering"
+            ],
+            "benefits": [
+                "Stark digital närvaro",
+                "Bättre synlighet i sökmotorer",
+                "Snabba laddningstider",
+                "Enkel innehållshantering"
+            ]
         }
     },
     "homeAboutSection": {
