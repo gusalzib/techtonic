@@ -28,6 +28,7 @@ const savedLocale = localStorage.getItem('lang') || 'en'
 const i18n = createI18n({
   legacy: true, // Because you use $t()
   locale: savedLocale,
+  globalInjection: true,
   fallbackLocale: 'en',
   messages: {
     en,

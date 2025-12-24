@@ -1,4 +1,16 @@
 {
+    "tab": {
+        "homepage": "Hem",
+        "timoria": "Timoria",
+        "statistics": "Statistik",
+        "about": "Om oss",
+        "account": "Konto",
+        "login": "Logga in",
+        "signup": "Registrera",
+        "privacy": "Integritet",
+        "license": "Licens",
+        "ourServices": "Våra tjänster"
+    },    
     "timer": {
         "title": "Pomodoro Timer",
         "defaultTime": "00:00",

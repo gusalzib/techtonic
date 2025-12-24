@@ -46,7 +46,7 @@ function showTooltip(el, text) {
     const rect = el.getBoundingClientRect();
     
     // Calculate tooltip position (e.g., center horizontally, slightly above the element)
-    const top = rect.top + window.scrollY - 80; // 80px above the element
+    const top = rect.top + window.scrollY - 150; // 150px above the element
     const left = rect.left + window.scrollX + (rect.width / 2) - (tooltipElement.offsetWidth / 2);
 
     tooltipElement.style.top = `${top}px`;

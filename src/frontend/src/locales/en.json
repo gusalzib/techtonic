@@ -1,4 +1,16 @@
 {
+    "tab":{
+        "homepage": "Home",
+        "timoria": "Timoria",
+        "statistics": "Statistics",
+        "about": "About",
+        "account": "Account",
+        "login": "Login",
+        "signup": "Sign up",
+        "privacy": "Privacy",
+        "license": "License",
+        "ourServices": "Our Services"
+    },
     "timer": {
         "title": "Pomodoro Timer",
         "defaultTime": "00:00",

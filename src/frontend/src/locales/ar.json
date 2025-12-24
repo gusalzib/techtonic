@@ -1,4 +1,16 @@
 {
+    "tab": {
+        "homepage": "الرئيسية",
+        "timoria": "تيموريا",
+        "statistics": "الإحصائيات",
+        "about": "عن التطبيق",
+        "account": "الحساب",
+        "login": "تسجيل الدخول",
+        "signup": "إنشاء حساب",
+        "privacy": "الخصوصية",
+        "license": "الترخيص",
+        "ourServices": "خدماتنا"
+    },
     "timer": {
         "title": "مؤقت بومودورو",
         "defaultTime": "00:00",

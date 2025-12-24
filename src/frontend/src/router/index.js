@@ -9,6 +9,7 @@ import UserAccount from '@/views/UserAccount.vue'
 import Privacy from '@/views/Privacy.vue'
 import License from '@/views/License.vue'
 import ServiceDetail from "@/views/ServiceDetail.vue";
+import i18n from '@/i18n'
 // const routes = [
 //   {
 //     path: '/',
@@ -29,21 +30,41 @@ import ServiceDetail from "@/views/ServiceDetail.vue";
 //     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
 //   }
 // ]
+
+const DEFAULT_TITLE = 'TechTonic'; // Your app's default name
+
+
+
 const routes = [
-  { path: '/', name: 'home', component: HomeView },
-  { path: '/about', component: AboutView },
-  { path: '/timoria', component: Timoria },
-  { path: '/login', component: Login },
-  { path: '/signup', component: Signup },
-  { path: '/statistics', component: Stats },
-  { path: '/account', component: UserAccount },
-  { path: '/privacy', component: Privacy },
-  { path: '/license', component: License },
-  { path: "/services/:service", name: "ServiceDetail", component: ServiceDetail },
+  { path: '/', name: 'home', component: HomeView, meta:{titleKey: 'tab.homepage'} },
+  { path: '/about', component: AboutView, meta:{titleKey: 'tab.about'} },
+  { path: '/timoria', component: Timoria, meta:{titleKey: 'tab.timoria'} },
+  { path: '/login', component: Login, meta:{titleKey: 'tab.login'} },
+  { path: '/signup', component: Signup, meta:{titleKey: 'tab.signup'} },
+  { path: '/statistics', component: Stats, meta:{titleKey: 'tab.statistics'} },
+  { path: '/account', component: UserAccount, meta:{titleKey: 'tab.account'} },
+  { path: '/privacy', component: Privacy, meta:{titleKey: 'tab.privacy'} },
+  { path: '/license', component: License, meta:{titleKey: 'tab.license'} },
+  { path: "/services/:service", name: "ServiceDetail", component: ServiceDetail, meta:{titleKey: 'tab.ourServices'} },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+router.beforeEach((to, from, next) => {
+  // 1. Get the title key from the route meta
+  const titleKey = to.meta.titleKey;
 
+  // 2. If a key exists, translate it and set the document title
+  if (titleKey) {
+    // accessing the global translation function
+    const title = i18n.global.t(titleKey); 
+    document.title = `${title} | ${DEFAULT_TITLE}`;
+  } else {
+    // 3. Fallback if no title is defined
+    document.title = DEFAULT_TITLE;
+  }
+
+  next();
+});
 export default router
