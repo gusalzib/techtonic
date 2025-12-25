@@ -40,7 +40,8 @@
         "notify": "Notify",
         "copy": "Copy",
         "fiveMoreMinutes": "+ 5",
-        "oneMoreMinute": "+ 1"
+        "oneMoreMinute": "+ 1",
+        "send": "Send"
 
 
     },
@@ -96,6 +97,7 @@
         "timoria": "Timoria",
         "home": "Home",
         "blog": "Blog",
+        "contact": "Contact Us",
         "login": "Login",
         "logout": "Logout",
         "signup": "Sign Up",
@@ -293,7 +295,8 @@
         "failedToLoadUserInfo": "Failed to load user data",
         "updateSuccessful": "Updated successfully",
         "timoriaSessionFinished": "Your Timoria session finished. Good job!",
-        "failedToCancelTimoria": "Failed to cancel Timoria."
+        "failedToCancelTimoria": "Failed to cancel Timoria.",
+        "emailSentSuccessfully": "Email sent Successfully. Thanks for contacting us! \n We will answer your inquiry as soon as possible"
     },
     "sidebar": {
         "menu": "Menu",
@@ -504,5 +507,12 @@
             "note": "This license text is a simple summary of how Timoria may be used. If you need a different arrangement or a formal agreement, please reach out to the author.",
             "lastUpdated": "Last updated: 2025-12-07"
         }
+    },
+    "contact":{
+        "email": "Email",
+        "name": "Name",
+        "title": "Contact Form",
+        "message": "Your message",
+        "sending": "Sending..."
     }
 }

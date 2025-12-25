@@ -38,14 +38,20 @@ app.get('/api/health', (req, res) => {
   res.send('API is running...');
 });
 
+// app.post('/api/contact', (res, req) => {
+//   console.log('i got the request');
+  
+// })
 
 // Routes
 const timoriaRoutes = require('./routes/timoriaRoutes') 
 const userRoutes = require('./routes/userRoutes');
+const contactRoutes = require('./routes/contact.js');
 
 
 app.use('/api/timoria', timoriaRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Catch-all for unhandled errors
 app.use((err, req, res, next) => {

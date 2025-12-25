@@ -38,7 +38,8 @@
         "finish": "Sluta",
         "notify": "Notify",
         "copy": "Kopiera",
-        "resume": "Återuppta"
+        "resume": "Återuppta",
+        "send": "Skicka"
     },
     "todayPomos": {
         "title": "Dagens Pomodoros",
@@ -86,7 +87,8 @@
         "fixBugs": "Fixa CSS-buggar"
     },
     "nav": {
-        "about": "Om",
+        "about": "Om Techtonic",
+        "contact": "Kontakta Oss",
         "timoria": "Timoria",
         "home": "Hem",
         "blog": "Blog",
@@ -284,7 +286,8 @@
         "failedToLoadUserInfo": "Det gick inte att ladda användaruppgifter.",
         "updateSuccessful": "Uppdateringen lyckades.",
         "timoriaSessionFinished": "Din Timoria-session är klar. Bra jobbat!",
-        "failedToCancelTimoria": "Misslyckades med att avbryta Timoria."
+        "failedToCancelTimoria": "Misslyckades med att avbryta Timoria.",
+        "emailSentSuccessfully": "E-post skickat. Tack för att du kontaktade oss! \n Vi besvarar din förfrågan så snart som möjligt."
     },
     "sidebar": {
         "menu": "Meny",
@@ -494,5 +497,12 @@
             "note": "Denna licenstext är en enkel sammanfattning av hur Timoria får användas. Om du behöver ett annat upplägg eller ett mer formellt avtal kan du kontakta upphovspersonen.",
             "lastUpdated": "Senast uppdaterad: 2025-12-07"
         }
+    },
+    "contact": {
+        "email": "E-post",
+        "name": "Namn",
+        "title": "Kontaktformulär",
+        "message": "Ditt meddelande",
+        "sending": "Skickar..."
     }
 }

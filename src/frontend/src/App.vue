@@ -23,6 +23,7 @@
         <router-link to="/timoria" v-show="isLoggedIn">{{ $t('nav.timoria') }}</router-link>
         <router-link to="/statistics" v-show="isLoggedIn">{{ $t('nav.statistics') }}</router-link>
         <router-link to="/account" v-show="isLoggedIn">{{ $t('nav.profile') }}</router-link>
+        <router-link to="/contact" v-show="isLoggedIn">{{ $t('nav.contact') }}</router-link>
         <router-link v-show="!isLoggedIn" to="/signup">{{ $t('nav.signup') }}</router-link>
         <router-link v-show="!isLoggedIn" to="/login">{{ $t('nav.login') }}</router-link>
         <button class="standard-btn" v-show="isLoggedIn" @click="logout">{{ $t('nav.logout') }}</button>

@@ -9,6 +9,7 @@ import UserAccount from '@/views/UserAccount.vue'
 import Privacy from '@/views/Privacy.vue'
 import License from '@/views/License.vue'
 import ServiceDetail from "@/views/ServiceDetail.vue";
+import Contact from "@/views/Contact.vue";
 import i18n from '@/i18n'
 // const routes = [
 //   {
@@ -45,6 +46,7 @@ const routes = [
   { path: '/account', component: UserAccount, meta:{titleKey: 'tab.account'} },
   { path: '/privacy', component: Privacy, meta:{titleKey: 'tab.privacy'} },
   { path: '/license', component: License, meta:{titleKey: 'tab.license'} },
+  { path: '/contact', component: Contact, meta:{titleKey: 'tab.contact'} },
   { path: "/services/:service", name: "ServiceDetail", component: ServiceDetail, meta:{titleKey: 'tab.ourServices'} },
 ]
 const router = createRouter({
