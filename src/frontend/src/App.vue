@@ -53,6 +53,7 @@ import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import ThemeToggle from '@/components/ThemeToggle.vue'
 import { useUserStore } from './stores/userStore'
 import ConfirmHost from './views/ConfirmHost.vue';
+import { API_BASE_URL } from '@/config/api';
 
 export default {
   name: 'App',
@@ -65,7 +66,8 @@ export default {
   data() {
     return {
       menuOpen: false,
-      url: 'http://localhost:5000/api/users',
+      
+      url: `${API_BASE_URL}/users`,
     }
   },
   computed: {
