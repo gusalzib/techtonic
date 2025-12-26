@@ -4,13 +4,7 @@
 
     <div id="timerDisplay">{{ formattedTime }}</div>
 
-    <!-- <div>
-      <input v-model.number="duration" type="number" class="timer-input" :placeholder="$t('timer.minutesPlaceholder')" />
-      <input v-model="subject" type="text" class="timer-input" :placeholder="$t('timer.subjectPlaceholder')" />
-      <input v-model="topic" type="text" class="timer-input" :placeholder="$t('timer.topicPlaceholder')" />
-      <input v-model="tag" type="text" class="timer-input" :placeholder="$t('timer.tagPlaceholder')" />
-      <input v-model="task" type="text" class="timer-input" :placeholder="$t('timer.taskPlaceholder')" />
-    </div> -->
+
     <div>
     <p><strong>{{ $t('table.subject') }}:</strong> {{ this.localTimoria?.subject || 'N/A' }}</p>
     <p><strong>{{ $t('table.topic') }}:</strong> {{ this.localTimoria?.topic || 'N/A' }}</p>
@@ -28,7 +22,9 @@
       <button v-tooltip="$t('tooltip.buttons.finish')" class="timer-btn" @click="manualFinishTimer">{{ $t('buttons.finish') }}</button>
       <button v-tooltip="$t('tooltip.buttons.oneMoreMinute')" class="timer-btn" @click="extendTimer(60)">{{ $t('buttons.oneMoreMinute') || '+1 min' }}</button>
       <button v-tooltip="$t('tooltip.buttons.fiveMoreMinutes')" class="timer-btn" @click="extendTimer(300)">{{ $t('buttons.fiveMoreMinutes') || '+5 min' }}</button>
-      <button class="timer-btn" @click="pushNotification">{{ $t('buttons.notify') }}</button>
+
+      <!-- notification debug button -->
+      <!-- <button class="timer-btn" @click="pushNotification">{{ $t('buttons.notify') }}</button> -->
     </div>
   </div>
 </template>
@@ -39,397 +35,201 @@ import breakOver from '@/assets/audio/break_over.mp3'
 import { useToast } from 'vue-toastification'
 import { API_BASE_URL } from '@/config/api';
 
+// helper function. Not in the methods section to avoid reactivity issues 
+function createTimerState({ id, plannedMs, type }) {
+  return {
+    id,
+    type, // 'timoria' | 'break'
+    plannedMs,
+
+    startedAt: Date.now(),
+    pausedAt: null,
+    totalPausedMs: 0,
+
+    finished: false
+  }
+}
+
+
 export default {
   props: {
     timoria: {
       type: Object,
       required: false,
       default: null
+    },
+    breakDurationMinutes: {
+      type: Number,
+      required: true
     }
   }, 
   data() {
     return {
-      remaining: 0, // this is what the UI shows to the user
-      accumulatedMs: 0, // how much time has actually passed
-      plannedSeconds: 0, // original duration 
-      interval: null, 
-      isRunning: false, // whether ticking should happen or not
-      isPaused: false, // used to control the pause/resume button display
-      startTime: null, // when the current run segment started
-      endTime: null, // used for the extendTimer functionality
+
+      timerState: null,   // SINGLE source of truth
+      interval: null,    // UI ticking only
+
+      nowTs: Date.now(), // UI heartbeat
+
       url: `${API_BASE_URL}/timoria`,
       localTimoria: null, // timoria in props is readonly and cannot be assigned and re-assigned so we use a local copy of it
-      hasCompleted: false, // Prevent duplicate complete calls
       hasBreakFinished: false,
       timerType: 'timoria', // or 'break',
-      breakDuration: 1, // the plan is to allow users to decide the duration here but for now we will use a fixed duration 
+      // breakDuration: 1, // the plan is to allow users to decide the duration here but for now we will use a fixed duration 
 
     } 
   },
   computed: {
+    isPaused() {
+      return !!this.timerState?.pausedAt
+    },
     formattedTime() {
-      const mins = Math.floor(this.remaining / 60)
-      const secs = this.remaining % 60
+      // dependency for reactivity
+      this.nowTs
+
+      const seconds = Math.floor(this.getRemainingMs() / 1000)
+      const mins = Math.floor(seconds / 60)
+      const secs = seconds % 60
+
       return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
     }
   },
   watch: {
     timoria: {
       handler(newVal) {
-        
-        if (newVal && newVal.duration) {
+
+        // ignore breaks
+        if (!newVal || newVal.subject === 'Break') return
+
+        if (newVal.duration && newVal._id) {
           this.localTimoria = newVal
-          this.startTime = null
-          this.remaining = newVal.duration * 60
-          // We use $nextTick to ensure the DOM and data are ready 
-          // before firing the interval logic.
-          this.$nextTick(() => {
-            this.startTimer();
-          });
+
+          // only start if nothing is already running
+          if (!this.timerState) {
+            this.$nextTick(() => {
+              this.startTimer()
+            })
+          }
         }
       },
       immediate: true
-    }  
+    }
   },
-  mounted() {
+  async mounted() {
     this.toast = useToast();
 
     // Request permission for notifications
     if (Notification.permission !== 'granted') {
-        Notification.requestPermission();
+      Notification.requestPermission();
     }
 
-    // Check if there's any saved activeTimoria in localStorage
-    const saved = localStorage.getItem('activeTimoria');
-    // console.log('Retrieved activeTimoria from localStorage:', saved); // Log to check what's retrieved
-    if (saved) {
-        try {
-          const { timoria, startTime, endTime, timerType } = JSON.parse(saved);
-          this.timerType = timerType || 'timoria'; // fallback just in case
-          // console.log('Parsed activeTimoria data:', timoria, startTime, endTime); // Log the parsed data
+    const saved = localStorage.getItem('activeTimoria')
+    if (!saved) return
 
-        const now = Date.now();
-        const remaining = Math.max(Math.floor((endTime - now) / 1000)); // Calculate remaining time
+    this.timerState = JSON.parse(saved)
+    this.timerType = this.timerState.type
 
-        // console.log('Remaining time after refresh:', remaining); // Log the remaining time
+    if (!this.timerState.finished && this.getRemainingMs() === 0) {
+      this.finishTimoriaOnce()
+    } else {
+      this.startUiTicking()
+    }
 
-        // If there's remaining time (the timer hasn't finished)
-        if (remaining > 0) {
-            // Sync localTimoria with the saved data
-            this.localTimoria = { ...timoria };
-            this.$emit('update:timoria', { ...timoria }); // Emit to parent (optional)
+    const token = localStorage.getItem('token')
 
-            // Set the timer state
-            this.startTime = startTime;
-            this.endTime = endTime;
-            this.remaining = remaining;
-            this.isRunning = true;
-
-            // Start the timer interval
-            this.interval = setInterval(() => this.tick(), 1000);
-        } else {
-            // If the timer has finished, remove it from localStorage
-            localStorage.removeItem('activeTimoria');
-            const finishedTimoria = timoria;
-            this.localTimoria = timoria;
-
-            if (timerType === 'timoria') {
-              this.completeTimoria();
-            } else if (timerType === 'break') {
-              this.pushBreakNotification();
-              this.$emit('break-finished', finishedTimoria);
-              this.resetTimer();
-            }
+    if (this.timerState?.type === 'timoria' && !this.localTimoria) {
+      try {
+        const res = await fetch(`${this.url}/${this.timerState.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        if (res.ok) {
+          this.localTimoria = await res.json()
         }
-        } catch (error) {
-          console.error('Error parsing activeTimoria from localStorage:', error);
-        }
-      } else {
-          console.log('No activeTimoria found in localStorage');
+      } catch (e) {
+        console.warn('Failed to restore timoria from backend')
       }
+    }
   },
   methods: {
-
-    startTimer() {
-      /**
-       * This method must: 
-       * 
-       * - Reset previous timer state
-       * - Initialize time values
-       * - Start ticking
-       * - Be idempotent (safe if called twice)
-       * 
-       * It does not have to finish anything, talk to the backend, push notifications or handle pause/resume as it was doing before (that caused a mess)
-       */
-
-      // no timoria, no timer
-      if (!this.localTimoria || !this.localTimoria.duration) {
-          this.toast && this.toast.error(this.$t('notification.startFailed') || 'Failed to start Timoria.')
-         return;
-      }
-
-      // is isRunning, we do not want to start again, prevent double clicks
-      // or if isPaused then it is not the start button that resumes the timer, that would be the resume button
-      if (this.isRunning || this.isPaused) {
-        return;
-      }
-
-      // clean up any previous run
-      if (this.interval) {
-        clearInterval(this.interval);
-        this.interval = null;
-      }
-
-      // reset state
-      this.timerType = 'timoria';
-      this.hasCompleted = false;
-      this.accumulatedMs = 0;
-
-      // initialize time
-      this.plannedSeconds = this.localTimoria.duration * 60;
-      this.remaining = this.plannedSeconds;
+    /**
+     * -------------------------------------------------------------------------------------------------
+     *                                                NEW METHODS
+     * -------------------------------------------------------------------------------------------------
+     */
+    getElapsedMs() {
+      if (!this.timerState) return 0
 
       const now = Date.now()
-      this.startTime = now;
-      this.endTime = now + this.remaining * 1000; // we multiply with 1000 because Date.now returns the number in milliseconds
-      this.isRunning = true; 
+      const activeUntil = this.timerState.pausedAt ?? now
 
-      localStorage.setItem('activeTimoria', JSON.stringify({
-        timoria: this.localTimoria,
-        startTime: this.startTime,
-        endTime: this.endTime,
-        timerType: this.timerType,   /* storing the timer type in the localstorage to identify what timer was running after a potential //page reload */
-        remaining: this.remaining,
-        accumulatedMs: this.accumulatedMs
-      }));
-
-      // start ticking
-      /**
-       * setInterval syntax
-       * setInterval(callback, delay)
-       * Run callback every delay milliseconds until I tell you to stop
-       * 
-       * so conceptually: every 1000 ms → run something
-       * we give it 1000 so that means: Run the callback once per second
-       * this callback in our case is: ()=>{this.tick()} (this.tick() is the thing we are running each second here)
-       */
-      this.interval = setInterval(() => {
-        this.tick()
-      }, 1000);
-
-      this.$emit('updatePlannedTimorias');  // Update the parent component
-
+      return (
+        activeUntil -
+        this.timerState.startedAt -
+        this.timerState.totalPausedMs
+      )
     },
-    tick() {
-      /**
-       * this method: 
-       * - Runs every second
-       * - Computes how much time is left
-       * - Detects when time reaches zero
-       * - Does not finish anything itself
-       * - Has only one exit point into finishing logic
-       */
 
-      if (!this.isRunning || this.hasCompleted) {
-        return; 
-       }
+    getRemainingMs() {
+      if (!this.timerState) return 0
 
-       // divide by 1000 to convert from ms to seconds
-      const secondsLeft = Math.floor((this.endTime - Date.now()) / 1000);
+      return Math.max(
+        0,
+        this.timerState.plannedMs - this.getElapsedMs()
+      )
+    },
+    startTimer() {
+      if (!this.localTimoria?._id) return
 
-      // The Math.max() static method returns the largest of the numbers given as input parameters, or -Infinity if there are no parameters.
-      // the subtraction from the previous line can become negative so we use math.max so that if it goes into negative territory, we select the zero as it is greater
-      this.remaining = Math.max(0, secondsLeft);
+      this.timerType = 'timoria'
 
-      if (this.isRunning && !this.hasCompleted) {
-        // Persist state
-        localStorage.setItem('activeTimoria', JSON.stringify({
-          timoria: this.localTimoria,
-          startTime: this.startTime,
-          endTime: this.endTime,
-          timerType: this.timerType,
-          remaining: this.remaining,
-          accumulatedMs: this.accumulatedMs
-        }));
-      }
+      this.timerState = createTimerState({
+        id: this.localTimoria._id,
+        plannedMs: this.localTimoria.duration * 60 * 1000,
+        type: 'timoria'
+      })
 
-
-      if (this.remaining === 0) {
-        // this.hasCompleted = true;
-        this.isRunning = false;
-        clearInterval(this.interval);
-        this.interval = null;
-
-        if (this.timerType === 'timoria') {
-          this.autoFinishTimer();
-        }else if (this.timerType === 'break') {
-          this.hasBreakFinished = true;
-          this.pushBreakNotification();
-          this.resetTimer();
-        }
-        
-      }
-
-
+      localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
+      this.startUiTicking()
     },
     pauseTimer() {
-      /**
-       * While running
-       *  startTime = when the current run started
-       *  endTime = absolute finish time
-       *  accumulatedMs = time from previous runs (0 on first start)
-       * 
-       * When pausing
-       *  Stop the interval
-       *  Add elapsed time to accumulatedMs
-       *  Clear startTime
-       *  Keep remaining
-       * 
-       * When resuming
-       *  Recalculate endTime from now + remaining
-       *  Set a new startTime
-       *  Restart interval
-       */
+      if (!this.timerState || this.timerState.pausedAt) return
 
-       // nothing to pause if the timer is not running
-       if (!this.isRunning) {
-         return;
-      }
-
-      // stop ticking
-      // clean up any previous run
-      if (this.interval) {
-        clearInterval(this.interval);
-        this.interval = null;
-      }
-
-      // accumulate elapsed time
-      if (this.startTime) {
-        this.accumulatedMs = this.accumulatedMs + (Date.now() - this.startTime); // store the elapsed time
-        this.startTime = null; // reset startTime because we paused and it should be recalculated when we resume
-
-      }
-
-      this.isRunning = false;
-      this.isPaused = true; // used to control the pause/resume button display
-
-
+      this.timerState.pausedAt = Date.now()
+      localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
     },
     resumeTimer() {
-      // we cannot resume if it is running or if it is completed
-      if (this.isRunning || this.hasCompleted) {
-        return; 
-      }
-
-      // we cannot resume if the timoria information is missing 
-      if (!this.localTimoria) {
-        return;
-      }
-
-      const now = Date.now();
-
-      this.startTime = now;
-      this.endTime = now + this.remaining * 1000; // date.now gives ms so we convert to this.remaining to ms as well
-      this.isRunning = true; 
-      this.isPaused = false;
-
-      this.interval = setInterval(() => {
-        this.tick()
-      }, 1000);
+      if (!this.timerState || !this.timerState.pausedAt) return;
 
 
+      this.timerState.totalPausedMs += Date.now() - this.timerState.pausedAt
+      this.timerState.pausedAt = null
+
+      localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
     },
-    manualFinishTimer() {      
-      /**
-       * this method allows: 
-       * - User clicks Finish
-       * - Timer stops immediately
-       * - Elapsed time is calculated exactly the same way autoFinishTimer
-       * - Timoria is marked done
-       * - No dependence on remaining === 0
-       * 
-       * this method does not need to reinvent the finsihing logic. We can just call the autoFinish but we calculate the accumulatedMS first 
-       */
 
-      // gurad against double execution
-       if (this.hasCompleted) {
-         return;
+
+    async finishTimoriaOnce() {
+      if (!this.timerState || this.timerState.finished) return
+
+      this.timerState.finished = true
+      localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
+
+      if (this.timerState.type === 'timoria') {
+        await this.finishTimoriaBackend()
+        this.startBreak()
+      } else {
+        this.finishBreakOnce()
       }
-
-      if (!this.localTimoria) {
-        return;
-      }
-
-      if (this.interval) {
-        clearInterval(this.interval);
-        this.interval = null;
-
-      }
-
-      const now = Date.now()
-      this.isRunning = false; 
-      this.remaining = 0;
-
-      if (this.startTime) {
-        // subtract the start time from the now timestamp to get the total time spent
-        this.accumulatedMs = this.accumulatedMs + (now - this.startTime);
-        this.startTime = null; 
-      }
-
-      localStorage.removeItem('activeTimoria');
-
-      this.finishTimoria();
-      
     },
-    autoFinishTimer() {
-      // gurad against double execution
-       if (this.hasCompleted) {
-         return;
-      }
 
-      const now = Date.now();
-
-      // ACCOUNT FOR THE FINAL RUN SEGMENT
-      if (this.startTime) {
-        this.accumulatedMs += (now - this.startTime);
-        this.startTime = null;
-      }
-
-      if (this.interval) {
-        clearInterval(this.interval);
-        this.interval = null;
-
-      }
-
-      this.isRunning = false;
-      this.remaining = 0;
-
-      localStorage.removeItem('activeTimoria'); // remove after finish
-
-      this.finishTimoria();
-      
-    },
-    finishTimoria() {
-      /**
-       * this method: 
-       * - Runs once
-       * - Handles “time ran out” case
-       * - Stops the timer
-       * - Triggers side effects (sounds, backend, break, etc.)
-       */
-      if (this.hasCompleted) {
-        return;
-      } 
-
-      this.hasCompleted = true
-
-      
-      let totalMs = this.accumulatedMs
-
+    async finishTimoriaBackend() {
+      const totalMs = this.getElapsedMs()
       const minutes = Math.max(1, Math.round(totalMs / 60000))
 
-      if (this.localTimoria?._id) {
-        fetch(`${this.url}/${this.localTimoria._id}`, {
+      try {
+        await fetch(`${this.url}/${this.localTimoria._id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -438,152 +238,162 @@ export default {
             duration: minutes,
             finishedAt: new Date().toISOString()
           })
-        }).catch(err => {
-          this.toast && this.toast.error(this.$t('notification.failedToCancelTimoria') || 'Failed to cancel Timoria.');
-          console.error('Failed to finish Timoria:', err)
         })
+      } catch (err) {
+        console.error('Failed to finish Timoria:', err)
+        this.toast?.error(
+          this.$t('notification.failedToCancelTimoria') ||
+          'Failed to finish Timoria.'
+        )
       }
 
-      this.playTimoriaSound();
-      this.pushNotification();
+      localStorage.removeItem('activeTimoria')
 
-      localStorage.removeItem('activeTimoria'); // remove after finish
-
+      this.playTimoriaSound()
+      this.pushNotification()
       this.toast.success(this.$t('notification.timoriaSessionFinished'))
 
-      this.$emit('completed', this.localTimoria?._id);
-
-      // start break
-      this.startBreak()
+      this.$emit('completed', this.localTimoria?._id)
     },
-    startBreak() {
-      /**
-       * conceptually , the break is a timer, with a duration, it runs after the Timroia finishes with slightly different completion logic
-       * A break uses the same timer engine, but different semantics
-       * 
-       * this method does the following: 
-       * - Stop any existing timer (safety)
-       * - Set a fixed duration (e.g. 5 minutes)
-       * - Set timerType = 'break'
-       * - Reset timing state
-       * - Start ticking
-       * 
-       * NO backend calls and no changes to Timorias
-       */
 
-      // stop any running timers 
-      if (this.interval) {
-        clearInterval(this.interval);
-        this.interval = null;
-
-      }
-
-      this.timerType = 'break';
-      this.hasCompleted = false;
-      this.hasBreakFinished = false;
-
-      // reset timing state
-      this.accumulatedMs = 0;
-      this.startTime = Date.now();
-
-      this.remaining = this.breakDuration;
-      this.endTime = this.startTime + this.breakDuration * 1000;
-
-      this.isRunning = true; 
-
-      // start ticking
-      this.interval = setInterval(() => {
-        this.tick();
-      }, 1000);
-
-
+    manualFinishTimer() {
+      this.finishTimoriaOnce();
     },
+
     resetTimer() {
-      /**
-       * this method will: 
-       * - Stops any running timer.
-       * - Resets all timer-related state.
-       * - Leaves localTimoria intact (so the user could resume or start a break).
-       * - Removes any interval.
-       */
-      // stop ticking
       if (this.interval) {
         clearInterval(this.interval)
         this.interval = null
       }
 
-      // reset all timer state
-      this.isRunning = false
-      this.isPaused = false
-      this.remaining = 0
-      this.startTime = null
-      this.endTime = null
-      this.accumulatedMs = 0
-      this.hasCompleted = false
-      this.hasBreakFinished = false
-
-      // clear synthetic break data
-      if (this.localTimoria?.subject === 'Break') {
-        this.localTimoria = null
-      } 
-
-      localStorage.removeItem('activeTimoria'); // purge localStorage of timoria data
+      this.timerState = null
+      localStorage.removeItem('activeTimoria')
     },
+
     async cancelTimer() {
-      /**
-       * this method: 
-       * - Stops the timer immediately.
-       * - Resets the timer.
-       * - Sets a Timoria back to “planned” in the backend if it was ongoing.
-       * - Cleans up state so the parent knows nothing is running.
-       */
+      const timoriaId = this.timerState?.id
 
-      // stop and reset timer
-      this.resetTimer();
+      this.resetTimer()
 
-      // only act if wwe have a Timoria is in progress
-      if (this.localTimoria && this.localTimoria._id) {
-        try {
-          // update backend status to 'planned'
-          const response = await fetch(`${this.url}/${this.localTimoria._id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: 'planned' })
-          });
+      if (!timoriaId || timoriaId === 'break') {
+        this.localTimoria = null;
+        return;
+      }
 
-          if (!response.ok) {
-            this.toast && this.toast.error(this.$t('notification.failedToCancelTimoria') || 'Failed to cancel Timoria.');
-          }
+      try {
+        const response = await fetch(`${this.url}/${timoriaId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: 'planned' })
+        })
 
-          // emit event so parent can refresh planned Timorias
-          this.$emit('updateTimoria', { ...this.localTimoria, status: 'planned' });
-          this.$emit('updatePlannedTimorias');
-          
-        } catch (error) {
-          console.error('Error cancelling Timoria: ', error)
-          this.toast?.error(this.$t('notification.failedToCancelTimoria') || 'Failed to cancel Timoria.');
+        if (!response.ok) throw new Error('Cancel failed')
+
+        this.$emit('updatePlannedTimorias')
+        this.$emit('cancelTimer')
+      } catch (err) {
+        console.error(err)
+        this.toast?.error(
+          this.$t('notification.failedToCancelTimoria') ||
+          'Failed to cancel Timoria.'
+        )
+      }
+
+      this.localTimoria = null
+    },
+
+    startBreak() {
+      // stop any UI ticking
+      if (this.interval) {
+        clearInterval(this.interval)
+        this.interval = null
+      }
+
+      this.localTimoria = {
+        subject: 'Break',
+        topic: 'Break',
+        tag: 'Break',
+        task: 'Take a short break'
+      }
+
+      this.timerType = 'break'
+
+      this.timerState = createTimerState({
+        id: 'break',
+        plannedMs: this.breakDurationMinutes * 60 * 1000,
+        type: 'break',
+        breakDurationMinutes: this.breakDurationMinutes
+      })
+
+      localStorage.setItem('activeTimoria', JSON.stringify(this.timerState));
+
+      this.nowTs = Date.now();
+
+      this.startUiTicking()
+    },
+
+    finishBreakOnce() {
+      if (!this.timerState || this.timerState.type !== 'break') return
+
+      localStorage.removeItem('activeTimoria')
+      this.timerState = null
+
+      this.playBreakSound()
+      this.pushBreakNotification()
+
+      this.hasBreakFinished = true
+    },
+
+    startUiTicking() {
+      // HARD GUARD: only one interval ever
+      if (this.interval) {
+        clearInterval(this.interval)
+        this.interval = null
+      }
+
+      const tick = () => {
+        if (!this.timerState) {
+          clearInterval(this.interval)
+          this.interval = null
+          return
         }
 
-        // clear local copy
-        this.localTimoria = null;
+        // wake Vue up
+        if (!this.timerState.pausedAt) {
+          this.nowTs = Date.now()
+        }
 
-        this.$emit('cancelTimer');  // Notify parent that the timer was canceled
+        if (this.timerState.pausedAt) return
+
+        const remainingMs = this.getRemainingMs()
+
+        if (remainingMs === 0) {
+          clearInterval(this.interval)
+          this.interval = null
+          this.finishTimoriaOnce()
+        }
       }
-      
-    },
-    extendTimer(seconds) {
-      this.remaining += seconds;
-      this.endTime += seconds * 1000;
 
-      // Update localStorage
-      localStorage.setItem('activeTimoria', JSON.stringify({
-        timoria: this.localTimoria,
-        startTime: this.startTime,
-        endTime: this.endTime,
-        timerType: this.timerType,
-        remaining: this.remaining,
-        accumulatedMs: this.accumulatedMs
-      }));
+
+      // Run once immediately to handle refresh-at-zero
+      tick()
+
+      // UI refresh cadence (not authoritative time)
+      this.interval = setInterval(tick, 1000)
+    }, 
+
+    extendTimer(seconds) {
+      if (!this.timerState) return;
+
+        // Add the requested seconds to the plannedMs
+        this.timerState.plannedMs += seconds * 1000;
+
+        // Persist to localStorage so refresh doesn’t lose it
+        localStorage.setItem('activeTimoria', JSON.stringify(this.timerState));
+
+        // give user feedback
+        this.toast?.success(`${seconds / 60} ${this.$t('timer.minutesAdded') || 'minutes added'}`);
+
     },
     requestNotificationPermission() {
         if ('Notification' in window && Notification.permission !== 'granted') {
@@ -627,7 +437,12 @@ export default {
       audio.play()
     },
   },
-
+  beforeUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval)
+      this.interval = null
+    }
+  }
 }
 
 </script>

@@ -59,7 +59,7 @@ export function confirm(options = {}) {
             cancelText: options.cancelText ?? 'Cancel',       // set cancel button text
             resolve,
         });
-        console.log('[confirm] state after open:', JSON.stringify(confirmState));
+        // console.log('[confirm] state after open:', JSON.stringify(confirmState));
 
     });
 }

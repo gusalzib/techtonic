@@ -22,7 +22,8 @@
         "hours": "timmar",
         "hour": "timme",
         "minutes": "minuter",
-        "minute": "minute"
+        "minute": "minute",
+        "minutesAdded": "Minut(er) tillagd(a)"
     },
     "buttons": {
         "start": "Starta",

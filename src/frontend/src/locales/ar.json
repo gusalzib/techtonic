@@ -22,7 +22,8 @@
         "hours": "ساعات",
         "hour": "ساعة",
         "minutes": "دقائق",
-        "minute": "دقيقة"
+        "minute": "دقيقة",
+        "minutesAdded": "تم إضافة دقيقة/دقائق"
     },
     "buttons": {
         "start": "بدء",

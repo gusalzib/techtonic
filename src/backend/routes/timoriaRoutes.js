@@ -12,6 +12,7 @@ router.get('/history', authMiddleware.checkAuth, timoriaController.getTimoriaHis
 
 
 // Generic Routes
+router.get('/:id', authMiddleware.checkAuth, timoriaController.getTimoriaByID)
 router.get('/', authMiddleware.checkAuth, timoriaController.getAllTimorias)
 router.post('/', authMiddleware.checkAuth, timoriaController.createTimoria)
 router.delete('/:id', timoriaController.deleteTimoria)

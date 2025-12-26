@@ -64,7 +64,7 @@ exports.getTodayTimorias = async (req, res) => {
 
   // Europe/Stockholm as a fallback timezone if the user does not have a timezone registered
   const userTimezone = req.user.userTz || 'Europe/Stockholm';
-  console.log(userTimezone);
+  // console.log(userTimezone);
   
 
   // commented out so that we can test the dynamic timezone feature
@@ -103,7 +103,21 @@ exports.getTodayTimorias = async (req, res) => {
   }
 }
 
+// get specific timoria
+exports.getTimoriaByID = async (req, res) => {
+  try {
+    const timoria = await Timoria.findById(req.params.id)
 
+    if (!timoria) {
+      return res.status(404).json({ message: 'Timoria not found' })
+    }
+
+    res.status(200).json(timoria)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ message: 'Server error' })
+  }
+}
 
 // Update a timoria
 exports.updateTimoria = async (req, res) => {

@@ -22,7 +22,8 @@
         "hours": "hours",
         "hour": "hour",
         "minutes": "minutes",
-        "minute": "minute"
+        "minute": "minute",
+        "minutesAdded": "Minute/s added"
     },
     "buttons": {
         "start": "Start",

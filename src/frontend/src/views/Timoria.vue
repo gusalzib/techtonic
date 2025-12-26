@@ -20,6 +20,7 @@
 <div v-show="activeView === 'timer'">
 <!-- Timer Section -->
 <Timer :timoria="activeTimoria" :key="activeTimoria?._id" 
+    :break-duration-minutes="breakDurationMinutes"
     @completed="handleCompletedTimoria" 
     @cancelTimer="handleCancelTimer"
     @update:timoria="updateTimoria"
