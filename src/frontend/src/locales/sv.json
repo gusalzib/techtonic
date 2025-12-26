@@ -109,7 +109,9 @@
         "login": "Logga in",
         "signup": "Skapa nytt konto",
         "signupBtn": "Skapa konto",
-        "our-services": "Våra tjänster"
+        "our-services": "Våra tjänster",
+        "noAccount": "Har du inget konto?",
+        "alreadyHaveAnAccount": "Har du redan ett konto?"
     },
     "service": {
         "what-we-offer": "Vad vi erbjuder",

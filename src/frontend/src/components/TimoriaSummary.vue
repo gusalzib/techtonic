@@ -403,6 +403,11 @@ export default {
   },
   // Lifecycle hook that runs after the component is mounted into the DOM.
   mounted() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        this.$router.push('/login');
+        return;
+    }
     // Initialize the toast instance. useToast() must be called inside setup or lifecycle,
     // and we store the result on `this.toast` for later use.
     this.toast = useToast();

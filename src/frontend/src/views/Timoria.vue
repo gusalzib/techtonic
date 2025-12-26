@@ -508,6 +508,13 @@ export default {
      * When the component mounts, fetch the initial data from the server
      */
     mounted() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            this.$router.push('/login');
+            return;
+        }
+
+
         this.getPlannedTimorias()
         this.getTodaysTimorias()
 

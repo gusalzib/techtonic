@@ -1337,14 +1337,21 @@ select {
 
 .auth-form p {
   margin-top: 1rem;
-  color: red;
+  color: var(--text-color);
   font-size: 0.95rem;
   text-align: center;
 }
 
 
+.signup-prompt, .login-prompt {
+  margin-top: 1em;
+  font-size: 0.9em;
+  text-align: center;
+}
 
-
+.signup-prompt a, .login-prompt a{
+  color: var(--text-color);
+}
 
 /*################################### STATISTICS PAGE ##################################################*/
 /* Flexbox for layout */

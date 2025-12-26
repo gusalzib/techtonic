@@ -2,11 +2,18 @@
   <div class="auth-form">
     <h2>{{ $t('home.login') }}</h2>
     <input v-model="form.email" placeholder="Email" type="email"/>
-    <input v-model="form.password" type="password" placeholder="Password" />
+    <input v-model="form.password" type="password" id="login_password" placeholder="Password" />
+    <div class="show-password-box">
+        <label>{{ $t('labels.ShowPassword') }}</label>
+        <input id="checkbox" type="checkbox" v-on:click="toggle()">
+    </div>
+    
     <button @click="login">{{ $t('home.login') }}</button>
-    <!-- Commented out because they are not needed when we have toast notifications -->
-    <!-- <p id="error">{{ error }}</p>
-    <p id="success">{{ message }}</p> -->
+
+    <p class="signup-prompt">
+      {{ $t('home.noAccount') }}
+      <router-link to="/signup">{{ $t('home.signup') }}</router-link>
+    </p>
   </div>
 </template>
 
@@ -61,6 +68,17 @@ export default {
         this.toast && this.toast.error(err.message || 'Login failed');
         
       }
+    },
+    toggle() {
+        // allow user to show the password in the password filed
+        let temp = document.getElementById("login_password")
+
+        if (temp.type === "password") {
+            temp.type = "text";
+
+        } else {
+            temp.type = "password";
+        }
     }
   }
 };

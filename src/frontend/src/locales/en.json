@@ -115,7 +115,9 @@
         "login": "Login",
         "signup": "Sign Up",
         "signupBtn": "Create Account",
-        "our-services": "Our Services"
+        "our-services": "Our Services",
+        "noAccount": "Don't have an account?",
+        "alreadyHaveAnAccount": "Already have an account?"
     },
     "service": {
         "what-we-offer": "What we offer",

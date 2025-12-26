@@ -3,8 +3,16 @@
     <h2>{{ $t('home.signup') }}</h2>
     <input v-model="form.username" placeholder="Username" />
     <input v-model="form.email" type="email" placeholder="example@gmail.com" />
-    <input v-model="form.password" type="password" placeholder="Password" />
+    <input v-model="form.password" type="password" id="signup_password" placeholder="Password" />
+    <div class="show-password-box">
+        <label>{{ $t('labels.ShowPassword') }}</label>
+        <input id="checkbox" type="checkbox" v-on:click="toggle()">
+    </div>
     <button @click="signup">{{ $t('home.signupBtn') }}</button>
+    <p class="login-prompt">
+      {{ $t('home.alreadyHaveAnAccount') }}
+      <router-link to="/login">{{ $t('home.login') }}</router-link>
+    </p>
   </div>
 </template>
 
@@ -55,6 +63,17 @@ export default {
         //this.error = err.message;
         this.toast && this.toast.error(err.message || 'Signup failed');
       }
+    },
+    toggle() {
+        // allow user to show the password in the password filed
+        let temp = document.getElementById("signup_password")
+
+        if (temp.type === "password") {
+            temp.type = "text";
+
+        } else {
+            temp.type = "password";
+        }
     }
   }
 };

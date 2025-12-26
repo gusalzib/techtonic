@@ -113,7 +113,9 @@
         "login": "تسجيل الدخول",
         "signup": "إنشاء حساب",
         "signupBtn": "إنشاء حساب",
-        "our-services": "خدماتنا"
+        "our-services": "خدماتنا",
+        "noAccount": "ليس لديك حساب؟",
+        "alreadyHaveAnAccount": "هل لديك حساب بالفعل؟"
     },
     "service": {
         "what-we-offer": "ما نقدمه",
