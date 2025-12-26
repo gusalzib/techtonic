@@ -54,6 +54,7 @@
         "subject": "Ämne",
         "topic": "Ämnesområde",
         "tag": "Etikett",
+        "time": "Tid",
         "actions": "Åtgärder",
         "allSubjects": "Alla ämnen",
         "allStatuses": "Alla statusar",

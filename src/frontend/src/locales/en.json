@@ -59,6 +59,7 @@
         "subject": "Subject",
         "topic": "Topic",
         "tag": "Tag",
+        "time": "Time",
         "actions": "Actions",
         "allSubjects": "All Subjects",
         "allStatuses": "All Statuses",

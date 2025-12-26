@@ -108,7 +108,7 @@
       - List all fetched Timorias for the current page and period/range
       - Columns: date, task, duration, subject, topic, tag, status
     -->    
-      <table class="summary-table" v-if="filteredTimorias.length">
+    <table class="summary-table" v-if="filteredTimorias.length">
       <thead>
         <tr>
           <th>{{ $t('table.date') || 'Date' }}</th>
@@ -121,33 +121,14 @@
           <th>{{ $t('table.status') || 'Status' }}</th>
         </tr>
       </thead>
-      <tbody>
-        <!--
-          v-for to iterate over each Timoria entry.
 
-          :key="t._id" is important for Vue's reactivity and performance.
-          It lets Vue track which row corresponds to which data item.
-        -->
-        <tr v-for="t in filteredTimorias" :key="t._id">
-          <!--
-            Format createdAt into a human-readable date string using formatDate().
-            If createdAt is missing or invalid, we show "—".
-          -->
-          <td>{{ formatDate(t.createdAt) }}</td>
-          <td>
-              <!-- transform date returns a time string that looks something like this 08:05:52.795Z. getHourMinute cleans that up and displays in the HH:MM format-->
-              <div>{{ transformDate(t.finishedAt)[1] }}</div>
-          </td>
-          <!--
-            Show task if present, else fallback to "—" so the column doesn't look empty.
-          -->
-          <td>{{ t.task || '—' }}</td>
-          <td>{{ this.formatDuration(t.duration) }}</td>
-          <td>{{ t.subject }}</td>
-          <td>{{ t.topic }}</td>
-          <td>{{ t.tag || '—' }}</td>
-          <td>{{ t.status }}</td>
-        </tr>
+      <tbody>
+        <TimoriaRow
+          v-for="t in filteredTimorias"
+          :key="t._id"
+          :rowTimoria="t"
+          @updated="fetchTimorias"
+        />
       </tbody>
     </table>
 
@@ -202,9 +183,14 @@ import { useToast } from 'vue-toastification';
 import { useUserStore } from '@/stores/userStore';
 import { transformDateWithTimezone } from '@/utils/datetime';
 import { API_BASE_URL } from '@/config/api';
+import TimoriaRow from '@/components/TimoriaRow.vue'
+
 
 export default {
   name: 'TimoriaSummary',
+  components: {
+    TimoriaRow
+  },
   data() {
 
     // We get today's date to initialize the default month/year for the view.

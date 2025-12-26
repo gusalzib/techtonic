@@ -122,12 +122,12 @@ exports.getTimoriaByID = async (req, res) => {
 // Update a timoria
 exports.updateTimoria = async (req, res) => {
   const { id } = req.params
-  const { subject, topic, tag, task, duration, status, finishedAt } = req.body
+  const { subject, topic, tag, task, duration, status, finishedAt, createdAt } = req.body
 
   try {
     const updated = await Timoria.findByIdAndUpdate(
       id,
-      { subject, topic, tag, task, duration, status, finishedAt },
+      { subject, topic, tag, task, duration, status, finishedAt, createdAt },
       { new: true, runValidators: true }
     )
 
