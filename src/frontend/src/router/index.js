@@ -11,6 +11,7 @@ import License from '@/views/License.vue'
 import ServiceDetail from "@/views/ServiceDetail.vue";
 import Contact from "@/views/Contact.vue";
 import i18n from '@/i18n'
+import Leaderboard from '@/views/Leaderboard.vue'
 // const routes = [
 //   {
 //     path: '/',
@@ -43,6 +44,7 @@ const routes = [
   { path: '/login', component: Login, meta:{titleKey: 'tab.login'} },
   { path: '/signup', component: Signup, meta:{titleKey: 'tab.signup'} },
   { path: '/statistics', component: Stats, meta:{titleKey: 'tab.statistics'} },
+  { path: '/leaderboard', component: Leaderboard, meta:{titleKey: 'tab.leaderboard'} },
   { path: '/account', component: UserAccount, meta:{titleKey: 'tab.account'} },
   { path: '/privacy', component: Privacy, meta:{titleKey: 'tab.privacy'} },
   { path: '/license', component: License, meta:{titleKey: 'tab.license'} },

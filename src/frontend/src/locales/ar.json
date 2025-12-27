@@ -104,7 +104,8 @@
         "statistics": "إحصائيات",
         "logout": "تسجيل خروج",
         "darktheme": "الوضع المظلم",
-        "lighttheme": "الوضع المضيء"        
+        "lighttheme": "الوضع المضيء",
+        "leaderboard": "لوحة المتصدرين"        
     },
     "home": {
         "title": " ‎\u200ETechtonic مرحبًا بك في ",
@@ -298,7 +299,8 @@
         "updateSuccessful": "تم التحديث بنجاح.",
         "timoriaSessionFinished": "انتهت جلسة تيموريا الخاصة بك. أحسنت!",
         "failedToCancelTimoria": "تعذر إلغاء تيموريا.",
-        "emailSentSuccessfully": "تم إرسال البريد الإلكتروني بنجاح. شكراً لتواصلك معنا! \n سنرد على استفسارك في أقرب وقت ممكن."
+        "emailSentSuccessfully": "تم إرسال البريد الإلكتروني بنجاح. شكراً لتواصلك معنا! \n سنرد على استفسارك في أقرب وقت ممكن.",
+        "failedToLoadLeaderboard": "فشل في تحميل لوحة المتصدرين"
     },
     "sidebar": {
         "menu": "القائمة",
@@ -515,5 +517,13 @@
         "title": "تواصل معنا",
         "message": "رسالتك",
         "sending": "جارٍ الإرسال..."
+    },
+    "leaderboard": {
+        "title": "لوحة المتصدرين",
+        "completed": "تيموريا المكتملة",
+        "hours": "ساعات الإنتاجية",
+        "streaks": "أيام متتالية",
+        "rank": "المرتبة",
+        "user": "المستخدم"
     }
 }

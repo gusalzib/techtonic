@@ -1611,9 +1611,10 @@ select {
 
 .subtitle {
   font-size: 1.2rem;
-  color: var(--text-color);
+  color: var(--white);
   max-width: 700px;
   margin: auto;
+  margin-bottom: 15px;
 }
 
 .service-section {
@@ -2277,6 +2278,86 @@ html[dir="rtl"] .about-links {
   background: var(--standard-btn-hover);
   box-shadow: var(--heavy-shadow);
 }
+
+
+
+
+/*############################################################## LEADERBOARD ##############################################################*/
+.leaderboard-view-switcher {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--section-bg);
+  padding: .5rem;
+  max-width: 50%;
+  margin: 20px auto;
+}
+.leaderboard {
+  margin: 2rem;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--section-bg);
+  color: var(--text-color);
+  border: 1px solid var(--accent);
+  overflow-x: auto;
+}
+
+.leaderboard h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-color);
+}
+
+.leaderboard th,
+.leaderboard td {
+  border: 1px solid var(--accent);
+  padding: 0.5rem 0.75rem;
+}
+
+.leaderboard th {
+  background: var(--accent);
+  color: var(--text-color);
+  text-align: left;
+  font-size: large;
+}
+
+.leaderboard tbody tr:nth-child(even) {
+  background-color: var(--alt-row-bg);
+}
+
+.leaderboard tbody tr:hover {
+  background-color: var(--hover-row-bg);
+}
+
+/* Responsive: horizontally scrollable on smaller screens */
+@media (max-width: 1090px) {
+  .leaderboard {
+    margin: 1rem;
+    padding: 0.75rem;
+  }
+
+  .leaderboard table {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.9rem;
+    margin: auto;
+  }
+
+  .leaderboard th,
+  .leaderboard td {
+    white-space: nowrap;
+  }
+  .leaderboard-view-switcher{
+    max-width: 90%;
+  }
+}
+
 
 
 

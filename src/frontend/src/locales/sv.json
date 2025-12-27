@@ -100,7 +100,8 @@
         "statistics": "Statistik",
         "darktheme": "Mörk tema",
         "lighttheme": "Ljus tema",
-        "profile": "Konto"
+        "profile": "Konto",
+        "leaderboard": "Topplista"
     },
     "home": {
         "title": "Välkommen till Techtonic",
@@ -291,7 +292,8 @@
         "updateSuccessful": "Uppdateringen lyckades.",
         "timoriaSessionFinished": "Din Timoria-session är klar. Bra jobbat!",
         "failedToCancelTimoria": "Misslyckades med att avbryta Timoria.",
-        "emailSentSuccessfully": "E-post skickat. Tack för att du kontaktade oss! \n Vi besvarar din förfrågan så snart som möjligt."
+        "emailSentSuccessfully": "E-post skickat. Tack för att du kontaktade oss! \n Vi besvarar din förfrågan så snart som möjligt.",
+        "failedToLoadLeaderboard": "Kunde inte ladda topplistan"
     },
     "sidebar": {
         "menu": "Meny",
@@ -508,5 +510,13 @@
         "title": "Kontaktformulär",
         "message": "Ditt meddelande",
         "sending": "Skickar..."
+    },
+    "leaderboard": {
+        "title": "Topplista",
+        "completed": "Slutförda Timorias",
+        "hours": "Produktivitetstimmar",
+        "streaks": "Streak",
+        "rank": "Plats",
+        "user": "Användare"
     }
 }

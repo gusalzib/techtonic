@@ -106,7 +106,8 @@
         "statistics": "Statistics",
         "darktheme": "Dark theme",
         "lighttheme": "Light theme",
-        "profile": "Profile"
+        "profile": "Profile",
+        "leaderboard": "Leaderboard"
     },
     "home": {
         "title": "Welcome to Techtonic",
@@ -300,7 +301,8 @@
         "updateSuccessful": "Updated successfully",
         "timoriaSessionFinished": "Your Timoria session finished. Good job!",
         "failedToCancelTimoria": "Failed to cancel Timoria.",
-        "emailSentSuccessfully": "Email sent Successfully. Thanks for contacting us! \n We will answer your inquiry as soon as possible"
+        "emailSentSuccessfully": "Email sent Successfully. Thanks for contacting us! \n We will answer your inquiry as soon as possible",
+        "failedToLoadLeaderboard": "Failed to load leaderboard"
     },
     "sidebar": {
         "menu": "Menu",
@@ -518,5 +520,13 @@
         "title": "Contact Form",
         "message": "Your message",
         "sending": "Sending..."
+    },
+    "leaderboard": {
+        "title": "Leaderboard",
+        "completed": "Completed Timorias",
+        "hours": "Productivity Hours",
+        "streaks": "Streaks",
+        "rank": "Rank",
+        "user": "User"
     }
 }
