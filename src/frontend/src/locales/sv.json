@@ -9,8 +9,14 @@
         "signup": "Registrera",
         "privacy": "Integritet",
         "license": "Licens",
-        "ourServices": "Våra tjänster"
+        "ourServices": "Våra tjänster",
+        "leaderboard": "Topplista"
     },    
+    "status": {
+        "planned": "Planerad",
+        "ongoing": "Pågående",
+        "done": "Klar"
+    },
     "timer": {
         "title": "Pomodoro Timer",
         "defaultTime": "00:00",

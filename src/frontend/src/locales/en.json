@@ -9,7 +9,13 @@
         "signup": "Sign up",
         "privacy": "Privacy",
         "license": "License",
-        "ourServices": "Our Services"
+        "ourServices": "Our Services",
+        "leaderboard": "Leaderboard"
+    },
+    "status": {
+        "planned": "Planned",
+        "ongoing": "Ongoing",
+        "done": "Done"
     },
     "timer": {
         "title": "Pomodoro Timer",

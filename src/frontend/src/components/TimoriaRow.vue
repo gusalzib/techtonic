@@ -25,8 +25,15 @@
     <td v-if="!isEditing">{{ form.tag || '—' }}</td>
     <td v-else><input v-model="form.tag" /></td>
 
-    <td>{{ form.status }}</td>
-
+    <td v-if="!isEditing">{{ form.status }}</td>
+    <td v-else>
+    <!-- Use a select dropdown to limit choices -->
+    <select v-model="form.status" class="status-select">
+        <option value="planned">{{ $t('status.planned') || 'Planned' }}</option>
+        <option value="ongoing">{{ $t('status.ongoing') || 'Ongoing' }}</option>
+        <option value="done">{{ $t('status.done') || 'Done' }}</option>
+    </select>
+    </td>
     <td>
       <button v-if="!isEditing" @click="startEdit">✏️</button>
       <button v-else @click="save">💾</button>

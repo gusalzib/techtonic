@@ -9,7 +9,13 @@
         "signup": "إنشاء حساب",
         "privacy": "الخصوصية",
         "license": "الترخيص",
-        "ourServices": "خدماتنا"
+        "ourServices": "خدماتنا",
+        "leaderboard": "لوحة المتصدرين"
+    },
+    "status": {
+        "planned": "مخطط",
+        "ongoing": "جاري",
+        "done": "مكتمل"
     },
     "timer": {
         "title": "مؤقت بومودورو",
