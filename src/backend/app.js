@@ -48,12 +48,16 @@ const timoriaRoutes = require('./routes/timoriaRoutes');
 const leaderboardRoutes = require('./routes/leaderboardRoutes');
 const userRoutes = require('./routes/userRoutes');
 const contactRoutes = require('./routes/contact.js');
+const reportsRoutes = require('./routes/reportsRoutes.js');
 
 
 app.use('/api/timoria', timoriaRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/reports', reportsRoutes);
+
+
 
 // Catch-all for unhandled errors
 app.use((err, req, res, next) => {

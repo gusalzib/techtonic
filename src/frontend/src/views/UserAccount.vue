@@ -4,8 +4,8 @@
             <div class="account-sidebar-menu">
                 <h2>{{ $t('sidebar.menu') }}</h2>
                 <a id="sidebar-links" @click.native="setActive('profile')">{{ $t('sidebar.profile') }}</a>
-                <!-- <a id="sidebar-links" @click.native="setActive('history')">{{ $t('sidebar.history') }}</a>
-                <a id="sidebar-links" @click.native="setActive('favorite_songs')">{{ $t('sidebar.favorite_songs') }}</a> -->
+                <a id="sidebar-links" @click.native="setActive('reports')">{{ $t('sidebar.reports') }}</a>
+
             </div>
         </div>
         <div class="profile-container">
@@ -13,19 +13,17 @@
                 <Profile/>
             </div>
 
-            <div v-else-if="activeSection === 'history'">
-
+            <div v-else-if="activeSection === 'reports'">
+                <ReportsGrid />
             </div>
 
-            <div v-else-if="activeSection === 'favorite_songs'">
-                
-            </div>
         </div>
     </div>
 </template>
 
 <script>
 import Profile from '@/components/Profile.vue';
+import ReportsGrid from '@/components/ReportsGrid.vue';
 import { useToast } from 'vue-toastification'
 import { API_BASE_URL } from '@/config/api';
 
@@ -33,6 +31,7 @@ export default {
     name: 'UserAccount',
     components: {
         Profile,
+        ReportsGrid
 
     },
     data() {

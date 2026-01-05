@@ -11,6 +11,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.958.0",
+    "@aws-sdk/s3-request-presigner": "^3.962.0",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
@@ -20,7 +22,8 @@
     "luxon": "^3.7.2",
     "mongoose": "^8.13.2",
     "morgan": "^1.10.0",
-    "nodemailer": "^7.0.12"
+    "nodemailer": "^7.0.12",
+    "pdfkit": "^0.17.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

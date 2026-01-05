@@ -33,7 +33,7 @@
             <br>
             <label>{{ $t('labels.currentTimezone') }}: <em>{{ form.timezone }}</em></label>
 
-
+            <GenerateReportButton />
             <button id="update-button" class="submit-button" v-on:click="updateUserInfo()" type="button">{{ $t('profile.updateInfo') }}</button>
     </div>
 </template>
@@ -44,9 +44,13 @@ import { useToast } from 'vue-toastification';
 import { DateTime, Settings, Info } from 'luxon';
 import { useUserStore } from '@/stores/userStore';
 import { API_BASE_URL } from '@/config/api';
+import GenerateReportButton from './GenerateReportButton.vue';
 
 export default {
     name: 'Profile',
+    components: {
+        GenerateReportButton
+    },
     data() {
         return {
             form: {
