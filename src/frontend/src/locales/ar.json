@@ -6,11 +6,20 @@
         "about": "عن التطبيق",
         "account": "الحساب",
         "login": "تسجيل الدخول",
+        "contact": "تواصل معنا",
         "signup": "إنشاء حساب",
         "privacy": "الخصوصية",
         "license": "الترخيص",
         "ourServices": "خدماتنا",
         "leaderboard": "لوحة المتصدرين"
+    },
+    "reports": {
+        "dateCreated": "تاريخ الانشاء",
+        "week": "الاسبوع",
+        "yourReports": "تقاريرك",
+        "loadingReports": "جارٍ تحميل التقارير...",
+        "noReportsYet": "لا توجد تقارير بعد",
+        "weeklyReport": "تقرير أسبوعي"
     },
     "status": {
         "planned": "مخطط",
@@ -279,6 +288,8 @@
     "modal": {
         "confirmDeleteTitle": "هل أنت متأكد أنك تريد حذف هذه الجلسة؟",
         "confirmDeleteMessage": "هل أنت متأكد أنك تريد حذف هذه الجلسة؟ لديك وقت محدود للتراجع عن هذا الإجراء بعد الموافقة.",
+        "confirmDeleteReportTitle": "هل أنت متأكد أنك تريد حذف هذا التقرير؟",
+        "confirmDeleteReportMessage": "لا يمكنك التراجع عن هذا الإجراء بعد إتمامه!",
         "cancel": "إلغاء",
         "confirm": "تأكيد"
     },
@@ -311,6 +322,7 @@
     "sidebar": {
         "menu": "القائمة",
         "profile": "الملف الشخصي",
+        "reports": "تقاريرك",
         "favorite_songs": "الأغاني المفضلة",
         "history": "السجل"
     },
@@ -326,7 +338,8 @@
         "role": "نوع الحساب",
         "accountCreatedAt": "تاريخ إنشاء الحساب",
         "timezone": "المنطقة الزمنية",
-        "currentTimezone": "المنطقة الزمنية الحالية"
+        "currentTimezone": "المنطقة الزمنية الحالية",
+        "selectTimezone": "اختر منطقتك الزمنية"
     },
     "views": {
         "timer": "المؤقّت",
@@ -366,6 +379,7 @@
         "dec": "ديسمبر"
     },
     "tooltip": {
+        "timezoneTooltip": "اختر منطقتك الزمنية",
         "stats": {
             "totalTimorias": "إجمالي عدد التيموريا التي أُنشئت ضمن الفترة/عوامل التصفية المحددة (جميع الحالات). الصيغة: عدّ كل التيموريا.",
             "completedTimorias": "عدد التيموريا المُنجزة ضمن الفترة/عوامل التصفية المحددة. الصيغة: العدّ حيث الحالة = 'done'.",

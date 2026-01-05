@@ -6,12 +6,21 @@
         "about": "Om oss",
         "account": "Konto",
         "login": "Logga in",
+        "contact": "Kontakta Oss",
         "signup": "Registrera",
         "privacy": "Integritet",
         "license": "Licens",
         "ourServices": "Våra tjänster",
         "leaderboard": "Topplista"
     },    
+    "reports": {
+        "yourReports": "Dina rapporter",
+        "loadingReports": "Laddar rapporter...",
+        "noReportsYet": "Inga rapporter än",
+        "weeklyReport": "Veckorapport",
+        "dateCreated": "Skapat datum",
+        "week": "Vecka"
+    },
     "status": {
         "planned": "Planerad",
         "ongoing": "Pågående",
@@ -272,6 +281,8 @@
     "modal": {
         "confirmDeleteTitle": "Är du säker på att du vill ta bort denna Timoria?",
         "confirmDeleteMessage": "Är du säker på att du vill ta bort denna Timoria? Du har begränsad tid att ångra denna åtgärd efter att du har godkänt.",
+        "confirmDeleteReportTitle": "Är du säker på att du vill ta bort denna rapport?",
+        "confirmDeleteReportMessage": "Denna åtgärd går inte att ångra!",
         "cancel": "Avbryt",
         "confirm": "Bekräfta"
     },
@@ -304,6 +315,7 @@
     "sidebar": {
         "menu": "Meny",
         "profile": "Profil",
+        "reports": "Rapporter",
         "favorite_songs": "Favoritsånger",
         "history": "Historik"
     },
@@ -319,7 +331,8 @@
         "role": "Kontotyp",
         "accountCreatedAt": "Konto skapades",
         "timezone": "Tidszon",
-        "currentTimezone": "Nuvarande tidszon"
+        "currentTimezone": "Nuvarande tidszon",
+        "selectTimezone": "Välja tidszon"
     },
     "views": {
         "timer": "Timer",
@@ -359,6 +372,7 @@
         "dec": "December"
     },
     "tooltip": {
+        "timezoneTooltip": "Välj ditt tidzon",
         "stats": {
             "totalTimorias": "Totalt antal Timoria som skapats inom vald period/filtrering (alla statusar). Formel: antal av alla Timoria.",
             "completedTimorias": "Antal Timoria som markerats som slutförda inom vald period/filtrering. Formel: antal där status = 'done'.",
