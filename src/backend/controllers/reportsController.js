@@ -1,3 +1,4 @@
+const r2 = require('../services/r2client.js');
 const { PutObjectCommand } = require('@aws-sdk/client-s3');
 const Report = require('../models/report');
 const Timoria = require('../models/timoria');
@@ -7,7 +8,6 @@ const { Types } = require('mongoose');
 const { GetObjectCommand } = require('@aws-sdk/client-s3');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 const { DeleteObjectCommand } = require('@aws-sdk/client-s3')
-const r2 = require('../services/r2Client.js');
 
 // ============================================================================
 // 1. REPORT GENERATION CONTROLLERS
