@@ -119,6 +119,7 @@
           <th>{{ $t('table.topic') }}</th>
           <th>{{ $t('table.tag') }}</th>
           <th>{{ $t('table.status') || 'Status' }}</th>
+          <th>{{ $t('table.actions') || 'Actions' }}</th>
         </tr>
       </thead>
 

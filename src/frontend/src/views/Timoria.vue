@@ -734,9 +734,6 @@ export default {
 
         // delete a Timoria by its ID (either planned or today's). Adds to undo stack for recovery
         async deleteTimoria(id) {            
-            // confirm deletion
-            // const confirmed = confirm('Are you sure you want to delete this item?')
-
                 /**
                  * Replacing the alert with a more user-friendly modal notification
                  * using the ConfirmHost component and confirmStore.

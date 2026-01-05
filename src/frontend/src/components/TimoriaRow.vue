@@ -6,9 +6,15 @@
 
     <td v-else>
     <input type="date" v-model="formDate" />
-    <input type="time" v-model="formTime" />
     </td>
 
+    <td v-if="!isEditing">
+      <!-- Display the time part here. You might need to format it or use formTime -->
+      {{ formTime || '—' }} 
+    </td>
+    <td v-else>
+      <input type="time" v-model="formTime" />
+    </td>
 
     <td v-if="!isEditing">{{ form.task || '—' }}</td>
     <td v-else><input v-model="form.task" /></td>
