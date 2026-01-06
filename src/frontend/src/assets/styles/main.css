@@ -1084,6 +1084,10 @@ select {
   
 }
 
+.summary-table-action-btn{
+  
+}
+
 .custom-range button, .month-navigation button{
   background-color: var(--standard-btn);
   padding: 8px;

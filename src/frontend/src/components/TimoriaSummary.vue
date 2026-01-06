@@ -122,12 +122,16 @@
         </tr>
       </thead>
 
+      <!-- @delete event is sent by the TimoriaRow whenever the user decides to delete a timoria from the Timoria summary table. 
+       Nither TimoriaRow nor TimoriaSummary should handle the deletion, they bascially just emit the even to the parent Timoria.vue 
+       so that it can handle the deletion request -->
       <tbody>
         <TimoriaRow
           v-for="t in filteredTimorias"
           :key="t._id"
           :rowTimoria="t"
           @updated="fetchTimorias"
+          @delete="handleDelete"
         />
       </tbody>
     </table>
@@ -416,6 +420,12 @@ export default {
     this.fetchTimorias();
   },
   methods: {
+    handleDelete(id) {
+      // bubble up to Timoria.vue 
+      this.$emit('delete-timoria', id);
+
+    },
+
     transformDate(date) {
         // if no date, return empty strings
         if (!date) {

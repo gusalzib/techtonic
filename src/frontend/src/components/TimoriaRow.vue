@@ -35,9 +35,10 @@
     </select>
     </td>
     <td>
-      <button v-if="!isEditing" @click="startEdit">✏️</button>
-      <button v-else @click="save">💾</button>
-      <button v-if="isEditing" @click="cancel">✖</button>
+      <button class="summary-table-action-btn" v-if="!isEditing" @click="startEdit">✏️</button>
+      <button class="summary-table-action-btn" v-else @click="save">💾</button>
+      <button class="summary-table-action-btn" @click="onDeleteClick">🗑️</button>
+      <button class="delete-btn" v-if="isEditing" @click="cancel">✖</button>
     </td>
   </tr>
 </template>
@@ -46,6 +47,7 @@
 import { useToast } from 'vue-toastification'
 import axios from 'axios' // for http POST/PUT/DELETE requests
 import { API_BASE_URL } from '@/config/api';
+import { confirm as appConfirm } from '@/services/confirmService' // import the confirm function
 
 
 export default {
@@ -136,6 +138,19 @@ export default {
         cancel() {
             this.isEditing = false
             this.form = { ...this.rowTimoria } // reset changes
+        },
+
+        async onDeleteClick() {
+            /**
+             * This function only needs to tell its parent (TimoriaSummary) that the user wants to emit this 
+             * timoria with this ID. The parent TimoriaSummary then emits this event further to its parent Timoria.vue
+             * 
+             * Timoria.vue is the source of truth and it is the one that should be making the delete request to the backend
+             * and updates the Today's timorias table. 
+             * 
+             * So this function is effectively saying: “Hey parent, the user wants this timoria gone.”
+             */
+            this.$emit('delete', this.form._id)
         },
     }
 }
