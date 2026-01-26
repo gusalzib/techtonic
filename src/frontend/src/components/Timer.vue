@@ -111,7 +111,8 @@ export default {
           }
         }
       },
-      immediate: true
+      immediate: true,
+      deep: true
     }
   },
   async mounted() {

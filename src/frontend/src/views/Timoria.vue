@@ -940,7 +940,8 @@ export default {
                     tag: 'Break',
                     task: 'Take a short break',
                     duration: this.breakDurationMinutes,
-                    _id: 'break'
+                    _id: 'break',
+                    type: 'break'
                 }
             }
 
