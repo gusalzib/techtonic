@@ -33,7 +33,8 @@
             <br>
             <label>{{ $t('labels.currentTimezone') }}: <em>{{ form.timezone }}</em></label>
 
-            <GenerateReportButton />
+            <!-- the report generation button is for test purpose, users will get automatic reports weekly At 21:00 on Sunday -->
+            <!-- <GenerateReportButton /> -->
             <button id="update-button" class="submit-button" v-on:click="updateUserInfo()" type="button">{{ $t('profile.updateInfo') }}</button>
     </div>
 </template>
