@@ -84,6 +84,42 @@ app.get(/^(?!\/api).*/, (req, res) => {
 });
 /**XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
+
+/**########################################################## WEEKLY REPORTS GENERATION SCHEDULE ########################################################## */
+
+const User = require('./models/user');
+const cron = require('node-cron');
+const { generateAutomaticWeeklyReportsForUsers } = require('./controllers/reportsController');
+
+// Schedule: "0 21 * * 0" means 0 minutes, 21 hours (9 PM),
+// any day of month, any month, Sunday (0)
+// you can check https://crontab.guru/#0_21_*_*_0 for a better understanding of the Cron Expression argument 
+// temporarily */1 * * * * which runs every minute for testing purposes.  0 21 * * 0
+cron.schedule('45 09 * * 1', async () => {
+  console.log('--- Starting Sunday Weekly Report Batch ---');
+
+  try {
+    // fetch all users who shoul receive reports
+    const users = await User.find();
+
+    for (const user of users) {
+      try {
+        // pass user settings to the worker
+        await generateAutomaticWeeklyReportsForUsers(user._id, user.timezone);
+      } catch (userError) {
+        console.error(`Failed report for user ${user._id}: `, userError)
+      }
+    }
+  } catch (error) {
+    console.error(`Batch report generation failed:  `, error)
+  }
+}, {
+  schedule: true,
+  timezone: "Europe/Stockholm"// Set the server's scheduling timezone
+})
+/**XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+
+
 // Connect to MongoDB using the URI stored in the .env file
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log(`MongoDB Connected (${process.env.NODE_ENV})`))

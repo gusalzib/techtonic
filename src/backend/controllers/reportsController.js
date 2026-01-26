@@ -2,6 +2,7 @@ const r2 = require('../services/r2client.js');
 const { PutObjectCommand } = require('@aws-sdk/client-s3');
 const Report = require('../models/report');
 const Timoria = require('../models/timoria');
+const User = require('../models/user');
 const { DateTime } = require('luxon');
 const PDFDocument = require('pdfkit');
 const { Types } = require('mongoose');
@@ -363,6 +364,85 @@ exports.deleteReport = async (req, res) => {
     console.error('Failed to delete report:', err)
     res.status(500).json({ error: 'Failed to delete report' })
   }
+}
+
+
+// ============================================================================
+// 6. AUTOMATIC WEEKLY REPORT GENERATION
+// ============================================================================
+
+/**
+ * Standalone worker function that generates a report for a specific user
+ * This is decoupled from req/res
+ */
+
+exports.generateAutomaticWeeklyReportsForUsers = async (userId, userTz) => {
+  // this is a copy of the generateWeeklyReport but it is not a HTTP function so we can schedule it 
+  // also, the generateWeeklyReport is tied to a button that manually generates a report. this is strictly an Admin button, users will not have it for now
+  // 1. fetchTimoriaStats
+  // 2. generateWeeklyReportPDF
+  // 3. r2.send (Upload)
+  // 4. Report.create (Metadata)
+  try {
+    // const userId = req.user?.id || req.params.id;
+    // const userTz = req.user.userTz || 'Europe/Stockholm';
+
+    console.log(`[Report] Starting generation for User: ${userId}`);
+
+    // 1. Define "Weekly" Range (Last 7 Days)
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setDate(endDate.getDate() - 7);
+
+    // 2. Fetch Data (Internal Helper)
+    // We pass ISO strings because buildDateRange expects them
+    const stats = await fetchTimoriaStats(
+      userId,
+      startDate.toISOString(),
+      endDate.toISOString(),
+      userTz
+    );
+
+    if (stats.isEmpty || stats.totalTimorias === 0) {
+        console.log(`[Report] User ${userId} had no activity this week. Skipping generation.`);
+        // If this is the cron job, we just return early to stop the loop
+        return; 
+    }
+
+    console.log(`[Report] Stats fetched. Total Timorias found: ${stats.totalTimorias}`);
+
+    // 3. Generate PDF Buffer
+    const buffer = await generateWeeklyReportPDF(stats, userId);
+
+    // 4. Upload to R2
+    const fileKey = `reports/${userId}/weekly-${Date.now()}.pdf`;
+    
+    await r2.send(new PutObjectCommand({
+      Bucket: process.env.R2_BUCKET_NAME,
+      Key: fileKey,
+      Body: buffer,
+      ContentType: 'application/pdf'
+    }));
+
+    const fileUrl = `${process.env.R2_PUBLIC_BASE_URL}/${process.env.R2_BUCKET_NAME}/${fileKey}`;
+
+    // 5. Save Metadata to DB
+    const report = await Report.create({
+      user: userId,
+      type: 'weekly',
+      periodStart: startDate,
+      periodEnd: endDate,
+      fileKey,
+      fileUrl,
+      fileSize: buffer.length
+    });
+
+  } catch (error) {
+    console.error('Report generation failed:', error);
+
+  }
+
+  console.log(`[Scheduled Report] Completed for user ${userId}`);
 }
 
 
