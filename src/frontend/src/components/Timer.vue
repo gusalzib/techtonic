@@ -98,8 +98,7 @@ export default {
     timoria: {
       handler(newVal) {
 
-        // ignore breaks
-        if (!newVal || newVal.subject === 'Break') return
+        if (!newVal) return
 
         if (newVal.duration && newVal._id) {
           this.localTimoria = newVal
@@ -112,16 +111,13 @@ export default {
           }
         }
       },
-      immediate: true
+      immediate: true,
+      deep: true
     }
   },
   async mounted() {
     this.toast = useToast();
 
-    // Request permission for notifications
-    if (Notification.permission !== 'granted') {
-      Notification.requestPermission();
-    }
 
     const saved = localStorage.getItem('activeTimoria')
     if (!saved) return
@@ -136,8 +132,24 @@ export default {
     }
 
     const token = localStorage.getItem('token')
-
-    if (this.timerState?.type === 'timoria' && !this.localTimoria) {
+    /**
+     * Explicitly handle Break vs. Timoria
+     * What happens without this check?
+     * The issue was that when a break is active and I do a refresh, the app tries to GET the timoria/break url
+     * This caused a 500 server error because the server is not expecting a timoria/break, it is expecting a timoria/:id 
+     * Here I am explicitly checking if the type is break, because if it is, then we have all the info here and we 
+     * do not need to GET anything from the backend
+     */
+    if (this.timerState?.id === 'break' || this.timerState?.type === 'break') {
+      // If it's a break, we don't need the database. 
+      // We just set the local UI data manually.
+      this.localTimoria = {
+        subject: 'Break',
+        topic: 'Break',
+        tag: 'Break',
+        task: 'Take a short break'
+      };
+    }else if (this.timerState?.type === 'timoria' && !this.localTimoria) {
       try {
         const res = await fetch(`${this.url}/${this.timerState.id}`, {
           headers: {
@@ -218,7 +230,12 @@ export default {
 
       if (this.timerState.type === 'timoria') {
         await this.finishTimoriaBackend()
-        this.startBreak()
+        // Add a small delay to ensure UI is ready for break
+        // setTimeout(() => {
+        //   this.startBreak()
+        //   this.$forceUpdate();
+        // }, 1000)
+        this.$emit('completed', this.localTimoria?._id)
       } else {
         this.finishBreakOnce()
       }
@@ -301,8 +318,17 @@ export default {
 
       this.localTimoria = null
     },
-
+  logTimerState() {
+    console.log('Current Timer State:', {
+      type: this.timerType,
+      remainingMs: this.getRemainingMs(),
+      formattedTime: this.formattedTime,
+      localTimoria: this.localTimoria,
+      hasBreakFinished: this.hasBreakFinished
+    })
+  },
     startBreak() {
+      console.log('🔄 Starting break timer...')
       // stop any UI ticking
       if (this.interval) {
         clearInterval(this.interval)
@@ -329,7 +355,11 @@ export default {
 
       this.nowTs = Date.now();
 
-      this.startUiTicking()
+      this.$nextTick(() => {
+        this.logTimerState();
+        this.startUiTicking();
+      });
+      
     },
 
     finishBreakOnce() {

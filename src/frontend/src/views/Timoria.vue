@@ -342,9 +342,13 @@
 
 
 </div>
-
-<div v-show="activeView === 'summary'">
-    <TimoriaSummary/>
+<!-- ref="summaryTable" im the <TimoriaSummary> tag. This gives the parent a direct handle to the child component.
+    It allows me to tell the child directly to refresh when I delete a timoria here -->
+<div v-if="activeView === 'summary'">
+    <TimoriaSummary
+        ref="summaryTable"
+        @delete-timoria="deleteTimoria"
+    />
 </div>
 
     <p class="about-copyright">
@@ -734,11 +738,11 @@ export default {
 
         // delete a Timoria by its ID (either planned or today's). Adds to undo stack for recovery
         async deleteTimoria(id) {            
-                /**
-                 * Replacing the alert with a more user-friendly modal notification
-                 * using the ConfirmHost component and confirmStore.
-                 * This provides a better UX by avoiding disruptive alert pop-ups.
-                 */
+            /**
+             * Replacing the alert with a more user-friendly modal notification
+             * using the ConfirmHost component and confirmStore.
+             * This provides a better UX by avoiding disruptive alert pop-ups.
+             */
             const ok = await appConfirm({
                 title: this.$t('modal.confirmDeleteTitle') || 'Delete Timoria?',
                 message: this.$t('modal.confirmDeleteMessage') || 'Delete Timoria?',
@@ -764,6 +768,10 @@ export default {
                 this.getPlannedTimorias() // update the list right after deleting the Timoria
                 this.getTodaysTimorias() // update the list or today's timorias right after deleting a  Timoria
 
+                // we trigger the child fetchTimorias logic so that it updates its UI after a deletion event
+                if (this.$refs.summaryTable) {
+                    this.$refs.summaryTable.fetchTimorias();
+                }
                 // notify the user that the deletion was successfull
                 this.toast && this.toast.success(this.$t('notification.deletedSuccessfully') || 'Timoria deleted successfully');
 
@@ -931,7 +939,9 @@ export default {
                     topic: 'Break',
                     tag: 'Break',
                     task: 'Take a short break',
-                    duration: this.breakDurationMinutes
+                    duration: this.breakDurationMinutes,
+                    _id: 'break',
+                    type: 'break'
                 }
             }
 
