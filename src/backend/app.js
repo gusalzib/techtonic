@@ -95,7 +95,7 @@ const { generateAutomaticWeeklyReportsForUsers } = require('./controllers/report
 // any day of month, any month, Sunday (0)
 // you can check https://crontab.guru/#0_21_*_*_0 for a better understanding of the Cron Expression argument 
 // temporarily */1 * * * * which runs every minute for testing purposes.  0 21 * * 0
-cron.schedule('45 09 * * 1', async () => {
+cron.schedule('10 10 * * 1', async () => {
   console.log('--- Starting Sunday Weekly Report Batch ---');
 
   try {
