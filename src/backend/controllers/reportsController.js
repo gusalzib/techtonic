@@ -8,7 +8,9 @@ const PDFDocument = require('pdfkit');
 const { Types } = require('mongoose');
 const { GetObjectCommand } = require('@aws-sdk/client-s3');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
-const { DeleteObjectCommand } = require('@aws-sdk/client-s3')
+const { DeleteObjectCommand } = require('@aws-sdk/client-s3');
+const path = require('path');
+const reshaper = require('arabic-persian-reshaper');
 
 // ============================================================================
 // 1. REPORT GENERATION CONTROLLERS
@@ -218,6 +220,11 @@ function generateWeeklyReportPDF(stats, userId) {
       const doc = new PDFDocument({ margin: 50 });
       const buffers = [];
 
+      // adding an Arabic font to avoid gibbersih arabic in the pdf 
+      const arabicFontPath = path.join(__dirname, '../assets/fonts/noto-sans-arabic/NotoSansArabic-Regular.ttf');
+      
+      // Register the font
+      doc.registerFont('ArabicFont', arabicFontPath);
       doc.on('data', buffers.push.bind(buffers));
       doc.on('end', () => resolve(Buffer.concat(buffers)));
 
@@ -245,14 +252,17 @@ function generateWeeklyReportPDF(stats, userId) {
       doc.moveDown(0.5);
 
       if (stats.timeBySubject && stats.timeBySubject.length > 0) {
+
         stats.timeBySubject.forEach(item => {
-          doc.fontSize(12).text(`• ${item.subject}: ${item.hours} hours`, { indent: 20 });
-        });
+            drawReportRow(doc, item.subject, item.hours);
+          });
       } else {
         doc.fontSize(12).text('No data for this period.', { indent: 20, oblique: true });
       }
       doc.moveDown(2);
-
+      
+      // Switch back to standard font for numbers/english if preferred
+      doc.font('Helvetica');
       // --- Topic Breakdown ---
       doc.fontSize(16).text('Top Topics', { underline: true });
       doc.moveDown(0.5);
@@ -262,10 +272,10 @@ function generateWeeklyReportPDF(stats, userId) {
         const topTopics = stats.timeByTopic
           .sort((a, b) => b.hours - a.hours)
           .slice(0, 10);
+        stats.timeByTopic.slice(0, 10).forEach(item => {
+            drawReportRow(doc, item.topic, item.hours);
+          });
 
-        topTopics.forEach(item => {
-          doc.fontSize(12).text(`• ${item.topic}: ${item.hours} hours`, { indent: 20 });
-        });
       } else {
         doc.fontSize(12).text('No data for this period.', { indent: 20, oblique: true });
       }
@@ -445,8 +455,100 @@ exports.generateAutomaticWeeklyReportsForUsers = async (userId, userTz) => {
   console.log(`[Scheduled Report] Completed for user ${userId}`);
 }
 
+// -----------------------------------------------
+//           ARABIC FONT HELPER FUNCTIONS
+// -----------------------------------------------
 
-// --- Calculation Helpers (Pure Functions) ---
+const fixArabic = (text) => {
+  if (!text) return '—';
+  try {
+
+    return reshaper.ArabicShaper.convertArabic(text);
+
+  } catch (err) {
+    console.error("Shaping failed:", err);
+    return text;
+  }
+};
+
+const drawReportRow = (doc, label, value, unit = 'hours') => {
+  const xStart = 50;
+  const col1Width = 320; // Column for the Subject/Topic
+  const col2Width = 100; // Column for the Hours
+  const rowHeight = 25;   // Fixed height for consistency
+  const currentY = doc.y;
+  
+  // 1. Detect language
+  const isArabic = /[\u0600-\u06FF]/.test(label);
+  
+  // 2. Draw Row Border (Rectangle)
+  doc.lineWidth(0.5)
+     .strokeColor('#aaaaaa')
+     .rect(xStart, currentY, col1Width + col2Width, rowHeight)
+     .stroke();
+
+  // 3. Draw Vertical Divider
+  doc.moveTo(xStart + col1Width, currentY)
+     .lineTo(xStart + col1Width, currentY + rowHeight)
+     .stroke();
+
+  // 4. Draw Label (Column 1)
+  const textY = currentY + 7; // Center text vertically in the 25px row
+  if (isArabic) {
+    const safeLabel = fixArabic(label);
+    doc.font('ArabicFont').fontSize(10)
+       .text(safeLabel, xStart + 5, textY - 2, { 
+         width: col1Width - 10, 
+         features: ['rtla'],
+         align: 'right' // Arabic usually looks better right-aligned in its cell
+       });
+  } else {
+    doc.font('Helvetica').fontSize(10)
+       .text(label, xStart + 5, textY, { 
+         width: col1Width - 10,
+         align: 'left'
+       });
+  }
+
+  // 5. Draw Value (Column 2)
+  doc.font('Helvetica').fontSize(10)
+     .text(`${value} ${unit}`, xStart + col1Width + 5, textY, {
+       width: col2Width - 10,
+       align: 'center'
+     });
+
+  // 6. Move cursor for the next row
+  doc.y = currentY + rowHeight;
+
+  // Pagination Safety
+  if (doc.y > 700) {
+    doc.addPage();
+    drawTableHeader(doc); // Optional: Redraw headers on new page
+  }
+};
+
+
+const drawTableHeader = (doc) => {
+  const xStart = 50;
+  const col1Width = 320;
+  const col2Width = 100;
+  const rowHeight = 25;
+  const currentY = doc.y;
+
+  // Gray background for header
+  doc.fillColor('#eeeeee')
+     .rect(xStart, currentY, col1Width + col2Width, rowHeight)
+     .fill();
+
+  // Header Text
+  doc.fillColor('#000000').font('Helvetica-Bold').fontSize(10);
+  doc.text('Subject / Topic', xStart + 5, currentY + 7);
+  doc.text('Duration', xStart + col1Width + 5, currentY + 7, { align: 'center', width: col2Width - 10 });
+
+  doc.y = currentY + rowHeight;
+};
+
+// --- Calculation Helpers ---
 
 function calculateStatusBreakdown(timorias) {
   const counts = { planned: 0, ongoing: 0, done: 0 };

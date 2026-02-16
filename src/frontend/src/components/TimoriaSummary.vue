@@ -107,78 +107,82 @@
       Purpose of the table:
       - List all fetched Timorias for the current page and period/range
       - Columns: date, task, duration, subject, topic, tag, status
-    -->    
-    <table class="summary-table" v-if="filteredTimorias.length">
-      <thead>
-        <tr>
-          <th>{{ $t('table.date') || 'Date' }}</th>
-          <th>{{ $t('table.time') || 'Time' }}</th>
-          <th>{{ $t('table.task') }}</th>
-          <th>{{ $t('table.duration') }}</th>
-          <th>{{ $t('table.subject') }}</th>
-          <th>{{ $t('table.topic') }}</th>
-          <th>{{ $t('table.tag') }}</th>
-          <th>{{ $t('table.status') || 'Status' }}</th>
-          <th>{{ $t('table.actions') || 'Actions' }}</th>
-        </tr>
-      </thead>
+    -->   
+    <!--wrapping the table with a div to enable overflow for it   -->
+    <div class="summary-table-container">
+      <table class="summary-table" v-if="filteredTimorias.length">
+        <thead>
+          <tr>
+            <th>{{ $t('table.date') || 'Date' }}</th>
+            <th>{{ $t('table.time') || 'Time' }}</th>
+            <th>{{ $t('table.task') }}</th>
+            <th>{{ $t('table.duration') }}</th>
+            <th>{{ $t('table.subject') }}</th>
+            <th>{{ $t('table.topic') }}</th>
+            <th>{{ $t('table.tag') }}</th>
+            <th>{{ $t('table.status') || 'Status' }}</th>
+            <th>{{ $t('table.actions') || 'Actions' }}</th>
+          </tr>
+        </thead>
 
-      <!-- @delete event is sent by the TimoriaRow whenever the user decides to delete a timoria from the Timoria summary table. 
-       Nither TimoriaRow nor TimoriaSummary should handle the deletion, they bascially just emit the even to the parent Timoria.vue 
-       so that it can handle the deletion request -->
-      <tbody>
-        <TimoriaRow
-          v-for="t in filteredTimorias"
-          :key="t._id"
-          :rowTimoria="t"
-          @updated="fetchTimorias"
-          @delete="handleDelete"
-        />
-      </tbody>
-    </table>
+        <!-- @delete event is sent by the TimoriaRow whenever the user decides to delete a timoria from the Timoria summary table. 
+        Nither TimoriaRow nor TimoriaSummary should handle the deletion, they bascially just emit the even to the parent Timoria.vue 
+        so that it can handle the deletion request -->
+        <tbody>
+          <TimoriaRow
+            v-for="t in filteredTimorias"
+            :key="t._id"
+            :rowTimoria="t"
+            @updated="fetchTimorias"
+            @delete="handleDelete"
+          />
+        </tbody>
+      </table>
 
-    <!--
-      NO DATA MESSAGE
+      <!--
+        NO DATA MESSAGE
 
-      This is shown only when timorias.length === 0.
-      It gives feedback to the user that no data was found for the chosen period or range.
-    -->
-    <p v-else class="no-data">
-      {{ $t('summary.noData') || 'No Timorias found for this period.' }}
-    </p>
+        This is shown only when timorias.length === 0.
+        It gives feedback to the user that no data was found for the chosen period or range.
+      -->
+      <p v-else class="no-data">
+        {{ $t('summary.noData') || 'No Timorias found for this period.' }}
+      </p>
 
-    <!--
-      PAGINATION CONTROLS
+      <!--
+        PAGINATION CONTROLS
 
-      Displayed only if there are at least 2 pages: totalPages > 1
+        Displayed only if there are at least 2 pages: totalPages > 1
 
-      Behavior:
-      - "Previous" button disabled when you are on page 1.
-      - "Next" button disabled when you are on the last page.
-      - Clicking a button calls changePage() which:
-          * updates `page`
-          * re-fetches data from the backend
-    -->    
-    <div class="pagination" v-if="totalPages > 1 && !isSearchActive">
-      <button
-        :disabled="page === 1"
-        @click="changePage(page - 1)"
-      >
-        {{ $t('summary.prevPage') || 'Previous' }}
-      </button>
+        Behavior:
+        - "Previous" button disabled when you are on page 1.
+        - "Next" button disabled when you are on the last page.
+        - Clicking a button calls changePage() which:
+            * updates `page`
+            * re-fetches data from the backend
+      -->    
+      <div class="pagination" v-if="totalPages > 1 && !isSearchActive">
+        <button
+          :disabled="page === 1"
+          @click="changePage(page - 1)"
+        >
+          {{ $t('summary.prevPage') || 'Previous' }}
+        </button>
 
-      <!-- Informational label showing current page and total pages -->
-      <span>
-        {{ $t('summary.page') || 'Page' }} {{ page }} / {{ totalPages }}
-      </span>
+        <!-- Informational label showing current page and total pages -->
+        <span>
+          {{ $t('summary.page') || 'Page' }} {{ page }} / {{ totalPages }}
+        </span>
 
-      <button
-        :disabled="page === totalPages"
-        @click="changePage(page + 1)"
-      >
-        {{ $t('summary.nextPage') || 'Next' }}
-      </button>
+        <button
+          :disabled="page === totalPages"
+          @click="changePage(page + 1)"
+        >
+          {{ $t('summary.nextPage') || 'Next' }}
+        </button>
+      </div>
     </div>
+
   </section>
 </template>
 
