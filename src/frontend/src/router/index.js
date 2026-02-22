@@ -12,6 +12,7 @@ import ServiceDetail from "@/views/ServiceDetail.vue";
 import Contact from "@/views/Contact.vue";
 import i18n from '@/i18n'
 import Leaderboard from '@/views/Leaderboard.vue'
+import BudgetControl from '@/views/BudgetControl.vue'
 // const routes = [
 //   {
 //     path: '/',
@@ -49,6 +50,7 @@ const routes = [
   { path: '/privacy', component: Privacy, meta:{titleKey: 'tab.privacy'} },
   { path: '/license', component: License, meta:{titleKey: 'tab.license'} },
   { path: '/contact', component: Contact, meta:{titleKey: 'tab.contact'} },
+  { path: '/budget', component: BudgetControl, meta:{titleKey: 'tab.budget'} },
   { path: "/services/:service", name: "ServiceDetail", component: ServiceDetail, meta:{titleKey: 'tab.ourServices'} },
 ]
 const router = createRouter({

@@ -49,13 +49,14 @@ const leaderboardRoutes = require('./routes/leaderboardRoutes');
 const userRoutes = require('./routes/userRoutes');
 const contactRoutes = require('./routes/contact.js');
 const reportsRoutes = require('./routes/reportsRoutes.js');
-
+const budgetRoutes = require('./routes/budgetRoutes');
 
 app.use('/api/timoria', timoriaRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/reports', reportsRoutes);
+app.use('/api/budget', budgetRoutes);
 
 
 

@@ -122,7 +122,8 @@
         "darktheme": "Dark theme",
         "lighttheme": "Light theme",
         "profile": "Profile",
-        "leaderboard": "Leaderboard"
+        "leaderboard": "Leaderboard",
+        "budget": "Budget"
     },
     "home": {
         "title": "Welcome to Techtonic",
@@ -321,7 +322,11 @@
         "emailSentSuccessfully": "Email sent Successfully. Thanks for contacting us! \n We will answer your inquiry as soon as possible",
         "failedToLoadLeaderboard": "Failed to load leaderboard",
         "weeklyReportGeneratedSuccessfully": "Weekly report generated successfully",
-        "failedToGenerateWeeklyReports": "Failed to generate weekly report"
+        "failedToGenerateWeeklyReports": "Failed to generate weekly report",
+        "transactionAdded": "Transaction added successfully",
+        "failedToAddTransaction": "Failed to add transaction",
+        "failedToLoadCategories": "Failed to load categories",
+        "loadingTransactionFailed": "Loading Transaction Failed"
     },
     "sidebar": {
         "menu": "Menu",
@@ -548,5 +553,24 @@
         "streaks": "Streaks",
         "rank": "Rank",
         "user": "User"
+    },
+    "budget": {
+        "selectCategory": "Select Category",
+        "category": "Category",
+        "type": "Transaction Type",
+        "expense": "Expense",
+        "expenses": "Expenses",
+        "totalExpenses": "Total Expenses",
+        "totalIncome": "Total Income",
+        "net": "Net",
+        "income": "Income",
+        "addTransaction": "Add new transaction",
+        "receiverPlaceholder": "Receiver (e.g. Willys)",
+        "descriptionPlaceholder": "Description (optional)",
+        "recurring": "Recurring transaction",
+        "monthlyOverview": "Monthly Overview",
+        "receiver": "Receiver",
+        "amount": "Amount",
+        "budgetStatistics": "Statistics"
     }
 }

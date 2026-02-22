@@ -116,7 +116,8 @@
         "darktheme": "Mörk tema",
         "lighttheme": "Ljus tema",
         "profile": "Konto",
-        "leaderboard": "Topplista"
+        "leaderboard": "Topplista",
+        "budget": "Budget"
     },
     "home": {
         "title": "Välkommen till Techtonic",
@@ -310,7 +311,11 @@
         "timoriaSessionFinished": "Din Timoria-session är klar. Bra jobbat!",
         "failedToCancelTimoria": "Misslyckades med att avbryta Timoria.",
         "emailSentSuccessfully": "E-post skickat. Tack för att du kontaktade oss! \n Vi besvarar din förfrågan så snart som möjligt.",
-        "failedToLoadLeaderboard": "Kunde inte ladda topplistan"
+        "failedToLoadLeaderboard": "Kunde inte ladda topplistan",
+        "transactionAdded": "Transaktionen har lagts till",
+        "failedToAddTransaction": "Misslyckades med att lägga till transaktionen",
+        "failedToLoadCategories": "Kunde inte ladda kategorier",
+        "loadingTransactionFailed": "Misslyckades med att ladda transaktioner"
     },
     "sidebar": {
         "menu": "Meny",
@@ -538,5 +543,24 @@
         "streaks": "Streak",
         "rank": "Plats",
         "user": "Användare"
+    },
+    "budget": {
+        "selectCategory": "Välj kategori",
+        "category": "Kategori",
+        "type": "Transaktionstyp",
+        "expense": "Utgift",
+        "expenses": "Utgifter",
+        "totalExpenses": "Totala utgifter",
+        "totalIncome": "Total inkomst",
+        "net": "Netto",
+        "income": "Inkomst",
+        "addTransaction": "Lägg till ny transaktion",
+        "receiverPlaceholder": "Mottagare (t.ex. Willys)",
+        "descriptionPlaceholder": "Beskrivning (valfritt)",
+        "recurring": "Återkommande transaktion",
+        "monthlyOverview": "Månadsöversikt",
+        "receiver": "Mottagare",
+        "amount": "Belopp",
+        "budgetStatistics": "Budgetstatistik"
     }
 }

@@ -120,7 +120,8 @@
         "logout": "تسجيل خروج",
         "darktheme": "الوضع المظلم",
         "lighttheme": "الوضع المضيء",
-        "leaderboard": "لوحة المتصدرين"        
+        "leaderboard": "لوحة المتصدرين",
+        "budget": "الميزانية"
     },
     "home": {
         "title": " ‎\u200ETechtonic مرحبًا بك في ",
@@ -317,7 +318,11 @@
         "timoriaSessionFinished": "انتهت جلسة تيموريا الخاصة بك. أحسنت!",
         "failedToCancelTimoria": "تعذر إلغاء تيموريا.",
         "emailSentSuccessfully": "تم إرسال البريد الإلكتروني بنجاح. شكراً لتواصلك معنا! \n سنرد على استفسارك في أقرب وقت ممكن.",
-        "failedToLoadLeaderboard": "فشل في تحميل لوحة المتصدرين"
+        "failedToLoadLeaderboard": "فشل في تحميل لوحة المتصدرين",
+        "transactionAdded": "تمت إضافة العملية بنجاح",
+        "failedToAddTransaction": "فشل في إضافة العملية",
+        "failedToLoadCategories": "فشل في تحميل الفئات",
+        "loadingTransactionFailed": "فشل تحميل العمليات"
     },
     "sidebar": {
         "menu": "القائمة",
@@ -545,5 +550,24 @@
         "streaks": "أيام متتالية",
         "rank": "المرتبة",
         "user": "المستخدم"
+    },
+    "budget": {
+        "selectCategory": "اختر الفئة",
+        "category": "الفئة",
+        "type": "نوع العملية",
+        "expense": "مصروف",
+        "expenses": "مصاريف",
+        "totalExpenses": "إجمالي المصاريف",
+        "totalIncome": "إجمالي الدخل",
+        "net": "الصافي",
+        "income": "دخل",
+        "addTransaction": "إضافة عملية جديدة",
+        "receiverPlaceholder": "المستلم (مثلاً ويليز)",
+        "descriptionPlaceholder": "الوصف (اختياري)",
+        "recurring": "عملية متكررة",
+        "monthlyOverview": "نظرة عامة شهرية",
+        "receiver": "المستلم",
+        "amount": "المبلغ",
+        "budgetStatistics": "إحصائيات الميزانية"
     }
 }
