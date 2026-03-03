@@ -143,7 +143,7 @@ exports.updateTimoria = async (req, res) => {
 
 // Get all (with filtering options)
 exports.getAllTimorias = async (req, res) => {
-  const { status, subject, topic, tag, task, startDate, endDate } = req.query;
+  const { status, subject, topic, tag, task, startDate, endDate, weekIdentifier } = req.query;
 
   const userId = req.user.id;
   const userTz = req.user.userTz || 'Europe/Stockholm';
@@ -183,7 +183,9 @@ exports.getAllTimorias = async (req, res) => {
 
   try {
     // Query the database with the constructed filter
-    const timorias = await Timoria.find(filter).sort({ createdAt: -1 });
+    const timorias = await Timoria.find(filter)
+      .populate('goalId', 'weekIdentifier')
+      .sort({ createdAt: -1 });
 
     res.json(timorias);
   } catch (err) {

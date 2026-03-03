@@ -314,6 +314,7 @@
         <span class="timoria-topic">{{ timoria.topic }}</span>
         <span class="timoria-topic">{{ timoria.tag || '—' }}</span>
         <span class="timoria-topic">{{ timoria.task || '—' }}</span>
+        <span class="timoria-topic" v-tooltip="$t('tooltip.form.weeklyGoalTip')" v-if="timoria.goalId?.weekIdentifier">{{ timoria.goalId.weekIdentifier || '—' }}</span>
         <span class="timoria-duration">{{ timoria.duration }} min</span>
         <span class="timoria-duration">{{ transformDate(timoria.createdAt)[0] }} - {{ transformDate(timoria.createdAt)[1] }}</span>
         </div>
@@ -420,7 +421,12 @@ export default {
                 tag: '',
                 task: '',
                 duration: '',
+                goalId: {
+                    weekIdentifier: '',
+                }
+
             },
+
 
             toast: null, // will be set in mounted()
 
@@ -725,7 +731,7 @@ export default {
                     },
                 })
 
-                const data = await response.json()
+                const data = await response.json()                
 
                 this.plannedTimorias = data;
             } catch (error) {

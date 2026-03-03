@@ -50,6 +50,7 @@ const userRoutes = require('./routes/userRoutes');
 const contactRoutes = require('./routes/contact.js');
 const reportsRoutes = require('./routes/reportsRoutes.js');
 const budgetRoutes = require('./routes/budgetRoutes');
+const goalRoutes = require('./routes/goalRoutes.js');
 
 app.use('/api/timoria', timoriaRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
@@ -57,7 +58,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/reports', reportsRoutes);
 app.use('/api/budget', budgetRoutes);
-
+app.use('/api/goals', goalRoutes)
 
 
 // Catch-all for unhandled errors
@@ -120,6 +121,8 @@ cron.schedule('0 21 * * 0', async () => {
 })
 /**XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
+// Import the Cron Job to start the weekly scheduler
+require('./cron/goalReset');
 
 // Connect to MongoDB using the URI stored in the .env file
 mongoose.connect(process.env.MONGO_URI)
