@@ -13,6 +13,7 @@ import Contact from "@/views/Contact.vue";
 import i18n from '@/i18n'
 import Leaderboard from '@/views/Leaderboard.vue'
 import BudgetControl from '@/views/BudgetControl.vue'
+import WeeklyPlanner from '@/views/WeeklyPlanner.vue'
 // const routes = [
 //   {
 //     path: '/',
@@ -51,6 +52,7 @@ const routes = [
   { path: '/license', component: License, meta:{titleKey: 'tab.license'} },
   { path: '/contact', component: Contact, meta:{titleKey: 'tab.contact'} },
   { path: '/budget', component: BudgetControl, meta:{titleKey: 'tab.budget'} },
+  { path: '/weekly-planner', component: WeeklyPlanner, meta:{titleKey: 'tab.weekly-planner'} },
   { path: "/services/:service", name: "ServiceDetail", component: ServiceDetail, meta:{titleKey: 'tab.ourServices'} },
 ]
 const router = createRouter({
