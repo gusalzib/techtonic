@@ -11,7 +11,8 @@
         "privacy": "Integritet",
         "license": "Licens",
         "ourServices": "Våra tjänster",
-        "leaderboard": "Topplista"
+        "leaderboard": "Topplista",
+        "weekly-planner": "Veckoplanerare"
     },    
     "reports": {
         "yourReports": "Dina rapporter",
@@ -79,7 +80,8 @@
         "completed": "Färdigställd",
         "date": "Datum",
         "status": "Status",
-        "breakLength": "Bestäm längden på din nästa paus"
+        "breakLength": "Bestäm längden på din nästa paus",
+        "weekIdentifier": "Veckoidentifierare"
     },
     "example": {
         "task": "Skriv blogginlägg",
@@ -117,7 +119,8 @@
         "lighttheme": "Ljus tema",
         "profile": "Konto",
         "leaderboard": "Topplista",
-        "budget": "Budget"
+        "budget": "Budget",
+        "weekly-planner": "Veckoplanerare"
     },
     "home": {
         "title": "Välkommen till Techtonic",
@@ -282,6 +285,8 @@
     "modal": {
         "confirmDeleteTitle": "Är du säker på att du vill ta bort denna Timoria?",
         "confirmDeleteMessage": "Är du säker på att du vill ta bort denna Timoria? Du har begränsad tid att ångra denna åtgärd efter att du har godkänt.",
+        "confirmDeleteGoalTitle": "Radera mål?",
+        "confirmDeleteGoalMessage": "Är du säker på att du vill radera detta veckomål? Du kan inte ångra denna åtgärd.",
         "confirmDeleteReportTitle": "Är du säker på att du vill ta bort denna rapport?",
         "confirmDeleteReportMessage": "Denna åtgärd går inte att ångra!",
         "cancel": "Avbryt",
@@ -315,7 +320,15 @@
         "transactionAdded": "Transaktionen har lagts till",
         "failedToAddTransaction": "Misslyckades med att lägga till transaktionen",
         "failedToLoadCategories": "Kunde inte ladda kategorier",
-        "loadingTransactionFailed": "Misslyckades med att ladda transaktioner"
+        "loadingTransactionFailed": "Misslyckades med att ladda transaktioner",
+        "goalCreated": "Målet har skapats!",
+        "goalDeletedSuccessfully": "Målet raderades framgångsrikt",
+        "goalUpdatedSuccessfully": "Målet uppdaterades framgångsrikt",
+        "failedToUpdateGoal": "Misslyckades med att uppdatera målet",
+        "failedToDeleteGoal": "Misslyckades med att radera målet",
+        "failedToCreateGoal": "Misslyckades med att skapa målet",
+        "failedToLoadGoals": "Misslyckades med att ladda mål",
+        "failedToLoadProgress": "Misslyckades med att ladda framsteg"
     },
     "sidebar": {
         "menu": "Meny",
@@ -394,6 +407,8 @@
             "activityHeatmap": "Översikt över daglig aktivitet i en kalenderliknande heatmap. Varje ruta motsvarar en dag. Mörkare färg betyder mer aktivitet (mer tid eller fler slutförda Timoria) under den dagen inom vald period/filtrering."
         },
         "form": {
+            "notRelatedToWeeklyGoalTip": "Detta pass är inte kopplat till något veckomål.",
+            "weeklyGoalTip": "Detta pass är kopplat till ett veckomål. Genom att slutföra det bidrar du till dina totala framsteg för denna vecka.",
             "structure": "Timoria använder en enkel hierarki för att beskriva ditt arbete: Subject → Topic → Tag → Task description.\n\n• Subject = det stora området (t.ex. ”Jobb”, ”Studier”, ”Matematik”, ”Hälsa”).\n• Topic = en mer specifik del inom området (t.ex. ”Algebra”, ”Projekt X”, ”Träningsprogram”).\n• Tag = flexibla etiketter som du kan återanvända (t.ex. ”Tentaplugg”, ”Deep work”, ”Admin”).\n• Task description = vad du faktiskt ska göra under passet.\n\nDen här strukturen gör det enklare att söka i historiken och se statistik, till exempel tid per ämne, topic eller tagg.\nExempel: Subject: ”Matematik”, Topic: ”Algebra – ekvationer”, Tag: ”Tentaplugg”, Task: ”Lös uppgift 1–10 i kapitel 3”.",
             "duration": "Antalet minuter du planerar att fokusera i den här Timorian. Det är längden på timern (t.ex. 25, 45, 60).",
             "subject": "Subject är det övergripande området du jobbar med. Använd det för stora kategorier som ”Jobb”, ”Universitet”, ”Matematik”, ”Programmering”, ”Hälsa”.\nExempel: Om du pluggar analys kan subject vara ”Matematik”.",
@@ -562,5 +577,21 @@
         "receiver": "Mottagare",
         "amount": "Belopp",
         "budgetStatistics": "Budgetstatistik"
+    },
+    "planner": {
+        "weeklyTitle": "Veckoplaner",
+        "addGoal": "Skapa nytt mål",
+        "goalTitle": "Måltitel",
+        "targetMinutes": "Måltid i minuter",
+        "planSession": "Planera ett pass",
+        "isRecurring": "Återkommande mål",
+        "goalIsRecurring": "Detta mål är återkommande",
+        "goalTitlePlaceholder": "t.ex. Studera organisk kemi",
+        "ofTheGoalIsDone": "av målet är klart",
+        "outOf": "av",
+        "minutesAreComplete": "minuter är slutförda",
+        "estimatedTimeToCompletion": "Beräknad tid för slutförande",
+        "linkedSessions": "Kopplade Timorias",
+        "noSessions": "Det finns för närvarande inga planerade Timorias för detta mål"
     }
 }

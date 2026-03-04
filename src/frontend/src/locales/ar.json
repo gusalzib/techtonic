@@ -11,7 +11,8 @@
         "privacy": "الخصوصية",
         "license": "الترخيص",
         "ourServices": "خدماتنا",
-        "leaderboard": "لوحة المتصدرين"
+        "leaderboard": "لوحة المتصدرين",
+        "weekly-planner": "المخطط الأسبوعي"
     },
     "reports": {
         "dateCreated": "تاريخ الانشاء",
@@ -80,10 +81,12 @@
         "allTags": "جميع الوسوم",
         "planned": "مخطط",
         "ongoing": "قيد التنفيذ",
+        "finishedAt": "وقت الانتهاء",
         "completed": "مكتمل",
         "date": "التاريخ",
         "status": "الحالة",
-        "breakLength": "قرر مدة استراحتك التالية"
+        "breakLength": "قرر مدة استراحتك التالية",
+        "weekIdentifier": "رقم الأسبوع"
     },
     "example": {
         "task": "كتابة مقالة مدونة",
@@ -121,7 +124,8 @@
         "darktheme": "الوضع المظلم",
         "lighttheme": "الوضع المضيء",
         "leaderboard": "لوحة المتصدرين",
-        "budget": "الميزانية"
+        "budget": "الميزانية",
+        "weekly-planner": "المخطط الأسبوعي"
     },
     "home": {
         "title": " ‎\u200ETechtonic مرحبًا بك في ",
@@ -289,6 +293,8 @@
     "modal": {
         "confirmDeleteTitle": "هل أنت متأكد أنك تريد حذف هذه الجلسة؟",
         "confirmDeleteMessage": "هل أنت متأكد أنك تريد حذف هذه الجلسة؟ لديك وقت محدود للتراجع عن هذا الإجراء بعد الموافقة.",
+        "confirmDeleteGoalTitle": "حذف الهدف؟",
+        "confirmDeleteGoalMessage": "هل أنت متأكد أنك تريد حذف هذا الهدف الأسبوعي؟ لا يمكنك التراجع عن هذا الإجراء.",
         "confirmDeleteReportTitle": "هل أنت متأكد أنك تريد حذف هذا التقرير؟",
         "confirmDeleteReportMessage": "لا يمكنك التراجع عن هذا الإجراء بعد إتمامه!",
         "cancel": "إلغاء",
@@ -322,7 +328,15 @@
         "transactionAdded": "تمت إضافة العملية بنجاح",
         "failedToAddTransaction": "فشل في إضافة العملية",
         "failedToLoadCategories": "فشل في تحميل الفئات",
-        "loadingTransactionFailed": "فشل تحميل العمليات"
+        "loadingTransactionFailed": "فشل تحميل العمليات",
+        "goalCreated": "تم إنشاء الهدف!",
+        "goalDeletedSuccessfully": "تم حذف الهدف بنجاح",
+        "goalUpdatedSuccessfully": "تم تحديث الهدف بنجاح",
+        "failedToUpdateGoal": "فشل تحديث الهدف",
+        "failedToDeleteGoal": "فشل حذف الهدف",
+        "failedToCreateGoal": "فشل إنشاء الهدف",
+        "failedToLoadGoals": "فشل تحميل الأهداف",
+        "failedToLoadProgress": "فشل تحميل التقدم"
     },
     "sidebar": {
         "menu": "القائمة",
@@ -401,6 +415,8 @@
             "activityHeatmap": "عرض لنشاطك اليومي في شكل خريطة حرارية (heatmap) شبيهة بالتقويم. كل خانة تمثل يومًا واحدًا. كلما كان اللون أغمق، زادت درجة النشاط (وقت أكثر أو عدد تيموريا منجزة أكثر) في ذلك اليوم ضمن الفترة/عوامل التصفية المحددة."
             },
         "form": {
+            "weeklyGoalTip": "هذه الجلسة مرتبطة بهدف أسبوعي. إكمالها يساهم في إجمالي تقدمك لهذا الأسبوع.",
+            "notRelatedToWeeklyGoalTip": "هذه الجلسة غير مرتبطة بهدف أسبوعي.",
             "structure": "يستخدم Timoria تقسيمًا بسيطًا لوصف عملك: Subject → Topic → Tag → Task description.\n\n• Subject = المجال العام (مثل: ”العمل”، ”الدراسة”، ”الرياضيات”، ”الصحة”).\n• Topic = جزء أكثر تحديدًا داخل هذا المجال (مثل: ”الجبر”، ”المشروع X”، ”خطة التمرين”).\n• Tag = وسوم مرنة يمكن إعادة استخدامها (مثل: ”استعداد للامتحان”، ”تركيز عميق”، ”أعمال إدارية”).\n• Task description = ما ستقوم به فعليًا خلال هذه الجلسة.\n\nهذا التقسيم يساعدك على البحث في سجلك لاحقًا ورؤية الإحصائيات مثل الوقت لكل subject / topic / tag.\nمثال: Subject: ”رياضيات”، Topic: ”الجبر – المعادلات”، Tag: ”استعداد للامتحان”، Task: ”حل التمارين 1–10 من الفصل الثالث”.",
             "duration": "عدد الدقائق التي تخطط للتركيز فيها في هذه التيموريا. هذا هو طول المؤقت (مثال: 25، 45، 60 دقيقة).",
             "subject": "Subject هو المجال العام الذي تعمل عليه. استخدمه للفئات الكبيرة مثل: ”العمل”، ”الجامعة”، ”الرياضيات”، ”البرمجة”، ”الصحة”.\nمثال: إذا كنت تدرس التفاضل، يمكن أن يكون الـ subject هو ”رياضيات”.",
@@ -569,5 +585,21 @@
         "receiver": "المستلم",
         "amount": "المبلغ",
         "budgetStatistics": "إحصائيات الميزانية"
+    },
+    "planner": {
+        "weeklyTitle": "الخطط الأسبوعية",
+        "addGoal": "إنشاء هدف جديد",
+        "goalTitle": "عنوان الهدف",
+        "targetMinutes": "الوقت المستهدف بالدقائق",
+        "planSession": "تخطيط جلسة",
+        "isRecurring": "هدف متكرر",
+        "goalIsRecurring": "هذا الهدف متكرر",
+        "goalTitlePlaceholder": "مثلاً: دراسة الكيمياء العضوية",
+        "ofTheGoalIsDone": "من الهدف تم إنجازه",
+        "outOf": "من أصل",
+        "minutesAreComplete": "دقائق تم إكمالها",
+        "estimatedTimeToCompletion": "الوقت المقدر للإنجاز",
+        "linkedSessions": "جلسات تيموريا المرتبطة",
+        "noSessions": "لا توجد جلسات تيموريا مخططة لهذا الهدف حالياً"
     }
 }
