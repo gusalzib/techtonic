@@ -2672,7 +2672,7 @@ html[dir="rtl"] .about-links {
 
 .goals-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   margin-top: 20px;
 }
@@ -2762,7 +2762,7 @@ html[dir="rtl"] .about-links {
   background: transparent;
   border: none;
   border-radius: 5px;
-  background-color: black;
+  background-color: transparent;
   cursor: pointer;
   font-size: 1.3rem;
   transition: .4s ease;
@@ -2770,6 +2770,27 @@ html[dir="rtl"] .about-links {
 
 .delete-icon-btn:hover {
   background: #ff0202;
+}
+
+.goal-modal-content.edit-mode {
+    border-top: 4px solid var(--accent-color);
+}
+
+.edit-icon-btn {
+    background: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    opacity: 0.6;
+    margin-right: 8px; /* Space between edit and delete */
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.edit-icon-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background-color: var(--standard-btn-hover);
 }
 
 .goal-sessions-list {

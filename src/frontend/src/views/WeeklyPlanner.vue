@@ -64,6 +64,7 @@
           <button @click="openSpawnModal(goal)" class="spawn-btn standard-btn">
             ➕ {{ $t('planner.planSession') || 'Plan Session' }}
           </button>
+          <button @click="openEditGoalModal(goal)" class="edit-icon-btn">✏️</button>
           <button @click="deleteGoal(goal._id)" class="delete-icon-btn">🗑️</button>
         </div>
       </div>
@@ -160,6 +161,63 @@
         </div>
       </div>
     </transition>
+
+    <!-- Edit a goal modal -->
+    <transition name="fade">
+        <div v-if="showEditGoalModal" class="goal-modal-overlay" @click.self="showEditGoalModal = false">
+            <div class="goal-modal-content edit-mode">
+                <header class="goal-modal-header">
+                    <h3>{{ $t('planner.editGoal') || 'Edit Weekly Goal' }}</h3>
+                </header>
+
+                <form @submit.prevent="updateGoal" class="goal-form">
+                    <div class="goal-form-group">
+                        <label>{{ $t('planner.goalTitle') }}</label>
+                        <input v-model="editGoalData.title" type="text" required />
+                    </div>
+
+                    <div class="goal-form-row">
+                        <div class="goal-form-group">
+                            <label>{{ $t('planner.targetMinutes') }}</label>
+                            <input v-model.number="editGoalData.targetMinutes" type="number" step="5" min="5" required />
+                        </div>
+                        <div class="goal-form-group">
+                            <label>{{ $t('planner.isRecurring') }}</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" v-model="editGoalData.isRecurring" id="edit-recurring-check" />
+                                <label for="edit-recurring-check"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="goal-form-group">
+                        <label>{{ $t('table.subject') }}</label>
+                        <input v-model="editGoalData.subject" type="text" list="subjectList" required />
+
+                        <label>{{ $t('table.topic') }}</label>
+                        <input v-model="editGoalData.topic" type="text" list="topicList" required />
+
+                        <datalist id="subjectList">
+                            <option v-for="s in userSubjects" :key="s" :value="s"></option>
+                        </datalist>
+
+                        <datalist id="topicList">
+                            <option v-for="t in userTopics" :key="t" :value="t"></option>
+                        </datalist>
+                    </div>
+
+                    <div class="goal-modal-footer">
+                        <button type="button" class="cancel-btn" @click="showEditGoalModal = false">
+                            {{ $t('buttons.cancel') }}
+                        </button>
+                        <button type="submit" class="save-btn" :disabled="submitting">
+                            {{ submitting ? $t('buttons.saving') : $t('buttons.save') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -196,6 +254,15 @@ export default {
             task: '',
             tag: '',
             duration: 25
+        },
+        showEditGoalModal: false,
+        editingGoalId: null,
+        editGoalData: {
+            title: '',
+            targetMinutes: 0,
+            subject: '',
+            topic: '',
+            isRecurring: false
         }
     };
   },
@@ -352,6 +419,37 @@ export default {
             } catch (err) {
                 this.toast?.error(this.$t('notification.failedToDeleteGoal') || 'Failed to delete goal');
                 console.error("Delete failed:", err);
+            }
+        },
+        // Called from the edite button on the card
+        openEditGoalModal(goal) {
+            this.editingGoalId = goal._id;
+            // Create a fresh copy of the goal data so we don't mutate the card UI before saving
+            this.editGoalData = { 
+                title: goal.title,
+                targetMinutes: goal.targetMinutes,
+                subject: goal.subject,
+                topic: goal.topic,
+                isRecurring: goal.isRecurring 
+            };
+            this.showEditGoalModal = true;
+        },
+
+        async updateGoal() {
+            this.submitting = true;
+            const token = localStorage.getItem('token');
+            try {
+                await axios.put(`${API_BASE_URL}/goals/${this.editingGoalId}`, this.editGoalData, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                this.toast?.success(this.$t('notification.goalUpdatedSuccessfully') || "Goal updated!");
+                this.showEditGoalModal = false;
+                this.fetchWeeklyData(); // Refresh the grid to show new values
+            } catch (err) {
+                this.toast?.error(this.$t('notification.failedToUpdateGoal') || "Update failed");
+            } finally {
+                this.submitting = false;
             }
         },
         async fetchSessions(goalId) {
