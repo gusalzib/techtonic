@@ -22,7 +22,7 @@
         <!-- <router-link to="/timoria">{{ $t('nav.blog') }}</router-link> -->
         <router-link to="/timoria" v-show="isLoggedIn">{{ $t('nav.timoria') }}</router-link>
         <router-link to="/statistics" v-show="isLoggedIn">{{ $t('nav.statistics') }}</router-link>
-        <router-link to="/weekly-planner" v-show="isLoggedIn">{{ $t('nav.weeklyPlanner') }}</router-link>
+        <router-link to="/weekly-planner" v-show="isLoggedIn">{{ $t('nav.weekly-planner') }}</router-link>
         <router-link to="/budget" v-show="isLoggedIn && isAdmin">{{ $t('nav.budget') }}</router-link>
         <router-link to="/account" v-show="isLoggedIn">{{ $t('nav.profile') }}</router-link>
         <router-link to="/leaderboard" v-show="isLoggedIn">{{ $t('nav.leaderboard') }}</router-link>

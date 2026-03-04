@@ -2672,7 +2672,7 @@ html[dir="rtl"] .about-links {
 
 .goals-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   gap: 20px;
   margin-top: 20px;
 }
@@ -2799,7 +2799,24 @@ html[dir="rtl"] .about-links {
   overflow-y: auto;
   padding-right: 5px;
 }
+/* Custom Slim Scrollbar for the sessions list */
+.goal-sessions-list::-webkit-scrollbar {
+  width: 5px;               /* Width for vertical scroll */
+  height: 5px;              /* Height for horizontal scroll */
+}
 
+.goal-sessions-list::-webkit-scrollbar-track {
+  background: transparent;  /* Keeps the background clean */
+}
+
+.goal-sessions-list::-webkit-scrollbar-thumb {
+  background: var(--standard-btn); /* Matches your app's button color */
+  border-radius: 10px;
+}
+
+.goal-sessions-list::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);   /* Slight highlight on hover */
+}
 .goal-sessions-list h4 {
   font-size: 0.9rem;
   margin-bottom: 10px;
