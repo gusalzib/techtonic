@@ -56,6 +56,7 @@
         <th>{{ $t('table.subject') }}</th> 
         <th>{{ $t('table.topic') }}</th>
         <th>{{ $t('table.tag') }}</th>    
+        <th>{{ $t('table.weekIdentifier') }}</th>    
         <th>{{ $t('table.finishedAt') }}</th>    
         <th>{{ $t('table.actions') }}</th> 
       </tr>
@@ -77,6 +78,9 @@
 
         <td v-if="editIndex !== index">{{ timoria.tag || '—' }}</td>
         <td v-else><input v-model="editForm.tag" /></td>
+
+        <td v-tooltip="$t('tooltip.form.weeklyGoalTip')" v-if="timoria.goalId?.weekIdentifier && editIndex !== index">{{ timoria.goalId.weekIdentifier || '—' }}</td>
+        <td v-tooltip="$t('tooltip.form.notRelatedToWeeklyGoalTip')" v-else>{{ 'N/A' }}</td>
 
         <td>
             <div>{{ transformDate(timoria.finishedAt)[0] }}</div>
@@ -104,37 +108,41 @@
 
     <!-- Mobile card layout -->
     <div class="pomo-card" v-for="(timoria, index) in todayTimorias" :key="'card-' + timoria._id">
-    <div class="pomo-card-content">
-        <div class="pomo-card-item">
-        <strong>{{ $t('table.task') }}:</strong>
-        <span v-if="editIndex !== index">{{ timoria.task || '—' }}</span>
-        <input v-else v-model="editForm.task" />
-        </div>
+        <div class="pomo-card-content">
+            <div class="pomo-card-item">
+            <strong>{{ $t('table.task') }}:</strong>
+            <span v-if="editIndex !== index">{{ timoria.task || '—' }}</span>
+            <input v-else v-model="editForm.task" />
+            </div>
 
-        <div class="pomo-card-item">
-        <strong>{{ $t('table.duration') }}:</strong>
-        <span v-if="editIndex !== index">{{ timoria.duration }} min</span>
-        <input v-else v-model="editForm.duration" type="number" />
-        </div>
+            <div class="pomo-card-item">
+            <strong>{{ $t('table.duration') }}:</strong>
+            <span v-if="editIndex !== index">{{ timoria.duration }} min</span>
+            <input v-else v-model="editForm.duration" type="number" />
+            </div>
 
-        <div class="pomo-card-item">
-        <strong>{{ $t('table.subject') }}:</strong>
-        <span v-if="editIndex !== index">{{ timoria.subject }}</span>
-        <input v-else v-model="editForm.subject" />
-        </div>
+            <div class="pomo-card-item">
+            <strong>{{ $t('table.subject') }}:</strong>
+            <span v-if="editIndex !== index">{{ timoria.subject }}</span>
+            <input v-else v-model="editForm.subject" />
+            </div>
 
-        <div class="pomo-card-item">
-        <strong>{{ $t('table.topic') }}:</strong>
-        <span v-if="editIndex !== index">{{ timoria.topic }}</span>
-        <input v-else v-model="editForm.topic" />
-        </div>
+            <div class="pomo-card-item">
+            <strong>{{ $t('table.topic') }}:</strong>
+            <span v-if="editIndex !== index">{{ timoria.topic }}</span>
+            <input v-else v-model="editForm.topic" />
+            </div>
 
-        <div class="pomo-card-item">
-        <strong>{{ $t('table.tag') }}:</strong>
-        <span v-if="editIndex !== index">{{ timoria.tag || '—' }}</span>
-        <input v-else v-model="editForm.tag" />
+            <div class="pomo-card-item">
+            <strong>{{ $t('table.tag') }}:</strong>
+            <span v-if="editIndex !== index">{{ timoria.tag || '—' }}</span>
+            <input v-else v-model="editForm.tag" />
+            </div>
+            <div class="pomo-card-item">
+            <strong>{{ $t('table.weekIdentifier') }}:</strong>
+            <span v-tooltip="$t('tooltip.form.weeklyGoalTip')" v-if="timoria.goalId?.weekIdentifier && editIndex !== index">{{ timoria.goalId.weekIdentifier || '—' }}</span>
+            </div>
         </div>
-    </div>
     <!-- Add a separating line between buttons and the rest of text -->
     <hr> 
     <div class="card-actions">

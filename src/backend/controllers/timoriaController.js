@@ -95,7 +95,7 @@ exports.getTodayTimorias = async (req, res) => {
       user: uid, // makes sure we only get today's timorias for the logged in user and not everyone
       finishedAt: { $gte: startOfDay, $lte: endOfDay },
       status: 'done'
-    }).sort({ finishedAt: -1 })
+    }).populate('goalId', 'weekIdentifier').sort({ finishedAt: -1 })
 
     res.status(200).json(todayTimorias)
   } catch (err) {
@@ -129,7 +129,7 @@ exports.updateTimoria = async (req, res) => {
       id,
       { subject, topic, tag, task, duration, status, finishedAt, createdAt },
       { new: true, runValidators: true }
-    )
+    ).populate('goalId', 'weekIdentifier')
 
     if (!updated) return res.status(404).json({ error: 'Timoria not found' })
 
