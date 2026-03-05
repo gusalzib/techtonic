@@ -190,7 +190,7 @@ html{
   margin: 0;
   background-color: var(--page-bg);
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   height: 100%;
 }
 
@@ -203,8 +203,9 @@ body{
   background-repeat: repeat;
   background-size: 96px 96px;
   min-height: 100vh;
+  
 
-  /* overscroll-behavior-y: auto; */
+  overscroll-behavior-y: auto;
   -webkit-tap-highlight-color: transparent;
   user-select: none; /* Prevents text selection during long presses */
 }
