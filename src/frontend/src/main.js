@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia';
+import './registerServiceWorker' 
 
 // Create and mount app
 const app = createApp(App)
@@ -21,6 +22,7 @@ import 'vue-toastification/dist/index.css' // getting the required styles
 import en from './locales/en.json'
 import ar from './locales/ar.json'
 import sv from './locales/sv.json'
+import './registerServiceWorker'
 
 const savedLocale = localStorage.getItem('lang') || 'en'
 
