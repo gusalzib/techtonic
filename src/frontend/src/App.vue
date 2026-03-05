@@ -71,6 +71,11 @@ export default {
       menuOpen: false,
       
       url: `${API_BASE_URL}/users`,
+
+    // This variable acts as a "storage container" for the browser's 
+    // installation event. We initialize it as null because the event 
+    // hasn't happened yet when the app loads.
+      deferredPrompt: null,
     }
   },
   computed: {
@@ -95,8 +100,40 @@ export default {
   },
   mounted() {
     this.userStore.checkUserStatus();
+
+    // The browser fires 'beforeinstallprompt' if the app meets PWA criteria
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // 1. We stop the browser from showing its own default, ugly install bar
+      e.preventDefault();
+
+      // 2. We "stash" the event object into our local data. 
+      // This object contains the 'prompt()' method we need later.
+      this.deferredPrompt = e; // Save the event so it can be triggered later
+    });
   },
   methods: {
+
+    async installApp() {
+      // Safety check: if the browser hasn't fired the event yet, 
+      // or the app is already installed, do nothing.
+      if (!this.deferredPrompt) return;
+
+      // 1. Show the official browser installation dialog 
+      // (This is the "Do you want to install this app?" pop-up)
+      this.deferredPrompt.prompt();
+
+      // 2. Wait for the user to make a choice (Accept or Dismiss)
+      // We use 'await' because 'userChoice' is a Promise.
+      const { outcome } = await this.deferredPrompt.userChoice;
+
+      // 3. Logic based on user decision
+      if (outcome === 'accepted') {
+
+        // Clear the saved event because it can only be used once.
+        // This also hides your custom install button if you used v-if.
+        this.deferredPrompt = null;
+      }
+    },
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
     },
