@@ -1,5 +1,5 @@
 const cron = require('node-cron');
-const Goal = require('../models/Goal');
+const Goal = require('../models/goal');
 const { DateTime } = require('luxon');
 
 let isRunning = false;

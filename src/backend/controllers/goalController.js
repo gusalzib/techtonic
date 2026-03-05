@@ -1,5 +1,5 @@
-const Goal = require('../models/Goal');
-const Timoria = require('../models/Timoria');
+const Goal = require('../models/goal');
+const Timoria = require('../models/timoria');
 const mongoose = require('mongoose'); // Required for aggregation and ObjectId casting
 
 // Create a new Weekly Goal
