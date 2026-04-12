@@ -593,6 +593,7 @@
     "planner": {
         "weeklyTitle": "Weekly Plans",
         "addGoal": "Create new goal",
+        "editGoal": "Edit goal",
         "goalTitle": "Goal Title",
         "targetMinutes": "Target time in minutes",
         "planSession": "Plan a session",
