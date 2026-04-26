@@ -372,6 +372,7 @@ export default {
       this.pushBreakNotification()
 
       this.hasBreakFinished = true
+      this.$emit('break-finished')
     },
 
     startUiTicking() {

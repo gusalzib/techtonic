@@ -866,6 +866,7 @@ export default {
              * LocalStorage is persistence, not communication.
              */
             this.activeTimoria = { ...timoria }
+            this.activeBreak = false
 
 
             try {
