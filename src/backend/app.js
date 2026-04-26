@@ -93,12 +93,12 @@ const User = require('./models/user');
 const cron = require('node-cron');
 const { generateAutomaticWeeklyReportsForUsers } = require('./controllers/reportsController');
 
-// Schedule: "0 21 * * 0" means 0 minutes, 21 hours (9 PM),
-// any day of month, any month, Sunday (0)
+// Schedule: "0 05 * * 1" means 0 minutes, 05 hours (5 AM),
+// any day of month, any month, Monday (1)
 // you can check https://crontab.guru/#0_21_*_*_0 for a better understanding of the Cron Expression argument 
 // temporarily */1 * * * * which runs every minute for testing purposes.  0 21 * * 0
-cron.schedule('0 21 * * 0', async () => {
-  console.log('--- Starting Sunday Weekly Report Batch ---');
+cron.schedule('0 05 * * 1', async () => {
+  console.log('--- Starting Monday Weekly Report Batch ---');
 
   try {
     // fetch all users who shoul receive reports
