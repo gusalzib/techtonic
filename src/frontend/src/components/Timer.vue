@@ -76,6 +76,7 @@ export default {
       hasBreakFinished: false,
       timerType: 'timoria', // or 'break',
       // breakDuration: 1, // the plan is to allow users to decide the duration here but for now we will use a fixed duration 
+      wakeLockSentinel: null,
 
     } 
   },
@@ -165,6 +166,28 @@ export default {
     }
   },
   methods: {
+    async requestWakeLock() {
+      if ('wakeLock' in navigator) {
+        try {
+          this.wakeLockSentinel = await navigator.wakeLock.request('screen');
+          console.log('Wake Lock is active');
+        } catch (err) {
+          console.error(`Wake Lock error: ${err.name}, ${err.message}`);
+        }
+      }
+    },
+    async releaseWakeLock() {
+      if (this.wakeLockSentinel !== null) {
+        try {
+          await this.wakeLockSentinel.release();
+          this.wakeLockSentinel = null;
+          console.log('Wake Lock has been released');
+        } catch (err) {
+          console.error(`Wake Lock release error: ${err.name}, ${err.message}`);
+        }
+      }
+    },
+
     /**
      * -------------------------------------------------------------------------------------------------
      *                                                NEW METHODS
@@ -204,12 +227,14 @@ export default {
 
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
       this.startUiTicking()
+      this.requestWakeLock()
     },
     pauseTimer() {
       if (!this.timerState || this.timerState.pausedAt) return
 
       this.timerState.pausedAt = Date.now()
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
+      this.releaseWakeLock()
     },
     resumeTimer() {
       if (!this.timerState || !this.timerState.pausedAt) return;
@@ -219,6 +244,7 @@ export default {
       this.timerState.pausedAt = null
 
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
+      this.requestWakeLock()
     },
 
 
@@ -227,6 +253,7 @@ export default {
 
       this.timerState.finished = true
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
+      this.releaseWakeLock()
 
       if (this.timerState.type === 'timoria') {
         await this.finishTimoriaBackend()
@@ -285,6 +312,7 @@ export default {
 
       this.timerState = null
       localStorage.removeItem('activeTimoria')
+      this.releaseWakeLock()
     },
 
     async cancelTimer() {
@@ -328,7 +356,6 @@ export default {
     })
   },
     startBreak() {
-      console.log('🔄 Starting break timer...')
       // stop any UI ticking
       if (this.interval) {
         clearInterval(this.interval)
@@ -358,6 +385,7 @@ export default {
       this.$nextTick(() => {
         this.logTimerState();
         this.startUiTicking();
+        this.requestWakeLock();
       });
       
     },
