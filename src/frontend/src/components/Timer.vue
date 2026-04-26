@@ -32,6 +32,7 @@
 <script>
 import dingSound from '@/assets/audio/ding.mp3'
 import breakOver from '@/assets/audio/break_over.mp3'
+import silenceMp3 from '@/assets/audio/silence.mp3'
 import { useToast } from 'vue-toastification'
 import { API_BASE_URL } from '@/config/api';
 
@@ -77,6 +78,7 @@ export default {
       timerType: 'timoria', // or 'break',
       // breakDuration: 1, // the plan is to allow users to decide the duration here but for now we will use a fixed duration 
       wakeLockSentinel: null,
+      silentAudio: null, // invisible audio loop for stealth defense
 
     } 
   },
@@ -119,6 +121,9 @@ export default {
   async mounted() {
     this.toast = useToast();
 
+    // Stealth Defense: initialize silent audio loop
+    this.silentAudio = new Audio(silenceMp3);
+    this.silentAudio.loop = true;
 
     const saved = localStorage.getItem('activeTimoria')
     if (!saved) return
@@ -228,6 +233,7 @@ export default {
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
       this.startUiTicking()
       this.requestWakeLock()
+      this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented:', e));
     },
     pauseTimer() {
       if (!this.timerState || this.timerState.pausedAt) return
@@ -235,6 +241,10 @@ export default {
       this.timerState.pausedAt = Date.now()
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
       this.releaseWakeLock()
+      if (this.silentAudio) {
+        this.silentAudio.pause();
+        this.silentAudio.currentTime = 0;
+      }
     },
     resumeTimer() {
       if (!this.timerState || !this.timerState.pausedAt) return;
@@ -245,6 +255,7 @@ export default {
 
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
       this.requestWakeLock()
+      this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented:', e));
     },
 
 
@@ -254,6 +265,10 @@ export default {
       this.timerState.finished = true
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
       this.releaseWakeLock()
+      if (this.silentAudio) {
+        this.silentAudio.pause();
+        this.silentAudio.currentTime = 0;
+      }
 
       if (this.timerState.type === 'timoria') {
         await this.finishTimoriaBackend()
@@ -313,6 +328,10 @@ export default {
       this.timerState = null
       localStorage.removeItem('activeTimoria')
       this.releaseWakeLock()
+      if (this.silentAudio) {
+        this.silentAudio.pause();
+        this.silentAudio.currentTime = 0;
+      }
     },
 
     async cancelTimer() {
@@ -386,6 +405,7 @@ export default {
         this.logTimerState();
         this.startUiTicking();
         this.requestWakeLock();
+        this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented:', e));
       });
       
     },
