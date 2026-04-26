@@ -138,6 +138,9 @@ export default {
     }
 
     const token = localStorage.getItem('token')
+
+    // Phase 3: Visibility Change Sync
+    document.addEventListener('visibilitychange', this.handleVisibilityChange)
     /**
      * Explicitly handle Break vs. Timoria
      * What happens without this check?
@@ -171,6 +174,26 @@ export default {
     }
   },
   methods: {
+    handleVisibilityChange() {
+      if (document.visibilityState === 'visible') {
+        if (!this.timerState) return;
+
+        // Force an immediate recalculation of time
+        if (!this.timerState.pausedAt) {
+          this.nowTs = Date.now();
+        }
+        
+        // If the timer ran out while in the background, finish it immediately
+        if (this.getRemainingMs() === 0 && !this.timerState.finished) {
+          this.finishTimoriaOnce();
+        }
+
+        // Re-acquire the wake lock because the browser releases it when the tab is hidden
+        if (!this.timerState.pausedAt && !this.timerState.finished) {
+          this.requestWakeLock();
+        }
+      }
+    },
     async requestWakeLock() {
       if ('wakeLock' in navigator) {
         try {
@@ -517,6 +540,8 @@ export default {
     },
   },
   beforeUnmount() {
+    document.removeEventListener('visibilitychange', this.handleVisibilityChange)
+
     if (this.interval) {
       clearInterval(this.interval)
       this.interval = null
