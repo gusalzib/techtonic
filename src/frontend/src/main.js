@@ -22,7 +22,6 @@ import 'vue-toastification/dist/index.css' // getting the required styles
 import en from './locales/en.json'
 import ar from './locales/ar.json'
 import sv from './locales/sv.json'
-import './registerServiceWorker'
 
 const savedLocale = localStorage.getItem('lang') || 'en'
 
