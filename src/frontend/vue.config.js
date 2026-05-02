@@ -24,9 +24,9 @@ module.exports = defineConfig({
       display: 'standalone',
       orientation: 'portrait'
     },
+    workboxPluginMode: 'InjectManifest',
     workboxOptions: {
-      skipWaiting: true,
-      clientsClaim: true
+      swSrc: './src/service-worker.js',
     }
   }
 })

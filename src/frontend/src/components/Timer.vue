@@ -32,7 +32,7 @@
 <script>
 import dingSound from '@/assets/audio/ding.mp3'
 import breakOver from '@/assets/audio/break_over.mp3'
-import silenceMp3 from '@/assets/audio/silence.mp3'
+import silenceMp3 from '@/assets/audio/piano_audio_test.wav'
 import { useToast } from 'vue-toastification'
 import { API_BASE_URL } from '@/config/api';
 
@@ -141,6 +141,12 @@ export default {
 
     // Phase 3: Visibility Change Sync
     document.addEventListener('visibilitychange', this.handleVisibilityChange)
+
+    // Phase 4: Push Notifications
+    this.requestNotificationPermission()
+    this.$nextTick(() => {
+      this.subscribeToPushNotifications()
+    })
     /**
      * Explicitly handle Break vs. Timoria
      * What happens without this check?
@@ -257,6 +263,9 @@ export default {
       this.startUiTicking()
       this.requestWakeLock()
       this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented:', e));
+      
+      // Phase 4: Schedule Backend Notification
+      this.scheduleBackendNotification('timoria', this.timerState.plannedMs)
     },
     pauseTimer() {
       if (!this.timerState || this.timerState.pausedAt) return
@@ -268,6 +277,8 @@ export default {
         this.silentAudio.pause();
         this.silentAudio.currentTime = 0;
       }
+      // Phase 4: Cancel Backend Notification on pause
+      this.cancelBackendNotification()
     },
     resumeTimer() {
       if (!this.timerState || !this.timerState.pausedAt) return;
@@ -279,6 +290,10 @@ export default {
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
       this.requestWakeLock()
       this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented:', e));
+
+      // Phase 4: Re-schedule on resume
+      const remainingMs = this.getRemainingMs()
+      this.scheduleBackendNotification(this.timerState.type, remainingMs)
     },
 
 
@@ -292,6 +307,9 @@ export default {
         this.silentAudio.pause();
         this.silentAudio.currentTime = 0;
       }
+      
+      // Phase 4: Cancel Backend Notification
+      this.cancelBackendNotification()
 
       if (this.timerState.type === 'timoria') {
         await this.finishTimoriaBackend()
@@ -307,8 +325,20 @@ export default {
     },
 
     async finishTimoriaBackend() {
-      const totalMs = this.getElapsedMs()
-      const minutes = Math.max(1, Math.round(totalMs / 60000))
+      const elapsedMs = this.getElapsedMs()
+      // Cap at plannedMs to avoid recording "overtime" if user was away
+      /**
+       * plannedMs is dynamic and is updated every timer the user clicks the extendTimer buttons. 
+       * If you look at the extendTimer method (around line 509), you'll see this:
+       *  extendTimer(seconds) {
+       *    if (!this.timerState) return;
+       *    // This line is the key!
+       *    this.timerState.plannedMs += seconds * 1000; 
+       *    // ...
+}
+       */
+      const effectiveMs = Math.min(elapsedMs, this.timerState.plannedMs)
+      const minutes = Math.max(1, Math.round(effectiveMs / 60000))
 
       try {
         await fetch(`${this.url}/${this.localTimoria._id}`, {
@@ -355,6 +385,9 @@ export default {
         this.silentAudio.pause();
         this.silentAudio.currentTime = 0;
       }
+      
+      // Phase 4: Cancel Backend Notification
+      this.cancelBackendNotification()
     },
 
     async cancelTimer() {
@@ -429,6 +462,9 @@ export default {
         this.startUiTicking();
         this.requestWakeLock();
         this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented:', e));
+        
+        // Phase 4: Schedule Backend Notification for break
+        this.scheduleBackendNotification('break', this.timerState.plannedMs)
       });
       
     },
@@ -496,6 +532,11 @@ export default {
         // give user feedback
         this.toast?.success(`${seconds / 60} ${this.$t('timer.minutesAdded') || 'minutes added'}`);
 
+        // Phase 4: Update Backend Notification
+        if (!this.timerState.pausedAt) {
+          const remainingMs = this.getRemainingMs()
+          this.scheduleBackendNotification(this.timerState.type, remainingMs)
+        }
     },
     requestNotificationPermission() {
         if ('Notification' in window && Notification.permission !== 'granted') {
@@ -538,6 +579,90 @@ export default {
       const audio = new Audio(breakOver)
       audio.play()
     },
+    
+    /**
+     * -------------------------------------------------------------------------------------------------
+     *                             PHASE 4: PUSH NOTIFICATION HELPERS
+     * -------------------------------------------------------------------------------------------------
+     */
+    async subscribeToPushNotifications() {
+      if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+        console.warn('Push messaging is not supported');
+        return;
+      }
+
+      try {
+        const registration = await navigator.serviceWorker.ready;
+        const subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: this.urlBase64ToUint8Array('BPWNQY5LP-tc3kb6km-p3sOzv5O4KdWwJdiXsEmdqKYtU2lI1cdTpuCkk3mmxvBtNh3AJgDWbCR6bH2sICqT3ZQ')
+        });
+
+        const token = localStorage.getItem('token');
+        await fetch(`${API_BASE_URL}/notifications/subscribe`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ subscription })
+        });
+        console.log('User is subscribed to Push Notifications');
+      } catch (err) {
+        console.error('Failed to subscribe to push notifications:', err);
+      }
+    },
+
+    async scheduleBackendNotification(type, durationMs) {
+      try {
+        const token = localStorage.getItem('token');
+        const finishTime = new Date(Date.now() + durationMs).toISOString();
+        const payload = {
+          title: type === 'timoria' ? '✅ Timoria Complete!' : '⏰ Break is over!',
+          body: type === 'timoria' ? 'Take a short break or start a new one!' : 'Time to get back to your Timoria!'
+        };
+
+        await fetch(`${API_BASE_URL}/notifications/schedule`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ type, finishTime, payload })
+        });
+      } catch (err) {
+        console.error('Failed to schedule backend notification:', err);
+      }
+    },
+
+    async cancelBackendNotification() {
+      try {
+        const token = localStorage.getItem('token');
+        await fetch(`${API_BASE_URL}/notifications/cancel`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+      } catch (err) {
+        console.error('Failed to cancel backend notification:', err);
+      }
+    },
+
+    urlBase64ToUint8Array(base64String) {
+      const padding = '='.repeat((4 - base64String.length % 4) % 4);
+      const base64 = (base64String + padding)
+        .replace(/-/g, '+')
+        .replace(/_/g, '/');
+
+      const rawData = window.atob(base64);
+      const outputArray = new Uint8Array(rawData.length);
+
+      for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+      }
+      return outputArray;
+    }
   },
   beforeUnmount() {
     document.removeEventListener('visibilitychange', this.handleVisibilityChange)
