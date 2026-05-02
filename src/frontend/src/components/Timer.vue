@@ -32,7 +32,7 @@
 <script>
 import dingSound from '@/assets/audio/ding.mp3'
 import breakOver from '@/assets/audio/break_over.mp3'
-import silenceMp3 from '@/assets/audio/piano_audio_test.wav'
+import silenceMp3 from '@/assets/audio/silence.mp3'
 import { useToast } from 'vue-toastification'
 import { API_BASE_URL } from '@/config/api';
 
