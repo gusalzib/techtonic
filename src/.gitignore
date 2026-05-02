@@ -14,3 +14,30 @@ frontend/node_modules/
 .vscode/
 scratch.vue
 techtonic_specs.md
+
+
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+
+# Frontend/Backend build outputs
+src/frontend/dist/
+src/backend/dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
