@@ -146,6 +146,12 @@ export default {
     this.requestNotificationPermission()
     this.$nextTick(() => {
       this.subscribeToPushNotifications()
+      
+      // RE-ACQUIRE DEFENSES ON REFRESH
+      if (this.timerState && !this.timerState.pausedAt && !this.timerState.finished) {
+        this.requestWakeLock();
+        this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented on mount:', e));
+      }
     })
     /**
      * Explicitly handle Break vs. Timoria
@@ -197,16 +203,31 @@ export default {
         // Re-acquire the wake lock because the browser releases it when the tab is hidden
         if (!this.timerState.pausedAt && !this.timerState.finished) {
           this.requestWakeLock();
+          this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented on visibility change:', e));
         }
       }
     },
     async requestWakeLock() {
-      if ('wakeLock' in navigator) {
-        try {
-          this.wakeLockSentinel = await navigator.wakeLock.request('screen');
-          console.log('Wake Lock is active');
-        } catch (err) {
-          console.error(`Wake Lock error: ${err.name}, ${err.message}`);
+      if (!('wakeLock' in navigator)) return;
+      
+      try {
+        // Only request if we don't have an active one
+        if (this.wakeLockSentinel && !this.wakeLockSentinel.released) {
+          return;
+        }
+
+        this.wakeLockSentinel = await navigator.wakeLock.request('screen');
+        console.log('🔔 Wake Lock is active');
+        
+        // Handle unexpected releases
+        this.wakeLockSentinel.addEventListener('release', () => {
+          console.log('⚠️ Wake Lock was released');
+        });
+      } catch (err) {
+        console.error(`❌ Wake Lock error: ${err.name}, ${err.message}`);
+        // If it failed, try once more after a short delay
+        if (document.visibilityState === 'visible') {
+          setTimeout(() => this.requestWakeLock(), 1000);
         }
       }
     },
