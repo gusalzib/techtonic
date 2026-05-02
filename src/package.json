@@ -3,14 +3,10 @@
   "version": "1.0.0",
   "description": "Techtonic - Timer and Productivity App",
   "scripts": {
-    "install:frontend": "npm install --prefix frontend",
-    "install:backend": "npm install --prefix backend",
-    "install:all": "npm run install:frontend && npm run install:backend",
-    "build:frontend": "npm run build:all --prefix frontend",
-    "build": "npm run install:frontend && npm run build:frontend && npm install --prefix backend",
-    "start": "npm start --prefix backend",
-    "dev:frontend": "npm run serve --prefix frontend",
-    "dev:backend": "npm run dev --prefix backend"
+    "build": "cd frontend && npm install && npm run build:all && cd ../backend && npm install",
+    "start": "cd backend && npm start",
+    "dev:frontend": "cd frontend && npm run serve",
+    "dev:backend": "cd backend && npm run dev"
   },
   "author": "",
   "license": "ISC"
