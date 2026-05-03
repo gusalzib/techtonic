@@ -142,12 +142,15 @@ export default {
     // Phase 3: Visibility Change Sync
     document.addEventListener('visibilitychange', this.handleVisibilityChange)
 
-    // Phase 4: Push Notifications
-    this.requestNotificationPermission()
+    // Phase 4: Push Notifications (Subscribe only if permission is already granted)
+    if (Notification.permission === 'granted') {
+      this.$nextTick(() => {
+        this.subscribeToPushNotifications()
+      })
+    }
+
+    // RE-ACQUIRE DEFENSES ON REFRESH (Wake Lock & Audio)
     this.$nextTick(() => {
-      this.subscribeToPushNotifications()
-      
-      // RE-ACQUIRE DEFENSES ON REFRESH
       if (this.timerState && !this.timerState.pausedAt && !this.timerState.finished) {
         this.requestWakeLock();
         this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented on mount:', e));
@@ -271,6 +274,11 @@ export default {
     },
     startTimer() {
       if (!this.localTimoria?._id) return
+
+      // Phase 4: Request permission on user gesture if not already granted
+      if (Notification.permission === 'default') {
+        this.requestNotificationPermission();
+      }
 
       this.timerType = 'timoria'
 
@@ -452,6 +460,11 @@ export default {
     })
   },
     startBreak() {
+      // Phase 4: Request permission on user gesture if not already granted
+      if (Notification.permission === 'default') {
+        this.requestNotificationPermission();
+      }
+
       // stop any UI ticking
       if (this.interval) {
         clearInterval(this.interval)
