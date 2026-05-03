@@ -32,7 +32,6 @@
 <script>
 import dingSound from '@/assets/audio/ding.mp3'
 import breakOver from '@/assets/audio/break_over.mp3'
-import silenceMp3 from '@/assets/audio/silence.mp3'
 import { useToast } from 'vue-toastification'
 import { API_BASE_URL } from '@/config/api';
 
@@ -78,8 +77,6 @@ export default {
       timerType: 'timoria', // or 'break',
       // breakDuration: 1, // the plan is to allow users to decide the duration here but for now we will use a fixed duration 
       wakeLockSentinel: null,
-      silentAudio: null, // invisible audio loop for stealth defense
-
     } 
   },
   computed: {
@@ -121,10 +118,6 @@ export default {
   async mounted() {
     this.toast = useToast();
 
-    // Stealth Defense: initialize silent audio loop
-    this.silentAudio = new Audio(silenceMp3);
-    this.silentAudio.loop = true;
-
     const saved = localStorage.getItem('activeTimoria')
     if (!saved) return
 
@@ -149,11 +142,10 @@ export default {
       })
     }
 
-    // RE-ACQUIRE DEFENSES ON REFRESH (Wake Lock & Audio)
+    // RE-ACQUIRE DEFENSES ON REFRESH (Wake Lock)
     this.$nextTick(() => {
       if (this.timerState && !this.timerState.pausedAt && !this.timerState.finished) {
         this.requestWakeLock();
-        this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented on mount:', e));
       }
     })
     /**
@@ -205,8 +197,8 @@ export default {
 
         // Re-acquire the wake lock because the browser releases it when the tab is hidden
         if (!this.timerState.pausedAt && !this.timerState.finished) {
-          this.requestWakeLock();
-          this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented on visibility change:', e));
+          // Small delay to ensure browser is ready for new lock request
+          setTimeout(() => this.requestWakeLock(), 200);
         }
       }
     },
@@ -225,6 +217,7 @@ export default {
         // Handle unexpected releases
         this.wakeLockSentinel.addEventListener('release', () => {
           console.log('⚠️ Wake Lock was released');
+          this.wakeLockSentinel = null;
         });
       } catch (err) {
         console.error(`❌ Wake Lock error: ${err.name}, ${err.message}`);
@@ -291,7 +284,6 @@ export default {
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
       this.startUiTicking()
       this.requestWakeLock()
-      this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented:', e));
       
       // Phase 4: Schedule Backend Notification
       this.scheduleBackendNotification('timoria', this.timerState.plannedMs)
@@ -302,10 +294,6 @@ export default {
       this.timerState.pausedAt = Date.now()
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
       this.releaseWakeLock()
-      if (this.silentAudio) {
-        this.silentAudio.pause();
-        this.silentAudio.currentTime = 0;
-      }
       // Phase 4: Cancel Backend Notification on pause
       this.cancelBackendNotification()
     },
@@ -318,7 +306,6 @@ export default {
 
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
       this.requestWakeLock()
-      this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented:', e));
 
       // Phase 4: Re-schedule on resume
       const remainingMs = this.getRemainingMs()
@@ -332,10 +319,6 @@ export default {
       this.timerState.finished = true
       localStorage.setItem('activeTimoria', JSON.stringify(this.timerState))
       this.releaseWakeLock()
-      if (this.silentAudio) {
-        this.silentAudio.pause();
-        this.silentAudio.currentTime = 0;
-      }
       
       // Phase 4: Cancel Backend Notification
       this.cancelBackendNotification()
@@ -410,10 +393,6 @@ export default {
       this.timerState = null
       localStorage.removeItem('activeTimoria')
       this.releaseWakeLock()
-      if (this.silentAudio) {
-        this.silentAudio.pause();
-        this.silentAudio.currentTime = 0;
-      }
       
       // Phase 4: Cancel Backend Notification
       this.cancelBackendNotification()
@@ -495,7 +474,6 @@ export default {
         this.logTimerState();
         this.startUiTicking();
         this.requestWakeLock();
-        this.silentAudio?.play().catch(e => console.warn('Silent audio play prevented:', e));
         
         // Phase 4: Schedule Backend Notification for break
         this.scheduleBackendNotification('break', this.timerState.plannedMs)
