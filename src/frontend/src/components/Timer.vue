@@ -198,7 +198,7 @@ export default {
         // Re-acquire the wake lock because the browser releases it when the tab is hidden
         if (!this.timerState.pausedAt && !this.timerState.finished) {
           // Small delay to ensure browser is ready for new lock request
-          setTimeout(() => this.requestWakeLock(), 200);
+          setTimeout(() => this.requestWakeLock(), 1000);
         }
       }
     },
