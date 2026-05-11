@@ -291,6 +291,10 @@
         }
     },
     "modal": {
+        "confirmEndBreakTitle": "الاستراحة جارية",
+        "confirmEndBreakMessage": "استراحتك نشطة حاليًا. إنهاؤها الآن سيسمح لك ببدء جلستك التالية.",
+        "confirmStartTimoriaTitle": "الجلسة جارية",
+        "confirmStartTimoriaMessage": "هناك جلسة قيد التشغيل بالفعل. هل تريد إيقافها وبدء هذه التيموريا (Timoria) بدلاً منها؟",
         "confirmDeleteTitle": "هل أنت متأكد أنك تريد حذف هذه الجلسة؟",
         "confirmDeleteMessage": "هل أنت متأكد أنك تريد حذف هذه الجلسة؟ لديك وقت محدود للتراجع عن هذا الإجراء بعد الموافقة.",
         "confirmDeleteGoalTitle": "حذف الهدف؟",

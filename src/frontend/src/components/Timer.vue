@@ -103,8 +103,8 @@ export default {
         if (newVal.duration && newVal._id) {
           this.localTimoria = newVal
 
-          // only start if nothing is already running
-          if (!this.timerState) {
+          // Start if nothing is running, or if we are starting a DIFFERENT session (e.g. switching from break to timoria)
+          if (!this.timerState || this.timerState.id !== newVal._id) {
             this.$nextTick(() => {
               this.startTimer()
             })
@@ -273,6 +273,9 @@ export default {
         this.requestNotificationPermission();
       }
 
+      // Cleanup any existing session state
+      this.cancelBackendNotification()
+      
       this.timerType = 'timoria'
 
       this.timerState = createTimerState({

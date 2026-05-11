@@ -525,7 +525,7 @@ export default {
      * of the component's lifecycle (creation, mounting, updating, etc.)
      * When the component mounts, fetch the initial data from the server
      */
-    mounted() {
+    async mounted() {
         const token = localStorage.getItem('token');
         if (!token) {
             this.$router.push('/login');
@@ -544,6 +544,39 @@ export default {
             logged in from a mobile phone in order to display a select tag instead of datalists */
         // Super simple mobile detection – good enough for this UX choice
         this.isMobile = /Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        // Restore active session state from localStorage on page load
+        const saved = localStorage.getItem('activeTimoria');
+        if (saved) {
+            const state = JSON.parse(saved);
+            if (state.type === 'break') {
+                this.activeBreak = true;
+                this.activeTimoria = { 
+                    _id: 'break', 
+                    subject: 'Break', 
+                    topic: 'Break', 
+                    tag: 'Break',
+                    task: 'Take a short break',
+                    duration: state.breakDurationMinutes || 5
+                };
+            } else {
+                this.activeBreak = false;
+                // Fetch full details so the props passed to Timer are complete
+                try {
+                    const res = await fetch(`${this.url}/${state.id}`, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+                    if (res.ok) {
+                        this.activeTimoria = await res.json();
+                    } else {
+                        this.activeTimoria = { _id: state.id };
+                    }
+                } catch (err) {
+                    console.warn('Failed to restore active timoria details:', err);
+                    this.activeTimoria = { _id: state.id };
+                }
+            }
+        }
     },
     /**
      * --------------------------------------------------------
@@ -860,6 +893,41 @@ export default {
         },
         // start a Timoria (study session) by setting it as active and updating its status in the backend
         async startTimoria(timoria) {
+            // Check if a session is already running
+            if (this.activeTimoria && !this.activeBreak && this.activeTimoria._id !== timoria._id) {
+                const ok = await appConfirm({
+                    title: this.$t('modal.confirmStartTimoriaTitle') || 'Session in Progress',
+                    message: this.$t('modal.confirmStartTimoriaMessage') || 'A session is already running. Do you want to stop it and start this Timoria instead?',
+                    confirmText: this.$t('buttons.start') || 'Start',
+                    cancelText: this.$t('buttons.cancel') || 'Cancel'
+                })
+                if (!ok) return
+
+                // Revert the old session to 'planned' in the database
+                try {
+                    await fetch(`${this.url}/${this.activeTimoria._id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ status: 'planned' })
+                    })
+                } catch (err) {
+                    //console.error('Failed to revert old session:', err)
+                    this.toast && this.toast.error(this.$t('notification.failedRevert') || 'Failed to revert old session.');
+                }
+            } else if (this.activeBreak) {
+                const ok = await appConfirm({
+                    title: this.$t('modal.confirmEndBreakTitle') || 'End Break?',
+                    message: this.$t('modal.confirmEndBreakMessage') || 'You are currently on a break. Do you want to end your break and start this Timoria?',
+                    confirmText: this.$t('buttons.start') || 'Start',
+                    cancelText: this.$t('buttons.cancel') || 'Cancel'
+                })
+                if (!ok) return
+            }
+
+            // CRITICAL: Clear any existing timer state from localStorage.
+            // This ensures the Timer component starts fresh and doesn't reload the old (break) state.
+            localStorage.removeItem('activeTimoria');
+
             /**
              * The timer does NOT know that a timoria has been started because of localStorage
              * The timer knows because Vue reactivity propagates activeTimoria from the parent to the child as a prop.
