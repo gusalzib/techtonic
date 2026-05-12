@@ -389,6 +389,33 @@ export default {
      * Vue automatically makes these reactive and binds them to the template
      */
     data() {
+        // Restore active session state from localStorage on page load
+        const saved = localStorage.getItem('activeTimoria');
+        let initialActiveTimoria = null;
+        let initialActiveBreak = false;
+
+        if (saved) {
+            try {
+                const state = JSON.parse(saved);
+                if (state.type === 'break') {
+                    initialActiveBreak = true;
+                    initialActiveTimoria = { 
+                        _id: 'break', 
+                        subject: 'Break', 
+                        topic: 'Break', 
+                        tag: 'Break',
+                        task: 'Take a short break',
+                        duration: state.breakDurationMinutes || 5
+                    };
+                } else {
+                    initialActiveBreak = false;
+                    initialActiveTimoria = { _id: state.id };
+                }
+            } catch (e) {
+                console.error('Failed to parse activeTimoria from localStorage:', e);
+            }
+        }
+
         return {
             // fields bound to the form inputs for creating a new Timoria (study sessions)
             subject: '',
@@ -419,8 +446,8 @@ export default {
             },
 
             // timer control state
-            activeTimoria: null,
-            activeBreak: false,
+            activeTimoria: initialActiveTimoria,
+            activeBreak: initialActiveBreak,
 
             // placeholders for currently updated Timoria (used when syncing updates)
             timoria: {
@@ -545,36 +572,17 @@ export default {
         // Super simple mobile detection – good enough for this UX choice
         this.isMobile = /Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-        // Restore active session state from localStorage on page load
-        const saved = localStorage.getItem('activeTimoria');
-        if (saved) {
-            const state = JSON.parse(saved);
-            if (state.type === 'break') {
-                this.activeBreak = true;
-                this.activeTimoria = { 
-                    _id: 'break', 
-                    subject: 'Break', 
-                    topic: 'Break', 
-                    tag: 'Break',
-                    task: 'Take a short break',
-                    duration: state.breakDurationMinutes || 5
-                };
-            } else {
-                this.activeBreak = false;
-                // Fetch full details so the props passed to Timer are complete
-                try {
-                    const res = await fetch(`${this.url}/${state.id}`, {
-                        headers: { Authorization: `Bearer ${token}` }
-                    });
-                    if (res.ok) {
-                        this.activeTimoria = await res.json();
-                    } else {
-                        this.activeTimoria = { _id: state.id };
-                    }
-                } catch (err) {
-                    console.warn('Failed to restore active timoria details:', err);
-                    this.activeTimoria = { _id: state.id };
+        // Fetch full details if we only have a shell object for an active timoria
+        if (this.activeTimoria && this.activeTimoria._id !== 'break' && !this.activeTimoria.subject) {
+            try {
+                const res = await fetch(`${this.url}/${this.activeTimoria._id}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    this.activeTimoria = await res.json();
                 }
+            } catch (err) {
+                console.warn('Failed to restore active timoria details:', err);
             }
         }
     },

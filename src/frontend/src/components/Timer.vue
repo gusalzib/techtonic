@@ -64,9 +64,17 @@ export default {
     }
   }, 
   data() {
+    const saved = localStorage.getItem('activeTimoria')
+    let initialTimerState = null
+    try {
+      initialTimerState = saved ? JSON.parse(saved) : null
+    } catch (e) {
+      console.error('Failed to parse activeTimoria from localStorage in Timer.vue:', e)
+    }
+
     return {
 
-      timerState: null,   // SINGLE source of truth
+      timerState: initialTimerState,   // SINGLE source of truth
       interval: null,    // UI ticking only
 
       nowTs: Date.now(), // UI heartbeat
@@ -74,7 +82,7 @@ export default {
       url: `${API_BASE_URL}/timoria`,
       localTimoria: null, // timoria in props is readonly and cannot be assigned and re-assigned so we use a local copy of it
       hasBreakFinished: false,
-      timerType: 'timoria', // or 'break',
+      timerType: initialTimerState?.type || 'timoria', // or 'break',
       // breakDuration: 1, // the plan is to allow users to decide the duration here but for now we will use a fixed duration 
       wakeLockSentinel: null,
     } 
@@ -118,11 +126,7 @@ export default {
   async mounted() {
     this.toast = useToast();
 
-    const saved = localStorage.getItem('activeTimoria')
-    if (!saved) return
-
-    this.timerState = JSON.parse(saved)
-    this.timerType = this.timerState.type
+    if (!this.timerState) return
 
     if (!this.timerState.finished && this.getRemainingMs() === 0) {
       this.finishTimoriaOnce()
