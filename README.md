@@ -1,5 +1,5 @@
 <div align="center">
-  <h1> Techtonic</h1>
+  <h1> Techtonic - Timoria</h1>
   <p>A comprehensive, full-stack productivity and personal finance tracker.</p>
 
   <p>
