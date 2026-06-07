@@ -108,7 +108,7 @@ export default {
 
         if (!newVal) return
 
-        if (newVal.duration && newVal._id) {
+        if (newVal.duration !== undefined && newVal.duration !== null && newVal._id) {
           this.localTimoria = newVal
 
           // Start if nothing is running, or if we are starting a DIFFERENT session (e.g. switching from break to timoria)

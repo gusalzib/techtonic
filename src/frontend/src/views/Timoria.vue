@@ -189,7 +189,7 @@
 
   <form novalidate>
     
-    <input v-model.number="duration" type="number" class="timer-input" :placeholder="$t('timer.minutesPlaceholder')" required/>
+    <input v-model.number="duration" type="number" min="1" class="timer-input" :placeholder="$t('timer.minutesPlaceholder')" required/>
 
     <!-- ----------------------------------- SUBJECT MOBILE SELECT VIEW  ------------------------------------->
     <!-- if the user is logged in from a mobile then we display a select tag  -->
