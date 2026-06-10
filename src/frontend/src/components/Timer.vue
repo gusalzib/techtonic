@@ -140,7 +140,7 @@ export default {
     document.addEventListener('visibilitychange', this.handleVisibilityChange)
 
     // Phase 4: Push Notifications (Subscribe only if permission is already granted)
-    if (Notification.permission === 'granted') {
+    if ('Notification' in window && Notification.permission === 'granted') {
       this.$nextTick(() => {
         this.subscribeToPushNotifications()
       })
@@ -273,7 +273,7 @@ export default {
       if (!this.localTimoria?._id) return
 
       // Phase 4: Request permission on user gesture if not already granted
-      if (Notification.permission === 'default') {
+      if ('Notification' in window && Notification.permission === 'default') {
         this.requestNotificationPermission();
       }
 
@@ -447,7 +447,7 @@ export default {
   },
     startBreak() {
       // Phase 4: Request permission on user gesture if not already granted
-      if (Notification.permission === 'default') {
+      if ('Notification' in window && Notification.permission === 'default') {
         this.requestNotificationPermission();
       }
 
@@ -570,7 +570,7 @@ export default {
       },
 
     pushNotification() {
-      if (Notification.permission === 'granted') {
+      if ('Notification' in window && Notification.permission === 'granted') {
         new Notification('✅ Timoria Complete!', {
           body: 'Take a short break or start a new one!',
           icon: '/favicon.ico' // optional: app icon
@@ -580,7 +580,7 @@ export default {
     },
     pushBreakNotification() {
       this.playBreakSound();
-      if (Notification.permission === 'granted') {
+      if ('Notification' in window && Notification.permission === 'granted') {
         new Notification('⏰ Break is over!', {
           body: 'Time to get back to your Timoria!',
           icon: '/favicon.ico' // Optional icon
