@@ -262,7 +262,15 @@ export default {
     },
 
     getRemainingMs() {
-      if (!this.timerState) return 0
+      if (!this.timerState) {
+        if (this.timerType === 'break' && this.breakDurationMinutes) {
+          return this.breakDurationMinutes * 60 * 1000;
+        }
+        if (this.localTimoria && this.localTimoria.duration) {
+          return this.localTimoria.duration * 60 * 1000;
+        }
+        return 0;
+      }
 
       return Math.max(
         0,
@@ -558,16 +566,24 @@ export default {
         }
     },
     requestNotificationPermission() {
-        if ('Notification' in window && Notification.permission !== 'granted') {
-          Notification.requestPermission().then(permission => {
+      if ('Notification' in window && Notification.permission !== 'granted') {
+        try {
+          const handlePermission = (permission) => {
             if (permission === 'granted') {
               console.log('🔔 Notification permission granted.')
             } else {
               console.log('❌ Notification permission denied.')
             }
-          })
+          }
+          const promise = Notification.requestPermission(handlePermission)
+          if (promise && typeof promise.then === 'function') {
+            promise.then(handlePermission).catch(console.warn)
+          }
+        } catch (e) {
+          console.warn('Notification permission request failed', e)
         }
-      },
+      }
+    },
 
     pushNotification() {
       if ('Notification' in window && Notification.permission === 'granted') {
