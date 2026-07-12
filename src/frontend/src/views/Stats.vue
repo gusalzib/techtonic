@@ -368,12 +368,11 @@ export default {
         // Fill with actual data
         dailyData.forEach(entry => {
           const date = new Date(entry.date);
-          const monthYear = `${date.getFullYear()}-${date.getMonth()}`;
+          const yr = date.getFullYear();
+          const mIdx = date.getMonth();
           const day = date.getDate();
           
-          const monthData = monthsData.find(m => 
-            `${m.year}-${new Date(`${m.year}-${m.month}-1`).getMonth()}` === monthYear
-          );
+          const monthData = monthsData.find(m => m.monthIndex === mIdx && m.year === yr);
           
           if (monthData) {
             monthData.days[day] = entry.hours;
@@ -456,8 +455,11 @@ export default {
       const chartData = months.flatMap(month => {
         const daysData = [];
 
-        // Iterate through all days of the month (1 to 31)
-        for (let day = 1; day <= 31; day++) {
+        // Get correct number of days in this specific month
+        const daysInMonth = new Date(month.year, month.monthIndex + 1, 0).getDate();
+
+        // Iterate through all days of the month
+        for (let day = 1; day <= daysInMonth; day++) {
           const hours = month.days[day] ?? 0; // Assign 0 if no data for the day
           daysData.push({
             x: day,
@@ -1171,7 +1173,16 @@ export default {
       // Build full 31-day grid per month for a consistent matrix
       const chartData = months.flatMap(m => {
         const rows = []
-        for (let day = 1; day <= 31; day++) {
+        /**
+         * Think of flatMap as a "logic compressor." In your code, 
+         * it is performing two distinct jobs in a single pass: it transforms each month into a list of days (Map) 
+         * and then merges all those lists into one big, continuous list (Flat).
+
+         * Without flatMap, your chart data would likely be a messy "array of arrays" that your charting 
+         * library wouldn't understand.
+         */
+        const daysInMonth = new Date(m.year, m.monthIndex + 1, 0).getDate()
+        for (let day = 1; day <= daysInMonth; day++) {
           const hours = m.days[day] ?? 0
           rows.push({
             x: day,

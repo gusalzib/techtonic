@@ -1,0 +1,13 @@
+{
+  "name": "techtonic",
+  "version": "1.0.0",
+  "description": "Techtonic - Timer and Productivity App",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build:all && cd ../backend && npm install",
+    "start": "cd backend && npm start",
+    "dev:frontend": "cd frontend && npm run serve",
+    "dev:backend": "cd backend && npm run dev"
+  },
+  "author": "",
+  "license": "ISC"
+}

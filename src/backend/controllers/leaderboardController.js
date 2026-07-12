@@ -193,8 +193,8 @@ exports.getleaderboard = async (req, res) => {
 
       // 2. JavaScript: Calculate streaks for each user
       leaderboard = userActivity.map((entry) => {
-        // Sort dates descending (newest first): ['2023-12-25', '2023-12-24'...]
-        const dates = entry.dates.sort().reverse();
+        // Filter out nulls and sort dates descending (newest first): ['2023-12-25', '2023-12-24'...]
+        const dates = entry.dates.filter(d => d && typeof d === 'string').sort().reverse();
         const userTimezone = entry.userInfo.timezone || "Europe/Stockholm";
 
         // Determine "Today" and "Yesterday" in the user's specific timezone

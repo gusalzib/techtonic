@@ -283,6 +283,10 @@
         }
     },
     "modal": {
+        "confirmEndBreakTitle": "Paus pågår",
+        "confirmEndBreakMessage": "Din paus är för närvarande aktiv. Om du avslutar den nu kan du starta din nästa session.",
+        "confirmStartTimoriaTitle": "Session pågår",
+        "confirmStartTimoriaMessage": "En session är redan igång. Vill du stoppa den och starta denna Timoria istället?",
         "confirmDeleteTitle": "Är du säker på att du vill ta bort denna Timoria?",
         "confirmDeleteMessage": "Är du säker på att du vill ta bort denna Timoria? Du har begränsad tid att ångra denna åtgärd efter att du har godkänt.",
         "confirmDeleteGoalTitle": "Radera mål?",

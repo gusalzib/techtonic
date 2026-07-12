@@ -51,6 +51,7 @@ const contactRoutes = require('./routes/contact.js');
 const reportsRoutes = require('./routes/reportsRoutes.js');
 const budgetRoutes = require('./routes/budgetRoutes');
 const goalRoutes = require('./routes/goalRoutes.js');
+const notificationRoutes = require('./routes/notificationRoutes.js');
 
 app.use('/api/timoria', timoriaRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
@@ -59,6 +60,7 @@ app.use('/api/contact', contactRoutes);
 app.use('/api/reports', reportsRoutes);
 app.use('/api/budget', budgetRoutes);
 app.use('/api/goals', goalRoutes)
+app.use('/api/notifications', notificationRoutes);
 
 
 // Catch-all for unhandled errors
@@ -95,13 +97,13 @@ const { generateAutomaticWeeklyReportsForUsers } = require('./controllers/report
 
 // Schedule: "0 05 * * 1" means 0 minutes, 05 hours (5 AM),
 // any day of month, any month, Monday (1)
-// you can check https://crontab.guru/#0_21_*_*_0 for a better understanding of the Cron Expression argument 
-// temporarily */1 * * * * which runs every minute for testing purposes.  0 21 * * 0
+// you can check https://crontab.guru/#0 05 * * 1 for a better understanding of the Cron Expression argument 
+// temporarily */1 * * * * which runs every minute for testing purposes.  0 05 * * 1
 cron.schedule('0 05 * * 1', async () => {
   console.log('--- Starting Monday Weekly Report Batch ---');
 
   try {
-    // fetch all users who shoul receive reports
+    // fetch all users who should receive reports
     const users = await User.find();
 
     for (const user of users) {
@@ -116,9 +118,57 @@ cron.schedule('0 05 * * 1', async () => {
     console.error(`Batch report generation failed:  `, error)
   }
 }, {
-  schedule: true,
+  scheduled: true,
   timezone: "Europe/Stockholm"// Set the server's scheduling timezone
 })
+
+/**########################################################## PUSH NOTIFICATIONS POLLING ########################################################## */
+const webpush = require('web-push');
+const PendingNotification = require('./models/pendingNotification');
+
+webpush.setVapidDetails(
+  'mailto:contact@techtonic.se', 
+  process.env.VAPID_PUBLIC_KEY,
+  process.env.VAPID_PRIVATE_KEY
+);
+/**
+ * So the idea here is to check the notification collection in the db every 30 seconds
+ * and if we find a notification that is expired, we send it to the user and delete it from the collection.
+ * This will allow us to send push notifications to users even when the app is not on screen.
+ */
+// Poll every 30 seconds for expired timers
+// I will approve this code for now, but I am not sure this is scalable, we should consider using a message queue system.
+cron.schedule('*/30 * * * * *', async () => {
+  const now = new Date();
+  try {
+    const expired = await PendingNotification.find({ finishTime: { $lte: now } }).populate('user');
+    
+    for (const notification of expired) {
+      if (notification.user && notification.user.pushSubscription) {
+        try {
+          await webpush.sendNotification(
+            notification.user.pushSubscription,
+            JSON.stringify(notification.payload)
+          );
+          console.log(`Push notification sent to ${notification.user.email}`);
+        } catch (err) {
+          console.error(`Failed to send push to ${notification.user.email}:`, err.message);
+          // If subscription is invalid/expired, we might want to clear it
+          if (err.statusCode === 410 || err.statusCode === 404) {
+            notification.user.pushSubscription = null;
+            await notification.user.save();
+          }
+        }
+      }
+      // Delete the notification document regardless of success (to avoid double-sending)
+      await PendingNotification.findByIdAndDelete(notification._id);
+    }
+  } catch (err) {
+    console.error('Push notification polling error:', err);
+  }
+});
+/**XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+
 /**XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 // Import the Cron Job to start the weekly scheduler

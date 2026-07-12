@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
     timezone: {   
       type: String,
       default: 'Europe/Stockholm', // default until they change it
+    },
+    pushSubscription: {
+      type: Object,
+      default: null
     }
 });
 

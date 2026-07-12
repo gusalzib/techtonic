@@ -5,7 +5,7 @@ const timoriaSchema = new mongoose.Schema({
   topic: { type: String, required: true },
   tag: { type: String },
   task: { type: String },
-  duration: { type: Number, required: true },
+  duration: { type: Number, required: true, min: 1 },
   status: {
     type: String,
     enum: ['planned', 'ongoing', 'done'],

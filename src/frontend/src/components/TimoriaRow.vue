@@ -20,7 +20,7 @@
     <td v-else><input v-model="form.task" /></td>
 
     <td v-if="!isEditing">{{ form.duration }} min</td>
-    <td v-else><input type="number" v-model.number="form.duration" /></td>
+    <td v-else><input type="number" min="1" v-model.number="form.duration" /></td>
 
     <td v-if="!isEditing">{{ form.subject }}</td>
     <td v-else><input v-model="form.subject" /></td>
