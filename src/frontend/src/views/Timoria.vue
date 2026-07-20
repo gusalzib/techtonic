@@ -508,8 +508,8 @@ export default {
     computed: {
         showBirthday() {
             const userStore = useUserStore();
-            const targetUserId = '682328e4b838d475ecd54f91';
-            const targetDateStr = '20/07/2026';
+            const targetUserId = '69510167b904197275a5c2a2';
+            const targetDateStr = '21/07/2026';
             
             const today = new Date();
             const dd = String(today.getDate()).padStart(2, '0');
