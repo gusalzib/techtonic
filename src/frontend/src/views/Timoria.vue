@@ -18,6 +18,9 @@
 
 
 <div v-show="activeView === 'timer'">
+<!-- Birthday Celebration Section -->
+<BirthdayCelebration v-if="showBirthday" :name="username" />
+
 <!-- Timer Section -->
 <Timer :timoria="activeTimoria" :key="activeTimoria?._id" 
     :break-duration-minutes="breakDurationMinutes"
@@ -371,6 +374,7 @@
 import axios from 'axios' // for http POST/PUT/DELETE requests
 import Timer from '../components/Timer' // timer component that runs countdowns
 import TimoriaSummary from '../components/TimoriaSummary';
+import BirthdayCelebration from '../components/BirthdayCelebration.vue';
 import dingSound from '@/assets/audio/ding.mp3' // sound to play when timoria ends
 import { confirm as appConfirm } from '@/services/confirmService' // import the confirm function
 import { useToast } from 'vue-toastification'
@@ -491,7 +495,8 @@ export default {
      */
     components: {
         Timer,
-        TimoriaSummary
+        TimoriaSummary,
+        BirthdayCelebration
     },
     /**
      * --------------------------------------------------------
@@ -501,6 +506,23 @@ export default {
      * They automatically update/re-calculate when their dependencies change
      */
     computed: {
+        showBirthday() {
+            const userStore = useUserStore();
+            const targetUserId = '682328e4b838d475ecd54f91';
+            const targetDateStr = '20/07/2026';
+            
+            const today = new Date();
+            const dd = String(today.getDate()).padStart(2, '0');
+            const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+            const yyyy = today.getFullYear();
+            const currentDateStr = dd + '/' + mm + '/' + yyyy;
+            
+            return userStore.userId === targetUserId && currentDateStr === targetDateStr;
+        },
+        username() {
+            const userStore = useUserStore();
+            return userStore.username || 'Lujain';
+        },
         totalTodayDuration() {
             const totalMinutes = this.todayTimorias.reduce((sum, t) => sum + Number(t.duration || 0), 0)
             const hours = Math.floor(totalMinutes / 60)

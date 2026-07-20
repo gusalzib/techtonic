@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { API_BASE_URL } from '@/config/api';
 
 export const useUserStore = defineStore('user', {
 // State holds reactive values for the user
@@ -8,7 +9,8 @@ export const useUserStore = defineStore('user', {
     isRegular: false,
     isPaid: false,
     username: '',
-    timezone: '' 
+    timezone: '',
+    userId: null
   }),
   // Actions are like methods: async functions that update the state
   actions: {
@@ -22,7 +24,7 @@ export const useUserStore = defineStore('user', {
         return;
       }
 
-      const response = await fetch('https://techtonic-v0qp.onrender.com/api/users/status', {
+      const response = await fetch(`${API_BASE_URL}/users/status`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -40,6 +42,7 @@ export const useUserStore = defineStore('user', {
       this.isPaid = data.isPaid;
       this.username = data.username;
       this.timezone   = data.timezone || this.timezone || 'Europe/Stockholm';
+      this.userId = data.userId;
     },
     /**
      * Clear local user state and remove token
@@ -59,6 +62,7 @@ export const useUserStore = defineStore('user', {
       this.isPaid = false;
       this.username = '';
       this.timezone   = '';
+      this.userId = null;
     }
   
   }
